@@ -1,12 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Page</title>
+    <title>Portfolio di Erik Mischiatti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        .experience, .projects {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .experience-item, .project-item {
+            width: 45%;
+            margin: 20px 2.5%;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My GitHub Page</h1>
-    <p>This is my first GitHub Pages site!</p>
+    <header>
+        <h1>Erik Mischiatti - Portfolio</h1>
+        <p>Mechatronic Engineering Master Student - Focus on Electronics, Robotics, and Autonomous Systems</p>
+    </header>
+
+    <div class="container">
+        <!-- Sezione Profilo -->
+        <section class="section">
+            <h2>Profilo</h2>
+            <p>Sono un ingegnere meccatronico con una forte passione per la robotica e i sistemi autonomi. Attualmente sto lavorando alla mia tesi di laurea magistrale presso l'Istituto di Sistemi Autonomi della TU Wien, dove mi sto concentrando sull'apprendimento dimostrativo per l'addestramento di robot in compiti complessi.</p>
+        </section>
+
+        <!-- Sezione Esperienza Lavorativa -->
+        <section class="section">
+            <h2>Esperienza Lavorativa</h2>
+            <div class="experience">
+                <div class="experience-item">
+                    <h3>Master Thesis - Technical University of Vienna (TU Wien)</h3>
+                    <p><strong>2024 - Presente</strong></p>
+                    <p>Progetto: Implementazione di un sistema di apprendimento dimostrativo su un braccio robotico. Utilizzo di tecnologie come stima 6D unificata, tracciamento degli oggetti, alberi comportamentali e algoritmi di apprendimento per insegnare a un robot a eseguire e invertire compiti complessi.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Hachi Team - Startup Lab, University of Trento</h3>
+                    <p><strong>2022 - 2023</strong></p>
+                    <p>Collaborazione per lo sviluppo di un sistema di automazione per la preparazione di pasti. Ho partecipato alla progettazione e sviluppo di componenti elettroniche e meccaniche.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Progetti -->
+        <section class="section">
+            <h2>Progetti</h2>
+            <div class="projects">
+                <div class="project-item">
+                    <h3>Unified 6D Pose Estimation per Robot</h3>
+                    <p>Implementazione di un algoritmo di stima della posa in 6D per il rilevamento e tracciamento di oggetti utilizzato in sistemi di robotica avanzata.</p>
+                    <a href="https://github.com/username/project1">Vedi il progetto su GitHub</a>
+                </div>
+                <div class="project-item">
+                    <h3>Sistema di Comunicazione UWB per UAV</h3>
+                    <p>Progettazione di un sistema di comunicazione modulare per droni basato su tecnologia UWB, utilizzato in contesti di coordinazione multi-agente.</p>
+                    <a href="https://github.com/username/project2">Vedi il progetto su GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sezione Competenze -->
+        <section class="section">
+            <h2>Competenze</h2>
+            <ul>
+                <li>ROS, Gazebo, Python, OpenCV</li>
+                <li>Progettazione 3D (SolidWorks, Fusion 360), Stampa 3D</li>
+                <li>Sistemi di comunicazione UWB</li>
+                <li>Comportamenti di apprendimento robotico</li>
+                <li>Sviluppo di algoritmi di controllo e navigazione per robot autonomi</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>Connettiti con me su <a href="https://www.linkedin.com/in/erik-mischiatti">LinkedIn</a></p>
+    </footer>
 </body>
 </html>
