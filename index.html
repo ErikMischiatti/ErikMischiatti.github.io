@@ -1,152 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Portfolio of Erik Mischiatti" />
-        <meta name="author" content="Erik Mischiatti" />
-        <title>Erik Mischiatti - Mechatronic Engineer</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Erik Mischiatti</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 h-100">
-                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Erik Mischiatti</h1>
-                        <hr class="divider" />
-                    </div>
-                    <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Mechatronic Engineer with a passion for robotics and autonomous systems.</p>
-                        <a class="btn btn-primary btn-xl" href="#about">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- About Section -->
-        <section class="page-section bg-primary" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">About Me</h2>
-                        <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">I'm a Master's student in Mechatronics Engineering at the University of Trento. I specialize in robotics, automation, and systems engineering, with experience in various projects ranging from autonomous drones to robotic arm programming.</p>
-                        <a class="btn btn-light btn-xl" href="#experience">Explore My Work</a>
-                    </div>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erik Mischiatti - Portfolio</title>
+    <link rel="icon" type="image/png" href="EM_logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        .experience, .projects {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .experience-item, .project-item {
+            width: 45%;
+            margin: 20px 2.5%;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Erik Mischiatti - Portfolio</h1>
+        <p>Mechatronic Engineering Master Student - Focus on Electronics, Robotics, and Autonomous Systems</p>
+    </header>
+
+    <div class="container">
+        <!-- Profile Section -->
+        <section class="section">
+            <h2>Profile</h2>
+            <p>I am a Mechatronic Engineer with a strong passion for robotics and autonomous systems. Currently working on my master's thesis at the Institute of Autonomous Systems at TU Wien, focusing on demonstration learning to train robots for complex tasks.</p>
         </section>
+
         <!-- Experience Section -->
-        <section class="page-section" id="experience">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Professional Experience</h2>
-                <hr class="divider" />
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-4 col-sm-6">
-                        <h3 class="h4 mb-2">Master Thesis - TU Wien</h3>
-                        <p>2024 - Present: Research on demonstration learning for robotic arms, focusing on Unified 6D Pose Estimation, object tracking, and behavior trees for task learning.</p>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <h3 class="h4 mb-2">Startup Lab - Hachi Team</h3>
-                        <p>2022 - 2023: Worked on the development of an automated meal preparation system, collaborating on both electronic and mechanical design.</p>
-                    </div>
+        <section class="section">
+            <h2>Work Experience</h2>
+            <div class="experience">
+                <div class="experience-item">
+                    <h3>Master Thesis - Technical University of Vienna (TU Wien)</h3>
+                    <p><strong>2024 - Present</strong></p>
+                    <p>Project: Implementing a demonstration learning system on a robotic arm. Using technologies like Unified 6D Pose Estimation, object tracking, behavior trees, and learning algorithms to teach a robot how to execute and reverse complex tasks.</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Hachi Team - Startup Lab, University of Trento</h3>
+                    <p><strong>2022 - 2023</strong></p>
+                    <p>Collaborated in the development of an automation system for meal preparation. Contributed to the design and development of electronic and mechanical components.</p>
                 </div>
             </div>
         </section>
+
         <!-- Projects Section -->
-        <section class="page-section bg-light" id="projects">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="images/project1.jpg" title="6D Pose Estimation for Robots">
-                            <img class="img-fluid" src="images/project1_thumbnail.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">Robotics</div>
-                                <div class="project-name">6D Pose Estimation for Robots</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="images/project2.jpg" title="UWB Communication for UAVs">
-                            <img class="img-fluid" src="images/project2_thumbnail.jpg" alt="..." />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">UAV Systems</div>
-                                <div class="project-name">UWB Communication for UAVs</div>
-                            </div>
-                        </a>
-                    </div>
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-item">
+                    <h3>Unified 6D Pose Estimation for Robots</h3>
+                    <p>Implementation of a 6D pose estimation algorithm for object detection and tracking in advanced robotic systems.</p>
+                    <a href="https://github.com/username/project1">View the project on GitHub</a>
+                </div>
+                <div class="project-item">
+                    <h3>UWB Communication System for UAVs</h3>
+                    <p>Designed a modular communication system for drones based on UWB technology, used in multi-agent coordination contexts.</p>
+                    <a href="https://github.com/username/project2">View the project on GitHub</a>
                 </div>
             </div>
         </section>
-        <!-- Contact Section -->
-        <section class="page-section" id="contact">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">Get in Touch</h2>
-                        <hr class="divider" />
-                        <p class="text-muted mb-5">Interested in collaborating? Reach out and let's work together!</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div class="col-lg-6">
-                        <form id="contactForm">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Your name..." required />
-                                <label for="name">Full name</label>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" required />
-                                <label for="email">Email address</label>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" placeholder="Your message..." style="height: 200px" required></textarea>
-                                <label for="message">Message</label>
-                            </div>
-                            <button class="btn btn-primary btn-xl" type="submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <h2>Skills</h2>
+            <ul>
+                <li>ROS, Gazebo, Python, OpenCV</li>
+                <li>3D Design (SolidWorks, Fusion 360), 3D Printing</li>
+                <li>UWB Communication Systems</li>
+                <li>Robotic Learning Behaviors</li>
+                <li>Development of control and navigation algorithms for autonomous robots</li>
+            </ul>
         </section>
-        <!-- Footer -->
-        <footer class="bg-dark py-5">
-            <div class="container px-4 px-lg-5">
-                <div class="small text-center text-muted">© 2024 Erik Mischiatti. All Rights Reserved.</div>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="scripts.js"></script>
-    </body>
+    </div>
+
+    <footer>
+        <p>Connect with me on <a href="https://www.linkedin.com/in/erik-mischiatti">LinkedIn</a></p>
+    </footer>
+</body>
 </html>
