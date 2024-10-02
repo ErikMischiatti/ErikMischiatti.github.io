@@ -1,142 +1,40 @@
-/*!
-* Start Bootstrap - Creative v7.0.7 (https://startbootstrap.com/theme/creative)
-* Copyright 2013-2023 Start Bootstrap
-*/
-
-/* Core styles for the site */
 body {
-    font-family: 'Merriweather Sans', sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
 }
 
-/* Masthead section */
-.masthead {
-    position: relative;
-    width: 100%;
-    min-height: 75vh;
-    background: #212529 url('../images/header-bg.jpg') no-repeat center center;
-    background-size: cover;
+header {
+    background-color: #2c3e50;
     color: white;
-}
-
-.masthead h1 {
-    font-size: 3rem;
-}
-
-.masthead .divider {
-    margin: 1.5rem 0;
-    width: 3rem;
-    height: 0.25rem;
-    background-color: #f4623a;
-    border-radius: 0.25rem;
-}
-
-/* Navbar custom styles */
-#mainNav {
-    background-color: #212529;
-}
-
-#mainNav .navbar-brand {
-    color: #f4623a;
-}
-
-#mainNav .nav-link {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-#mainNav .nav-link:hover {
-    color: #f4623a;
-}
-
-/* About section styles */
-#about {
-    background-color: #f4623a;
-    color: white;
-    padding: 5rem 0;
-}
-
-#about h2 {
-    font-size: 2.5rem;
-}
-
-#about .btn {
-    background-color: #ffffff;
-    color: #f4623a;
-    border: none;
-}
-
-#about .btn:hover {
-    background-color: #f8f9fa;
-    color: #f4623a;
-}
-
-/* Experience and projects sections */
-#experience, #projects {
-    padding: 5rem 0;
-}
-
-#projects .portfolio-box {
-    position: relative;
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-
-#projects .portfolio-box img {
-    max-width: 100%;
-    transition: all 0.2s ease-in-out;
-}
-
-#projects .portfolio-box-caption {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(33, 37, 41, 0.8);
-    padding: 1.5rem;
     text-align: center;
-    color: white;
+    padding: 20px;
 }
 
-#projects .portfolio-box-caption .project-category {
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
+h1 {
+    font-size: 2.5em;
 }
 
-#projects .portfolio-box-caption .project-name {
-    font-size: 1.5rem;
-    font-weight: 700;
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Contact section */
-#contact {
-    background-color: #f8f9fa;
-    padding: 5rem 0;
+.experience-item, .project-item {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-#contact .form-control {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-}
-
-#contact .btn {
-    background-color: #f4623a;
-    color: white;
-}
-
-#contact .btn:hover {
-    background-color: #e74c3c;
-}
-
-/* Footer */
 footer {
-    background-color: #212529;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 2rem 0;
-}
-
-footer .small {
-    font-size: 0.875rem;
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
