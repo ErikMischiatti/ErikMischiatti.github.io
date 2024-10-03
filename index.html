@@ -151,5 +151,17 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<!-- Smooth scrolling script -->
+			<script>
+			    $(document).ready(function(){
+			        $('a[href*="#"]').on('click', function(e) {
+			            e.preventDefault();
+			            $('html, body').animate({
+			                scrollTop: $($(this).attr('href')).offset().top
+			            }, 800, 'linear');
+			        });
+			    });
+			</script>
+
 	</body>
 </html>
