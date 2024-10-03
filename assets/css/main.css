@@ -4001,6 +4001,7 @@ input, select, textarea {
 	/* Correggi il comportamento del tag <br> e gestisci lo stile del testo sui dispositivi mobili */
 	.spotlight h2 {
 	    white-space: normal; /* Assicura che il testo rispetti i cambi di riga */
+		
 	}
 	
 	@media (max-width: 600px) {
