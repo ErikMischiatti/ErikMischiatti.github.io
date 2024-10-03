@@ -3997,3 +3997,15 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+	
+	/* Correggi il comportamento del tag <br> e gestisci lo stile del testo sui dispositivi mobili */
+	.spotlight h2 {
+	    white-space: normal; /* Assicura che il testo rispetti i cambi di riga */
+	}
+	
+	@media (max-width: 600px) {
+	    .spotlight h2 {
+	        font-size: 1.5em; /* Riduci leggermente la dimensione del testo su mobile */
+	        line-height: 1.2; /* Aggiusta l'interlinea per renderlo più leggibile */
+	    }
+	}
