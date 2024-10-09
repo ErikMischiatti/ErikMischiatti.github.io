@@ -8,7 +8,7 @@
 
         <!-- Header -->
         <header id="header">
-            <div class="logo"><a href="index.html">Home</a></div>
+            <div class="logo"><a href="../index.html">Home</a></div>
         </header>
 
         <!-- Main -->
@@ -29,10 +29,13 @@
                 <!-- Images and Video -->
                 <section>
                     <h3>Media</h3>
-                    <div class="image-grid">
-                        <div><img src="../pics/photo_5_2024-10-09_14-14-40.jpg" alt="Robot Learning" /></div>
-<!--                         <div><img src="../pics/photo_5_2024-10-03_14-58-56.jpg" alt="Behavior Trees" /></div> -->
+                    <div class="image-mosaic">
+                        <div class="mosaic-item"><img src="../pics/photo_5_2024-10-09_14-14-40.jpg" alt="Robot Learning" /></div>
+                        <div class="mosaic-item"><img src="../pics/photo_2_2024-10-03_15-53-10.jpg" alt="Behavior Trees" /></div>
+                        <div class="mosaic-item"><img src="../pics/photo_1_2024-10-03_15-53-00.jpg" alt="Simulation" /></div>
+                        <div class="mosaic-item"><img src="../pics/photo_3_2024-10-03_16-53-10.jpg" alt="6D Pose Estimation" /></div>
                     </div>
+
                     <div class="video">
                         <video width="100%" controls>
                             <source src="../media/project_video.mp4" type="video/mp4">
@@ -68,14 +71,20 @@
 
 <!-- Styles for media -->
 <style>
-.image-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+.image-mosaic {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Griglia flessibile */
+    gap: 20px; /* Spaziatura tra le immagini */
 }
 
-.image-grid div {
-    width: 48%;
+.mosaic-item {
+    overflow: hidden;
+}
+
+.mosaic-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Adatta le immagini */
 }
 
 .video {
