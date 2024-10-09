@@ -1,203 +1,38 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Master Thesis Project</title>
-        <link rel="stylesheet" href="../assets/css/main.css" /> <!-- Collega lo stesso CSS della pagina principale -->
-        <style>
-            /* Stili per il modal */
-            .modal {
-                display: none; /* Nascosto di default */
-                position: fixed;
-                z-index: 1;
-                padding-top: 60px;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.9); /* Sfondo scuro */
-            }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Thesis Project</title>
+    <link rel="stylesheet" href="../css/your_stylesheet.css"> <!-- Modifica con il path del tuo file CSS -->
+</head>
+<body>
+    <header>
+        <h1>Master Thesis Project: Autonomous Robot Learning</h1>
+    </header>
+    
+    <section>
+        <h2>Project Overview</h2>
+        <p>This project focuses on teaching a robot to learn and reverse complex tasks using behavior trees and 6D Pose Estimation.</p>
 
-            .modal-content {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
-            }
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Behavior Trees</li>
+            <li>6D Pose Estimation</li>
+            <li>Autonomous Learning Algorithms</li>
+        </ul>
 
-            .modal-content, .caption {
-                animation-name: zoom;
-                animation-duration: 0.6s;
-            }
+        <h2>Results</h2>
+        <p>The robot successfully learned complex tasks and was able to reverse them efficiently.</p>
 
-            @keyframes zoom {
-                from {transform: scale(0)} 
-                to {transform: scale(1)}
-            }
+        <img src="../images/project_image.jpg" alt="Project Image" /> <!-- Aggiorna il percorso dell'immagine -->
+        
+        <h2>Further Information</h2>
+        <p>For more detailed information, you can check the <a href="../pdfs/master_thesis_documentation.pdf" target="_blank">project documentation</a>.</p>
+    </section>
 
-            /* Sfocatura dello sfondo */
-            .blur-background {
-                filter: blur(5px);
-            }
-
-            /* Stile della didascalia */
-            .caption {
-                margin: auto;
-                display: block;
-                width: 80%;
-                max-width: 700px;
-                text-align: center;
-                color: #ccc;
-                padding: 10px 0;
-            }
-
-            /* Bottone di chiusura */
-            .close {
-                position: absolute;
-                top: 15px;
-                right: 35px;
-                color: #fff;
-                font-size: 40px;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-
-            .close:hover, .close:focus {
-                color: #bbb;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            .image-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 20px;
-            }
-
-            .mosaic-item img {
-                max-width: 100%;
-                height: auto;
-                cursor: pointer; /* Aggiunge un puntatore */
-            }
-
-            .video {
-                margin-top: 20px;
-            }
-
-            .video video {
-                width: 50%; /* Riduce la dimensione del video */
-                margin: auto;
-                display: block;
-            }
-        </style>
-    </head>
-    <body class="subpage">
-
-        <!-- Header -->
-        <header id="header">
-            <div class="logo"><a href="../index.html">Home</a></div>
-        </header>
-
-        <!-- Main -->
-        <section id="main" class="wrapper style1">
-            <div class="inner">
-                <header class="major">
-                    <h2>Master Thesis Project - Autonomous Robot Learning</h2>
-                    <p>My master's thesis focuses on teaching a robot to autonomously learn and reverse complex tasks using behavior trees and 6D Pose Estimation.</p>
-                </header>
-
-                <!-- Description -->
-                <section>
-                    <h3>Project Overview</h3>
-                    <p>This project aims to implement advanced learning algorithms for autonomous robotic manipulation, enabling a robot to generalize tasks through demonstration learning.</p>
-                    <p>It involves 6D pose estimation, object tracking, and behavior tree architectures to reverse learned tasks and adapt to new environments.</p>
-                </section>
-
-                <!-- Images and Video -->
-                <section>
-                    <h3>Media</h3>
-                    <div class="image-grid">
-                        <div class="mosaic-item">
-                            <img id="myImg1" src="../pics/photo_5_2024-10-09_14-14-40.jpg" alt="Robot Learning" />
-                            <p class="caption">Robot Learning in Action</p>
-                        </div>
-                        <div class="mosaic-item">
-                            <img id="myImg2" src="../pics/photo_2_2024-10-03_15-53-10.jpg" alt="Behavior Trees" />
-                            <p class="caption">Behavior Trees for Task Reversal</p>
-                        </div>
-                    </div>
-
-                    <!-- Video -->
-                    <div class="video">
-                        <video controls>
-                            <source src="../media/project_video.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </section>
-
-                <!-- Links -->
-                <section>
-                    <h3>Additional Information</h3>
-                    <ul class="actions">
-                        <li><a href="https://github.com/ErikMischiatti/MasterThesisRepo" target="_blank" class="button">GitHub Repository</a></li>
-                        <li><a href="../index.html" class="button">Back to Home</a></li>
-                    </ul>
-                </section>
-            </div>
-        </section>
-
-        <!-- Modal per le immagini -->
-        <div id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="imgModal">
-            <div id="caption"></div>
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <div class="inner">
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                </ul>
-            </div>
-        </footer>
-
-        <script>
-            // Get the modal
-            var modal = document.getElementById("myModal");
-
-            // Get the images and insert them inside the modal
-            var img1 = document.getElementById("myImg1");
-            var img2 = document.getElementById("myImg2");
-            var modalImg = document.getElementById("imgModal");
-            var captionText = document.getElementById("caption");
-
-            // Funzione per aprire l'immagine nel modal
-            function openModal(image, caption) {
-                document.body.classList.add("blur-background");
-                modal.style.display = "block";
-                modalImg.src = image.src;
-                captionText.innerHTML = caption;
-            }
-
-            img1.onclick = function() {
-                openModal(this, "Robot Learning in Action");
-            }
-
-            img2.onclick = function() {
-                openModal(this, "Behavior Trees for Task Reversal");
-            }
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // Quando l'utente clicca su (x), chiudere il modal
-            span.onclick = function() {
-                modal.style.display = "none";
-                document.body.classList.remove("blur-background");
-            }
-        </script>
-
-    </body>
+    <footer>
+        <p>Back to <a href="../index.html">Home</a></p>
+    </footer>
+</body>
 </html>
