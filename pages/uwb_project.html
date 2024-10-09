@@ -1,89 +1,87 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>UWB Communication System for UAVs</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="../assets/css/main.css" /> <!-- Assicurati che il CSS sia collegato correttamente -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UWB Communication System for UAVs</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 
-    <!-- UWB Project Section -->
-    <section id="uwb-project" class="wrapper style1 special">
+    <!-- Header -->
+    <header id="header">
+        <h1>UWB Communication System for UAVs</h1>
+        <p>Developing a Modular Communication System for UAVs Using Ultra-Wideband (UWB) Technology</p>
+    </header>
+
+    <!-- Project Overview -->
+    <section id="overview" class="wrapper style1 special">
         <div class="inner">
             <header class="major">
-                <h2>UWB Communication System for UAVs</h2>
-                <p>Design and development of a modular communication system for drones using ultra-wideband technology, enabling multi-agent coordination.</p>
+                <h2>Project Overview</h2>
+                <p>This project focuses on the design and implementation of a modular communication system for drones using UWB technology. The system allows for real-time communication between the flight controller and the electronic speed controllers (ESCs), overcoming traditional wiring limitations.</p>
             </header>
-        </div>
-    </section>
-
-    <!-- Project Goals Section -->
-    <section class="wrapper style2">
-        <div class="inner">
-            <h3>Project Goals</h3>
-            <p>The primary goal of the project was to create a robust communication system for drones that could support real-time data exchange between multiple agents using UWB technology.</p>
-        </div>
-    </section>
-
-    <!-- Technologies Used Section -->
-    <section class="wrapper style3">
-        <div class="inner">
-            <h3>Technologies Used</h3>
-            <ul>
-                <li>Ultra-Wideband (UWB) Technology</li>
-                <li>Modular Communication Systems</li>
-                <li>UAV Coordination Algorithms</li>
-                <li>Hardware design and implementation</li>
-                <li>Software stack for real-time communication</li>
+            <ul class="icons major">
+                <li><span class="icon fa-gem major style1"><span class="label">Electronics</span></span></li>
+                <li><span class="icon fa-heart major style2"><span class="label">Robotics</span></span></li>
+                <li><span class="icon solid fa-code major style3"><span class="label">Communication Systems</span></span></li>
             </ul>
         </div>
     </section>
 
-    <!-- Project Gallery Section -->
-    <section class="wrapper style2">
+    <!-- Key Features -->
+    <section id="key-features" class="wrapper style2">
         <div class="inner">
-            <h3>Project Gallery</h3>
-            <div class="gallery">
-                <img src="../pics/uwb_system_setup.jpg" alt="UWB System Setup">
-                <img src="../pics/drone_communication_test.jpg" alt="Drone Communication Test">
+            <h2>Key Features of the UWB Communication System</h2>
+            <ul>
+                <li><strong>Modular Design:</strong> The system supports different configurations (tricopters, quadcopters, hexacopters, etc.), making it adaptable to various UAV applications.</li>
+                <li><strong>UWB Communication:</strong> Utilizes ultra-wideband technology for high-bandwidth, low-latency wireless communication between the drone’s flight controller and ESCs.</li>
+                <li><strong>Latency Optimization:</strong> The system introduces minimal delays in motor control, ensuring stable flight performance even with communication delays.</li>
+                <li><strong>Real-World Testing:</strong> The modular communication system was successfully tested in real-world conditions, demonstrating its feasibility for smart logistics applications.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Architecture Diagram -->
+    <section id="architecture" class="wrapper style3">
+        <div class="inner">
+            <header class="major">
+                <h2>System Architecture</h2>
+                <p>The architecture consists of a master module that communicates wirelessly with multiple slave modules responsible for controlling the motors. UWB communication ensures reliable data transmission between the modules.</p>
+            </header>
+            <div class="image">
+                <img src="../images/uwb_architecture.jpg" alt="UWB System Architecture">
             </div>
         </div>
     </section>
 
-    <style>
-    .gallery {
-        display: flex;
-        gap: 10px;
-    }
-    .gallery img {
-        width: 45%;
-    }
-    </style>
-
-    <!-- Results Section -->
-    <section class="wrapper style2">
+    <!-- Results -->
+    <section id="results" class="wrapper style4">
         <div class="inner">
-            <h3>Results</h3>
-            <p>We successfully implemented a UWB-based communication system that allowed drones to coordinate effectively in real-time. The system demonstrated high reliability and low-latency communication during multiple test flights.</p>
+            <header class="major">
+                <h2>Performance Results</h2>
+                <p>Through simulation and real-world testing, the UWB communication system demonstrated minimal latency in the control loop, maintaining stable UAV flight performance even under communication delays of up to 5 milliseconds.</p>
+            </header>
+            <div class="image">
+                <img src="../images/uwb_results.jpg" alt="UWB Performance Results">
+            </div>
         </div>
     </section>
 
-    <!-- Related Paper Section -->
-    <section class="wrapper style2">
+    <!-- Publications -->
+    <section id="publications" class="wrapper style5">
         <div class="inner">
-            <h3>Related Paper</h3>
-            <p>You can read the full paper on this project <a href="https://github.com/ErikMischiatti/ErikMischiatti.github.io/blob/main/docs/uwb_project_paper.pdf" target="_blank">here</a>.</p>
+            <h2>Related Publications</h2>
+            <p>This project has been published in the 2024 IEEE International Conference on Automation Science and Engineering. You can read the full paper <a href="../docs/CASE24_0650_MS.pdf" target="_blank">here</a>.</p>
         </div>
     </section>
 
-    <!-- Conclusion Section -->
-    <section class="wrapper style2">
-        <div class="inner">
-            <h3>Conclusion</h3>
-            <p>The UWB communication system represents a significant advancement in multi-drone coordination, enabling new possibilities for drone swarms and collaborative aerial missions.</p>
-        </div>
-    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright">
+            <li>&copy; Erik Mischiatti. All rights reserved.</li>
+        </ul>
+    </footer>
 
 </body>
 </html>
