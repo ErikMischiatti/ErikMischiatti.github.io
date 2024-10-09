@@ -3,6 +3,92 @@
     <head>
         <title>Master Thesis Project</title>
         <link rel="stylesheet" href="../assets/css/main.css" /> <!-- Collega lo stesso CSS della pagina principale -->
+        <style>
+            /* Stili per il modal */
+            .modal {
+                display: none; /* Nascosto di default */
+                position: fixed;
+                z-index: 1;
+                padding-top: 60px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9); /* Sfondo scuro */
+            }
+
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+
+            .modal-content, .caption {
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+
+            @keyframes zoom {
+                from {transform: scale(0)} 
+                to {transform: scale(1)}
+            }
+
+            /* Sfocatura dello sfondo */
+            .blur-background {
+                filter: blur(5px);
+            }
+
+            /* Stile della didascalia */
+            .caption {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                text-align: center;
+                color: #ccc;
+                padding: 10px 0;
+            }
+
+            /* Bottone di chiusura */
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #fff;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+            .close:hover, .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .image-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .mosaic-item img {
+                max-width: 100%;
+                height: auto;
+                cursor: pointer; /* Aggiunge un puntatore */
+            }
+
+            .video {
+                margin-top: 20px;
+            }
+
+            .video video {
+                width: 50%; /* Riduce la dimensione del video */
+                margin: auto;
+                display: block;
+            }
+        </style>
     </head>
     <body class="subpage">
 
@@ -29,16 +115,21 @@
                 <!-- Images and Video -->
                 <section>
                     <h3>Media</h3>
-                    <div class="image-mosaic">
-                        <div class="mosaic-item"><img src="../pics/photo_5_2024-10-09_14-14-40.jpg" alt="Robot Learning" /></div>
-                        <div class="mosaic-item"><img src="../pics/photo_5_2024-10-03_15-53-10.jpg" alt="Behavior Trees" /></div>
-                        <div class="mosaic-item"><img src="../pics/photo_2024-10-03_15-51-14.jpg" alt="Simulation" /></div>
-                        <div class="mosaic-item"><img src="../pics/photo_6_2024-10-03_15-53-10.jpg" alt="6D Pose Estimation" /></div>
+                    <div class="image-grid">
+                        <div class="mosaic-item">
+                            <img id="myImg1" src="../pics/photo_5_2024-10-09_14-14-40.jpg" alt="Robot Learning" />
+                            <p class="caption">Robot Learning in Action</p>
+                        </div>
+                        <div class="mosaic-item">
+                            <img id="myImg2" src="../pics/photo_2_2024-10-03_15-53-10.jpg" alt="Behavior Trees" />
+                            <p class="caption">Behavior Trees for Task Reversal</p>
+                        </div>
                     </div>
 
+                    <!-- Video -->
                     <div class="video">
-                        <video width="100%" controls>
-                            <source src="../pics/video_2024-10-09_14-05-31.mp4" type="video/mp4">
+                        <video controls>
+                            <source src="../media/project_video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -52,9 +143,15 @@
                         <li><a href="../index.html" class="button">Back to Home</a></li>
                     </ul>
                 </section>
-
             </div>
         </section>
+
+        <!-- Modal per le immagini -->
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="imgModal">
+            <div id="caption"></div>
+        </div>
 
         <!-- Footer -->
         <footer id="footer">
@@ -66,30 +163,41 @@
             </div>
         </footer>
 
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the images and insert them inside the modal
+            var img1 = document.getElementById("myImg1");
+            var img2 = document.getElementById("myImg2");
+            var modalImg = document.getElementById("imgModal");
+            var captionText = document.getElementById("caption");
+
+            // Funzione per aprire l'immagine nel modal
+            function openModal(image, caption) {
+                document.body.classList.add("blur-background");
+                modal.style.display = "block";
+                modalImg.src = image.src;
+                captionText.innerHTML = caption;
+            }
+
+            img1.onclick = function() {
+                openModal(this, "Robot Learning in Action");
+            }
+
+            img2.onclick = function() {
+                openModal(this, "Behavior Trees for Task Reversal");
+            }
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // Quando l'utente clicca su (x), chiudere il modal
+            span.onclick = function() {
+                modal.style.display = "none";
+                document.body.classList.remove("blur-background");
+            }
+        </script>
+
     </body>
 </html>
-
-<!-- Styles for media -->
-<style>
-.image-mosaic {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Griglia flessibile */
-    gap: 20px; /* Spaziatura tra le immagini */
-}
-
-.mosaic-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.mosaic-item img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain; /* Mantiene le proporzioni senza tagliare */
-}
-
-.video {
-    margin-top: 20px;
-}
-</style>
