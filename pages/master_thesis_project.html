@@ -1,20 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Thesis Project</title>
-    <!-- Collegamento al CSS -->
-    <link rel="stylesheet" href="../assets/css/main.css">
-</head>
-<body>
-    <section class="wrapper style1 special">
-        <div class="inner">
-            <header class="major">
-                <h2>Master Thesis Project - Autonomous Robot Learning</h2>
-                <p>This project focuses on teaching a robot to learn and reverse complex tasks using behavior trees and 6D Pose Estimation.</p>
-            </header>
-        </div>
-    </section>
-</body>
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Master Thesis Project</title>
+        <link rel="stylesheet" href="../assets/css/main.css" /> <!-- Collega lo stesso CSS della pagina principale -->
+    </head>
+    <body class="subpage">
+
+        <!-- Header -->
+        <header id="header">
+            <div class="logo"><a href="index.html">Home</a></div>
+        </header>
+
+        <!-- Main -->
+        <section id="main" class="wrapper style1">
+            <div class="inner">
+                <header class="major">
+                    <h2>Master Thesis Project - Autonomous Robot Learning</h2>
+                    <p>My master's thesis focuses on teaching a robot to autonomously learn and reverse complex tasks using behavior trees and 6D Pose Estimation.</p>
+                </header>
+
+                <!-- Description -->
+                <section>
+                    <h3>Project Overview</h3>
+                    <p>This project aims to implement advanced learning algorithms for autonomous robotic manipulation, enabling a robot to generalize tasks through demonstration learning.</p>
+                    <p>It involves 6D pose estimation, object tracking, and behavior tree architectures to reverse learned tasks and adapt to new environments.</p>
+                </section>
+
+                <!-- Images and Video -->
+                <section>
+                    <h3>Media</h3>
+                    <div class="image-grid">
+                        <div><img src="../pics/photo_2_2024-10-03_15-53-10.jpg" alt="Robot Learning" /></div>
+                        <div><img src="../pics/photo_5_2024-10-03_14-58-56.jpg" alt="Behavior Trees" /></div>
+                    </div>
+                    <div class="video">
+                        <video width="100%" controls>
+                            <source src="../media/project_video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </section>
+
+                <!-- Links -->
+                <section>
+                    <h3>Additional Information</h3>
+                    <ul class="actions">
+                        <li><a href="https://github.com/ErikMischiatti/MasterThesisRepo" target="_blank" class="button">GitHub Repository</a></li>
+                        <li><a href="../index.html" class="button">Back to Home</a></li>
+                    </ul>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                </ul>
+            </div>
+        </footer>
+
+    </body>
 </html>
+
+<!-- Styles for media -->
+<style>
+.image-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.image-grid div {
+    width: 48%;
+}
+
+.video {
+    margin-top: 20px;
+}
+</style>
