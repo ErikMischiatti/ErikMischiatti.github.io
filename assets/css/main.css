@@ -4010,3 +4010,13 @@ input, select, textarea {
 	        line-height: 1.2; /* Aggiusta l'interlinea per renderlo più leggibile */
 	    }
 	}
+	
+	#results .video {
+	    text-align: center; /* Centers the video in the section */
+	}
+	
+	#results video {
+	    max-width: 100%; /* Ensures the video is responsive */
+	    height: auto;    /* Maintains aspect ratio */
+	}
+
