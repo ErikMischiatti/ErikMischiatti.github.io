@@ -8,7 +8,7 @@ I am a Mechatronic Engineering Master Student with a strong passion for robotics
 
 ## Projects
 
-- **6D Pose Estimation for Robots**: Implementation of an advanced algorithm for 6D pose estimation used in robotic systems.
+- **Master Thesis**: Leveraging Acquired Knowledge for Task Inversion: An Application of Imitation Learning (on going)
 - **UWB Communication for UAVs**: Development of a modular communication system for UAVs based on ultra-wideband technology, designed for multi-agent coordination.
 
 ## Technologies Used
