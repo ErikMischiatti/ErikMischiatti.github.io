@@ -3,74 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Thesis Project - Autonomous Robot Learning</title>
-    <!-- Link to main CSS -->
+    <title>Master Thesis Project</title>
+    <!-- Link to CSS for page styling -->
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
-    <!-- Introduction Section -->
+
+    <!-- Project Overview Section -->
     <section class="wrapper style1 special">
         <div class="inner">
             <header class="major">
                 <h2>Master Thesis Project - Autonomous Robot Learning</h2>
-                <p>This project aims to teach a robot to autonomously learn and reverse complex tasks using Behavior Trees (BT), Learning from Demonstration (LfD), and 6D Pose Estimation.</p>
+                <p>This project focuses on teaching a robot to learn and reverse complex tasks using behavior trees and object detection.</p>
+                <p>Status: Ongoing...</p>
             </header>
         </div>
     </section>
 
-    <!-- Key Concepts Section -->
-    <section id="key-concepts" class="wrapper style2">
+    <!-- DHB Section -->
+    <section class="wrapper style2">
         <div class="inner">
             <header class="major">
-                <h2>Key Concepts</h2>
+                <h2>Bidirectional Invariant Representation (DHB)</h2>
+                <p>The Bidirectional Invariant Representation (BIR) is a robust framework for describing rigid body movements invariant to rotations, translations, scaling, and time variations. This framework is particularly effective in gesture recognition and robotic motion reproduction, where robustness against variations is crucial.</p>
             </header>
-            <p><strong>Behavior Trees (BT):</strong> A modular and scalable control architecture widely used in robotics for decision-making and execution of actions. BTs allow flexible and hierarchical task handling, which is critical for autonomous systems.</p>
-            <p><strong>Learning from Demonstration (LfD):</strong> A technique where robots learn tasks by observing and imitating the actions demonstrated by humans. This is particularly useful for robotic assembly tasks that require flexibility and precision.</p>
-            <p><strong>Dynamic Movement Primitives (DMP):</strong> A robust framework that allows robots to encode and reproduce smooth, nonlinear trajectories learned from demonstrations. DMPs ensure global asymptotic stability and adaptability in dynamic environments.</p>
+
+            <p>In my work, the DHB convention is applied to reconstruct motion trajectories by mapping Cartesian coordinates into an invariant space. This method ensures that motion can be reproduced with high fidelity, regardless of variations in the environment, speed, or orientation.</p>
+            <p>In essence, DHB allows the robot to generalize the learned behavior and apply it to new scenarios. This is particularly useful for tasks like cable insertion, which requires precision and adaptability.</p>
         </div>
     </section>
 
-    <!-- Materials and Equipment Section -->
-    <section id="materials" class="wrapper style3">
+    <!-- Setup Section (from 3.4 Setup and Configuration) -->
+    <section class="wrapper style3">
         <div class="inner">
             <header class="major">
-                <h2>Materials and Equipment</h2>
+                <h2>Setup and Configuration of the Environment</h2>
+                <p>The experimental environment includes the assembly board system and the robotic arm system. The board is equipped with Aruco markers to define its position, and 3D-printed components for the manipulation tasks.</p>
+                <p>The Franka Emika Panda robotic arm, with a mounted Intel RealSense D435i camera, is used to manipulate objects with high precision, performing tasks like grasping and moving cables.</p>
             </header>
-            <p><strong>Robotic Arm:</strong> Franka Emika Panda, a high-precision manipulator with 7 degrees of freedom, integrated torque sensors, and ROS compatibility.</p>
-            <p><strong>Camera:</strong> Intel RealSense D435i, providing 3D vision and depth perception for accurate object tracking.</p>
-            <p><strong>Custom Board:</strong> A modular surface for robotic manipulation, inspired by NIST, equipped with Aruco markers for precise tracking.</p>
+
+            <!-- Placeholder for Setup Image -->
+            <!-- Add relevant image later -->
+            <div class="image">
+                <img src="../pics/setup.jpg" alt="Experimental Setup">
+            </div>
         </div>
     </section>
 
-    <!-- System Architecture Section -->
-    <section id="system-architecture" class="wrapper style4">
+    <!-- Placeholder for Video Section -->
+    <!-- Uncomment and replace with actual video when ready -->
+    <!--
+    <section id="video-results" class="wrapper style4">
         <div class="inner">
             <header class="major">
-                <h2>System Architecture</h2>
+                <h2>Performance Results</h2>
+                <p>Watch the robot perform autonomous tasks such as cable insertion using the DHB-based approach.</p>
             </header>
-            <p>The system consists of a robot manipulator, camera, and modular board for manipulation tasks. The Franka Emika Panda robot interacts with objects on the board, while the Intel RealSense D435i camera provides real-time depth and object recognition data. ROS (Robot Operating System) coordinates the actions.</p>
+            <div class="video">
+                <video width="560" height="315" controls>
+                    <source src="../videos/performance_results.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Download Thesis PDF Section -->
+    <section class="wrapper style5 special">
+        <div class="inner">
+            <header class="major">
+                <h2>Download Thesis</h2>
+                <p>You can download the full thesis with detailed explanations of the Bidirectional Invariant Representation (DHB), experimental setup, and results.</p>
+                <a href="../docs/Master_Thesis_Erik_Mischiatti.pdf" target="_blank" class="button">Download Thesis PDF</a>
+            </header>
         </div>
     </section>
 
-    <!-- Implementation Section -->
-    <section id="implementation" class="wrapper style2">
+    <!-- Additional Placeholder for more images or videos -->
+    <!-- Example structure: -->
+    <!--
+    <section class="wrapper style6">
         <div class="inner">
             <header class="major">
-                <h2>Implementation</h2>
+                <h2>Additional Visuals</h2>
             </header>
-            <p>The robot learns to perform tasks via Learning from Demonstration. Through teleoperation or kinesthetic teaching, the robot records demonstrated actions, extracts key features, and uses these to replicate the task autonomously. DMPs enable the robot to adapt movements to new goals while maintaining stability.</p>
+            <div class="images">
+                <div class="image"><img src="../pics/example_1.jpg" alt="Example 1"></div>
+                <div class="image"><img src="../pics/example_2.jpg" alt="Example 2"></div>
+            </div>
         </div>
     </section>
-
-    <!-- Results Section -->
-    <section id="results" class="wrapper style3">
-        <div class="inner">
-            <header class="major">
-                <h2>Results and Future Development</h2>
-            </header>
-            <p>The system is currently under active development. Initial tests show promising results in task generalization and adaptability. Future improvements will focus on refining the precision of object manipulation and enhancing the robustness of the learning algorithms.</p>
-        </div>
-    </section>
+    -->
 
 </body>
 </html>
