@@ -11,13 +11,6 @@ I am a Mechatronic Engineering Master Student with a strong passion for robotics
 - **Master Thesis**: Leveraging Acquired Knowledge for Task Inversion: An Application of Imitation Learning (on going)
 - **UWB Communication for UAVs**: Development of a modular communication system for UAVs based on ultra-wideband technology, designed for multi-agent coordination.
 
-## Technologies Used
-
-- HTML5 & CSS3
-- JavaScript
-- Bootstrap Framework
-- GitHub Pages for hosting
-
 ## Contact
 
 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/erik-mischiatti/) or through the contact form on the website.
