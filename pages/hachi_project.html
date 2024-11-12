@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hachi Team - StartUp Lab</title>
-    <!-- Collegamento al CSS -->
+    <!-- Link to CSS -->
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
@@ -89,16 +89,41 @@
         </div>
     </section>
 
-    <!-- Resources Section -->
-    <section class="wrapper style5 special">
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="wrapper style5 special">
         <div class="inner">
             <header class="major">
-                <h2>Resources</h2>
-                <p>Explore the project’s GitHub repository for more information and updates.</p>
-                <a href="https://github.com/ErikMischiatti/HachiProject" target="_blank" class="button">View GitHub Repository</a>
+                <h2>Photo Gallery</h2>
+                <p>Explore some highlights and behind-the-scenes moments from the Hachi Team project.</p>
             </header>
+            <div class="gallery">
+                <div class="gallery-item"><img src="../pics/photo_1_2024-11-12_14-12-55.jpg" alt="Hachi Project Image 1"></div>
+                <div class="gallery-item"><img src="../pics/photo_2_2024-11-12_14-12-55.jpg" alt="Hachi Project Image 2"></div>
+                <div class="gallery-item"><img src="../pics/photo_3_2024-11-12_14-12-55.jpg" alt="Hachi Project Image 3"></div>
+                <div class="gallery-item"><img src="../pics/photo_5_2024-11-12_14-12-55.jpg" alt="Hachi Project Image 4"></div>
+                <!-- Add more images as needed -->
+            </div>
         </div>
     </section>
+
+    <!-- Gallery Styling -->
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            width: 45%; /* Adjust as needed */
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
 
 </body>
 </html>
