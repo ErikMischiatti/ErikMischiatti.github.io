@@ -101,21 +101,50 @@
         }
     </style>
 
-    <!-- Video Placeholder -->
-    <section id="video" class="wrapper style4">
-        <div class="inner">
-            <header class="major">
-                <h2>Video Demonstration</h2>
-                <p>A short clip showcasing the UAV-UGV system in action.</p>
-            </header>
-            <div class="video">
-                <video width="560" height="315" controls>
-                    <source src="../pics/Figure 1 2024-11-17 22-32-45.mp4" type="video/mp4">
+<!-- Video Section -->
+<section id="video" class="wrapper style4">
+    <div class="inner">
+        <header class="major">
+            <h2>Video Demonstration</h2>
+            <p>Short clips showcasing the UAV-UGV system in action.</p>
+        </header>
+        <div class="video-container">
+            <!-- First Video -->
+            <div class="video-item">
+                <video width="100%" controls>
+                    <source src="../pics/Figure1_2024-11-17_22-32-45.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- Second Video -->
+            <div class="video-item">
+                <video width="100%" controls>
+                    <source src="../pics/Figure 7 2024-11-17 22-33-21.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- CSS Styling -->
+<style>
+    .video-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Spaziatura tra i video */
+        justify-content: center;
+    }
+    .video-item {
+        flex: 1 1 45%; /* Ogni video occupa il 45% della larghezza disponibile */
+        max-width: 500px; /* Limita la larghezza massima per schermi grandi */
+    }
+    video {
+        border-radius: 10px; /* Opzionale: bordi arrotondati per i video */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opzionale: effetto ombra */
+    }
+</style>
+
 
     <!-- Resources Section -->
     <section class="wrapper style5 special">
