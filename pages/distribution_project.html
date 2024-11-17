@@ -13,7 +13,7 @@
         <div class="inner">
             <header class="major">
                 <h2>Green Vigilance: Drone Innovation for Early Crop Disease Detection</h2>
-                <p>Utilizing UAV and UGV systems for early detection of plant diseases in precision agriculture.</p>
+                <p>Integrating UAVs and UGVs for precision agriculture to detect plant diseases early and improve resource efficiency.</p>
                 <p>Status: Ongoing...</p>
             </header>
         </div>
@@ -24,7 +24,7 @@
         <div class="inner">
             <header class="major">
                 <h2>Project Overview</h2>
-                <p>This project integrates UAVs (aerial vehicles) and UGVs (ground vehicles) for early crop disease detection. The system combines aerial data from UAVs with ground-level inspections by UGVs, employing advanced sensors and algorithms to improve the precision and timeliness of disease identification.</p>
+                <p>This project develops a distributed UAV-UGV system aimed at enhancing early crop disease detection. By integrating aerial surveys with ground-level inspections, the system provides detailed spatial and health data of agricultural fields. Advanced algorithms like Weighted Least Squares (WLS) and Extended Kalman Filter (EKF) enhance navigation and decision-making under uncertain conditions.</p>
             </header>
         </div>
     </section>
@@ -34,7 +34,7 @@
         <div class="inner">
             <header class="major">
                 <h2>System Architecture</h2>
-                <p>The distributed system includes UAVs for broad aerial surveys and UGVs for targeted ground inspections. The UAVs use hybrid depth sensors to gather spatial data, which guides UGVs for precise interventions. Communication between UAVs and UGVs ensures an efficient flow of information and coordination.</p>
+                <p>The architecture integrates UAVs for wide-area aerial surveys and UGVs for detailed inspections. UAVs use hybrid depth sensors to create 3D maps, guiding UGVs to targeted areas for precision monitoring and interventions.</p>
             </header>
             <div class="image">
                 <img src="../pics/system_architecture.png" alt="System Architecture Diagram">
@@ -47,11 +47,12 @@
         <div class="inner">
             <header class="major">
                 <h2>Methodologies</h2>
-                <p>Key methods include:</p>
+                <p>Key methodologies include:</p>
                 <ul>
-                    <li><strong>Hybrid Depth Sensing:</strong> UAVs and UGVs use sensors for a 3D spatial representation of the field.</li>
-                    <li><strong>Weighted Least Squares (WLS):</strong> Optimizes UGV positioning for accurate ground navigation.</li>
-                    <li><strong>Extended Kalman Filter (EKF):</strong> Improves UAV navigation and data reliability by integrating GPS and IMU data.</li>
+                    <li><strong>Hybrid Depth Sensing:</strong> Collects 3D spatial data for comprehensive field mapping.</li>
+                    <li><strong>Weighted Least Squares (WLS):</strong> Enhances UGV positioning accuracy by aggregating reliable position estimates.</li>
+                    <li><strong>Extended Kalman Filter (EKF):</strong> Refines UAV navigation by integrating GPS and IMU data.</li>
+                    <li><strong>Heatmap Generation:</strong> Identifies high-probability disease zones, guiding UGV operations effectively.</li>
                 </ul>
             </header>
         </div>
@@ -62,7 +63,7 @@
         <div class="inner">
             <header class="major">
                 <h2>Experimental Results</h2>
-                <p>Simulations show that integrating UAV and UGV data provides accurate disease detection, even under sensor noise. The heatmaps generated from UAV data guide UGVs to high-risk areas, improving intervention accuracy and resource efficiency.</p>
+                <p>Simulations demonstrated the system’s effectiveness in detecting plant diseases and guiding ground interventions. The UAV-UGV coordination reduced resource waste and improved operational efficiency, even under noisy sensor conditions. Detailed 3D maps and heatmaps were instrumental in optimizing intervention strategies.</p>
             </header>
         </div>
     </section>
@@ -72,19 +73,13 @@
         <div class="inner">
             <header class="major">
                 <h2>Photo Gallery</h2>
-                <p>Images documenting various stages of the project.</p>
+                <p>Visual highlights from the project.</p>
             </header>
             <div class="gallery">
                 <div class="gallery-item"><img src="../pics/pic3d.jpg" alt="Project Image 1"></div>
                 <div class="gallery-item"><img src="../pics/Pic5.jpg" alt="Project Image 2"></div>
                 <div class="gallery-item"><img src="../pics/campo3.jpg" alt="Project Image 3"></div>
                 <div class="gallery-item"><img src="../pics/pic1.jpg" alt="Project Image 4"></div>
-                <div class="gallery-item"><img src="../pics/pic3-2.jpg" alt="Project Image 5"></div>
-                <div class="gallery-item"><img src="../pics/pic3.1-2.jpg" alt="Project Image 6"></div>
-                <div class="gallery-item"><img src="../pics/pic3.2-2.jpg" alt="Project Image 7"></div>
-                <div class="gallery-item"><img src="../pics/pic4-2.jpg" alt="Project Image 8"></div>
-                <div class="gallery-item"><img src="../pics/pic5-2.jpg" alt="Project Image 9"></div>
-                <!-- Add more images as needed -->
             </div>
         </div>
     </section>
@@ -97,24 +92,21 @@
             justify-content: center;
             gap: 15px;
         }
-        
         .gallery-item {
-            width: 45%; /* Adjust as needed */
+            width: 45%;
         }
-        
         .gallery-item img {
             width: 100%;
             border-radius: 5px;
         }
     </style>
 
-    <!-- Video Placeholder (commented for future use) -->
-    <!--
+    <!-- Video Placeholder -->
     <section id="video" class="wrapper style4">
         <div class="inner">
             <header class="major">
                 <h2>Video Demonstration</h2>
-                <p>Video showcasing the project in action.</p>
+                <p>A short clip showcasing the UAV-UGV system in action.</p>
             </header>
             <div class="video">
                 <video width="560" height="315" controls>
@@ -124,14 +116,13 @@
             </div>
         </div>
     </section>
-    -->
 
     <!-- Resources Section -->
     <section class="wrapper style5 special">
         <div class="inner">
             <header class="major">
                 <h2>Resources</h2>
-                <p>Download the full project report for an in-depth look into the system architecture, methodologies, and results.</p>
+                <p>Download the full project report for an in-depth analysis of system architecture, methodologies, and results.</p>
                 <a href="../docs/Report_distribution_project.pdf" target="_blank" class="button">Download Project Report (PDF)</a>
             </header>
         </div>
