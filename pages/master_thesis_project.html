@@ -13,11 +13,9 @@
     <section class="wrapper style1 special">
         <div class="inner">
             <header class="major">
-                <h2>Master Thesis Project - Autonomous Robot Learning</h2>
-                <p>This thesis is based on the development of the demonstration based learning system for a robotic arm, focusing on the use of invariant representations to improve the 
-                    autonomous manipulation of flexible objects. Using vision and reconstruction techniques, the system learns to perform complex tasks through stable and transferable representations, reducing dependency on specific
-                    configurations. Validated in realistic contexts, the project demonstrates the effectiveness of invariant representations in supporting robust and versatile learning for autonomous manipulation.</p>
-                <p>Status: Ongoing...</p>
+                <h2>Master Thesis Project - Leveraging Acquired Knowledge and Invariant Representations for Cable Manipulation</h2>
+                <p>Development of a demonstration-based learning system for robotic arms, focusing on invariant representations to improve autonomous manipulation of flexible objects. The system leverages vision and reconstruction techniques for complex tasks, validated in realistic scenarios.</p>
+                <p>Status: Completed</p>
             </header>
         </div>
     </section>
@@ -27,87 +25,74 @@
         <div class="inner">
             <header class="major">
                 <h2>Bidirectional Invariant Representation (DHB)</h2>
-                <p>The Bidirectional Invariant Representation (BIR) is a robust framework for describing rigid body movements invariant to rotations, translations, scaling, and time variations. This framework is particularly effective in gesture recognition and robotic motion reproduction, where robustness against variations is crucial.</p>
+                <p>The DHB framework ensures robust motion trajectory reconstruction, invariant to rotations, translations, scaling, and temporal changes. It enables robots to adapt learned behaviors to diverse scenarios, enhancing precision in tasks like cable manipulation.</p>
             </header>
-
-            <p>In my work, the DHB convention is applied to reconstruct motion trajectories by mapping Cartesian coordinates into an invariant space. This method ensures that motion can be reproduced with high fidelity, regardless of variations in the environment, speed, or orientation.</p>
-            <p>In essence, DHB allows the robot to generalize the learned behavior and apply it to new scenarios. This is particularly useful for tasks like cable insertion, which requires precision and adaptability.</p>
+            <p>By leveraging DHB, the project demonstrates how motion can be generalized and applied to new scenarios, ensuring reliable performance even under varying environmental conditions.</p>
         </div>
     </section>
 
-    <!-- Setup Section (from 3.4 Setup and Configuration) -->
+    <!-- Setup Section -->
     <section class="wrapper style3">
         <div class="inner">
             <header class="major">
-                <h2>Setup and Configuration of the Environment</h2>
-                <p>The experimental environment includes the assembly board system and the robotic arm system. The board is equipped with Aruco markers to define its position, and 3D-printed components for the manipulation tasks.</p>
-                <p>The Franka Emika Panda robotic arm, with a mounted Intel RealSense D435i camera, is used to manipulate objects with high precision, performing tasks like grasping and moving cables.</p>
+                <h2>Experimental Setup</h2>
+                <p>The experimental environment includes:</p>
+                <ul>
+                    <li>A Franka Emika Panda robotic arm, equipped with an Intel RealSense D435i camera for precise object manipulation.</li>
+                    <li>A task board system featuring 3D-printed components and Aruco markers for task definition and localization.</li>
+                </ul>
+                <p>The setup enables the robot to perform complex tasks such as cable insertion, leveraging vision-based detection and invariant representation techniques.</p>
             </header>
-
-            <!-- Placeholder for Setup Image -->
-            <!-- Add relevant image later -->
             <div class="image">
                 <img src="../pics/setup.jpg" alt="Experimental Setup">
             </div>
         </div>
     </section>
 
-    <!-- Placeholder for Video Section -->
-    <!-- Uncomment and replace with actual video when ready -->
-    <!--
-    <section id="video-results" class="wrapper style4">
+    <!-- Image Gallery Section -->
+    <section id="gallery" class="wrapper style4">
         <div class="inner">
             <header class="major">
-                <h2>Performance Results</h2>
-                <p>Watch the robot perform autonomous tasks such as cable insertion using the DHB-based approach.</p>
+                <h2>Project Visuals</h2>
+                <p>Images showcasing various stages and results from the thesis project.</p>
             </header>
-            <div class="video">
-                <video width="560" height="315" controls>
-                    <source src="../videos/performance_results.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="gallery">
+                <div class="gallery-item"><img src="../pics/image1.jpg" alt="Image 1"></div>
+                <div class="gallery-item"><img src="../pics/image2.jpg" alt="Image 2"></div>
+                <div class="gallery-item"><img src="../pics/image3.jpg" alt="Image 3"></div>
+                <div class="gallery-item"><img src="../pics/image4.jpg" alt="Image 4"></div>
+                <!-- Add more images as needed -->
             </div>
         </div>
     </section>
-    -->
 
-    <!-- Download Thesis PDF + GitHub Repository Section + Notion Task Database -->
+    <!-- Gallery Styling -->
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .gallery-item {
+            width: 45%; /* Adjust as needed */
+        }
+        .gallery-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+
+    <!-- Download Thesis PDF Section -->
     <section class="wrapper style5 special">
         <div class="inner">
             <header class="major">
-                <h2>Resources</h2>
-                <p>Download the full thesis for detailed explanations of DHB, the experimental setup, and results.</p>
-                
-                <!-- Download Thesis PDF Button -->
-                <a href="../docs/Master_Thesis_Erik_Mischiatti.pdf" target="_blank" class="button">Download Thesis PDF</a>
-                <br><br>
-                
-                <!-- GitHub Repository Button -->
-<!--                 <a href="https://github.com/ErikMischiatti/MasterThesis.git" target="_blank" class="button">View GitHub Repository</a>
-                <br><br>
-                 -->
-                <!-- Notion Task Database Button -->
-<!--                 <a href="https://taskdatabase.notion.site/" target="_blank" class="button">View Notion Task Database</a>
-            </header> -->
-        </div>
-    </section>
-
-
-    <!-- Additional Placeholder for more images or videos -->
-    <!-- Example structure: -->
-    <!--
-    <section class="wrapper style6">
-        <div class="inner">
-            <header class="major">
-                <h2>Additional Visuals</h2>
+                <h2>Download Resources</h2>
+                <p>Download the full thesis for detailed insights into the methodologies, experimental setup, and results.</p>
+                <a href="../docs/Mischiatti___Master_Thesis(git).pdf" target="_blank" class="button">Download Thesis PDF</a>
             </header>
-            <div class="images">
-                <div class="image"><img src="../pics/example_1.jpg" alt="Example 1"></div>
-                <div class="image"><img src="../pics/example_2.jpg" alt="Example 2"></div>
-            </div>
         </div>
     </section>
-    -->
 
 </body>
 </html>
