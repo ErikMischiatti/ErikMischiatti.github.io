@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Thesis Project</title>
+    <title>Robotic Manipulation System</title>
     <!-- Link to CSS for page styling -->
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,8 +13,8 @@
     <section class="wrapper style1 special">
         <div class="inner">
             <header class="major">
-                <h2>Master Thesis Project - Leveraging Acquired Knowledge and Invariant Representations for Cable Manipulation</h2>
-                <p>Development of a demonstration-based learning system for robotic arms, focusing on invariant representations to improve autonomous manipulation of flexible objects. The system leverages vision and reconstruction techniques for complex tasks, validated in realistic scenarios.</p>
+                <h2>Robotic Manipulation System: Modular Assembly and Deformable Object Handling</h2>
+                <p>Advanced system enabling autonomous manipulation of rigid and deformable objects, leveraging vision-based detection and invariant representations. Designed to tackle complex tasks such as cable manipulation in modular environments.</p>
                 <p>Status: Completed</p>
             </header>
         </div>
@@ -25,43 +25,48 @@
         <div class="inner">
             <header class="major">
                 <h2>Bidirectional Invariant Representation (DHB)</h2>
-                <p>The DHB framework ensures robust motion trajectory reconstruction, invariant to rotations, translations, scaling, and temporal changes. It enables robots to adapt learned behaviors to diverse scenarios, enhancing precision in tasks like cable manipulation.</p>
+                <p>The DHB framework enables the transformation of motion trajectories into an invariant space, ensuring adaptability to various spatial configurations. This approach guarantees precision and reliability in manipulation tasks.</p>
             </header>
-            <p>By leveraging DHB, the project demonstrates how motion can be generalized and applied to new scenarios, ensuring reliable performance even under varying environmental conditions.</p>
+            <p>By leveraging DHB, the system can generalize trajectories to align with diverse start and goal configurations, enhancing performance even in variable experimental setups.</p>
         </div>
     </section>
 
-    <!-- Setup Section -->
+    <!-- Experimental Setup Section -->
     <section class="wrapper style3">
         <div class="inner">
             <header class="major">
                 <h2>Experimental Setup</h2>
-                <p>The experimental environment includes:</p>
+                <p>The system integrates cutting-edge hardware and software for robotic manipulation:</p>
                 <ul>
-                    <li>A Franka Emika Panda robotic arm, equipped with an Intel RealSense D435i camera for precise object manipulation.</li>
-                    <li>A task board system featuring 3D-printed components and Aruco markers for task definition and localization.</li>
+                    <li>Franka Emika Panda robotic arm with Intel RealSense D435i camera for precision manipulation and vision-based detection.</li>
+                    <li>A modular assembly board equipped with 3D-printed components and Aruco markers for task localization.</li>
+                    <li>Advanced software integration utilizing ROS, OpenCV, and DHB-based trajectory planning.</li>
                 </ul>
-                <p>The setup enables the robot to perform complex tasks such as cable insertion, leveraging vision-based detection and invariant representation techniques.</p>
+                <p>This configuration enables autonomous handling of complex scenarios, such as inserting Ethernet cables and interacting with modular tools.</p>
             </header>
             <div class="image">
-                <img src="../pics/setup.jpg" alt="Experimental Setup">
+                <img src="../pics/SetupConfiguration.png" alt="Experimental Setup">
             </div>
         </div>
     </section>
 
-    <!-- Image Gallery Section -->
-    <section id="gallery" class="wrapper style4">
+    <!-- Test Scenarios Section -->
+    <section class="wrapper style4">
         <div class="inner">
             <header class="major">
-                <h2>Project Visuals</h2>
-                <p>Images showcasing various stages and results from the thesis project.</p>
+                <h2>Test Scenarios and Results</h2>
+                <p>Key scenarios tested during the project, demonstrating the system's capabilities and identifying areas for improvement:</p>
+                <ul>
+                    <li><strong>Clip Task:</strong> Successfully inserted and manipulated Ethernet cables in modular clips with high precision.</li>
+                    <li><strong>NIST-Inspired Path:</strong> Attempted to follow a complete modular path, highlighting challenges in handling deformable objects and joint limits.</li>
+                    <li><strong>Flexibility Tests:</strong> Reconfigured the board and tools to validate adaptability and optimize joint reachability.</li>
+                </ul>
+                <p>Key observation: The system excelled in precise manipulation tasks but requires enhancements for handling more complex and dynamic scenarios.</p>
             </header>
             <div class="gallery">
-                <div class="gallery-item"><img src="../pics/clip_scenario.png" alt="Image 1"></div>
-                <div class="gallery-item"><img src="../pics/fullpath_scenario.png" alt="Image 2"></div>
-                <div class="gallery-item"><img src="../pics/SetupConfiguration.png" alt="Image 3"></div>
-                <div class="gallery-item"><img src="../pics/SystemDesign.png" alt="Image 4"></div>
-                <!-- Add more images as needed -->
+                <div class="gallery-item"><img src="../pics/clip_scenario.png" alt="Clip Task"></div>
+                <div class="gallery-item"><img src="../pics/fullpath_scenario.png" alt="NIST Path"></div>
+                <div class="gallery-item"><img src="../pics/SystemDesign.png" alt="System Design"></div>
             </div>
         </div>
     </section>
@@ -83,12 +88,17 @@
         }
     </style>
 
-    <!-- Download Thesis PDF Section -->
+    <!-- Conclusions and Resources Section -->
     <section class="wrapper style5 special">
         <div class="inner">
             <header class="major">
-                <h2>Download Resources</h2>
-                <p>Download the full thesis for detailed insights into the methodologies, experimental setup, and results.</p>
+                <h2>Conclusions and Future Directions</h2>
+                <p>The project demonstrated effective manipulation capabilities in controlled scenarios and laid a solid foundation for further developments:</p>
+                <ul>
+                    <li>Integration of dual-arm configurations for enhanced cable manipulation.</li>
+                    <li>Implementation of advanced perception systems, including real-time 3D reconstruction and tactile sensing.</li>
+                </ul>
+                <p>For detailed insights into methodologies and experimental results, download the full thesis below.</p>
                 <a href="../docs/Mischiatti___Master_Thesis(git).pdf" target="_blank" class="button">Download Thesis PDF</a>
             </header>
         </div>
