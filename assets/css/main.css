@@ -4026,5 +4026,6 @@ input, select, textarea {
 	    border-radius: 50%; /* Rende l'immagine circolare */
 	    object-fit: cover; /* Mantiene le proporzioni dell'immagine */
 	    border: 3px solid #fff; /* Aggiunge un bordo bianco per estetica */
+            border: 2px dashed red !important;
 	}
 
