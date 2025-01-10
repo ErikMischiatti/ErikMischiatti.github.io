@@ -4020,3 +4020,11 @@ input, select, textarea {
 	    height: auto;    /* Maintains aspect ratio */
 	}
 
+	.profile-pic {
+	    width: 150px; /* Regola la dimensione dell'immagine */
+	    height: 150px; /* Deve essere uguale alla larghezza */
+	    border-radius: 50%; /* Rende l'immagine circolare */
+	    object-fit: cover; /* Mantiene le proporzioni dell'immagine */
+	    border: 3px solid #fff; /* Aggiunge un bordo bianco per estetica */
+	}
+
