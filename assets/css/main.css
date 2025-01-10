@@ -4021,7 +4021,7 @@ input, select, textarea {
 	}
 
 	.profile-pic {
-	    width: 150px; /* Regola la dimensione dell'immagine */
+	    width: 50px; /* Regola la dimensione dell'immagine */
 	    height: 150px; /* Deve essere uguale alla larghezza */
 	    border-radius: 50%; /* Rende l'immagine circolare */
 	    object-fit: cover; /* Mantiene le proporzioni dell'immagine */
