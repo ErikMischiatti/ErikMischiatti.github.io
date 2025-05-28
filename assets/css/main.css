@@ -4038,7 +4038,8 @@ input, select, textarea {
 	.about-photo {
 		flex: 1;
 		min-width: 200px;
-		max-width: 250px;
+		max-width: 100%;
+		height: auto;
 		margin: 10px;
 	}
 	
