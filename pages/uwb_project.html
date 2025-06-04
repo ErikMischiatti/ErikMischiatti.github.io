@@ -14,34 +14,27 @@
             <h1>UWB Communication System for UAVs</h1>
         </div>
     </header>
-    
+
     <style>
     #header h1 {
-        margin-bottom: 15px; /* Adds space below the h1 */
+        margin-bottom: 15px;
     }
-    
     #header p {
-        margin-top: 30px; /* Adds space above the p */
+        margin-top: 30px;
     }
     </style>
-
 
     <!-- Main Content -->
     <div id="main">
 
         <!-- Project Overview -->
-        <section id="overview" class="wrapper style1 special">
+        <section id="overview" class="wrapper style3 special">
             <div class="inner">
                 <header class="major">
                     <h2>Project Overview</h2>
                     <p>Developing a Modular Communication System for UAVs Using Ultra-Wideband (UWB) Technology</p>
-                    <p>This project focuses on the design and implementation of a modular communication system for drones using UWB technology. The system allows for real-time communication between the flight controller and the electronic speed controllers (ESCs), overcoming traditional wiring limitations.</p>
+                    <p>This project focuses on the design and implementation of a modular communication system for drones using UWB technology. The system allows for real-time communication between the flight controller and the electronic speed controllers (ESCs), overcoming traditional wiring limitations. This technology is ideal for advanced logistics applications and customizable drone configurations.</p>
                 </header>
-                <ul class="icons major">
-                    <li><span class="icon fa-gem major style1"><span class="label">Electronics</span></span></li>
-                    <li><span class="icon fa-heart major style2"><span class="label">Robotics</span></span></li>
-                    <li><span class="icon solid fa-code major style3"><span class="label">Communication Systems</span></span></li>
-                </ul>
             </div>
         </section>
 
@@ -49,46 +42,44 @@
         <section id="key-features" class="wrapper style2">
             <div class="inner">
                 <header class="major">
-                    <h2>Key Features of the UWB Communication System</h2>
+                    <h2>Key Features</h2>
                 </header>
                 <ul>
-                    <li><strong>Modular Design:</strong> The system supports different configurations (tricopters, quadcopters, hexacopters, etc.), making it adaptable to various UAV applications.</li>
-                    <li><strong>UWB Communication:</strong> Utilizes ultra-wideband (UWB) technology for high-bandwidth, low-latency wireless communication between the drone’s flight controller and ESCs.</li>
-                    <li><strong>Latency Optimization:</strong> The system introduces minimal delays in motor control, ensuring stable flight performance even with communication delays.</li>
-                    <li><strong>Real-World Testing:</strong> The modular communication system was successfully tested in real-world conditions.</li>
+                    <li><strong>Modular Design (Scalability):</strong> Supports configurations like tricopters, quadcopters, hexacopters, allowing flexibility for various UAV applications.</li>
+                    <li><strong>UWB Communication:</strong> High-bandwidth, low-latency wireless communication via Decawave DWM1001C modules operating at 6489.6 MHz with 499.2 MHz bandwidth and 6.8 Mbps data rate.</li>
+                    <li><strong>Latency Optimization:</strong> Ensures minimal delay (up to 5 ms) in motor control, validated by real-world and simulation testing.</li>
                 </ul>
             </div>
         </section>
 
         <!-- Architecture Diagram -->
-        <section id="architecture" class="wrapper style3">
+        <section id="architecture" class="wrapper style2">
             <div class="inner">
                 <header class="major">
                     <h2>System Architecture</h2>
-                    <p>The architecture consists of a master module that communicates wirelessly with multiple slave modules responsible for controlling the motors. UWB communication ensures reliable data transmission between the modules.</p>
+                    <p>The architecture includes a <strong>master module</strong>, responsible for capturing PWM signals from the flight controller, and multiple <strong>slave modules</strong>, each equipped with ESC, motors, and UWB receiver modules. Slave modules synchronize motor control using a PWM signal triggered by a master sync signal.</p>
                 </header>
                 <div class="image">
                     <img src="../pics/system_concept.drawio.png" alt="UWB System Architecture">
                 </div>
             </div>
         </section>
-        
+
         <style>
         #architecture .image img {
-            max-width: 100%; /* Ensures the image won't exceed its container */
-            height: auto; /* Maintains the image's aspect ratio */
+            max-width: 100%;
+            height: auto;
             display: block;
-            margin: 0 auto; /* Centers the image within its container */
+            margin: 0 auto;
         }
         </style>
-
 
         <!-- Results -->
         <section id="results" class="wrapper style4">
             <div class="inner">
                 <header class="major">
                     <h2>Performance Results</h2>
-                    <p>Through real-world testing, the UWB communication system demonstrated minimal latency in the control loop, maintaining stable UAV flight performance even under communication delays of up to 5 milliseconds.</p>
+                    <p>Experimental validation confirmed stable flight performance despite introduced communication delays. Hardware-in-the-loop simulations further demonstrated robust flight control even at the maximum delay threshold of 5 ms, aligning closely with real-world testing outcomes.</p>
                 </header>
                 <div class="video">
                     <video width="640" height="360" controls>
@@ -99,19 +90,20 @@
             </div>
         </section>
 
+        <!-- Publications -->
+        <section id="publications" class="wrapper style3">
+            <div class="inner">
+                <header class="major">
+                    <h2>Related Publications</h2>
+                    <p>This project has been published in the 2024 IEEE International Conference on Automation Science and Engineering (CASE), showcasing the design and experimental validation of the proposed wireless modular UAV architecture.</p>
+                    <p>
+                        <a href="https://ieeexplore.ieee.org/document/10711488" target="_blank" class="button primary">Paper page</a>
+                    </p>
+                </header>
+            </div>
+        </section>
 
-    <!-- Publications -->
-    <section id="publications" class="wrapper style3">
-        <div class="inner">
-            <header class="major">
-                <h2>Related Publications</h2>
-                <p>This project has been published in the 2024 IEEE International Conference on Automation Science and Engineering. You can read the full paper <a href="https://ieeexplore.ieee.org/document/10711488" target="_blank">here</a>.</p>
-            </header>
-        </div>
-    </section>
-
-
-    </div> <!-- End of Main Content -->
+    </div>
 
     <!-- Footer -->
     <footer id="footer">
