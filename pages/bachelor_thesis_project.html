@@ -3,63 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detection of Muscle Activity Using EMG Sensors</title>
-    <!-- Link to CSS for page styling -->
+    <title>EMG-Based Muscle Activity Detection</title>
     <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 
-    <!-- Project Overview Section -->
-    <section class="wrapper style1 special">
+    <!-- Header -->
+    <header id="header">
         <div class="inner">
-            <header class="major">
-                <h2>Detection of Muscle Activity in the Human Arm Using EMG Sensors</h2>
-                <p>A study focused on detecting and analyzing muscle activity through surface EMG sensors, aiming to understand and map muscle signals for advanced biomedical applications.</p>
-                <p>Status: Completed</p>
-            </header>
+            <h1>Bachelor's Thesis – EMG Signal Processing</h1>
         </div>
-    </section>
+    </header>
 
-    <!-- Background and Objectives Section -->
-    <section class="wrapper style2">
-        <div class="inner">
-            <header class="major">
-                <h2>Background and Objectives</h2>
-            </header>
-            <p><!-- Add description of the problem, goals, and significance of the project here --></p>
-        </div>
-    </section>
+    <style>
+    #header h1 {
+        margin-bottom: 15px;
+    }
+    #header p {
+        margin-top: 30px;
+    }
+    </style>
 
-    <!-- Experimental Setup Section -->
+    <!-- Main Content -->
+    <div id="main">
+
+        <!-- Project Overview -->
+        <section id="overview" class="wrapper style3 special">
+            <div class="inner">
+                <header class="major">
+                    <h2>Project Overview</h2>
+                    <p>Studying and processing electromyographic signals to correlate muscle activation with applied force during upper limb exercises.</p>
+                    <p>The project analyzes EMG signal pathways from muscles to microcontroller, including amplification, filtering, digitization, and visualization. It aims to understand how muscle contraction intensity can be monitored using MyoWare sensors, Arduino Due, and Processing-based real-time plotting.</p>
+                </header>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section id="key-features" class="wrapper style2">
+            <div class="inner">
+                <header class="major">
+                    <h2>Key Features</h2>
+                </header>
+                <ul>
+                    <li><strong>MyoWare EMG Sensor:</strong> All-in-one analog signal processing (amplification, rectification, integration) and direct signal output.</li>
+                    <li><strong>Arduino Due (12-bit ADC):</strong> Real-time analog-to-digital conversion for high-resolution signal acquisition.</li>
+                    <li><strong>Signal Analysis:</strong> Extraction of features like RMS, ARV, zero-crossings, slope changes, and variance.</li>
+                    <li><strong>Muscle Groups Studied:</strong> Biceps brachii, triceps brachii, and flexor carpi ulnaris.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section id="architecture" class="wrapper style2">
+            <div class="inner">
+                <header class="major">
+                    <h2>System Architecture</h2>
+                    <p>The system includes surface electrodes connected to a MyoWare sensor, which feeds preprocessed analog signals to an Arduino Due. Data is transmitted via serial to a PC running Processing, where it is visualized in real time for analysis.</p>
+                </header>
+                <div class="image">
+                    <img src="../pics/Setup.jpg" alt="EMG System Setup">
+                </div>
+            </div>
+        </section>
+
+        <style>
+        #architecture .image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        </style>
+
+        <!-- Results -->
+        <section id="results" class="wrapper style4">
+            <div class="inner">
+                <header class="major">
+                    <h2>Performance Results</h2>
+                    <p>The collected signals showed clear activation patterns during weightlifting tasks. Feature extraction confirmed increased EMG envelope amplitude with applied force, though linear correlation was not strictly observable. Baseline noise remained within 1–3.5 mV, and signal integrity was validated through frequency and offset inspections.</p>
+                </header>
+            </div>
+        </section>
+
+
+    <!-- Key Technologies -->
     <section class="wrapper style3">
         <div class="inner">
             <header class="major">
-                <h2>Experimental Setup</h2>
+                <h2>Technologies Used</h2>
             </header>
-            <p><!-- Add description of the setup, including the EMG sensors, human arm model, and tools used here --></p>
+            <ul class="features">
+                <li class="icon solid fa-microchip">
+                    <h3>Signal Acquisition</h3>
+                    <p>MyoWare EMG sensors, surface electrodes, analog pre-processing.</p>
+                </li>
+                <li class="icon solid fa-code">
+                    <h3>Microcontroller</h3>
+                    <p>Arduino Due with 12-bit ADC for real-time digitization and signal sampling.</p>
+                </li>
+                <li class="icon solid fa-desktop">
+                    <h3>Visualization</h3>
+                    <p>Custom interface built in Processing for live signal plotting and monitoring.</p>
+                </li>
+                <li class="icon solid fa-tools">
+                    <h3>Signal Processing</h3>
+                    <p>Low-pass filters, differential amplification, baseline noise analysis.</p>
+                </li>
+            </ul>
         </div>
     </section>
 
-    <!-- Data Analysis and Results Section -->
-    <section class="wrapper style4">
-        <div class="inner">
-            <header class="major">
-                <h2>Data Analysis and Results</h2>
-            </header>
-            <p><!-- Add information about the methodologies, analysis techniques, and key findings here --></p>
-        </div>
-    </section>
+        <!-- Resources -->
+        <section id="resources" class="wrapper style3 special">
+            <div class="inner">
+                <header class="major">
+                    <h2>Resources</h2>
+                    <p>Download the full thesis document for details on the hardware, signal analysis methods, and experimental validation.</p>
+                    <a href="../docs/Tesi_Erik_Mischiatti.pdf" target="_blank" class="button primary">Download Thesis PDF</a>
+                </header>
+            </div>
+        </section>
 
-    <!-- Applications and Future Work Section -->
-    <section class="wrapper style5 special">
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
         <div class="inner">
-            <header class="major">
-                <h2>Applications and Future Work</h2>
-            </header>
-            <p><!-- Add potential applications of the findings and future directions for related research here --></p>
+            <ul class="copyright">
+                <li>&copy; Erik Mischiatti. All rights reserved.</li>
+            </ul>
         </div>
-    </section>
+    </footer>
 
 </body>
 </html>
-
