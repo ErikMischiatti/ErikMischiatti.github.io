@@ -77,11 +77,11 @@
         }
         </style>
 
-        <!-- Experimental Results -->
+        <!-- Scenarios -->
         <section id="results" class="wrapper style2">
             <div class="inner">
                 <header class="major">
-                    <h2>Experimental Results</h2>
+                    <h2>Scenarios</h2>
                     <p>Three experimental scenarios were conducted:</p>
                     <ul>
                         <li><strong>Clip Insertion:</strong> High-precision cable insertion into modular clips using learned trajectories.</li>
@@ -106,6 +106,53 @@
             margin: 0 auto;
         }
         </style>
+
+
+        <!-- Experimental Results -->
+        <section id="demos" class="wrapper style2">
+            <div class="inner">
+                <header class="major">
+            <h2>Experimental Results</h2>
+            </header>
+
+        <div class="content">
+            <h3>Process</h3>
+            <ul>
+                <li>Recording demonstrations of task execution via kinesthetic teaching.</li>
+                <li>Filtering trajectory data to reduce noise and enhance stability.</li>
+                <li>Encoding demonstrations using the DHB invariant representation model.</li>
+                <li>Generalizing trajectories to support flexible adaptation across configurations.</li>
+            </ul>\
+
+            <h3>Advantage</h3>
+            <p>A single demonstration can be reused in various spatial setups, enabling robust task execution in different configurations thanks to the invariance properties of DHB.</p>
+        </div>
+                <div class="gallery">
+                    <div class="gallery-item"><img src="../pics/_ours_look.gif" alt="Looking for Clip"></div>
+                    <div class="gallery-item"><img src="../pics/_ours_grabclip.gif" alt="Grabbing Clip"></div>
+                    <div class="gallery-item"><img src="../pics/_ours_insert.gif" alt="Inserting Cable"></div>
+                    <div class="gallery-item"><img src="../pics/_ours_closeclip.gif" alt="Closing Clip"></div>
+                    <div class="gallery-item"><img src="../pics/_ours_unlockclip_up.gif" alt="Unlocking Clip"></div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .gallery-item {
+            width: 45%; /* Modifica questa dimensione se vuoi GIF più grandi o più piccole */
+        }
+        .gallery-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        </style>
+
 
         <!-- Technologies Used -->
         <section id="technologies" class="wrapper style2">
