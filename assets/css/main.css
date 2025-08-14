@@ -4059,6 +4059,19 @@ input, select, textarea {
 		text-align: left;
 	}
 
-	
+
+/* Blocco "New Project" senza immagine, centrato */
+#projects .spotlight.wip {
+    justify-content: center;
+    text-align: center;
+    min-height: 240px;
+    padding: 4rem 2rem;
+}
+#projects .spotlight.wip .content {
+    max-width: 720px;
+    margin: 0 auto;
+}
+#projects .spotlight.wip h2 { margin-bottom: 0.5rem; }
+
 
 	
