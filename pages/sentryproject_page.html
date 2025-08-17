@@ -1,1 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>H.A.R.O. — Home Assistant & Robotic Operator</title>
+  <meta name="description" content="H.A.R.O. is an interactive desktop companion robot that rotates, senses the environment, and reacts with lights, sounds, and micro-animations. Modular architecture in C/C++ with optional voice, vision, and web UI."/>
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <!-- Font Awesome (integrity removed to avoid errors) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <style>
+    /* Page-specific enhancements. You can move this into ../assets/css/main.css */
+    html { scroll-behavior: smooth; }
+    .subtitle{opacity:.9}
 
+    /* Mini helpers for HARO brand */
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      letter-spacing: .5px;
+    }
+    .dot{ margin: 0 .25ch; opacity:.9 }
+
+    /* CTA button */
+    .btn{
+      display:inline-block; padding:.75rem 1rem; border-radius:10px;
+      border:1px solid rgba(39, 3, 3, 0.35); text-decoration:none;
+      font-weight:600; line-height:1; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      background:rgba(255,255,255,.06)
+    }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,0,0,.25); }
+    .btn:focus-visible{ outline:2px dashed #fff; outline-offset:3px; }
+
+    /* Grids */
+    .grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+
+    /* Cards */
+    .card,.ucard{background:rgba(255,255,255,.04);border-radius:12px;padding:20px;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
+    .card:hover,.card:focus-within,.ucard:hover,.ucard:focus-within{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25);background:rgba(255,255,255,.06)}
+    .card-icon{font-size:1.8rem;margin-bottom:.5rem;opacity:.9}
+
+    /* Tags */
+    .tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+    .tag{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.35rem .75rem;font-size:.9rem;opacity:.9}
+
+    /* Block diagram */
+    .block-diagram{overflow:auto;border-radius:12px;padding:6px;background:rgba(255,255,255,.03)}
+    .bd-rect{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.25);stroke-width:1.2}
+    .bd-rect--secondary{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.2);stroke-width:1}
+    .bd-title{fill:#fff;font-weight:700;font-size:16px;text-anchor:middle}
+    .bd-text{fill:#fff;font-size:13px;text-anchor:middle;opacity:.9}
+    .bd-arrow{stroke:#fff;stroke-width:2}
+    .bd-arrow-label{fill:#fff;font-size:12px;opacity:.85}
+    .bd-arrow-head{fill:#fff}
+    .bd-arrow--dashed{stroke:#fff;stroke-width:1.5;stroke-dasharray:5 4}
+
+    /* Timeline */
+    .timeline{position:relative;margin:0 auto;max-width:960px;padding-left:16px}
+    .timeline:before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.25)}
+    .tl-item{position:relative;padding-left:36px;margin:22px 0}
+    .tl-dot{position:absolute;left:8px;top:.5rem;width:16px;height:16px;border-radius:50%;background:#fff}
+    .tl-dot.is-current{background:#4ade80} /* highlight current step */
+    .tl-content h3{margin:0 0 .25rem 0}
+    .tl-content p{margin:0;opacity:.9}
+    .tl-meta{opacity:.8;font-size:.9rem;margin-top:.25rem}
+
+    /* Progress bar */
+    .progress{height:10px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:.5rem 0 0}
+    .progress > span{display:block;height:100%;background:#4ade80;width:35%}
+
+    /* Motion preferences */
+    @media (prefers-reduced-motion: reduce){
+      .btn, .card, .ucard { transition:none }
+      .card:hover, .ucard:hover { transform:none; box-shadow:none }
+    }
+  </style>
+</head>
+<body>
+
+      <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <h1>H.A.R.O - Home Assistant &amp; Robotic Operator</h1>
+        </div>
+    </header>
+
+  <!-- HERO -->
+  <section class="wrapper style3 special">
+    <div class="inner">
+      <header class="major">
+        <h2>
+          Project Overview
+        </h2>
+        <p>Expressive desktop companion for interaction and environmental monitoring.</p>
+      </header>
+
+      <p style="margin-top:1rem;">
+        <a class="btn" href="#roadmap" aria-label="Skip to roadmap section">Roadmap</a>
+        <a class="btn" href="#diagram" aria-label="Skip to block diagram" style="margin-left:.5rem;">Diagram</a>
+        <a class="btn" href="#status" aria-label="Skip to block status" style="margin-left:.5rem;">Status</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURE GRID -->
+  <section class="wrapper style2">
+    <div class="inner">
+      <header class="major">
+        <h2>Main Features</h2>
+      </header>
+
+      <div class="grid-4">
+        <div class="card" tabindex="0">
+          <div class="card-icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></div>
+          <h3>Motion</h3>
+          <p>360° rotation to explore and communicate with simple gestures.</p>
+        </div>
+        <div class="card" tabindex="0">
+          <div class="card-icon"><i class="fa-solid fa-eye" aria-hidden="true"></i></div>
+          <h3>Perception</h3>
+          <p>Distance (ToF), IMU, temperature/ humidity/ pressure, microphone.</p>
+        </div>
+        <div class="card" tabindex="0">
+          <div class="card-icon"><i class="fa-regular fa-face-smile" aria-hidden="true"></i></div>
+          <h3>Expression</h3>
+          <p>Eyes on LED ring or circular display, ambient lights, and sounds.</p>
+        </div>
+        <div class="card" tabindex="0">
+          <div class="card-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+          <h3>Modes</h3>
+          <p>Companion · Sentry · Showcase demos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO-READY TEXT -->
+  <section class="wrapper style2">
+    <div class="inner">
+      <header class="major">
+        <h2>At a Glance</h2>
+      </header>
+      <p><strong>H.A.R.O.</strong> is an <strong>interactive desktop companion</strong> that blends interaction, monitoring, and micro-expressivity. It rotates to observe the environment, senses distance and room conditions, and responds with eyes/LEDs, sounds, and small gestures.</p>
+      <p>The architecture is <strong>modular</strong>: a C/C++ microcontroller handles motors, sensors, and lights; an optional “smart” layer adds <strong>voice, vision, and a web dashboard</strong>.</p>
+    </div>
+  </section>
+
+  <!-- BLOCK DIAGRAM (SVG) -->
+  <section class="wrapper style2" id="diagram">
+    <div class="inner">
+      <header class="major">
+        <h2>How It Works (Block Diagram)</h2>
+      </header>
+
+      <div class="block-diagram">
+        <svg viewBox="0 0 920 260" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="bd-title bd-desc">
+          <title id="bd-title">System block diagram</title>
+          <desc id="bd-desc">Perception feeds the MCU, which drives expression. An optional SBC layer provides voice, vision, and web UI.</desc>
+
+          <!-- Blocks -->
+          <rect x="30" y="60" width="240" height="140" rx="10" class="bd-rect"/>
+          <text x="150" y="110" class="bd-title">Perception</text>
+          <text x="150" y="135" class="bd-text">ToF · IMU · T/H · Mic</text>
+
+          <rect x="340" y="60" width="240" height="140" rx="10" class="bd-rect"/>
+          <text x="460" y="110" class="bd-title">MCU (C/C++)</text>
+          <text x="460" y="135" class="bd-text">Motors · LED/Display</text>
+
+          <rect x="650" y="60" width="240" height="140" rx="10" class="bd-rect"/>
+          <text x="770" y="110" class="bd-title">Expression</text>
+          <text x="770" y="135" class="bd-text">Lights · Sounds · Rotation</text>
+
+          <!-- Arrows + labels -->
+          <line x1="270" y1="130" x2="340" y2="130" class="bd-arrow"/>
+          <polygon points="340,130 330,125 330,135" class="bd-arrow-head"/>
+          <text x="305" y="120" class="bd-arrow-label">sensor data</text>
+
+          <line x1="580" y1="130" x2="650" y2="130" class="bd-arrow"/>
+          <polygon points="650,130 640,125 640,135" class="bd-arrow-head"/>
+          <text x="615" y="120" class="bd-arrow-label">control</text>
+
+          <!-- Optional layer -->
+          <rect x="340" y="210" width="240" height="40" rx="6" class="bd-rect--secondary"/>
+          <text x="460" y="235" class="bd-text">SBC / ROS 2 / Python · Voice · Vision · Web UI</text>
+          <line x1="460" y1="210" x2="460" y2="200" class="bd-arrow--dashed"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+<!-- ROADMAP -->
+<section class="wrapper style4" id="roadmap">
+  <div class="inner">
+    <header class="major">
+      <h2>Roadmap</h2>
+    </header>
+
+    <div class="timeline" aria-label="Project roadmap timeline">
+      <!-- New initial step -->
+      <div class="tl-item">
+        <div class="tl-dot is-current" aria-hidden="true"></div>
+        <div class="tl-content">
+          <h3>Concept / Definition</h3>
+          <p>Idea shaping, architecture analysis, component selection, and milestones.</p>
+          <div class="tl-meta">Target: Q3 2025</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-content">
+          <h3>MVP</h3>
+          <p>Base rotation + sensor readings + 3 LED emotions.</p>
+          <div class="tl-meta">Target: Q4 2025</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-content">
+          <h3>Interactive</h3>
+          <p>Presence/simple gestures + sounds/feedback.</p>
+          <div class="tl-meta">Target: Q1 2026</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-content">
+          <h3>Advanced</h3>
+          <p>Voice recognition, optional camera, web dashboard, behavior trees.</p>
+          <div class="tl-meta">Target: Q2–Q3 2026</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-content">
+          <h3>Demo</h3>
+          <p>Choreographed scenes, photos/videos, and documentation.</p>
+          <div class="tl-meta">Target: Q4 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- TECHNOLOGIES -->
+  <section class="wrapper style4 special">
+    <div class="inner">
+      <header class="major">
+        <h2>Planned Technologies</h2>
+      </header>
+      <div class="tags" role="list" aria-label="Planned technologies">
+        <span class="tag" role="listitem">C/C++</span>
+        <span class="tag" role="listitem">STM32</span>
+        <span class="tag" role="listitem">LED/Display</span>
+        <span class="tag" role="listitem">ToF · IMU · T/H</span>
+        <span class="tag" role="listitem">Audio</span>
+        <span class="tag" role="listitem">ROS</span>
+        <span class="tag" role="listitem">Python</span>
+        <span class="tag" role="listitem">Web UI</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE-CASES & DEMOS (placeholder) -->
+  <section class="wrapper style2">
+    <div class="inner">
+      <header class="major">
+        <h2>Use Cases & Demos</h2>
+        <p>Short GIFs/images will be added for Companion, Sentry, and Choreographed Demos.</p>
+      </header>
+
+      <div class="grid-3">
+        <div class="ucard" tabindex="0">
+          <h3><i class="fa-regular fa-face-smile" aria-hidden="true"></i> Companion</h3>
+          <p>Reactions and emotions via eyes/LEDs. <em>(Preview coming soon)</em></p>
+        </div>
+        <div class="ucard" tabindex="0">
+          <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Sentry</h3>
+          <p>Periodic scan and change detection. <em>(Preview coming soon)</em></p>
+        </div>
+        <div class="ucard" tabindex="0">
+          <h3><i class="fa-solid fa-music" aria-hidden="true"></i> Demo</h3>
+          <p>Choreographies of lights/sounds/motion. <em>(Preview coming soon)</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS -->
+  <section class="wrapper style3 special" id="status">
+    <div class="inner">
+      <header class="major">
+        <h2>Status &amp; Scalability</h2>
+      </header>
+      <p><strong>Status:</strong> defining architecture, components, and milestones. <strong>Next:</strong> MVP with rotation, core sensors, and LED emotions.</p>
+      <div aria-label="MVP progress" class="progress" title="MVP progress">
+        <span style="width: 1%;" aria-hidden="true"></span>
+      </div>
+      <p style="margin-top:.5rem; opacity:.85;"><small>~1% complete (starting phase)</small></p>
+
+      <p><strong>Scalability:</strong></p>
+      <ul style="list-style:disc; text-align:left; display:inline-block; margin:0; padding-left:1.1rem;">
+        <li>Optional smart layer (voice/vision/web)</li>
+        <li>Behavior Trees for richer scenarios</li>
+        <li>Documentation, photos/videos for portfolio</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>
