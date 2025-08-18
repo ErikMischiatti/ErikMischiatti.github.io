@@ -4,343 +4,511 @@
     html5up.net | @ajlkn
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
-	<head>
-		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-TV97D87X');</script>
-		<!-- End Google Tag Manager -->
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TV97D87X');</script>
+    <!-- End Google Tag Manager -->
 
-		<title>Erik Mischiatti - Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" type="image/png" href="pics/EM_logo.png">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <title>Erik Mischiatti - Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Mechatronics Engineer passionate about robotics, embedded systems, and autonomous systems. Portfolio with projects, skills, and contacts." />
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xxx" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Erik Mischiatti — Portfolio">
+    <meta property="og:description" content="Robotics, embedded systems, and autonomous systems. Projects, skills, and contacts.">
+    <meta property="og:type" content="website">
+    <!-- Sostituisci con un URL assoluto a un’immagine 1200x630 -->
+    <meta property="og:image" content="https://erikmischiatti.github.io/pics/EM_logo.png">
+    <meta name="twitter:card" content="summary_large_image">
 
-	</head>
-	<body class="landing is-preload">
-		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV97D87X"
-		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" type="image/png" href="pics/EM_logo.png">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+    <!-- Font Awesome (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-				<!-- Header -->
-					<header id="header" class="alt">
-					    <h1><a href="index.html">Erik Mischiatti</a></h1>
-					    <nav id="nav">
-					        <ul>
-					            <li class="special">
-					                <a href="#menu" class="menuToggle"><span>Menu</span></a>
-					                <div id="menu">
-					                    <ul>
-					                        <li><a href="#banner">Home</a></li> <!-- Link alla sezione banner -->
-					                        <li><a href="#about">About Me</a></li> <!-- Link alla sezione About -->
-					                        <li><a href="#projects">Projects</a></li> <!-- Link alla sezione Progetti -->
-											<li><a href="#three">Skills</a></li> <!-- Link alla sezione Skills -->
-					                        <li><a href="#contact">Contact</a></li> <!-- Link alla sezione Contatti -->
-					                    </ul>
-					                </div>
-					            </li>
-					        </ul>
-					    </nav>
-					</header>
+    <!-- Stili aggiuntivi in stile H.A.R.O. -->
+    <style>
+      html { scroll-behavior: smooth; }
 
-				<!-- Banner (Home Section) -->
-					<section id="banner">
-						<div class="inner">
-							<h2>Erik Mischiatti</h2>
-							<p>Mechatronic Engineer<br />
-							Passionate about Robotics, Electronics, and Autonomous Systems.</p>
-							<ul class="actions special">
-								<li><a href="#projects" class="button primary">View My Work</a></li>
-							</ul>
-						</div>
-						<a href="#about" class="more scrolly">Learn More</a>
-					</section>
+      /* CTA / Buttons */
+      .btn{
+        display:inline-block;padding:.75rem 1rem;border-radius:10px;
+        border:1px solid rgba(39,3,3,.35);text-decoration:none;font-weight:600;line-height:1;
+        transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+        background:rgba(255,255,255,.06)
+      }
+      .btn:hover{ transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,0,0,.25); }
+      .btn:focus-visible{ outline:2px dashed #fff; outline-offset:3px; }
 
-				<!-- About Me -->
-					<section id="about" class="wrapper style3 special">
-						<div class="inner">
-							<header class="major">
-								<h2>Welcome to My Portfolio</h2>
-								<p>
-									<a href="../docs/CV.pdf" download="Erik_Mischiatti_CV.pdf" class="button primary">Download My CV</a>
-								</p>
-							</header>
-					
-							<div class="about-container">
-								<div class="about-photo">
-									<img src="../pics/profile_pic.jpg" alt="Erik Mischiatti Photo" />
-								</div>
-								<div class="about-description">
-									<h2>
-										Hi! I'm Erik,
-										</h2>
-									
-									<p>
-										 Mechatronics Engineer with a strong passion for robotics, automation, and intelligent systems. I recently completed my Master's degree in Mechatronics Engineering, majoring in robotics and electronics. My work mainly revolves around learning from demonstration, modular robot design, and autonomous task execution—especially in real-world, uncertain scenarios. 
-										</p>
-										
-										<p>
-										Alongside my academic path, I've gained experience in UWB-based drone communication, embedded systems, and CAD/PCB design. I love working at the intersection of hardware and software to build robust, adaptive technologies. 
-										</p>
-										
-										<p>
-										Beyond my technical interests, I enjoy sports like running and swimming, as well as analog photography. Originally from Italy, I’m currently living in Verona and actively exploring new opportunities to develop both professionally and personally.										</p>
-																		</div>
-							</div>
-					
-							<!-- Elenco università -->
-							<div class="education">
-								<!-- University blocks (lascia invariato questo blocco) -->
-							</div>
-						</div>
-					</section>
-				
-					
-					        <!-- Aggiunta della sezione di istruzione -->
-					        <div class="education">
-					            <!-- University of Trento -->
-					            <div class="edu-item">
-					                <div class="edu-logo">
-					                    <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento Logo" />
-					                </div>
-					                <div class="edu-details">
-					                    <h3>University of Trento</h3>
-					                    <p>Master's Degree in Mechatronic Engineering (2022 - 2024)</p>
-					                    <p>Focus on autonomous systems and robotics.</p>
-					                </div>
-					            </div>
-					
-					            <!-- Technical University of Vienna -->
-					            <div class="edu-item">
-					                <div class="edu-logo">
-					                    <img src="pics/geo_blue_transparent.png" alt="Technical University of Vienna Logo" />
-					                </div>
-					                <div class="edu-details">
-					                    <h3>Technical University of Vienna</h3>
-					                    <p>Master Thesis Research (2024)</p>
-					                    <p>Research in autonomous robotic systems, focusing on imitation learning and 6D pose estimation for task learning in robots.</p>
-					                </div>
-					            </div>
-					
-					            <!-- Linnaeus University -->
-					            <div class="edu-item">
-					                <div class="edu-logo">
-					                    <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University Logo" />
-					                </div>
-					                <div class="edu-details">
-					                    <h3>Linnaeus University</h3>
-					                    <p>Erasmus Exchange (2023)</p>
-					                    <p>Studied robotics, automation, and mechanics as part of the Erasmus exchange program.</p>
-					                </div>
-					            </div>
-					
-					            <!-- University of Padova -->
-					            <div class="edu-item">
-					                <div class="edu-logo">
-					                    <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova Logo" />
-					                </div>
-					                <div class="edu-details">
-					                    <h3>University of Padova</h3>
-					                    <p>Bachelor's Degree in Mechatronic Engineering (2017 - 2021)</p>
-					                    <p>Thesis on detecting human arm muscle activity using EMG sensors.</p>
-					                </div>
-					            </div>
-					        </div>
-					    </div>
-					</section>
-					
-					<style>
-					.edu-item {
-					    display: flex;
-					    align-items: center;
-					    margin-bottom: 20px;
-					}
-					
-					.edu-logo {
-					    flex: 1;
-					    max-width: 100px; /* Adjust this as needed */
-					    margin-right: 20px;
-					}
-					
-					.edu-logo img {
-					    width: 100%;
-					}
-					
-					.edu-details {
-					    flex: 3;
-					}
-				    </style> 
+      /* Cards / Grids */
+      .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+      .card{
+        background:rgba(255,255,255,.06);border-radius:12px;padding:20px;
+        transition:transform .15s ease, box-shadow .15s ease, background .15s ease
+      }
+      .card:hover,.card:focus-within{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25);background:rgba(255,255,255,.08)}
+      .card-icon{font-size:1.8rem;margin-bottom:.5rem;opacity:.9}
 
+      /* Tags */
+      .tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+      .tag{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.35rem .75rem;font-size:.9rem;opacity:.9}
 
-					<!-- Projects -->
-                   <section id="projects" class="wrapper alt style2">
-    <section class="spotlight">
-        <div class="image"><img src="pics/photo_2_2024-10-03_15-53-10.jpg" alt="" /></div>
-        <div class="content">
-            <h2><a href="pages/master_thesis_project.html" target="_blank">Master Thesis Project</a><br />Leveraging Acquired Knowledge and Invariant Representations for Cable Manipulation</h2>
-            <p>This project develops a robotic system for autonomous assembly tasks, leveraging kinesthetic demonstration, invariant trajectory learning, and behavior trees to handle rigid and deformable objects with flexibility and precision.</p>
+      /* Timeline */
+      .timeline{position:relative;margin:0 auto;max-width:960px;padding-left:16px}
+      .timeline:before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.25)}
+      .tl-item{position:relative;padding-left:36px;margin:22px 0}
+      .tl-dot{position:absolute;left:8px;top:.5rem;width:16px;height:16px;border-radius:50%;background:#fff}
+      .tl-dot.is-current{background:#4ade80}
+      .tl-content h3{margin:0 0 .25rem 0}
+      .tl-content p{margin:0;opacity:.9}
+      .tl-meta{opacity:.8;font-size:.9rem;margin-top:.25rem}
+
+      /* H1 più grande, solo in home */
+      #header.alt h1 a{font-size:clamp(1.8rem,3vw + .5rem,3.2rem);line-height:1.1}
+
+      /* Education layout tweaks (manteniamo il tuo stile) */
+      .edu-item { display:flex; align-items:center; margin-bottom:20px; }
+      .edu-logo { flex:1; max-width:100px; margin-right:20px; }
+      .edu-logo img { width:100%; }
+      .edu-details { flex:3; }
+
+      @media (prefers-reduced-motion: reduce){
+        .btn,.card{transition:none}
+        .card:hover{transform:none;box-shadow:none}
+      }
+
+	  /* Projects grid */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+/* Card progetto */
+.project-card{ display:flex; flex-direction:column; }
+.project-thumb{
+  display:block;
+  border-radius:10px;
+  overflow:hidden;
+  aspect-ratio:16/9;           /* mantiene costante il rapporto */
+  background:rgba(255,255,255,.06);
+}
+.project-thumb img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .25s ease;
+}
+.project-card:hover .project-thumb img,
+.project-card:focus-within .project-thumb img{
+  transform:scale(1.03);
+}
+.project-thumb--placeholder{
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; letter-spacing:.1em; opacity:.8;
+}
+
+/* Testi card */
+.project-body{ padding-top:12px; }
+.project-title{ margin:0 0 .25rem; font-size:1.1rem; line-height:1.25; }
+.project-title a{ text-decoration:none; }
+.project-desc{ margin:0 0 .5rem; opacity:.9; }
+.project-actions{ display:flex; gap:10px; }
+
+/* Piccolo affinamento per Spectral */
+.wrapper.style2 .major p{ opacity:.9; }
+
+    </style>
+  </head>
+
+  <body class="landing is-preload">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV97D87X"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+      <!-- Header -->
+      <header id="header" class="alt">
+        <h1><a href="index.html">Erik Mischiatti</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="#banner">Home</a></li>
+                  <li><a href="#about">About Me</a></li>
+                  <li><a href="#projects">Projects</a></li>
+                  <li><a href="#three">Skills</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Banner (Home Section) -->
+      <section id="banner">
+        <div class="inner">
+          <h2>Erik Mischiatti</h2>
+          <p>Mechatronic Engineer<br />
+          Passionate about Robotics, Electronics, and Autonomous Systems.</p>
+          <ul class="actions special">
+            <li><a href="#projects" class="button primary">View My Work</a></li>
+          </ul>
+
         </div>
-    </section>
+        <a href="#about" class="more scrolly">Learn More</a>
+      </section>
 
-    <!-- Due immagini affiancate -->
-    <section class="spotlight">
-        <div class="images">
-            <div class="image"><img src="pics/photo_1_2024-10-03_16-27-18-transformed.png" alt="Immagine 1" /></div>
-            <div class="image"><img src="pics/photo_2_2024-10-03_16-27-14-transformed.png" alt="Immagine 2" /></div>
+      <!-- About Me -->
+      <section id="about" class="wrapper style3 special">
+        <div class="inner">
+          <header class="major">
+            <h2>Welcome to My Portfolio</h2>
+            <p>
+              <a href="../docs/CV.pdf" download="Erik_Mischiatti_CV.pdf" class="button primary">Download My CV</a>
+            </p>
+          </header>
+
+          <div class="about-container">
+            <div class="about-photo">
+              <img src="../pics/profile_pic.jpg" alt="Erik Mischiatti Photo" />
+            </div>
+            <div class="about-description">
+              <h2>Hi! I'm Erik,</h2>
+              <p>
+                Mechatronics Engineer with a strong passion for robotics, automation, and intelligent systems.
+                I recently completed my Master's degree in Mechatronics Engineering, majoring in robotics and electronics.
+                My work mainly revolves around learning from demonstration, modular robot design, and autonomous task
+                execution—especially in real-world, uncertain scenarios.
+              </p>
+              <p>
+                Alongside my academic path, I've gained experience in UWB-based drone communication, embedded systems,
+                and CAD/PCB design. I love working at the intersection of hardware and software to build robust, adaptive technologies.
+              </p>
+              <p>
+                Beyond my technical interests, I enjoy sports like running and swimming, as well as analog photography.
+                Originally from Italy, I’m currently living in Verona and actively exploring new opportunities to develop both professionally and personally.
+              </p>
+            </div>
+          </div>
+
+          <!-- Placeholder sezione education (contenitore interno) -->
+          <div class="education">
+            <!-- University blocks (lascia invariato questo blocco) -->
+          </div>
         </div>
-        <div class="content">
-            <h2><a href="pages/uwb_project.html" target="_blank">UWB Communication System for UAVs</a></h2>
-            <p>Designed a modular communication system for drones using UWB technology, facilitating multi-agent coordination.</p>
+      </section>
+
+      <!-- Education (blocco esterno come da tuo file) -->
+      <div class="education">
+        <!-- University of Trento -->
+        <div class="edu-item">
+          <div class="edu-logo">
+            <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento Logo" />
+          </div>
+          <div class="edu-details">
+            <h3>University of Trento</h3>
+            <p>Master's Degree in Mechatronic Engineering (2022 - 2024)</p>
+            <p>Focus on autonomous systems and robotics.</p>
+          </div>
         </div>
-    </section>
 
-    <section class="spotlight">
-        <div class="image"><img src="pics/pic3d.jpg" alt="" /></div>
-        <div class="content">
-            <h2><a href="pages/distribution_project.html" target="_blank">Green Vigilance:</a><br />Drone Innovation  for Early Detection of Crop Diseases</h2>
-            <p>Integrating UAVs and UGVs for crop monitoring and early disease detection, leveraging hybrid depth sensors, data fusion algorithms, and real-time communication to optimize agricultural efficiency.</p>
+        <!-- Technical University of Vienna -->
+        <div class="edu-item">
+          <div class="edu-logo">
+            <img src="pics/geo_blue_transparent.png" alt="Technical University of Vienna Logo" />
+          </div>
+          <div class="edu-details">
+            <h3>Technical University of Vienna</h3>
+            <p>Master Thesis Research (2024)</p>
+            <p>Research in autonomous robotic systems, focusing on imitation learning and 6D pose estimation for task learning in robots.</p>
+          </div>
         </div>
-    </section>
 
-    <section class="spotlight">
-        <div class="image"><img src="pics/photo_5_2024-10-03_14-58-56.jpg" alt="" /></div>
-        <div class="content">
-            <h2><a href="pages/hachi_project.html" target="_blank">Hachi Team - StartUp Lab</a><br /> Employing augmented reality for learning</h2>
-            <p>CLab Trento is the interdepartmental laboratory of the University of Trento, managed with HIT (Hub Innovazione Trentino), where starting to create your professional future.</p>
+        <!-- Linnaeus University -->
+        <div class="edu-item">
+          <div class="edu-logo">
+            <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University Logo" />
+          </div>
+          <div class="edu-details">
+            <h3>Linnaeus University</h3>
+            <p>Erasmus Exchange (2023)</p>
+            <p>Studied robotics, automation, and mechanics as part of the Erasmus exchange program.</p>
+          </div>
         </div>
-    </section>
 
-    <section class="spotlight">
-        <div class="image"><img src="pics/Setup.jpg" alt="" /></div>
-        <div class="content">
-            <h2><a href="pages/bachelor_thesis_project.html" target="_blank">Bachelor Thesis Project</a><br />Detection of muscle activity in the human arm using EMG sensors</h2>
-            <p>This project analyzes EMG signals using Myoware sensors to correlate muscle activity with applied arm force during weightlifting tasks.</p>
+        <!-- University of Padova -->
+        <div class="edu-item">
+          <div class="edu-logo">
+            <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova Logo" />
+          </div>
+          <div class="edu-details">
+            <h3>University of Padova</h3>
+            <p>Bachelor's Degree in Mechatronic Engineering (2017 - 2021)</p>
+            <p>Thesis on detecting human arm muscle activity using EMG sensors.</p>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- New project (senza immagine, centrato) -->
-    <section class="spotlight wip">
-        <div class="content">
-            <h2><a href="pages/sentryproject_page.html" target="_blank">New Project</a></h2>
-            <p>Personal project currently in development. More details soon.</p>
+<!-- Highlights (nuova sezione stile H.A.R.O.)
+      <section class="wrapper style2">
+        <div class="inner">
+          <header class="major">
+            <h2>Highlights</h2>
+            <p>Una panoramica rapida dei miei focus attuali.</p>
+          </header>
+
+          <div class="grid-3">
+            <div class="card" tabindex="0" role="article" aria-label="Robotics and Learning from Demonstration">
+              <div class="card-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+              <h3>Robotics & LfD</h3>
+              <p>Dimostrazione kinestetica, rappresentazioni invarianti e manipulation di cavi.</p>
+            </div>
+            <div class="card" tabindex="0" role="article" aria-label="Embedded systems">
+              <div class="card-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
+              <h3>Embedded</h3>
+              <p>Firmware su MCU, protocolli UART/SPI/I2C, integrazione sensori e attuatori.</p>
+            </div>
+            <div class="card" tabindex="0" role="article" aria-label="UWB and multi agent">
+              <div class="card-icon"><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i></div>
+              <h3>UWB & Multi-Agent</h3>
+              <p>Comunicazione UWB per UAV modulari e coordinamento.</p>
+            </div>
+          </div>
+
+          <div class="tags" style="margin-top:18px;" role="list" aria-label="Key technologies">
+            <span class="tag" role="listitem">C/C++</span>
+            <span class="tag" role="listitem">Python</span>
+            <span class="tag" role="listitem">ROS</span>
+            <span class="tag" role="listitem">OpenCV</span>
+            <span class="tag" role="listitem">SolidWorks</span>
+            <span class="tag" role="listitem">KiCad</span>
+          </div>
         </div>
-    </section>
-                   </section>
+      </section>-->
+
+<!-- Projects (grid di card) -->
+<section id="projects" class="wrapper style2">
+  <div class="inner">
+    <header class="major">
+      <h2>Projects</h2>
+      <p>A selection of recent works in research, embedded technology, and robotics.</p>
+    </header>
+
+    <div class="projects-grid">
+	<!-- New/WIP -->
+      <article class="card project-card" tabindex="0" role="article" aria-label="New Project">
+        <a class="project-thumb" href="pages/sentryproject_page.html" target="_blank" rel="noopener" aria-label="Open New Project">
+          <div class="project-thumb--placeholder">WIP</div>
+        </a>
+        <div class="project-body">
+          <h3 class="project-title">
+            <a href="pages/sentryproject_page.html" target="_blank" rel="noopener">New Project</a>
+          </h3>
+          <p class="project-desc">Personal project in development (details coming soon).</p>
+          <div class="project-actions">
+            <a class="btn" href="pages/sentryproject_page.html" target="_blank" rel="noopener" aria-label="Open New Project">Open</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Master Thesis -->
+      <article class="card project-card" tabindex="0" role="article" aria-label="Master Thesis Project">
+        <a class="project-thumb" href="pages/master_thesis_project.html" target="_blank" rel="noopener">
+          <img src="pics/photo_2_2024-10-03_15-53-10.jpg" alt="Master Thesis Project thumbnail">
+        </a>
+        <div class="project-body">
+          <h3 class="project-title">
+            <a href="pages/master_thesis_project.html" target="_blank" rel="noopener">Master Thesis Project</a>
+          </h3>
+          <p class="project-desc">Invariant representations &amp; learning from demonstration per la manipolazione di cavi, con behavior trees.</p>
+          <div class="project-actions">
+            <a class="btn" href="pages/master_thesis_project.html" target="_blank" rel="noopener" aria-label="Open Master Thesis Project">Open</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- UWB -->
+      <article class="card project-card" tabindex="0" role="article" aria-label="UWB Communication System for UAVs">
+        <a class="project-thumb" href="pages/uwb_project.html" target="_blank" rel="noopener">
+          <img src="pics/photo_1_2024-10-03_16-27-18-transformed.png" alt="UWB system thumbnail">
+        </a>
+        <div class="project-body">
+          <h3 class="project-title">
+            <a href="pages/uwb_project.html" target="_blank" rel="noopener">UWB Communication System for UAVs</a>
+          </h3>
+          <p class="project-desc">Sistema di comunicazione modulare per droni, coordinamento multi-agente via UWB.</p>
+          <div class="project-actions">
+            <a class="btn" href="pages/uwb_project.html" target="_blank" rel="noopener" aria-label="Open UWB project">Open</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Green Vigilance -->
+      <article class="card project-card" tabindex="0" role="article" aria-label="Green Vigilance">
+        <a class="project-thumb" href="pages/distribution_project.html" target="_blank" rel="noopener">
+          <img src="pics/pic3d.jpg" alt="Green Vigilance thumbnail">
+        </a>
+        <div class="project-body">
+          <h3 class="project-title">
+            <a href="pages/distribution_project.html" target="_blank" rel="noopener">Green Vigilance</a>
+          </h3>
+          <p class="project-desc">UAV/UGV per monitoraggio e early disease detection con sensori ibridi e data fusion.</p>
+          <div class="project-actions">
+            <a class="btn" href="pages/distribution_project.html" target="_blank" rel="noopener" aria-label="Open Green Vigilance project">Open</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Hachi -->
+      <article class="card project-card" tabindex="0" role="article" aria-label="Hachi Team - StartUp Lab">
+        <a class="project-thumb" href="pages/hachi_project.html" target="_blank" rel="noopener">
+          <img src="pics/photo_5_2024-10-03_14-58-56.jpg" alt="Hachi project thumbnail">
+        </a>
+        <div class="project-body">
+          <h3 class="project-title">
+            <a href="pages/hachi_project.html" target="_blank" rel="noopener">Hachi Team – StartUp Lab</a>
+          </h3>
+          <p class="project-desc">Soluzioni AR per l’apprendimento, progetto CLab Trento in collaborazione con HIT.</p>
+          <div class="project-actions">
+            <a class="btn" href="pages/hachi_project.html" target="_blank" rel="noopener" aria-label="Open Hachi project">Open</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bachelor Thesis -->
+      <article class="card project-card" tabindex="0" role="article" aria-label="Bachelor Thesis Project">
+        <a class="project-thumb" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener">
+          <img src="pics/Setup.jpg" alt="Bachelor Thesis thumbnail">
+        </a>
+        <div class="project-body">
+          <h3 class="project-title">
+            <a href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener">Bachelor Thesis Project</a>
+          </h3>
+          <p class="project-desc">Analisi EMG con sensori Myoware per correlare attività muscolare e forza applicata.</p>
+          <div class="project-actions">
+            <a class="btn" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener" aria-label="Open Bachelor project">Open</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
 
+      <!-- Skills and Expertise -->
+      <section id="three" class="wrapper style3 special">
+        <div class="inner">
+          <header class="major">
+            <h2>My Skills and Expertise</h2>
+          </header>
+          <ul class="features">
+            <li class="icon solid fa-cogs">
+              <h3>Mechatronics</h3>
+              <p>Experience in designing and integrating mechatronic systems for automation and robotics.</p>
+            </li>
 
-				<!-- Skills and Expertise -->
-				<section id="three" class="wrapper style3 special">
-					<div class="inner">
-					  <header class="major">
-						<h2>My Skills and Expertise</h2>
-					  </header>
-					  <ul class="features">
-				  
-						<li class="icon solid fa-cogs">
-						  <h3>Mechatronics</h3>
-						  <p>Experience in designing and integrating mechatronic systems for automation and robotics.</p>
-						</li>
-				  
-						<li class="icon solid fa-robot">
-						  <h3>Robotics</h3>
-						  <p>Skilled in control systems, sensor fusion, and autonomous behavior development for robotic platforms.</p>
-						</li>
-				  
-						<li class="icon solid fa-microchip">
-						  <h3>Embedded Systems</h3>
-						  <p>Development of firmware for microcontrollers and real-time communication protocols like UART, SPI and I2C.</p>
-						</li>
-				  
-						<li class="icon solid fa-drafting-compass">
-						  <h3>CAD & PCB Design</h3>
-						  <p>Mechanical and electronic design using SolidWorks, Fusion 360, and KiCAD for 3D modeling and PCB layout.</p>
-						</li>
-				  
-						<li class="icon solid fa-brain">
-						  <h3>Learning from Demonstration</h3>
-						  <p>Research in kinesthetic teaching, trajectory learning, and object manipulation with invariant representations.</p>
-						</li>
-				  
-						<li class="icon brands fa-python">
-						  <h3>Python</h3>
-						  <p>Extensive experience in scripting, data analysis, automation, and robotics pipelines.</p>
-						</li>
-				  
-						<li class="icon solid fa-robot">
-						  <h3>ROS</h3>
-						  <p>Development of robotic systems using the Robot Operating System, including simulation and real-world deployment.</p>
-						</li>
-				  
-						<li class="icon solid fa-code">
-						  <h3>MATLAB</h3>
-						  <p>Modeling and simulation of control systems, signal processing, and data visualization in engineering workflows.</p>
-						</li>
-				  
-					  </ul>
-					</div>
-				  </section>
-				  
-  
+            <li class="icon solid fa-robot">
+              <h3>Robotics</h3>
+              <p>Skilled in control systems, sensor fusion, and autonomous behavior development for robotic platforms.</p>
+            </li>
 
-				<!-- Contact -->
-					<section id="contact" class="wrapper style2 special">
-						<div class="inner">
-							<header>
-								<h2>Contact Me</h2>
-								<p>Feel free to connect with me through LinkedIn or email.</p>
-							</header>
-							<ul class="actions stacked">
-								<li><a href="mailto:erik.mischiatti@gmail.com" class="button fit primary">Send Email</a></li>
-								<li><a href="https://www.linkedin.com/in/erik-mischiatti/" class="button fit">LinkedIn</a></li>
-							</ul>
-						</div>
-					</section>
+            <li class="icon solid fa-microchip">
+              <h3>Embedded Systems</h3>
+              <p>Development of firmware for microcontrollers and real-time communication protocols like UART, SPI and I2C.</p>
+            </li>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/erik-mischiatti" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="mailto:erik.mischiatti@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Erik Mischiatti</li>
-						</ul>
-					</footer>
+            <li class="icon solid fa-drafting-compass">
+              <h3>CAD & PCB Design</h3>
+              <p>Mechanical and electronic design using SolidWorks, Fusion 360, and KiCAD for 3D modeling and PCB layout.</p>
+            </li>
 
-			</div>
+            <li class="icon solid fa-brain">
+              <h3>Learning from Demonstration</h3>
+              <p>Research in kinesthetic teaching, trajectory learning, and object manipulation with invariant representations.</p>
+            </li>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+            <li class="icon brands fa-python">
+              <h3>Python</h3>
+              <p>Extensive experience in scripting, data analysis, automation, and robotics pipelines.</p>
+            </li>
 
-			<!-- Smooth scrolling script -->
-			<script>
-			    $(document).ready(function(){
-			        $('a[href*="#"]').on('click', function(e) {
-			            e.preventDefault();
-			            $('html, body').animate({
-			                scrollTop: $($(this).attr('href')).offset().top
-			            }, 800, 'linear');
-			        });
-			    });
-			</script>
+            <li class="icon solid fa-robot">
+              <h3>ROS</h3>
+              <p>Development of robotic systems using the Robot Operating System, including simulation and real-world deployment.</p>
+            </li>
 
-	</body>
+            <li class="icon solid fa-code">
+              <h3>MATLAB</h3>
+              <p>Modeling and simulation of control systems, signal processing, and data visualization in engineering workflows.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- Contact -->
+      <section id="contact" class="wrapper style2 special">
+        <div class="inner">
+          <header>
+            <h2>Contact Me</h2>
+            <p>Feel free to connect with me through LinkedIn or email.</p>
+          </header>
+          <ul class="actions stacked">
+            <li><a href="mailto:erik.mischiatti@gmail.com" class="button fit primary">Send Email</a></li>
+            <li><a href="https://www.linkedin.com/in/erik-mischiatti/" class="button fit" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <ul class="icons">
+          <li><a href="https://www.linkedin.com/in/erik-mischiatti" class="icon brands fa-linkedin" rel="noopener"><span class="label">LinkedIn</span></a></li>
+          <li><a href="mailto:erik.mischiatti@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Erik Mischiatti</li>
+        </ul>
+      </footer>
+
+    </div><!-- /#page-wrapper -->
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Smooth scrolling script (ok insieme a scroll-behavior) -->
+    <script>
+      $(document).ready(function(){
+        $('a[href*="#"]').on('click', function(e) {
+          // Evita di bloccare link esterni
+          const hash = $(this).attr('href');
+          if(hash && hash.startsWith('#') && $(hash).length){
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: $(hash).offset().top }, 800, 'linear');
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
