@@ -124,6 +124,46 @@
 
 /* Piccolo affinamento per Spectral */
 .wrapper.style2 .major p{ opacity:.9; }
+/* === Education cards (usa lo stesso look dei Projects) === */
+
+/* Griglia: copia la logica di .projects-grid per coerenza */
+.edu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+/* Card education: riusa .card .project-card e aggiungi thumb logo */
+.edu-card{
+  /* opzionale: leggero padding maggiore lato contenuto */
+}
+
+/* Contenitore logo: mantiene proporzioni e centratura del marchio */
+.edu-thumb{
+  border-radius:10px;
+  overflow:hidden;
+  aspect-ratio:16/9;             /* coerente con i progetti */
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.06);
+}
+
+/* Logo: non deve ritagliarsi, quindi 'contain' + padding */
+.edu-thumb img{
+  width:80%; height:80%;
+  object-fit:contain;            /* IMPORTANTE: loghi interi */
+  display:block;
+}
+
+/* Metadati (tag) sotto la descrizione */
+.edu-meta{
+  display:flex; flex-wrap:wrap; gap:8px; margin-top:.5rem;
+}
+
+.edu-meta .tag{
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px; padding:.25rem .6rem; font-size:.85rem; opacity:.9;
+}
+
 
     </style>
   </head>
@@ -212,56 +252,78 @@
         </div>
       </section>
 
-      <!-- Education (blocco esterno come da tuo file) -->
-      <div class="education">
-        <!-- University of Trento -->
-        <div class="edu-item">
-          <div class="edu-logo">
-            <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento Logo" />
-          </div>
-          <div class="edu-details">
-            <h3>University of Trento</h3>
-            <p>Master's Degree in Mechatronic Engineering (2022 - 2024)</p>
-            <p>Focus on autonomous systems and robotics.</p>
-          </div>
-        </div>
+      <section id="education" class="wrapper style2">
+  <div class="inner">
+    <header class="major">
+      <h2>Education</h2>
+      <p>Universities, exchange programs, and thesis work.</p>
+    </header>
 
-        <!-- Technical University of Vienna -->
-        <div class="edu-item">
-          <div class="edu-logo">
-            <img src="pics/geo_blue_transparent.png" alt="Technical University of Vienna Logo" />
-          </div>
-          <div class="edu-details">
-            <h3>Technical University of Vienna</h3>
-            <p>Master Thesis Research (2024)</p>
-            <p>Research in autonomous robotic systems, focusing on imitation learning and 6D pose estimation for task learning in robots.</p>
+    <div class="edu-grid">
+      <!-- University of Trento -->
+      <article class="card project-card edu-card" tabindex="0" aria-label="University of Trento">
+        <div class="edu-thumb">
+          <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento logo" loading="lazy" decoding="async">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">University of Trento</h3>
+          <p class="project-desc">Master’s in Mechatronics (2022–2024) — focus on autonomous systems & robotics.</p>
+          <div class="edu-meta">
+            <!-- <span class="tag">Robotics</span>
+            <span class="tag">Electronics</span>
+            <span class="tag">Mechatronics</span> -->
           </div>
         </div>
+      </article>
 
-        <!-- Linnaeus University -->
-        <div class="edu-item">
-          <div class="edu-logo">
-            <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University Logo" />
+      <!-- TU Wien -->
+      <article class="card project-card edu-card" tabindex="0" aria-label="Technical University of Vienna">
+        <div class="edu-thumb">
+          <img src="pics/geo_blue_transparent.png" alt="TU Wien logo" loading="lazy" decoding="async">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Technical University of Vienna</h3>
+          <p class="project-desc">Master’s Thesis (2024) — imitation learning & 6D pose for task learning.</p>
+          <div class="edu-meta">
           </div>
-          <div class="edu-details">
-            <h3>Linnaeus University</h3>
-            <p>Erasmus Exchange (2023)</p>
-            <p>Studied robotics, automation, and mechanics as part of the Erasmus exchange program.</p>
+          <div class="project-actions">
           </div>
         </div>
+      </article>
 
-        <!-- University of Padova -->
-        <div class="edu-item">
-          <div class="edu-logo">
-            <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova Logo" />
-          </div>
-          <div class="edu-details">
-            <h3>University of Padova</h3>
-            <p>Bachelor's Degree in Mechatronic Engineering (2017 - 2021)</p>
-            <p>Thesis on detecting human arm muscle activity using EMG sensors.</p>
+      <!-- Linnaeus University -->
+      <article class="card project-card edu-card" tabindex="0" aria-label="Linnaeus University">
+        <div class="edu-thumb">
+          <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University logo" loading="lazy" decoding="async">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Linnaeus University</h3>
+          <p class="project-desc">Erasmus Exchange (2023) — robotics, automation & mechanics.</p>
+          <div class="edu-meta">
+            <!-- <span class="tag">Robotics</span>
+            <span class="tag">Automation</span> -->
           </div>
         </div>
-      </div>
+      </article>
+
+      <!-- University of Padova -->
+      <article class="card project-card edu-card" tabindex="0" aria-label="University of Padova">
+        <div class="edu-thumb">
+          <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova logo" loading="lazy" decoding="async">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">University of Padova</h3>
+          <p class="project-desc">Bachelor’s in Mechatronics (2017–2021)</p>
+          <div class="edu-meta">
+            <!-- <span class="tag">EMG</span>
+            <span class="tag">Signal Processing</span> -->
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 
 <!-- Highlights (nuova sezione stile H.A.R.O.)
       <section class="wrapper style2">
