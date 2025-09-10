@@ -1,4 +1,4 @@
-/* ===== custom.css (H.A.R.O.-style refinements, moved from inline) ===== */
+/* ===== custom.css ===== */
 
 html { scroll-behavior: smooth; }
 
@@ -30,7 +30,7 @@ html { scroll-behavior: smooth; }
 .timeline:before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.25)}
 .tl-item{position:relative;padding-left:36px;margin:22px 0}
 .tl-dot{position:absolute;left:8px;top:.5rem;width:16px;height:16px;border-radius:50%;background:#fff}
-.tl-dot.is-current{background:#4ade80}
+.tl-dot.is-current{background:#2323ff}
 .tl-content h3{margin:0 0 .25rem 0}
 .tl-content p{margin:0;opacity:.9}
 .tl-meta{opacity:.8;font-size:.9rem;margin-top:.25rem}
@@ -62,7 +62,7 @@ html { scroll-behavior: smooth; }
   display:block;
   border-radius:10px;
   overflow:hidden;
-  aspect-ratio:16/9;           /* mantiene costante il rapporto */
+  aspect-ratio:16/9;  
   background:rgba(255,255,255,.06);
 }
 .project-thumb img{
@@ -335,7 +335,7 @@ ul.alt li{ border-top-color: var(--line); }
 }
 .spotlight .content{ color: var(--ink); }
 
-/* Progetti / card (già presenti nelle tue regole custom: li armonizzo ai colori) */
+/* Progetti / card */
 .card{
   background: var(--white);
   border: 1px solid var(--line);
@@ -383,6 +383,44 @@ h1, h2, h3, h4, h5, h6 {
   color: #000 !important;
 }
 
+
+/* ===== H.A.R.O. page specifics ===== */
+
+/* Block diagram (SVG) — palette neutra */
+.block-diagram{
+  overflow:auto; border-radius:12px; padding:6px; 
+  background: var(--sand-50, #f4f1ec);
+  border: 1px solid var(--line, #dcd6cb);
+}
+
+/* Rettangoli principali e secondari */
+.bd-rect{ fill:#fff; stroke: var(--line, #dcd6cb); stroke-width:1.2; }
+.bd-rect--secondary{ fill:#fff; stroke: var(--line, #dcd6cb); stroke-width:1; opacity:.9; }
+
+/* Testi e frecce del diagramma */
+.bd-title{ fill:#2e2e2e; font-weight:700; font-size:16px; text-anchor:middle; }
+.bd-text{ fill:#2e2e2e; font-size:13px; text-anchor:middle; opacity:.9; }
+.bd-arrow{ stroke:#2e2e2e; stroke-width:2; }
+.bd-arrow-label{ fill:#2e2e2e; font-size:12px; opacity:.85; }
+.bd-arrow-head{ fill:#2e2e2e; }
+.bd-arrow--dashed{ stroke:#2e2e2e; stroke-width:1.5; stroke-dasharray:5 4; }
+
+/* Progress bar */
+.progress{ 
+  height:10px; border-radius:999px; background: var(--sand-100, #ebe7df);
+  overflow:hidden; margin:.5rem 0 0;
+}
+.progress > span{ display:block; height:100%; background:#2323ff; }
+
+/* Icone nelle card (colore neutro) */
+.card-icon, .ucard h3 i{ color:#444; }
+
+/* Titoli/scalette scure dentro sezioni “special/major” anche qui */
+.wrapper.style3 h1, .wrapper.style3 h2, .wrapper.style3 h3,
+.wrapper.style3 h4, .wrapper.style3 h5, .wrapper.style3 h6 { color:#000 !important; }
+.wrapper.style3 header.major h2,
+.wrapper.style3 header.major h3 { border-bottom-color: var(--line, #000) !important; }
+.wrapper.style3 header p, .wrapper.style3 p { color:#2e2e2e !important; }
 
 
 
