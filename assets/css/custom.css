@@ -1,0 +1,388 @@
+/* ===== custom.css (H.A.R.O.-style refinements, moved from inline) ===== */
+
+html { scroll-behavior: smooth; }
+
+/* CTA / Buttons */
+.btn{
+  display:inline-block;padding:.75rem 1rem;border-radius:10px;
+  border:1px solid rgba(39,3,3,.35);text-decoration:none;font-weight:600;line-height:1;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  background:rgba(255,255,255,.06)
+}
+.btn:hover{ transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,0,0,.25); }
+.btn:focus-visible{ outline:2px dashed #fff; outline-offset:3px; }
+
+/* Cards / Grids */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{
+  background:rgba(255,255,255,.06);border-radius:12px;padding:20px;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease
+}
+.card:hover,.card:focus-within{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25);background:rgba(255,255,255,.08)}
+.card-icon{font-size:1.8rem;margin-bottom:.5rem;opacity:.9}
+
+/* Tags */
+.tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tag{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.35rem .75rem;font-size:.9rem;opacity:.9}
+
+/* Timeline */
+.timeline{position:relative;margin:0 auto;max-width:960px;padding-left:16px}
+.timeline:before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.25)}
+.tl-item{position:relative;padding-left:36px;margin:22px 0}
+.tl-dot{position:absolute;left:8px;top:.5rem;width:16px;height:16px;border-radius:50%;background:#fff}
+.tl-dot.is-current{background:#4ade80}
+.tl-content h3{margin:0 0 .25rem 0}
+.tl-content p{margin:0;opacity:.9}
+.tl-meta{opacity:.8;font-size:.9rem;margin-top:.25rem}
+
+/* H1 più grande, solo in home */
+#header.alt h1 a{font-size:clamp(1.8rem,3vw + .5rem,3.2rem);line-height:1.1}
+
+/* Education layout tweaks (manteniamo il tuo stile) */
+.edu-item { display:flex; align-items:center; margin-bottom:20px; }
+.edu-logo { flex:1; max-width:100px; margin-right:20px; }
+.edu-logo img { width:100%; }
+.edu-details { flex:3; }
+
+@media (prefers-reduced-motion: reduce){
+  .btn,.card{transition:none}
+  .card:hover{transform:none;box-shadow:none}
+}
+
+/* === Projects grid === */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+/* Card progetto */
+.project-card{ display:flex; flex-direction:column; }
+.project-thumb{
+  display:block;
+  border-radius:10px;
+  overflow:hidden;
+  aspect-ratio:16/9;           /* mantiene costante il rapporto */
+  background:rgba(255,255,255,.06);
+}
+.project-thumb img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .25s ease;
+}
+.project-card:hover .project-thumb img,
+.project-card:focus-within .project-thumb img{
+  transform:scale(1.03);
+}
+.project-thumb--placeholder{
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; letter-spacing:.1em; opacity:.8;
+}
+
+/* Testi card */
+.project-body{ padding-top:12px; }
+.project-title{ margin:0 0 .25rem; font-size:1.1rem; line-height:1.25; }
+.project-title a{ text-decoration:none; }
+.project-desc{ margin:0 0 .5rem; opacity:.9; }
+.project-actions{ display:flex; gap:10px; }
+
+/* Piccolo affinamento per Spectral */
+.wrapper.style2 .major p{ opacity:.9; }
+
+/* === Education cards (usa lo stesso look dei Projects) === */
+
+/* Griglia: copia la logica di .projects-grid per coerenza */
+.edu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+/* Card education: riusa .card .project-card e aggiungi thumb logo */
+.edu-card{}
+
+/* Contenitore logo: mantiene proporzioni e centratura del marchio */
+.edu-thumb{
+  border-radius:10px;
+  overflow:hidden;
+  aspect-ratio:16/9;             /* coerente con i progetti */
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.06);
+}
+
+/* Logo: non deve ritagliarsi, quindi 'contain' + padding */
+.edu-thumb img{
+  width:80%; height:80%;
+  object-fit:contain;            /* IMPORTANTE: loghi interi */
+  display:block;
+}
+
+/* Metadati (tag) sotto la descrizione */
+.edu-meta{
+  display:flex; flex-wrap:wrap; gap:8px; margin-top:.5rem;
+}
+
+.edu-meta .tag{
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px; padding:.25rem .6rem; font-size:.85rem; opacity:.9;
+}
+
+/* === VIDEO blocks (riutilizzabili) === */
+.video,
+#results .video {
+  text-align: center;
+}
+.video video,
+#results video {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border-radius: 10px; /* opzionale */
+}
+
+/* === ABOUT layout === */
+.about-container{
+  display:flex; justify-content:center; align-items:center;
+  flex-wrap:wrap; margin-bottom:2em;
+}
+.about-photo{ 
+  flex:1; min-width:200px; max-width:100%; height:auto; margin:10px; 
+}
+.about-photo img{
+  width:100%; height:200px;
+  object-fit:cover; object-position:center;
+  border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+.about-description{ 
+  flex:2; margin:10px; font-size:1em; text-align:left; 
+}
+
+/* Miglioria responsive per schermi larghi (opzionale) */
+@media (min-width: 960px){
+  .about-photo img{ height:280px; }
+}
+
+/* === Foto profilo circolare (usa SOLO se aggiungi class="profile-pic" all'img) === */
+/* Se non ti serve la versione tonda, puoi omettere questo blocco */
+.profile-pic{
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center;
+}
+
+/* === Spotlight WIP (solo se la usi davvero) === */
+/*
+#projects .spotlight.wip{
+  justify-content:center; text-align:center;
+  min-height:240px; padding:4rem 2rem;
+}
+#projects .spotlight.wip .content{ 
+  max-width:720px; margin:0 auto; 
+}
+#projects .spotlight.wip h2{ margin-bottom:.5rem; }
+*/
+
+
+	/* Correggi il comportamento del tag <br> e gestisci lo stile del testo sui dispositivi mobili */
+	.spotlight h2 {
+	    white-space: normal; /* Assicura che il testo rispetti i cambi di riga */
+		
+	}
+	
+	@media (max-width: 600px) {
+	    .spotlight h2 {
+	        font-size: 1.5em; /* Riduci leggermente la dimensione del testo su mobile */
+	        line-height: 1.2; /* Aggiusta l'interlinea per renderlo più leggibile */
+	    }
+	}
+	
+
+  /* ===========================
+   NEUTRAL THEME OVERRIDES
+   Base sand: #c9c2b6
+   =========================== */
+
+:root{
+  --sand: #c9c2b6;       /* base */
+  --sand-50:#f4f1ec;
+  --sand-100:#ebe7df;
+  --sand-200:#dfd8c9;
+  --ink:#2e2e2e;         /* testo principale */
+  --ink-2:#505050;       /* secondario */
+  --line:#dcd6cb;        /* bordi / linee */
+  --accent:#8a8275;      /* accento discreto */
+  --accent-strong:#5a5348;/* hover/active */
+  --white:#ffffff;
+}
+
+/* Body + tipografia base (sostituisce il dark background del tema) */
+body{
+  background: var(--sand);
+  color: var(--ink);
+}
+strong,b,h1,h2,h3,h4,h5,h6{ color: var(--ink); }
+a{ border-bottom-color: rgba(0,0,0,.25); }
+a:hover{ border-bottom-color: transparent; }
+
+/* Header (nav fisso) */
+#header{
+  background: var(--sand-100);   /* chiaro e pulito */
+  border-bottom: 1px solid var(--line);
+}
+#header nav > ul > li > a{ color: var(--ink); }
+#header.alt{ background: transparent; } /* resta trasparente sulla hero */
+#header.alt h1 a{ color: var(--ink); }
+
+/* Banner: rendo i testi dark e attenuo l’overlay scuro */
+#banner h2,
+#banner p,
+#banner .more{ color: var(--ink); }
+#banner h2:before, #banner h2:after{ background: var(--ink); }
+body.is-preload #banner:after{ opacity: 0; } /* evita l'effetto "scurente" */
+
+/* Wrapper: mappiamo gli sfondi del tema a superfici chiare */
+.wrapper.style1{
+  background: var(--sand-100);
+  color: var(--ink);
+}
+.wrapper.style2{
+  background: var(--white);
+  color: var(--ink);
+}
+.wrapper.style3{
+  background: var(--sand-50);
+  color: var(--ink);
+}
+/* stile5 già chiaro: lo armonizziamo */
+.wrapper.style5{
+  background: var(--white);
+  color: var(--ink);
+}
+
+/* Headings con underline nelle section header.major */
+header.major h2,
+header.major h3,
+header.major h4,
+header.major h5,
+header.major h6{
+  border-bottom-color: var(--line);
+}
+header p{ color: var(--ink-2); }
+
+/* Elementi testuali */
+hr{ border-bottom-color: var(--line); }
+blockquote{ border-left-color: var(--line); }
+
+/* Form (bordi e focus neutri) */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select, textarea{
+  background-color: var(--sand-100);
+  color: var(--ink);
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus, textarea:focus{
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Tabelle */
+table tbody tr{ border-color: var(--line); }
+table tbody tr:nth-child(2n + 1){ background-color: var(--sand-100); }
+table thead, table tfoot{ border-color: var(--line); }
+table th{ color: var(--ink); }
+
+/* Pulsanti del tema (.button e .button.primary) */
+.button{
+  box-shadow: inset 0 0 0 2px var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+.button:hover{ background: var(--sand-100); }
+.button:active{ background: var(--sand-200); }
+
+.button.primary{
+  background: var(--accent);
+  color: var(--white) !important;
+  box-shadow: none !important;
+}
+.button.primary:hover{ background: var(--accent-strong) !important; }
+.button.primary:active{ background: #464036 !important; }
+
+/* Footer neutro */
+#footer{
+  background: var(--sand-100);
+}
+#footer .icons a{ color: var(--ink-2); }
+#footer .icons a:hover{ color: var(--ink); }
+#footer .copyright{ color: var(--ink-2); }
+#footer .copyright li{ border-left-color: var(--line); }
+
+/* Icone “major” (bordo) */
+.icon.major{
+  border-color: var(--line);
+  color: var(--accent-strong);
+}
+
+/* List + dividers */
+ul.alt li{ border-top-color: var(--line); }
+
+/* Spotlight (se le riusi) -> fondi neutri anziché overlay scuri */
+.spotlight:nth-child(n){
+  background-color: transparent;
+}
+.spotlight .content{ color: var(--ink); }
+
+/* Progetti / card (già presenti nelle tue regole custom: li armonizzo ai colori) */
+.card{
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+.card:hover, .card:focus-within{
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+.project-thumb{ background: var(--sand-100); }
+
+/* About section: testo e immagine coerenti col tema chiaro */
+.about-description{ color: var(--ink); }
+.about-photo img{
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+}
+
+/* Menu laterale mobile (#menu) */
+#menu{
+  background: var(--sand-100);
+  color: var(--ink);
+}
+#menu ul > li{ border-top-color: var(--line); }
+
+/* Titoli scuri nelle sezioni About e Skills */
+#about header.major h2,
+#three header.major h2 {
+  color: #2e2e2e !important;
+  border-bottom-color: #dcd6cb !important; /* se vuoi coerente con la nuova palette */
+}
+
+#about header.major p,
+#three header.major p {
+  color: #505050 !important; /* sottotitolo più tenue */
+}
+
+/* Titoli in nero */
+h1, h2, h3, h4, h5, h6 {
+  color: #000 !important;
+}
+
+/* Sezioni specifiche: About e Skills */
+#about h2,
+#three h2,
+#three h3 {
+  color: #000 !important;
+}
+
+
+
+

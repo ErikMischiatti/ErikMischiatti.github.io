@@ -27,145 +27,42 @@
     <meta property="og:image" content="https://erikmischiatti.github.io/pics/EM_logo.png">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- SEO extras -->
+    <link rel="canonical" href="https://erikmischiatti.github.io/">
+    <meta name="robots" content="index,follow">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+
     <link rel="icon" type="image/png" href="pics/EM_logo.png">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
     <!-- Font Awesome (CDN) -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Stili aggiuntivi in stile H.A.R.O. -->
-    <style>
-      html { scroll-behavior: smooth; }
-
-      /* CTA / Buttons */
-      .btn{
-        display:inline-block;padding:.75rem 1rem;border-radius:10px;
-        border:1px solid rgba(39,3,3,.35);text-decoration:none;font-weight:600;line-height:1;
-        transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-        background:rgba(255,255,255,.06)
-      }
-      .btn:hover{ transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,0,0,.25); }
-      .btn:focus-visible{ outline:2px dashed #fff; outline-offset:3px; }
-
-      /* Cards / Grids */
-      .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
-      .card{
-        background:rgba(255,255,255,.06);border-radius:12px;padding:20px;
-        transition:transform .15s ease, box-shadow .15s ease, background .15s ease
-      }
-      .card:hover,.card:focus-within{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25);background:rgba(255,255,255,.08)}
-      .card-icon{font-size:1.8rem;margin-bottom:.5rem;opacity:.9}
-
-      /* Tags */
-      .tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-      .tag{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.35rem .75rem;font-size:.9rem;opacity:.9}
-
-      /* Timeline */
-      .timeline{position:relative;margin:0 auto;max-width:960px;padding-left:16px}
-      .timeline:before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,255,255,.25)}
-      .tl-item{position:relative;padding-left:36px;margin:22px 0}
-      .tl-dot{position:absolute;left:8px;top:.5rem;width:16px;height:16px;border-radius:50%;background:#fff}
-      .tl-dot.is-current{background:#4ade80}
-      .tl-content h3{margin:0 0 .25rem 0}
-      .tl-content p{margin:0;opacity:.9}
-      .tl-meta{opacity:.8;font-size:.9rem;margin-top:.25rem}
-
-      /* H1 più grande, solo in home */
-      #header.alt h1 a{font-size:clamp(1.8rem,3vw + .5rem,3.2rem);line-height:1.1}
-
-      /* Education layout tweaks (manteniamo il tuo stile) */
-      .edu-item { display:flex; align-items:center; margin-bottom:20px; }
-      .edu-logo { flex:1; max-width:100px; margin-right:20px; }
-      .edu-logo img { width:100%; }
-      .edu-details { flex:3; }
-
-      @media (prefers-reduced-motion: reduce){
-        .btn,.card{transition:none}
-        .card:hover{transform:none;box-shadow:none}
-      }
-
-	  /* Projects grid */
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
-/* Card progetto */
-.project-card{ display:flex; flex-direction:column; }
-.project-thumb{
-  display:block;
-  border-radius:10px;
-  overflow:hidden;
-  aspect-ratio:16/9;           /* mantiene costante il rapporto */
-  background:rgba(255,255,255,.06);
-}
-.project-thumb img{
-  width:100%; height:100%; object-fit:cover; display:block;
-  transition:transform .25s ease;
-}
-.project-card:hover .project-thumb img,
-.project-card:focus-within .project-thumb img{
-  transform:scale(1.03);
-}
-.project-thumb--placeholder{
-  width:100%; height:100%;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; letter-spacing:.1em; opacity:.8;
-}
-
-/* Testi card */
-.project-body{ padding-top:12px; }
-.project-title{ margin:0 0 .25rem; font-size:1.1rem; line-height:1.25; }
-.project-title a{ text-decoration:none; }
-.project-desc{ margin:0 0 .5rem; opacity:.9; }
-.project-actions{ display:flex; gap:10px; }
-
-/* Piccolo affinamento per Spectral */
-.wrapper.style2 .major p{ opacity:.9; }
-/* === Education cards (usa lo stesso look dei Projects) === */
-
-/* Griglia: copia la logica di .projects-grid per coerenza */
-.edu-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
-}
-
-/* Card education: riusa .card .project-card e aggiungi thumb logo */
-.edu-card{
-  /* opzionale: leggero padding maggiore lato contenuto */
-}
-
-/* Contenitore logo: mantiene proporzioni e centratura del marchio */
-.edu-thumb{
-  border-radius:10px;
-  overflow:hidden;
-  aspect-ratio:16/9;             /* coerente con i progetti */
-  display:flex; align-items:center; justify-content:center;
-  background:rgba(255,255,255,.06);
-}
-
-/* Logo: non deve ritagliarsi, quindi 'contain' + padding */
-.edu-thumb img{
-  width:80%; height:80%;
-  object-fit:contain;            /* IMPORTANTE: loghi interi */
-  display:block;
-}
-
-/* Metadati (tag) sotto la descrizione */
-.edu-meta{
-  display:flex; flex-wrap:wrap; gap:8px; margin-top:.5rem;
-}
-
-.edu-meta .tag{
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:999px; padding:.25rem .6rem; font-size:.85rem; opacity:.9;
-}
-
-
-    </style>
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Person",
+      "name":"Erik Mischiatti",
+      "url":"https://erikmischiatti.github.io/",
+      "image":"https://erikmischiatti.github.io/pics/EM_logo.png",
+      "jobTitle":"Mechatronics Engineer",
+      "knowsAbout":["Robotics","Embedded Systems","ROS","UAV","UWB","Computer Vision"],
+      "sameAs":["https://www.linkedin.com/in/erikmischiatti/"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebSite",
+      "name":"Erik Mischiatti — Portfolio",
+      "url":"https://erikmischiatti.github.io/"
+    }
+    </script>
   </head>
 
   <body class="landing is-preload">
@@ -188,6 +85,7 @@
                 <ul>
                   <li><a href="#banner">Home</a></li>
                   <li><a href="#about">About Me</a></li>
+                  <li><a href="#education">Education</a></li>
                   <li><a href="#projects">Projects</a></li>
                   <li><a href="#three">Skills</a></li>
                   <li><a href="#contact">Contact</a></li>
@@ -205,7 +103,7 @@
           <p>Mechatronic Engineer<br />
           Passionate about Robotics, Electronics, and Autonomous Systems.</p>
           <ul class="actions special">
-            <li><a href="#projects" class="button primary">View My Work</a></li>
+            <li><a href="#projects" class="button primary">Explore Projects</a></li>
           </ul>
 
         </div>
@@ -218,13 +116,13 @@
           <header class="major">
             <h2>Welcome to My Portfolio</h2>
             <p>
-              <a href="../docs/CV.pdf" download="Erik_Mischiatti_CV.pdf" class="button primary">Download My CV</a>
+              <a href="docs/CV.pdf" download="Erik_Mischiatti_CV.pdf" class="button primary">Download My CV</a>
             </p>
           </header>
 
           <div class="about-container">
             <div class="about-photo">
-              <img src="../pics/profile_pic.jpg" alt="Erik Mischiatti Photo" />
+              <img src="pics/profile_pic.jpg" alt="Erik Mischiatti Photo" loading="lazy" decoding="async"/>
             </div>
             <div class="about-description">
               <h2>Hi! I'm Erik,</h2>
@@ -235,7 +133,7 @@
                 execution—especially in real-world, uncertain scenarios.
               </p>
               <p>
-                Alongside my academic path, I've gained experience in UWB-based drone communication, embedded systems,
+                Alongside my academic path, I’ve gained experience in UWB-based drone communication, embedded systems,
                 and CAD/PCB design. I love working at the intersection of hardware and software to build robust, adaptive technologies.
               </p>
               <p>
@@ -244,232 +142,177 @@
               </p>
             </div>
           </div>
-
-          <!-- Placeholder sezione education (contenitore interno) -->
-          <div class="education">
-            <!-- University blocks (lascia invariato questo blocco) -->
-          </div>
         </div>
       </section>
 
       <section id="education" class="wrapper style2">
-  <div class="inner">
-    <header class="major">
-      <h2>Education</h2>
-      <p>Universities, exchange programs, and thesis work.</p>
-    </header>
-
-    <div class="edu-grid">
-      <!-- University of Trento -->
-      <article class="card project-card edu-card" tabindex="0" aria-label="University of Trento">
-        <div class="edu-thumb">
-          <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento logo" loading="lazy" decoding="async">
-        </div>
-        <div class="project-body">
-          <h3 class="project-title">University of Trento</h3>
-          <p class="project-desc">Master’s in Mechatronics (2022–2024) — focus on autonomous systems & robotics.</p>
-          <div class="edu-meta">
-            <!-- <span class="tag">Robotics</span>
-            <span class="tag">Electronics</span>
-            <span class="tag">Mechatronics</span> -->
-          </div>
-        </div>
-      </article>
-
-      <!-- TU Wien -->
-      <article class="card project-card edu-card" tabindex="0" aria-label="Technical University of Vienna">
-        <div class="edu-thumb">
-          <img src="pics/geo_blue_transparent.png" alt="TU Wien logo" loading="lazy" decoding="async">
-        </div>
-        <div class="project-body">
-          <h3 class="project-title">Technical University of Vienna</h3>
-          <p class="project-desc">Master’s Thesis (2024) — imitation learning & 6D pose for task learning.</p>
-          <div class="edu-meta">
-          </div>
-          <div class="project-actions">
-          </div>
-        </div>
-      </article>
-
-      <!-- Linnaeus University -->
-      <article class="card project-card edu-card" tabindex="0" aria-label="Linnaeus University">
-        <div class="edu-thumb">
-          <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University logo" loading="lazy" decoding="async">
-        </div>
-        <div class="project-body">
-          <h3 class="project-title">Linnaeus University</h3>
-          <p class="project-desc">Erasmus Exchange (2023) — robotics, automation & mechanics.</p>
-          <div class="edu-meta">
-            <!-- <span class="tag">Robotics</span>
-            <span class="tag">Automation</span> -->
-          </div>
-        </div>
-      </article>
-
-      <!-- University of Padova -->
-      <article class="card project-card edu-card" tabindex="0" aria-label="University of Padova">
-        <div class="edu-thumb">
-          <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova logo" loading="lazy" decoding="async">
-        </div>
-        <div class="project-body">
-          <h3 class="project-title">University of Padova</h3>
-          <p class="project-desc">Bachelor’s in Mechatronics (2017–2021)</p>
-          <div class="edu-meta">
-            <!-- <span class="tag">EMG</span>
-            <span class="tag">Signal Processing</span> -->
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- Highlights (nuova sezione stile H.A.R.O.)
-      <section class="wrapper style2">
         <div class="inner">
           <header class="major">
-            <h2>Highlights</h2>
-            <p>Una panoramica rapida dei miei focus attuali.</p>
+            <h2>Education</h2>
+            <p>Universities, exchange programs, and thesis work.</p>
           </header>
 
-          <div class="grid-3">
-            <div class="card" tabindex="0" role="article" aria-label="Robotics and Learning from Demonstration">
-              <div class="card-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
-              <h3>Robotics & LfD</h3>
-              <p>Dimostrazione kinestetica, rappresentazioni invarianti e manipulation di cavi.</p>
-            </div>
-            <div class="card" tabindex="0" role="article" aria-label="Embedded systems">
-              <div class="card-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
-              <h3>Embedded</h3>
-              <p>Firmware su MCU, protocolli UART/SPI/I2C, integrazione sensori e attuatori.</p>
-            </div>
-            <div class="card" tabindex="0" role="article" aria-label="UWB and multi agent">
-              <div class="card-icon"><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i></div>
-              <h3>UWB & Multi-Agent</h3>
-              <p>Comunicazione UWB per UAV modulari e coordinamento.</p>
-            </div>
-          </div>
+          <div class="edu-grid">
+            <!-- University of Trento -->
+            <article class="card project-card edu-card" tabindex="0" aria-label="University of Trento">
+              <div class="edu-thumb">
+                <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento logo" loading="lazy" decoding="async">
+              </div>
+              <div class="project-body">
+                <h3 class="project-title">University of Trento</h3>
+                <p class="project-desc">Master’s in Mechatronics (2022–2024) — focus on autonomous systems & robotics.</p>
+                <div class="edu-meta"></div>
+              </div>
+            </article>
 
-          <div class="tags" style="margin-top:18px;" role="list" aria-label="Key technologies">
-            <span class="tag" role="listitem">C/C++</span>
-            <span class="tag" role="listitem">Python</span>
-            <span class="tag" role="listitem">ROS</span>
-            <span class="tag" role="listitem">OpenCV</span>
-            <span class="tag" role="listitem">SolidWorks</span>
-            <span class="tag" role="listitem">KiCad</span>
-          </div>
-        </div>
-      </section>-->
+            <!-- TU Wien -->
+            <article class="card project-card edu-card" tabindex="0" aria-label="Technical University of Vienna">
+              <div class="edu-thumb">
+                <img src="pics/geo_blue_transparent.png" alt="TU Wien logo" loading="lazy" decoding="async">
+              </div>
+              <div class="project-body">
+                <h3 class="project-title">Technical University of Vienna</h3>
+                <p class="project-desc">Master’s Thesis (2024) — imitation learning & 6D pose for task learning.</p>
+                <div class="edu-meta"></div>
+                <div class="project-actions"></div>
+              </div>
+            </article>
 
-<!-- Projects (grid di card) -->
-<section id="projects" class="wrapper style2">
-  <div class="inner">
-    <header class="major">
-      <h2>Projects</h2>
-      <p>A selection of recent works in research, embedded technology, and robotics.</p>
-    </header>
+            <!-- Linnaeus University -->
+            <article class="card project-card edu-card" tabindex="0" aria-label="Linnaeus University">
+              <div class="edu-thumb">
+                <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University logo" loading="lazy" decoding="async">
+              </div>
+              <div class="project-body">
+                <h3 class="project-title">Linnaeus University</h3>
+                <p class="project-desc">Erasmus Exchange (2023) — robotics, automation & mechanics.</p>
+                <div class="edu-meta"></div>
+              </div>
+            </article>
 
-    <div class="projects-grid">
-	<!-- New/WIP -->
-      <article class="card project-card" tabindex="0" role="article" aria-label="New Project">
-        <a class="project-thumb" href="pages/sentryproject_page.html" target="_blank" rel="noopener" aria-label="Open New Project">
-          <div class="project-thumb--placeholder">WIP</div>
-        </a>
-        <div class="project-body">
-          <h3 class="project-title">
-            <a href="pages/sentryproject_page.html" target="_blank" rel="noopener">New Project</a>
-          </h3>
-          <p class="project-desc">Personal project in development (details coming soon).</p>
-          <div class="project-actions">
-            <a class="btn" href="pages/sentryproject_page.html" target="_blank" rel="noopener" aria-label="Open New Project">Open</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Master Thesis -->
-      <article class="card project-card" tabindex="0" role="article" aria-label="Master Thesis Project">
-        <a class="project-thumb" href="pages/master_thesis_project.html" target="_blank" rel="noopener">
-          <img src="pics/photo_2_2024-10-03_15-53-10.jpg" alt="Master Thesis Project thumbnail">
-        </a>
-        <div class="project-body">
-          <h3 class="project-title">
-            <a href="pages/master_thesis_project.html" target="_blank" rel="noopener">Master Thesis Project</a>
-          </h3>
-          <p class="project-desc">Invariant representations &amp; learning from demonstration per la manipolazione di cavi, con behavior trees.</p>
-          <div class="project-actions">
-            <a class="btn" href="pages/master_thesis_project.html" target="_blank" rel="noopener" aria-label="Open Master Thesis Project">Open</a>
+            <!-- University of Padova -->
+            <article class="card project-card edu-card" tabindex="0" aria-label="University of Padova">
+              <div class="edu-thumb">
+                <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova logo" loading="lazy" decoding="async">
+              </div>
+              <div class="project-body">
+                <h3 class="project-title">University of Padova</h3>
+                <p class="project-desc">Bachelor’s in Mechatronics (2017–2021)</p>
+                <div class="edu-meta"></div>
+              </div>
+            </article>
           </div>
         </div>
-      </article>
+      </section>
 
-      <!-- UWB -->
-      <article class="card project-card" tabindex="0" role="article" aria-label="UWB Communication System for UAVs">
-        <a class="project-thumb" href="pages/uwb_project.html" target="_blank" rel="noopener">
-          <img src="pics/photo_1_2024-10-03_16-27-18-transformed.png" alt="UWB system thumbnail">
-        </a>
-        <div class="project-body">
-          <h3 class="project-title">
-            <a href="pages/uwb_project.html" target="_blank" rel="noopener">UWB Communication System for UAVs</a>
-          </h3>
-          <p class="project-desc">Sistema di comunicazione modulare per droni, coordinamento multi-agente via UWB.</p>
-          <div class="project-actions">
-            <a class="btn" href="pages/uwb_project.html" target="_blank" rel="noopener" aria-label="Open UWB project">Open</a>
+      <!-- Projects (grid di card) -->
+      <section id="projects" class="wrapper style2">
+        <div class="inner">
+          <header class="major">
+            <h2>Projects</h2>
+            <p>A selection of recent works in research, embedded technology, and robotics.</p>
+          </header>
+
+          <div class="projects-grid">
+            <!-- New/WIP -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="New Project">
+              <a class="project-thumb" href="pages/sentryproject_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open New Project">
+                <div class="project-thumb--placeholder">WIP</div>
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/sentryproject_page.html" target="_blank" rel="noopener noreferrer">Sentry Robot (WIP)</a>
+                </h3>
+                <p class="project-desc">Personal project in development (details coming soon).</p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/sentryproject_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open New Project">Open</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Master Thesis -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="Master Thesis Project">
+              <a class="project-thumb" href="pages/master_thesis_project.html" target="_blank" rel="noopener noreferrer">
+                <img src="pics/photo_2_2024-10-03_15-53-10.jpg" alt="Master Thesis Project thumbnail" loading="lazy" decoding="async">
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/master_thesis_project.html" target="_blank" rel="noopener noreferrer">Master Thesis Project</a>
+                </h3>
+                <p class="project-desc">Invariant representations &amp; learning from demonstration per la manipolazione di cavi, con behavior trees.</p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/master_thesis_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Master Thesis Project">Open</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- UWB -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="UWB Communication System for UAVs">
+              <a class="project-thumb" href="pages/uwb_project.html" target="_blank" rel="noopener noreferrer">
+                <img src="pics/photo_1_2024-10-03_16-27-18-transformed.png" alt="UWB system thumbnail" loading="lazy" decoding="async">
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/uwb_project.html" target="_blank" rel="noopener noreferrer">UWB Communication System for UAVs</a>
+                </h3>
+                <p class="project-desc"><span lang="it">Sistema di comunicazione modulare per droni, coordinamento multi-agente via UWB.</span></p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/uwb_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open UWB project">Open</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Green Vigilance -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="Green Vigilance">
+              <a class="project-thumb" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer">
+                <img src="pics/pic3d.jpg" alt="Green Vigilance thumbnail" loading="lazy" decoding="async">
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer">Green Vigilance</a>
+                </h3>
+                <p class="project-desc"><span lang="it">UAV/UGV per monitoraggio e early disease detection con sensori ibridi e data fusion.</span></p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Green Vigilance project">Open</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Hachi -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="Hachi Team - StartUp Lab">
+              <a class="project-thumb" href="pages/hachi_project.html" target="_blank" rel="noopener noreferrer">
+                <img src="pics/photo_5_2024-10-03_14-58-56.jpg" alt="Hachi project thumbnail" loading="lazy" decoding="async">
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/hachi_project.html" target="_blank" rel="noopener noreferrer">Hachi Team – StartUp Lab</a>
+                </h3>
+                <p class="project-desc"><span lang="it">Soluzioni AR per l’apprendimento, progetto CLab Trento in collaborazione con HIT.</span></p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/hachi_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Hachi project">Open</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Bachelor Thesis -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="Bachelor Thesis Project">
+              <a class="project-thumb" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener noreferrer">
+                <img src="pics/Setup.jpg" alt="Bachelor Thesis thumbnail" loading="lazy" decoding="async">
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener noreferrer">Bachelor Thesis Project</a>
+                </h3>
+                <p class="project-desc"><span lang="it">Analisi EMG con sensori Myoware per correlare attività muscolare e forza applicata.</span></p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Bachelor project">Open</a>
+                </div>
+              </div>
+            </article>
+
           </div>
         </div>
-      </article>
-
-      <!-- Green Vigilance -->
-      <article class="card project-card" tabindex="0" role="article" aria-label="Green Vigilance">
-        <a class="project-thumb" href="pages/distribution_project.html" target="_blank" rel="noopener">
-          <img src="pics/pic3d.jpg" alt="Green Vigilance thumbnail">
-        </a>
-        <div class="project-body">
-          <h3 class="project-title">
-            <a href="pages/distribution_project.html" target="_blank" rel="noopener">Green Vigilance</a>
-          </h3>
-          <p class="project-desc">UAV/UGV per monitoraggio e early disease detection con sensori ibridi e data fusion.</p>
-          <div class="project-actions">
-            <a class="btn" href="pages/distribution_project.html" target="_blank" rel="noopener" aria-label="Open Green Vigilance project">Open</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Hachi -->
-      <article class="card project-card" tabindex="0" role="article" aria-label="Hachi Team - StartUp Lab">
-        <a class="project-thumb" href="pages/hachi_project.html" target="_blank" rel="noopener">
-          <img src="pics/photo_5_2024-10-03_14-58-56.jpg" alt="Hachi project thumbnail">
-        </a>
-        <div class="project-body">
-          <h3 class="project-title">
-            <a href="pages/hachi_project.html" target="_blank" rel="noopener">Hachi Team – StartUp Lab</a>
-          </h3>
-          <p class="project-desc">Soluzioni AR per l’apprendimento, progetto CLab Trento in collaborazione con HIT.</p>
-          <div class="project-actions">
-            <a class="btn" href="pages/hachi_project.html" target="_blank" rel="noopener" aria-label="Open Hachi project">Open</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Bachelor Thesis -->
-      <article class="card project-card" tabindex="0" role="article" aria-label="Bachelor Thesis Project">
-        <a class="project-thumb" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener">
-          <img src="pics/Setup.jpg" alt="Bachelor Thesis thumbnail">
-        </a>
-        <div class="project-body">
-          <h3 class="project-title">
-            <a href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener">Bachelor Thesis Project</a>
-          </h3>
-          <p class="project-desc">Analisi EMG con sensori Myoware per correlare attività muscolare e forza applicata.</p>
-          <div class="project-actions">
-            <a class="btn" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener" aria-label="Open Bachelor project">Open</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
+      </section>
 
 
       <!-- Skills and Expertise -->
@@ -532,7 +375,7 @@
           </header>
           <ul class="actions stacked">
             <li><a href="mailto:erik.mischiatti@gmail.com" class="button fit primary">Send Email</a></li>
-            <li><a href="https://www.linkedin.com/in/erik-mischiatti/" class="button fit" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/erik-mischiatti/" class="button fit" rel="noopener noreferrer">LinkedIn</a></li>
           </ul>
         </div>
       </section>
@@ -540,7 +383,7 @@
       <!-- Footer -->
       <footer id="footer">
         <ul class="icons">
-          <li><a href="https://www.linkedin.com/in/erikmischiatti/" class="icon brands fa-linkedin" rel="noopener"><span class="label">LinkedIn</span></a></li>
+          <li><a href="https://www.linkedin.com/in/erikmischiatti/" class="icon brands fa-linkedin" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
           <li><a href="mailto:erik.mischiatti@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
@@ -559,19 +402,6 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Smooth scrolling script (ok insieme a scroll-behavior) -->
-    <script>
-      $(document).ready(function(){
-        $('a[href*="#"]').on('click', function(e) {
-          // Evita di bloccare link esterni
-          const hash = $(this).attr('href');
-          if(hash && hash.startsWith('#') && $(hash).length){
-            e.preventDefault();
-            $('html, body').animate({ scrollTop: $(hash).offset().top }, 800, 'linear');
-          }
-        });
-      });
-    </script>
+    <!-- NOTE: rimosso lo script custom di smooth scrolling per evitare doppio binding -->
   </body>
 </html>
-
