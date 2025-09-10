@@ -422,5 +422,54 @@ h1, h2, h3, h4, h5, h6 {
 .wrapper.style3 header.major h3 { border-bottom-color: var(--line, #000) !important; }
 .wrapper.style3 header p, .wrapper.style3 p { color:#2e2e2e !important; }
 
+/* === Project page responsive media === */
+
+/* Grid per due media affiancati che collassano in colonna su schermi piccoli */
+.media-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 18px;
+}
+.media-grid img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:8px;
+  object-fit:contain; /* evita tagli su schemi/diagrammi */
+}
+
+/* Coppia di immagini nella sezione Scenarios */
+.image-pair{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:16px;
+}
+.image-pair img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:8px;
+  object-fit:cover; /* va bene per foto; cambia in 'contain' se preferisci nessun crop */
+}
+
+/* Galleria GIF veramente responsive */
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 15px;
+}
+.gallery-item img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:6px;
+}
+
+/* Se Spectral impone max-width all'interno di .image, neutralizziamo qui */
+#architecture .image img,
+#results .image img{
+  max-width: 100% !important;
+  height: auto !important;
+}
 
 

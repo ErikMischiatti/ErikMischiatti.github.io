@@ -1,214 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robotic Manipulation System</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robotic Manipulation System — Master’s Thesis</title>
+  <meta name="description" content="Autonomous robotic manipulation with kinesthetic teaching, invariant trajectory representations (DHB), and vision-based perception on a modular environment." />
+  <link rel="canonical" href="https://erikmischiatti.github.io/pages/master_thesis_project.html" />
+
+  <!-- CSS base + override -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/custom.css" />
+
+  <!-- Font Awesome -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- OpenGraph (opzionale) -->
+  <meta property="og:title" content="Robotic Manipulation System — Master’s Thesis" />
+  <meta property="og:description" content="Learning from Demonstration + DHB invariant representations for modular assembly and cable manipulation." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://erikmischiatti.github.io/pics/Setup.jpg" />
 </head>
 <body>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="inner">
-            <h1>Robotic Manipulation System – Master's Thesis</h1>
+  <!-- Header semplice (solo titolo) -->
+  <header id="header">
+    <div class="inner">
+      <h1>Robotic Manipulation System — Master’s Thesis</h1>
+      <!-- Se vuoi, puoi aggiungere un link “Back to Home”:
+      <a href="../index.html" class="button small" style="margin-top:.75rem;">Back to Home</a> -->
+    </div>
+  </header>
+
+  <div id="main">
+
+    <!-- Overview / hero -->
+    <section id="overview" class="wrapper style3 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Project Overview</h2>
+          <p>Leveraging Demonstration Learning and Invariant Representations for Modular Assembly and Cable Manipulation</p>
+        </header>
+        <p>
+          This master’s thesis develops an autonomous robotic system able to manipulate rigid and deformable objects.
+          The approach combines kinesthetic demonstration, invariant trajectory representations (DHB), and
+          vision-based perception to insert Ethernet cables and interact with modular components under real-world constraints.
+        </p>
+      </div>
+    </section>
+
+    <!-- Key Features (CARD GRID) -->
+    <section id="features" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>Key Features</h2>
+        </header>
+
+        <div class="grid-3">
+          <article class="card" tabindex="0" aria-label="Invariant Representation (DHB)">
+            <div class="card-icon"><i class="fa-solid fa-vector-square" aria-hidden="true"></i></div>
+            <h3>Invariant Representation (DHB)</h3>
+            <p>Encodes motion in a bidirectional Denavit–Hartenberg space, enabling robust reproduction across spatial configurations.</p>
+          </article>
+
+          <article class="card" tabindex="0" aria-label="Vision-based Perception">
+            <div class="card-icon"><i class="fa-solid fa-eye" aria-hidden="true"></i></div>
+            <h3>Vision-based Perception</h3>
+            <p>Intel RealSense depth sensing and ArUco markers provide 6D pose estimation and 3D environment awareness.</p>
+          </article>
+
+          <article class="card" tabindex="0" aria-label="Modular Environment">
+            <div class="card-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
+            <h3>Modular Environment</h3>
+            <p>Board inspired by NIST benchmarks to evaluate task generalization under reconfigurable layouts.</p>
+          </article>
+
+          <article class="card" tabindex="0" aria-label="Learning from Demonstration">
+            <div class="card-icon"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></div>
+            <h3>Learning from Demonstration</h3>
+            <p>Kinesthetic teaching for intuitive programming of cable manipulation skills.</p>
+          </article>
         </div>
+      </div>
+    </section>
+
+<!-- System Architecture -->
+<section id="architecture" class="wrapper style2">
+  <div class="inner">
+    <header class="major">
+      <h2>System Architecture</h2>
+      <p>The robotic platform integrates a Franka Emika Panda arm, Intel RealSense D435i camera, and ROS-based control system. A perception module estimates the 6D pose of target objects, while DHB encodes the trajectory in a space-invariant form. Execution is coordinated through behavior trees and ROS action nodes.</p>
     </header>
 
-    <style>
-    #header h1 {
-        margin-bottom: 15px;
-    }
-    #header p {
-        margin-top: 30px;
-    }
-    </style>
-
-    <!-- Main Content -->
-    <div id="main">
-
-        <!-- Project Overview -->
-        <section id="overview" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Project Overview</h2>
-                    <p>Leveraging Demonstration Learning and Invariant Representations for Modular Assembly and Cable Manipulation</p>
-                    <p>This master's thesis focuses on developing an autonomous robotic system capable of performing precise manipulation of rigid and deformable objects. The system utilizes kinesthetic demonstration, invariant trajectory representations, and perception-driven planning to insert Ethernet cables and interact with modular components under real-world constraints.</p>
-                </header>
-            </div>
-        </section>
-
-        <!-- Key Features -->
-        <section id="features" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-                    <h2>Key Features</h2>
-                </header>
-                <ul>
-                    <li><strong>Invariant Representation (DHB):</strong> Encodes task-relevant motion in a bidirectional Denavit-Hartenberg space for consistent reproduction in different spatial conditions.</li>
-                    <li><strong>Vision-Based Perception:</strong> Uses ArUco markers and Intel RealSense depth sensing for object pose detection and 3D environment awareness.</li>
-                    <li><strong>Modular Environment:</strong> Flexible and reconfigurable board inspired by NIST benchmarks enables evaluation of task generalization.</li>
-                    <li><strong>Learning from Demonstration:</strong> Kinesthetic demonstrations allow intuitive programming of cable manipulation skills.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- System Architecture -->
-        <section id="architecture" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-                    <h2>System Architecture</h2>
-                    <p>The robotic platform integrates a Franka Emika Panda arm, Intel RealSense D435i camera, and ROS-based control system. A perception module estimates the 6D pose of target objects, while DHB encodes the trajectory in a space-invariant form. Execution is coordinated through behavior trees and ROS action nodes.</p>
-                </header>
-                <div class="image">
-                    <img src="../pics/SystemDesign.png" alt="System Architecture">
-                    <img src="../pics/SetupConfiguration.png" alt="Setup">
-
-                </div>
-            </div>
-        </section>
-
-        <style>
-        #architecture .image img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        </style>
-
-        <!-- Scenarios -->
-        <section id="results" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-                    <h2>Scenarios</h2>
-                    <p>Three experimental scenarios were conducted:</p>
-                    <ul>
-                        <li><strong>Clip Insertion:</strong> High-precision cable insertion into modular clips using learned trajectories.</li>
-                        <li><strong>Full Modular Path:</strong> Partial success in executing complex sequences across multiple modules, limited by joint constraints and cable slack.</li>
-                        <li><strong>Board Reconfiguration:</strong> The system successfully adapted to new board layouts, confirming DHB invariance properties.</li>
-                    </ul>
-                    <p>Results indicate the system performs well in structured environments and highlights the challenges of manipulating flexible elements such as cables in unstructured settings.</p>
-                </header>
-                <div class="image">
-                    <img src="../pics/clip_scenario.png" alt="Clip Insertion">
-                    <img src="../pics/fullpath_scenario.png" alt="Full Path">
+    <div class="media-grid">
+      <figure>
+        <img src="../pics/SystemDesign.png" alt="System block architecture" loading="lazy" decoding="async">
+      </figure>
+      <figure>
+        <img src="../pics/SetupConfiguration.png" alt="Experimental setup configuration" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </div>
+</section>
 
 
-                </div>
-            </div>
-        </section>
+<!-- Scenarios -->
+<section id="results" class="wrapper style2">
+  <div class="inner">
+    <header class="major">
+      <h2>Scenarios</h2>
+      <p>Three experimental scenarios were conducted:</p>
+      <ul>
+        <li><strong>Clip Insertion:</strong> High-precision cable insertion into modular clips using learned trajectories.</li>
+        <li><strong>Full Modular Path:</strong> Partial success in executing complex sequences across multiple modules, limited by joint constraints and cable slack.</li>
+        <li><strong>Board Reconfiguration:</strong> The system successfully adapted to new board layouts, confirming DHB invariance properties.</li>
+      </ul>
+      <p>Results indicate the system performs well in structured environments and highlights the challenges of manipulating flexible elements such as cables in unstructured settings.</p>
+    </header>
 
-        <style>
-        #results .image img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        </style>
+    <div class="image-pair">
+      <img src="../pics/clip_scenario.png" alt="Clip insertion scenario" loading="lazy" decoding="async">
+      <img src="../pics/fullpath_scenario.png" alt="Full modular path scenario" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
 
+<!-- Experimental Results -->
+<section id="demos" class="wrapper style2">
+  <div class="inner">
+    <header class="major">
+      <h2>Experimental Results</h2>
+    </header>
 
-        <!-- Experimental Results -->
-        <section id="demos" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-            <h2>Experimental Results</h2>
-            </header>
+    <div class="content">
+      <h3>Process</h3>
+      <ul>
+        <li>Recording demonstrations of task execution via kinesthetic teaching.</li>
+        <li>Filtering trajectory data to reduce noise and enhance stability.</li>
+        <li>Encoding demonstrations using the DHB invariant representation model.</li>
+        <li>Generalizing trajectories to support flexible adaptation across configurations.</li>
+      </ul>
 
-        <div class="content">
-            <h3>Process</h3>
-            <ul>
-                <li>Recording demonstrations of task execution via kinesthetic teaching.</li>
-                <li>Filtering trajectory data to reduce noise and enhance stability.</li>
-                <li>Encoding demonstrations using the DHB invariant representation model.</li>
-                <li>Generalizing trajectories to support flexible adaptation across configurations.</li>
-            </ul>
-
-            <h3>Advantage</h3>
-            <p>A single demonstration can be reused in various spatial setups, enabling robust task execution in different configurations thanks to the invariance properties of DHB.</p>
-        </div>
-                <div class="gallery">
-                    <div class="gallery-item"><img src="../pics/_ours_look.gif" alt="Looking for Clip"></div>
-                    <div class="gallery-item"><img src="../pics/_ours_grabclip.gif" alt="Grabbing Clip"></div>
-                    <div class="gallery-item"><img src="../pics/_ours_insert.gif" alt="Inserting Cable"></div>
-                    <div class="gallery-item"><img src="../pics/_ours_closeclip.gif" alt="Closing Clip"></div>
-                    <div class="gallery-item"><img src="../pics/_ours_unlockclip_up.gif" alt="Unlocking Clip"></div>
-                </div>
-            </div>
-
-        </section>
-
-        <style>
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        .gallery-item {
-            width: 45%; /* Modifica questa dimensione se vuoi GIF più grandi o più piccole */
-        }
-        .gallery-item img {
-            width: 100%;
-            border-radius: 5px;
-        }
-        </style>
-
-
-        <!-- Technologies Used -->
-        <section id="technologies" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-                    <h2>Technologies Used</h2>
-                </header>
-                <ul class="features">
-                    <li class="icon solid fa-robot">
-                        <h3>Robotics</h3>
-                        <p>Franka Emika Panda robotic arm for precise motion execution and kinesthetic teaching.</p>
-                    </li>
-                    <li class="icon solid fa-eye">
-                        <h3>Vision</h3>
-                        <p>Intel RealSense D435i depth camera and ArUco markers for 6D pose estimation.</p>
-                    </li>
-                    <li class="icon solid fa-code">
-                        <h3>Software</h3>
-                        <p>ROS, Python, OpenCV, and custom Python DHB libraries for planning and control.</p>
-                    </li>
-                    <li class="icon solid fa-cube">
-                        <h3>Modular Hardware</h3>
-                        <p>3D-printed task boards and inserts designed for flexible and reconfigurable testing.</p>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Conclusions and Resources -->
-        <section class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Conclusions and Future Work</h2>
-                    <p>This thesis demonstrates the feasibility of applying invariant representations to complex robotic tasks such as cable insertion. The DHB-based approach facilitates generalization across configurations, but future improvements are needed for robustness under deformability and occlusion.</p>
-                    <ul>
-                        <li>Explore bimanual coordination for complex wire routing.</li>
-                        <li>Enhance visual tracking and tactile feedback for tighter control in cluttered environments.</li>
-                        <li>Integrate real-time pose refinement and object learning for novel parts.</li>
-                    </ul>
-                    <a href="../docs/Mischiatti___Master_Thesis(git).pdf" target="_blank" class="button primary">Download Thesis PDF</a>
-                </header>
-            </div>
-        </section>
-
+      <h3>Advantage</h3>
+      <p>A single demonstration can be reused in various spatial setups, enabling robust task execution in different configurations thanks to the invariance properties of DHB.</p>
     </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <ul class="copyright">
-                <li>&copy; Erik Mischiatti. All rights reserved.</li>
-            </ul>
-        </div>
-    </footer>
+    <div class="gallery">
+      <div class="gallery-item"><img src="../pics/_ours_look.gif" alt="Looking for Clip" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="../pics/_ours_grabclip.gif" alt="Grabbing Clip" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="../pics/_ours_insert.gif" alt="Inserting Cable" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="../pics/_ours_closeclip.gif" alt="Closing Clip" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="../pics/_ours_unlockclip_up.gif" alt="Unlocking Clip" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
 
+    <!-- Technologies Used (CARD GRID) -->
+    <section id="technologies" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>Technologies Used</h2>
+        </header>
+
+        <div class="grid-3">
+          <article class="card" tabindex="0" aria-label="Robotics stack">
+            <div class="card-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+            <h3>Robotics</h3>
+            <p>Franka Emika Panda arm for precise motion execution and kinesthetic teaching.</p>
+          </article>
+
+          <article class="card" tabindex="0" aria-label="Vision stack">
+            <div class="card-icon"><i class="fa-solid fa-eye" aria-hidden="true"></i></div>
+            <h3>Vision</h3>
+            <p>Intel RealSense D435i depth camera + ArUco markers for 6D pose estimation.</p>
+          </article>
+
+          <article class="card" tabindex="0" aria-label="Software stack">
+            <div class="card-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+            <h3>Software</h3>
+            <p>ROS, Python, OpenCV, and custom DHB libraries for planning and control.</p>
+          </article>
+
+          <article class="card" tabindex="0" aria-label="Hardware and fixtures">
+            <div class="card-icon"><i class="fa-solid fa-cube" aria-hidden="true"></i></div>
+            <h3>Modular Hardware</h3>
+            <p>3D-printed boards and inserts designed for flexible, reconfigurable testing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusions -->
+    <section id="conclusions" class="wrapper style3 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Conclusions &amp; Future Work</h2>
+        </header>
+        <p>
+          The thesis shows that invariant representations can support complex tasks such as cable insertion and modular assembly.
+          DHB facilitates generalization across configurations; future work targets robustness with deformable objects and occlusions.
+        </p>
+        <ul style="list-style:disc; display:inline-block; text-align:left; padding-left:1.25rem;">
+          <li>Bimanual coordination for advanced wire routing.</li>
+          <li>Enhanced visual tracking and tactile feedback.</li>
+          <li>Real-time pose refinement and learning for novel parts.</li>
+        </ul>
+
+        <p style="margin-top:1rem;">
+          <a class="button primary" href="../docs/Mischiatti___Master_Thesis(git).pdf" target="_blank" rel="noopener noreferrer">
+            Download Thesis PDF
+          </a>
+        </p>
+      </div>
+    </section>
+
+  </div><!-- /#main -->
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti. All rights reserved.</li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- JS base -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
