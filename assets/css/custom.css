@@ -531,3 +531,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 .feature-list li{ margin-bottom:.5rem; }
 
+/* ===== Cards layout (Hachi page) ===== */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+.card{
+  background:rgba(255,255,255,.04);
+  border:px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:22px;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.card:hover,
+.card:focus-within{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.2);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.card h3{
+  margin:0 0 .5rem 0;
+  letter-spacing:.04em;
+}
+
+/* Spaziatura coerente con il tuo tema */
+#overview-cards .major{
+  margin-bottom:2rem;
+}
