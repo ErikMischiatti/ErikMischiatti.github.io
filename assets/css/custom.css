@@ -538,13 +538,13 @@ h1, h2, h3, h4, h5, h6 {
   gap:22px;
 }
 
-.card{
+/* .card{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.12);
   border-radius:14px;
   padding:22px;
   transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
-}
+} */
 
 .card:hover,
 .card:focus-within{
