@@ -1,118 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UWB Communication System for UAVs</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UWB Communication System for UAVs</title>
+
+  <!-- CSS principali -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/custom.css" />
+
+  <!-- Font Awesome per le icone (stesso CDN usato in home) -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stili minimi di pagina (PUOI spostarli in ../assets/css/custom.css) -->
+  <style>
+    /* ---------- Helpers responsive media ---------- */
+    .media-fit { width:100%; height:auto; display:block; border-radius:8px; }
+
+    /* Galleria immagini semplice (2 figure una sotto l’altra su mobile, affiancate su desktop) */
+    .figure-grid {
+      display:grid; gap:16px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .figure-grid { grid-template-columns: 1fr; } /* qui hai una singola immagine, lasciamo 1 col */
+    }
+
+    /* Video responsive con aspect-ratio */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;   /* supportato dai browser moderni */
+      background: rgba(0,0,0,.15);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .video-wrap video {
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+    }
+
+    /* ---------- Card grid (coerente con lo stile già usato in index) ---------- */
+    .card-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .card:hover, .card:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(0,0,0,.22);
+      background: rgba(255,255,255,.07);
+    }
+    .card .icon {
+      font-size: 1.6rem;
+      display: inline-block;
+      margin-bottom: .4rem;
+      opacity: .9;
+    }
+
+    /* Header titoli leggermente compatti */
+    #header h1 { margin: 0; line-height: 1.2; }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header id="header">
-        <div class="inner">
-            <h1>UWB Communication System for UAVs</h1>
-        </div>
-    </header>
-
-    <style>
-    #header h1 {
-        margin-bottom: 15px;
-    }
-    #header p {
-        margin-top: 30px;
-    }
-    </style>
-
-    <!-- Main Content -->
-    <div id="main">
-
-        <!-- Project Overview -->
-        <section id="overview" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Project Overview</h2>
-                    <p>Developing a Modular Communication System for UAVs Using Ultra-Wideband (UWB) Technology</p>
-                    <p>This project focuses on the design and implementation of a modular communication system for drones using UWB technology. The system allows for real-time communication between the flight controller and the electronic speed controllers (ESCs), overcoming traditional wiring limitations. This technology is ideal for advanced logistics applications and customizable drone configurations.</p>
-                </header>
-            </div>
-        </section>
-
-        <!-- Key Features -->
-        <section id="key-features" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-                    <h2>Key Features</h2>
-                </header>
-                <ul>
-                    <li><strong>Modular Design (Scalability):</strong> Supports configurations like tricopters, quadcopters, hexacopters, allowing flexibility for various UAV applications.</li>
-                    <li><strong>UWB Communication:</strong> High-bandwidth, low-latency wireless communication via Decawave DWM1001C modules operating at 6489.6 MHz with 499.2 MHz bandwidth and 6.8 Mbps data rate.</li>
-                    <li><strong>Latency Optimization:</strong> Ensures minimal delay (up to 5 ms) in motor control, validated by real-world and simulation testing.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Architecture Diagram -->
-        <section id="architecture" class="wrapper style2">
-            <div class="inner">
-                <header class="major">
-                    <h2>System Architecture</h2>
-                    <p>The architecture includes a <strong>master module</strong>, responsible for capturing PWM signals from the flight controller, and multiple <strong>slave modules</strong>, each equipped with ESC, motors, and UWB receiver modules. Slave modules synchronize motor control using a PWM signal triggered by a master sync signal.</p>
-                </header>
-                <div class="image">
-                    <img src="../pics/system_concept.drawio.png" alt="UWB System Architecture">
-                </div>
-            </div>
-        </section>
-
-        <style>
-        #architecture .image img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        </style>
-
-        <!-- Results -->
-        <section id="results" class="wrapper style4">
-            <div class="inner">
-                <header class="major">
-                    <h2>Performance Results</h2>
-                    <p>Experimental validation confirmed stable flight performance despite introduced communication delays. Hardware-in-the-loop simulations further demonstrated robust flight control even at the maximum delay threshold of 5 ms, aligning closely with real-world testing outcomes.</p>
-                </header>
-                <div class="video">
-                    <video width="640" height="360" controls>
-                        <source src="../pics/RECEIVER_FIRMWARE_OLD_3840x2160_60fps_edit.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-        </section>
-
-        <!-- Publications -->
-        <section id="publications" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Resources</h2>
-                    <p>This project has been published in the 2024 IEEE International Conference on Automation Science and Engineering (CASE), showcasing the design and experimental validation of the proposed wireless modular UAV architecture.</p>
-                    <p>
-                        <a href="https://ieeexplore.ieee.org/document/10711488" target="_blank" class="button primary">Paper page</a>
-                    </p>
-                </header>
-            </div>
-        </section>
-
+  <!-- Header (semplice, fisso come Spectral) -->
+  <header id="header">
+    <div class="inner">
+      <h1>UWB Communication System for UAVs</h1>
     </div>
+  </header>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <ul class="copyright">
-                <li>&copy; Erik Mischiatti. All rights reserved.</li>
-            </ul>
+  <!-- Main -->
+  <div id="main">
+
+    <!-- Overview -->
+    <section id="overview" class="wrapper style3 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Project Overview</h2>
+          <p>Developing a Modular Communication System for UAVs Using Ultra-Wideband (UWB) Technology</p>
+          <p>
+            This project focuses on the design and implementation of a modular communication system for drones using UWB technology.
+            The system enables real-time communication between the flight controller and ESCs, overcoming traditional wiring limitations.
+            It is suitable for advanced logistics applications and highly customizable UAV configurations.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <!-- Key Features (card) -->
+    <section id="key-features" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>Key Features</h2>
+        </header>
+
+        <div class="card-grid" role="list">
+          <article class="card" role="listitem" tabindex="0">
+            <div class="icon"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></div>
+            <h3>Modular Design (Scalability)</h3>
+            <p>Supports tricopter, quadcopter, hexacopter setups — flexible for multiple UAV applications.</p>
+          </article>
+
+          <article class="card" role="listitem" tabindex="0">
+            <div class="icon"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+            <h3>UWB Communication</h3>
+            <p>Decawave DWM1001C @ 6489.6&nbsp;MHz, 499.2&nbsp;MHz bandwidth, up to 6.8&nbsp;Mbps for reliable low-latency links.</p>
+          </article>
+
+          <article class="card" role="listitem" tabindex="0">
+            <div class="icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+            <h3>Latency Optimization</h3>
+            <p>End-to-end delay within ~5&nbsp;ms for motor control, validated via simulation and real-world tests.</p>
+          </article>
         </div>
-    </footer>
+      </div>
+    </section>
 
+    <!-- System Architecture (immagine responsive) -->
+    <section id="architecture" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>System Architecture</h2>
+          <p>
+           <strong>The architecture includes a master module that captures PWM signals from the flight controller,
+            and multiple slave modules (each with ESC, motor, UWB receiver). Slaves synchronize motor control
+            using PWM triggered by a master sync signal.</strong>
+          </p>
+        </header>
+
+        <div class="figure-grid">
+          <figure>
+            <img class="media-fit" src="../pics/system_concept.drawio.png" alt="UWB system architecture diagram">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>Performance Results</h2>
+          <p>
+           <strong>Experiments show stable flight despite introduced wireless delays. Hardware-in-the-loop simulations confirm robust control
+            even around the 5&nbsp;ms delay threshold, consistent with real-world outcomes.</strong>
+          </p>
+        </header>
+
+        <div class="video-wrap" aria-label="Demo video">
+          <video controls preload="metadata" poster="" playsinline>
+            <source src="../pics/RECEIVER_FIRMWARE_OLD_3840x2160_60fps_edit.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="publications" class="wrapper style3 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Resources</h2>
+          <p>
+            Published at the 2024 IEEE International Conference on Automation Science and Engineering (CASE):
+            design and experimental validation of a wireless modular UAV architecture.
+          </p>
+          <p>
+            <a href="https://ieeexplore.ieee.org/document/10711488"
+               target="_blank" rel="noopener" class="button primary">
+              Paper page
+            </a>
+          </p>
+        </header>
+      </div>
+    </section>
+
+  </div><!-- /#main -->
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti. All rights reserved.</li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- (facoltativo) stessi script di base della home se servono effetti/scrolly
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+  -->
 </body>
 </html>
