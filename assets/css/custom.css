@@ -472,4 +472,62 @@ h1, h2, h3, h4, h5, h6 {
   height: auto !important;
 }
 
+/* ===== Green Vigilance – layout media ===== */
+
+/* Griglia immagini (gallery) */
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+@media (max-width: 820px){
+  .media-grid{ grid-template-columns: 1fr; }
+}
+.media-card{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.media-card:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.media-card img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.media-card figcaption{
+  padding: 10px 14px;
+  font-size: .95rem;
+  opacity: .9;
+}
+
+/* Griglia video */
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 820px){
+  .video-grid{ grid-template-columns: 1fr; }
+}
+.video-card{
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  padding: 10px;
+}
+.video-card video{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius: 8px;
+}
+
+/* Lista feature più ariosa */
+.feature-list{
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.feature-list li{ margin-bottom:.5rem; }
 

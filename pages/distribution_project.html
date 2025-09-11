@@ -1,162 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Vigilance: Drone Innovation for Early Crop Disease Detection</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Vigilance: Drone Innovation for Early Crop Disease Detection</title>
+
+  <!-- CSS principali -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/custom.css" />
+
+  <!-- Font Awesome (CDN) per icone coerenti con le altre pagine) -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Favicon (opzionale, se vuoi mantenerla coerente) -->
+  <!-- <link rel="icon" type="image/png" href="../pics/EM_logo.png"> -->
 </head>
 <body>
 
-        <!-- Header -->
-    <header id="header">
-        <div class="inner">
-            <h1>Green Vigilance: Drone Innovation for Early Crop Disease Detection</h1>
-        </div>
-    </header>
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <h1>Green Vigilance: Drone Innovation for Early Crop Disease Detection</h1>
+    </div>
+  </header>
 
-    <style>
-    #header h1 {
-        margin-bottom: 15px;
-    }
-    #header p {
-        margin-top: 30px;
-    }
-    </style>
+  <!-- Main Content -->
+  <div id="main">
 
     <!-- Project Overview -->
-    <section class="wrapper style3 special">
-        <div class="inner">
-            <header class="major">
-                <h2>Project Overview</h2>
-                <p>Integrating UAVs and UGVs for precision agriculture to detect plant diseases early and improve resource efficiency.</p>
-                <p>This project develops a distributed UAV-UGV system aimed at enhancing early crop disease detection. UAVs perform aerial surveys to collect spatial data, which is processed in a central station. The UGVs are then guided for targeted ground-level inspections. By combining hybrid depth sensing and asynchronous workflow, the system generates detailed 3D representations of crop fields, enabling high-accuracy disease localization.</p>            </header>
-        </div>
+    <section id="overview" class="wrapper style3 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Project Overview</h2>
+          <p>Integrating UAVs and UGVs for precision agriculture to detect plant diseases early and improve resource efficiency.</p>
+          <p>
+            This project develops a distributed UAV-UGV system aimed at enhancing early crop disease detection.
+            UAVs perform aerial surveys to collect spatial data, which is processed in a central station. The UGVs are then guided for
+            targeted ground-level inspections. By combining hybrid depth sensing and an asynchronous workflow, the system generates detailed
+            3D representations of crop fields, enabling high-accuracy disease localization.
+          </p>
+        </header>
+      </div>
     </section>
 
     <!-- Key Features -->
     <section id="key-features" class="wrapper style2">
-        <div class="inner">
-            <header class="major">
-                <h2>Key Features</h2>
-            </header>
-            <ul>
-                <li><strong>Hybrid Depth Sensing:</strong> Combines LiDAR and stereo vision to accumulate detailed 3D spatial data over time.</li>
-                <li><strong>UAV-UGV Coordination:</strong> UAVs conduct initial surveys and generate heatmaps; UGVs are deployed based on this data for fine-grained field analysis.</li>
-                <li><strong>Advanced Algorithms:</strong> Uses Weighted Least Squares (WLS) to improve UGV path estimation and Extended Kalman Filter (EKF) to fuse GPS and IMU data for UAV stability.</li>
-                <li><strong>Heatmap Generation:</strong> Highlights disease-prone areas by mapping plant health variability across spatial dimensions.</li>
-            </ul>
-        </div>
-    </section>
-
-
-    <!-- System Architecture -->
-    <section id="architecture" class="wrapper style2">
-        <div class="inner">
-            <header class="major">
-                <h2>System Architecture</h2>
-                <p>The system operates through an asynchronous workflow: UAVs equipped with hybrid depth sensors collect high-resolution 3D data and transmit it to a centralized base station for processing. The station generates spatial maps and disease probability heatmaps, which are then used to guide UGVs for targeted ground-level operations with high accuracy.</p>
-            </header>
-    </section>
-
-    <!-- Experimental Results -->
-    <section id="results" class="wrapper style2">
-        <div class="inner">
-            <header class="major">
-                <h2>Experimental Results</h2>
-                <p>Simulations demonstrated the system’s effectiveness in detecting plant diseases and guiding ground interventions. UAV-UGV coordination significantly reduced resource usage and improved targeting efficiency. Tests under different sensor noise levels confirmed the robustness of the WLS and EKF algorithms in maintaining navigation precision and data reliability. Heatmaps and 3D models played a critical role in defining intervention strategies and reducing false detections.</p>
-            </header>
-        </div>
-    </section>
-
-    <!-- Photo Gallery Section -->
-    <section id="gallery" class="wrapper style5 special">
-        <div class="inner">
-            <header class="major">
-                <h2>Photo Gallery</h2>
-                <p>Visual highlights from the project.</p>
-            </header>
-            <div class="gallery">
-                <div class="gallery-item"><img src="../pics/pic3d.jpg" alt="Project Image 1"></div>
-                <div class="gallery-item"><img src="../pics/Pic5.jpg" alt="Project Image 2"></div>
-                <div class="gallery-item"><img src="../pics/campo3.jpg" alt="Project Image 3"></div>
-                <div class="gallery-item"><img src="../pics/pic1.jpg" alt="Project Image 4"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Styling -->
-    <style>
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        .gallery-item {
-            width: 45%;
-        }
-        .gallery-item img {
-            width: 100%;
-            border-radius: 5px;
-        }
-    </style>
-
-<!-- Video Section -->
-<section id="video" class="wrapper style4 special">
-    <div class="inner">
+      <div class="inner">
         <header class="major">
-            <h2>Video Demonstration</h2>
-            <p>Short clips showcasing the UAV-UGV system in action.</p>
+          <h2>Key Features</h2>
         </header>
-        <div class="video-container">
-            <!-- First Video -->
-            <div class="video-item">
-                <video width="100%" controls>
-                    <source src="../pics/Figure 1 2024-11-17 22-32-45.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <!-- Second Video -->
-            <div class="video-item">
-                <video width="100%" controls>
-                    <source src="../pics/Figure 7 2024-11-17 22-33-21.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CSS Styling -->
-<style>
-    .video-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px; /* Spaziatura tra i video */
-        justify-content: center;
-    }
-    .video-item {
-        flex: 1 1 45%; /* Ogni video occupa il 45% della larghezza disponibile */
-        max-width: 500px; /* Limita la larghezza massima per schermi grandi */
-    }
-    video {
-        border-radius: 10px; /* Opzionale: bordi arrotondati per i video */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opzionale: effetto ombra */
-    }
-</style>
-
-
-    <!-- Resources Section -->
-    <section class="wrapper style3 special">
-        <div class="inner">
-            <header class="major">
-                <h2>Resources</h2>
-                <p>Download the full project report for an in-depth analysis of system architecture, methodologies, and results.</p>
-                <a href="../docs/Report_distribution_project.pdf" target="_blank" class="button primary">Download Project Report (PDF)</a>
-            </header>
-        </div>
+        <ul class="feature-list">
+          <li>
+            <strong>Hybrid Depth Sensing:</strong>
+            Combines LiDAR and stereo vision to accumulate detailed 3D spatial data over time.
+          </li>
+          <li>
+            <strong>UAV-UGV Coordination:</strong>
+            UAVs conduct initial surveys and generate heatmaps; UGVs are deployed based on this data for fine-grained field analysis.
+          </li>
+          <li>
+            <strong>Advanced Algorithms:</strong>
+            Uses Weighted Least Squares (WLS) to improve UGV path estimation and Extended Kalman Filter (EKF) to fuse GPS and IMU data for UAV stability.
+          </li>
+          <li>
+            <strong>Heatmap Generation:</strong>
+            Highlights disease-prone areas by mapping plant health variability across spatial dimensions.
+          </li>
+        </ul>
+      </div>
     </section>
+
+    <!-- System Architecture (solo testo descrittivo; se in futuro vuoi immagini, usa la media-grid come sotto) -->
+    <section id="architecture" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>System Architecture</h2>
+          <p>
+            <strong>The system operates through an asynchronous workflow: UAVs equipped with hybrid depth sensors collect high-resolution 3D data and transmit it to a centralized base
+            station for processing. The station generates spatial maps and disease probability heatmaps, which are then used to guide UGVs for targeted ground-level operations with high accuracy. </strong>
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <!-- Photo Gallery (griglia responsive) -->
+    <section id="gallery" class="wrapper style5 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Photo Gallery</h2>
+          <p>Visual highlights from the project.</p>
+        </header>
+
+        <!-- Usa .media-grid come hook CSS per disporre le immagini (2 colonne su desktop, 1 su mobile) -->
+        <div class="media-grid">
+          <figure class="media-card">
+            <img src="../pics/pic3d.jpg" alt="3D reconstruction of crop field" loading="lazy" decoding="async">
+            <figcaption>3D crop field reconstruction</figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="../pics/Pic5.jpg" alt="UAV over field" loading="lazy" decoding="async">
+            <figcaption>UAV aerial inspection</figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="../pics/campo3.jpg" alt="Heatmap visualization" loading="lazy" decoding="async">
+            <figcaption>Heatmap visualization</figcaption>
+          </figure>
+          <figure class="media-card">
+            <img src="../pics/pic1.jpg" alt="UGV ground operation" loading="lazy" decoding="async">
+            <figcaption>UGV targeted operation</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="wrapper style2 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Video Demonstration</h2>
+          <p> <strong> Short clips showcasing the UAV-UGV system in action. </strong></p>
+        </header>
+
+        <div class="video-grid">
+          <div class="video-card">
+            <video controls preload="metadata" playsinline>
+              <source src="../pics/Figure 1 2024-11-17 22-32-45.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div class="video-card">
+            <video controls preload="metadata" playsinline>
+              <source src="../pics/Figure 7 2024-11-17 22-33-21.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="wrapper style3 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Resources</h2>
+          <p>Download the full project report for an in-depth analysis of system architecture, methodologies, and results.</p>
+          <p>
+            <a href="../docs/Report_distribution_project.pdf" target="_blank" class="button primary" rel="noopener noreferrer">
+              <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download Project Report (PDF)
+            </a>
+          </p>
+        </header>
+      </div>
+    </section>
+
+  </div><!-- /#main -->
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti. All rights reserved.</li>
+      </ul>
+    </div>
+  </footer>
 
 </body>
 </html>
