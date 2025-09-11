@@ -337,7 +337,7 @@ ul.alt li{ border-top-color: var(--line); }
 
 /* Progetti / card */
 .card{
-  background: var(--white);
+  background: #dcd6cb; 
   border: 1px solid var(--line);
 }
 .card:hover, .card:focus-within{
