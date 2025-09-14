@@ -563,3 +563,27 @@ h1, h2, h3, h4, h5, h6 {
 #overview-cards .major{
   margin-bottom:2rem;
 }
+
+/* ===== HARO: icon links (GitHub / Notion) ===== */
+.icon-links{
+  display:flex; gap:16px; justify-content:center; align-items:center;
+  margin-top:.75rem; flex-wrap:wrap;
+}
+.icon-link{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:.55rem; border-radius:999px;
+  text-decoration:none; font-weight:600;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+}
+.icon-link:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  border-color: var(--accent);
+}
+.icon-link i{ font-size:1.1rem; line-height:1; }
+
+
+
