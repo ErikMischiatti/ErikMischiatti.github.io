@@ -585,5 +585,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 .icon-link i{ font-size:1.1rem; line-height:1; }
 
+/* Icona Home in alto a destra */
+#header .home-icon {
+  position: absolute;
+  top: px;
+  right: 20px;
+  font-size: 1.4rem;
+  color: var(--ink); /* colore coerente con il tema */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#header .home-icon:hover {
+  color: var(--accent-strong); /* colore al passaggio */
+}
+
 
 
