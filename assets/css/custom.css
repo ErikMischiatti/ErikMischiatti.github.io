@@ -601,4 +601,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* Centro e limito la larghezza quando la griglia ha UNA SOLA card */
+.edu-grid:has(> .edu-card:nth-child(1):last-child){
+  justify-items: center;       /* centra la/e card nella cella */
+}
+
+.edu-grid:has(> .edu-card:nth-child(1):last-child) > .edu-card{
+  width: min(100%, 460px);     /* larghezza massima desiderata */
+}
+
 
