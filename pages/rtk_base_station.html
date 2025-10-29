@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>RTK Base Station</title>
+  <meta name="description" content="Portable GNSS RTK base station in a compact modular enclosure with integrated battery and quick tripod mount. In development."/>
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="../assets/css/custom.css"/>
+  <!-- Font Awesome 6 -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <h1>RTK Base Station</h1>
+      <a href="../index.html" class="home-icon" aria-label="Go back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO / Overview (style3 special per coerenza col template) -->
+  <section class="wrapper style3 special" id="overview">
+    <div class="inner">
+      <header class="major">
+        <h2>Project Overview</h2>
+        <p>Portable GNSS RTK base station for drone-grade positioning.</p>
+        <p><em>Status:</em> <strong>In development</strong></p>
+      </header>
+
+      <p class="actions" style="margin-top:1rem;">
+        <a class="button primary" href="#hardware" aria-label="Jump to Hardware">Hardware</a>
+        <a class="button primary" href="#power" aria-label="Jump to Power">Power</a>
+        <a class="button primary" href="#wiring" aria-label="Jump to Wiring">Wiring</a>
+        <a class="button primary" href="#status" aria-label="Jump to Status">Status</a>
+      </p>
+
+      <div class="icon-links" aria-label="External links">
+        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="GitHub repository (coming soon)">
+          <i class="fa-brands fa-github"></i><span>GitHub (soon)</span>
+        </a>
+        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="Notion page (coming soon)">
+          <i class="fa-regular fa-note-sticky"></i><span>Notion (soon)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- At a Glance (style2) -->
+  <section class="wrapper style2" id="glance">
+    <div class="inner">
+      <header class="major">
+        <h2>At a Glance</h2>
+      </header>
+      <p><strong>What:</strong> a ground reference station broadcasting RTK corrections to a rover (e.g., a drone) to achieve centimeter-level accuracy.</p>
+      <p><strong>Goals:</strong> compact modular enclosure, integrated Li-ion power, quick tripod mount, and clean cabling using robust RF connections.</p>
+      <p><strong>Use cases:</strong> flight tests, outdoor robotics, repeatable positioning during experiments.</p>
+    </div>
+  </section>
+
+  <!-- Main Features as cards (style2 + grid-3) -->
+  <section class="wrapper style2" id="features">
+    <div class="inner">
+      <header class="major">
+        <h2>Main Features</h2>
+      </header>
+
+      <div class="grid-3">
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i></div>
+          <h3 class="feature-title">GNSS Front-End</h3>
+          <p>Here4Base (u-blox F9P) with a survey antenna (e.g., Harxon HX-CSX627A) mounted on top with a short high-quality coax.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-tower-cell" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Corrections Link</h3>
+          <p>E220-900T22D long-range radio for RTK corrections when Wi-Fi/NTRIP isn’t available.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-battery-full" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Field-Ready Power</h3>
+          <p>Integrated Li-ion pack with charger &amp; power-path, external USB-C, LEDs (Power/Fix/Radio).</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hardware (style3) -->
+  <section class="wrapper style3" id="hardware">
+    <div class="inner">
+      <header class="major">
+        <h2>Hardware</h2>
+      </header>
+
+      <div class="grid-3">
+        <article class="card" tabindex="0">
+          <h3><i class="fa-solid fa-microchip" aria-hidden="true"></i> Controller</h3>
+          <p>ESP32-C6 orchestrates serial links and system status while keeping the USB-C port accessible for service.</p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Enclosure</h3>
+          <p>Modular layout for receiver, controller, radio, battery; bulkhead RF, clean strain-relief, quick tripod mount.</p>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Robust Wiring</h3>
+          <p>Short GNSS coax (LMR-200/RG-316), radio antenna offset from GNSS (≥20–30&nbsp;cm), tidy harness inside.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- System Diagram (style2) -->
+  <section class="wrapper style2" id="diagram">
+    <div class="inner">
+      <header class="major">
+        <h2>System Diagram</h2>
+      </header>
+<pre role="img" aria-label="System-level block diagram">
+[ Survey Antenna ] --(TNC→SMA coax)--> [ Here4Base / F9P ] ==UART== [ ESP32-C6 ] ==UART== [ E220 Radio ] )))  (Corrections to Rover)
+                                                   |                                     |
+                                                   +----------- 5V Rail -----------------+
+                                                   \____ 3.3V Rail (Radio) ____/
+</pre>
+      <p><em>The antenna is powered through the receiver’s internal bias via the coax.</em></p>
+    </div>
+  </section>
+
+  <!-- Power (style4) -->
+  <section class="wrapper style4" id="power">
+    <div class="inner">
+      <header class="major">
+        <h2>Power</h2>
+      </header>
+      <p>1S Li-ion pack with charger &amp; power-path enables operation while charging. Two rails:</p>
+      <ul>
+        <li><strong>5&nbsp;V</strong> → Here4Base (F9P) and ESP32 VBUS</li>
+        <li><strong>3.3&nbsp;V</strong> → E220 radio</li>
+      </ul>
+      <p>Planned protections: PTC on USB-C input, TVS diodes, ferrites on power lines, and an LC filter on the 5&nbsp;V rail to the receiver.</p>
+    </div>
+  </section>
+
+  <!-- Wiring (style2) -->
+  <section class="wrapper style2" id="wiring">
+    <div class="inner">
+      <header class="major">
+        <h2>Wiring</h2>
+      </header>
+      <div class="grid-3">
+        <article class="card" tabindex="0">
+          <h3><i class="fa-solid fa-plug" aria-hidden="true"></i> Serial</h3>
+          <ul>
+            <li>ESP32-C6 UART1 ↔ Here4Base UART2 (RTCM/NMEA)</li>
+            <li>ESP32-C6 UART2 ↔ E220 (RTCM stream/control)</li>
+            <li>Common GND across all devices</li>
+          </ul>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i> RF</h3>
+          <ul>
+            <li>Short, quality GNSS coax</li>
+            <li>Radio antenna offset from GNSS</li>
+            <li>Strain-relief at pass-throughs</li>
+          </ul>
+        </article>
+
+        <article class="card" tabindex="0">
+          <h3><i class="fa-solid fa-sitemap" aria-hidden="true"></i> Layout</h3>
+          <ul>
+            <li>Separate switching regs from GNSS</li>
+            <li>Ground plane near receiver</li>
+            <li>Quick tripod mount hardware</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightweight BOM (style3) -->
+  <section class="wrapper style3" id="bom">
+    <div class="inner">
+      <header class="major">
+        <h2>Lightweight BOM</h2>
+      </header>
+      <ul>
+        <li>Survey antenna (e.g., Harxon HX-CSX627A) + short coax</li>
+        <li>Here4Base (u-blox ZED-F9P) receiver</li>
+        <li>ESP32-C6 DevKit</li>
+        <li>E220-900T22D radio + SMA antenna</li>
+        <li>1S Li-ion pack (6–10&nbsp;Ah), charger &amp; power-path, boost&nbsp;5&nbsp;V, buck&nbsp;3.3&nbsp;V</li>
+        <li>Tripod mount hardware, enclosure, cable glands / RF bulkheads</li>
+      </ul>
+      <p><em>A full, part-numbered BOM will follow once the mechanical layout is finalized.</em></p>
+    </div>
+  </section>
+
+  <!-- Status (style3 special) -->
+  <section class="wrapper style3 special" id="status">
+    <div class="inner">
+      <header class="major">
+        <h2>Status &amp; Roadmap</h2>
+      </header>
+
+      <p><strong>Current focus:</strong> enclosure layout (battery + charger + RF), wiring harness and power validation.</p>
+      <div class="progress" title="Overall progress" aria-label="Overall progress">
+        <span style="width: 25%;" aria-hidden="true"></span>
+      </div>
+      <p style="margin-top:.5rem; opacity:.85;"><small>~25% — enclosure draft, wiring plan, and power architecture defined.</small></p>
+
+      <div class="grid-3" style="margin-top:1rem;">
+        <article class="card" tabindex="0">
+          <h3>Next Steps</h3>
+          <ul>
+            <li>Print/fab enclosure v1 (with RF bulkheads)</li>
+            <li>Assemble battery + power-path + rails</li>
+            <li>Bench test: GNSS fix + RTCM over radio</li>
+          </ul>
+        </article>
+        <article class="card" tabindex="0">
+          <h3>Field Tests</h3>
+          <ul>
+            <li>Tripod mounting & quick deploy</li>
+            <li>Link range & reliability</li>
+            <li>Accuracy vs. survey-in baseline</li>
+          </ul>
+        </article>
+        <article class="card" tabindex="0">
+          <h3>Planned Add-ons</h3>
+          <ul>
+            <li>Simple web UI (status & logs)</li>
+            <li>NTRIP fallback over Wi-Fi</li>
+            <li>Battery fuel-gauge</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
