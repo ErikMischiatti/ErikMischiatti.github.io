@@ -43,81 +43,81 @@
 
     <!-- Prints Section -->
     <article class="card project-card" tabindex="0" role="article" aria-label="Bottle Drainer">
-      <div class="project-thumb" style="height:280px;">
-        <canvas id="bottle-drainer-viewer" style="width:100%; height:100%; border-radius:10px;"></canvas>
-      </div>
+  <div class="project-thumb">
+    <canvas id="bottle-drainer-viewer"></canvas>
+  </div>
 
-      <div class="project-body">
-        <h3 class="project-title">Bottle Drainer (Scolabottiglia)</h3>
-        <p class="project-desc">
-          A minimalist 3D-printed bottle drying rack designed to hold reusable bottles upside down for efficient air drying.
-        </p>
-        <div class="project-actions">
-          <a class="btn" href="https://cults3d.com/en/users/ErikMischiatti" target="_blank" rel="noopener noreferrer">View on Cults3D</a>
-        </div>
-      </div>
-    </article>
+  <div class="project-body">
+    <h3 class="project-title">Bottle Drainer (Scolabottiglia)</h3>
+    <p class="project-desc">
+      A minimalist 3D-printed bottle drying rack designed to hold reusable bottles upside down for efficient air drying.
+    </p>
+    <div class="project-actions">
+      <a class="btn" href="https://cults3d.com/en/users/ErikMischiatti"
+         target="_blank" rel="noopener noreferrer">View on Cults3D</a>
+    </div>
+  </div>
+</article>
 
-    <!-- Viewer script -->
-    <script type="module">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js';
-      import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js';
-      import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/loaders/GLTFLoader.js';
+<script type="module">
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js';
+  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js';
+  import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/loaders/GLTFLoader.js';
 
-      const canvas = document.getElementById('bottle-drainer-viewer');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      renderer.setPixelRatio(window.devicePixelRatio);
+  const canvas = document.getElementById('bottle-drainer-viewer');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-      // Posizione della camera
-      camera.position.set(0.3, 0.3, 0.8);
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xebe7df); // tono coerente con il tema chiaro
 
-      // Luci
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-      dirLight.position.set(1, 2, 2);
-      scene.add(ambientLight, dirLight);
+  const camera = new THREE.PerspectiveCamera(45, 16 / 9, 0.1, 100);
+  camera.position.set(0.5, 0.4, 1.2);
 
-      // Caricamento modello
-      const loader = new GLTFLoader();
-      loader.load('../assets/models/bottle_drainer.glb', (gltf) => {
-        const model = gltf.scene;
-        model.scale.set(1.3, 1.3, 1.3);
-        model.rotation.y = Math.PI / 4;
-        scene.add(model);
-      }, undefined, (error) => {
-        console.error('Error loading model:', error);
-      });
+  // Luci morbide per il tema neutro
+  const ambient = new THREE.AmbientLight(0xffffff, 1.2);
+  const dir = new THREE.DirectionalLight(0xffffff, 1.0);
+  dir.position.set(2, 2, 3);
+  scene.add(ambient, dir);
 
-      // Controlli orbitali
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
-      controls.enableZoom = true;
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.6;
+  // Carica modello
+  const loader = new GLTFLoader();
+  loader.load('../assets/models/bottle_drainer.glb', (gltf) => {
+    const model = gltf.scene;
+    model.scale.set(1.3, 1.3, 1.3);
+    model.rotation.y = Math.PI / 4;
+    scene.add(model);
+    render();
+  });
 
-      // Loop di rendering
-      function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-      }
-      animate();
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.enableZoom = true;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.7;
 
-      // Responsività
-      window.addEventListener('resize', () => {
-        camera.aspect = canvas.clientWidth / canvas.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      });
-    </script>
+  function resizeRendererToDisplaySize() {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }
+
+  function render() {
+    resizeRendererToDisplaySize();
+    controls.update();
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+</script>
 
 
 
-          <!-- Print 2 
+
+
+          <!-- Print 2 -->
           <article class="card project-card" tabindex="0" role="article" aria-label="Cable Clip">
             <a class="project-thumb" href="https://cults3d.com/en/3d-model/tool/custom-cable-clip" target="_blank" rel="noopener noreferrer">
               <img src="../pics/print_example2.jpg" alt="Custom Cable Clip" loading="lazy" decoding="async">
@@ -137,7 +137,7 @@
             </div>
           </article>
 
-          Print 3 
+          <!-- Print 3 -->
           <article class="card project-card" tabindex="0" role="article" aria-label="UAV Frame Connector">
             <a class="project-thumb" href="https://cults3d.com/en/3d-model/tool/uav-frame-connector" target="_blank" rel="noopener noreferrer">
               <img src="../pics/print_example3.jpg" alt="UAV Frame Connector" loading="lazy" decoding="async">
@@ -156,7 +156,6 @@
               </div>
             </div>
           </article>
-        -->
         </div>
       </div>
     </section>
