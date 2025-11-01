@@ -15,6 +15,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
+
 <body>
 
   <!-- Header -->
@@ -27,136 +28,100 @@
     </div>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <div id="main">
 
-    <!-- Intro -->
+    <!-- Intro Section -->
     <section id="intro" class="wrapper style3 special">
       <div class="inner">
         <header class="major">
           <h2>Custom 3D Printed Designs</h2>
-          <p>Collection of functional and aesthetic 3D prints — all designed, prototyped, and tested by me.  
-             You can download or order them directly from my <a href="https://cults3d.com/en/users/ErikMischiatti" target="_blank" rel="noopener">Cults3D</a> profile.</p>
+          <p>
+            Collection of functional and aesthetic 3D prints — all designed, prototyped, and tested by me.  
+            You can download or order them directly from my
+            <a href="https://cults3d.com/en/users/ErikMischiatti" target="_blank" rel="noopener">Cults3D</a> profile.
+          </p>
         </header>
       </div>
     </section>
 
     <!-- Prints Section -->
-    <article class="card project-card" tabindex="0" role="article" aria-label="Bottle Drainer">
-  <div class="project-thumb">
-    <canvas id="bottle-drainer-viewer"></canvas>
-  </div>
+    <section id="prints" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>Featured Prints</h2>
+        </header>
 
-  <div class="project-body">
-    <h3 class="project-title">Bottle Drainer (Scolabottiglia)</h3>
-    <p class="project-desc">
-      A minimalist 3D-printed bottle drying rack designed to hold reusable bottles upside down for efficient air drying.
-    </p>
-    <div class="project-actions">
-      <a class="btn" href="https://cults3d.com/en/users/ErikMischiatti"
-         target="_blank" rel="noopener noreferrer">View on Cults3D</a>
-    </div>
-  </div>
-</article>
+        <!-- GRID CONTAINER -->
+        <div class="projects-grid">
 
-<script type="module">
-  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js';
-  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js';
-  import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/loaders/GLTFLoader.js';
-
-  const canvas = document.getElementById('bottle-drainer-viewer');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xebe7df); // tono coerente con il tema chiaro
-
-  const camera = new THREE.PerspectiveCamera(45, 16 / 9, 0.1, 100);
-  camera.position.set(0.5, 0.4, 1.2);
-
-  // Luci morbide per il tema neutro
-  const ambient = new THREE.AmbientLight(0xffffff, 1.2);
-  const dir = new THREE.DirectionalLight(0xffffff, 1.0);
-  dir.position.set(2, 2, 3);
-  scene.add(ambient, dir);
-
-  // Carica modello
-  const loader = new GLTFLoader();
-  loader.load('../assets/models/bottle_drainer.glb', (gltf) => {
-    const model = gltf.scene;
-    model.scale.set(1.3, 1.3, 1.3);
-    model.rotation.y = Math.PI / 4;
-    scene.add(model);
-    render();
-  });
-
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-  controls.enableZoom = true;
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 0.7;
-
-  function resizeRendererToDisplaySize() {
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-  }
-
-  function render() {
-    resizeRendererToDisplaySize();
-    controls.update();
-    renderer.render(scene, camera);
-    requestAnimationFrame(render);
-  }
-</script>
-
-
-
-
-
-          <!-- Print 2 -->
-          <article class="card project-card" tabindex="0" role="article" aria-label="Cable Clip">
-            <a class="project-thumb" href="https://cults3d.com/en/3d-model/tool/custom-cable-clip" target="_blank" rel="noopener noreferrer">
-              <img src="../pics/print_example2.jpg" alt="Custom Cable Clip" loading="lazy" decoding="async">
+          <!-- Print 1 -->
+          <article class="card project-card" tabindex="0" role="article" aria-label="Bottle Drainer">
+            <a class="project-thumb" href="https://cults3d.com/en/3d-model/home/bottle-drainer-erikmischiatti" target="_blank" rel="noopener noreferrer">
+              <img src="../pics/print_bottle_drainer.jpg" alt="Bottle Drainer 3D Print" loading="lazy" decoding="async">
             </a>
             <div class="project-body">
               <h3 class="project-title">
-                <a href="https://cults3d.com/en/3d-model/tool/custom-cable-clip" target="_blank" rel="noopener noreferrer">
-                  Custom Cable Clip
+                <a href="https://cults3d.com/en/3d-model/home/bottle-drainer-erikmischiatti"
+                   target="_blank" rel="noopener noreferrer">
+                  Bottle Drainer
                 </a>
               </h3>
               <p class="project-desc">
-                Parametric clip for cable organization in embedded or robotics environments.
+                A minimalist 3D-printed bottle drying rack designed to hold reusable bottles upside down for efficient air drying.
               </p>
               <div class="project-actions">
-                <a class="btn" href="https://cults3d.com/en/3d-model/tool/custom-cable-clip" target="_blank" rel="noopener noreferrer">View on Cults3D</a>
+                <a class="btn" href="https://cults3d.com/en/3d-model/home/bottle-drainer-erikmischiatti"
+                   target="_blank" rel="noopener noreferrer">View on Cults3D</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Print 2 -->
+          <article class="card project-card" tabindex="0" role="article" aria-label="">
+            <a class="project-thumb" href="" target="_blank" rel="noopener noreferrer">
+              <img src="../pics/print_example3.jpg" alt="..." loading="lazy" decoding="async">
+            </a>
+            <div class="project-body">
+              <h3 class="project-title">
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  Coming soon
+                </a>
+              </h3>
+              <p class="project-desc">
+                ...
+              </p>
+              <div class="project-actions">
+                <a class="btn" href=""
+                   target="_blank" rel="noopener noreferrer">View on Cults3D</a>
               </div>
             </div>
           </article>
 
           <!-- Print 3 -->
-          <article class="card project-card" tabindex="0" role="article" aria-label="UAV Frame Connector">
-            <a class="project-thumb" href="https://cults3d.com/en/3d-model/tool/uav-frame-connector" target="_blank" rel="noopener noreferrer">
-              <img src="../pics/print_example3.jpg" alt="UAV Frame Connector" loading="lazy" decoding="async">
+          <article class="card project-card" tabindex="0" role="article" aria-label="">
+            <a class="project-thumb" href="" target="_blank" rel="noopener noreferrer">
+              <img src="../pics/print_example3.jpg" alt="..." loading="lazy" decoding="async">
             </a>
             <div class="project-body">
               <h3 class="project-title">
-                <a href="https://cults3d.com/en/3d-model/tool/uav-frame-connector" target="_blank" rel="noopener noreferrer">
-                  UAV Frame Connector
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  Coming soon
                 </a>
               </h3>
               <p class="project-desc">
-                Reinforced connector for modular drone arms, balancing weight and stiffness.
+                ...
               </p>
               <div class="project-actions">
-                <a class="btn" href="https://cults3d.com/en/3d-model/tool/uav-frame-connector" target="_blank" rel="noopener noreferrer">View on Cults3D</a>
+                <a class="btn" href=""
+                   target="_blank" rel="noopener noreferrer">View on Cults3D</a>
               </div>
             </div>
           </article>
-        </div>
+
+          
+
+        </div> <!-- /projects-grid -->
       </div>
     </section>
 
@@ -166,7 +131,7 @@
         <header class="major">
           <h2>More Designs & Resources</h2>
           <p>Explore all my downloadable 3D models directly on Cults3D.</p>
-          <a href="https://cults3d.com/en/users/ErikMischiatti" target="_blank" class="button primary">Open Cults3D Profile</a>
+          <a href="https://cults3d.com/en/creations/mine" target="_blank" class="button primary">Cults3D Profile</a>
         </header>
       </div>
     </section>
@@ -177,7 +142,7 @@
   <footer id="footer">
     <div class="inner">
       <ul class="copyright">
-        <li>&copy; Erik Mischiatti. All rights reserved.</li>
+        <li>&copy; Erik Mischiatti</li>
       </ul>
     </div>
   </footer>
