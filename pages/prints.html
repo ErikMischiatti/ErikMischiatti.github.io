@@ -57,25 +57,22 @@
 
           <!-- Print 1 -->
           <article class="card project-card" tabindex="0" role="article" aria-label="Bottle Drainer">
-            <a class="project-thumb" href="https://cults3d.com/en/3d-model/home/bottle-drainer-erikmischiatti" target="_blank" rel="noopener noreferrer">
-              <img src="../pics/print_bottle_drainer.jpg" alt="Bottle Drainer 3D Print" loading="lazy" decoding="async">
-            </a>
+            <div class="project-thumb" style="aspect-ratio:16/9;">
+              <canvas id="bottle-drainer-viewer"></canvas>
+            </div>
+
             <div class="project-body">
-              <h3 class="project-title">
-                <a href="https://cults3d.com/en/3d-model/home/bottle-drainer-erikmischiatti"
-                   target="_blank" rel="noopener noreferrer">
-                  Bottle Drainer
-                </a>
-              </h3>
+              <h3 class="project-title">Bottle Drainer</h3>
               <p class="project-desc">
                 A minimalist 3D-printed bottle drying rack designed to hold reusable bottles upside down for efficient air drying.
               </p>
               <div class="project-actions">
                 <a class="btn" href="https://cults3d.com/en/3d-model/home/bottle-drainer-erikmischiatti"
-                   target="_blank" rel="noopener noreferrer">View on Cults3D</a>
+                  target="_blank" rel="noopener noreferrer">View on Cults3D</a>
               </div>
             </div>
           </article>
+
 
           <!-- Print 2 -->
           <article class="card project-card" tabindex="0" role="article" aria-label="">
@@ -146,6 +143,67 @@
       </ul>
     </div>
   </footer>
+
+
+
+  <script type="module">
+  import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js';
+  import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js';
+  import { OBJLoader } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/loaders/OBJLoader.js';
+
+  const canvas = document.getElementById('bottle-drainer-viewer');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xebe7df); // colore sabbia chiaro coerente col tema
+
+  // Camera
+  const camera = new THREE.PerspectiveCamera(45, 16 / 9, 0.1, 100);
+  camera.position.set(0.5, 0.4, 1.2);
+
+  // Luci (neutra + direzionale)
+  const ambient = new THREE.AmbientLight(0xffffff, 1.3);
+  const dir = new THREE.DirectionalLight(0xffffff, 1.1);
+  dir.position.set(2, 2, 3);
+  scene.add(ambient, dir);
+
+  // Carica modello OBJ
+  const loader = new OBJLoader();
+  loader.load('../assets/models/scolabottiglia.obj', (obj) => {
+    obj.scale.set(0.01, 0.01, 0.01);  // regola la scala se necessario
+    obj.rotation.y = Math.PI / 4;
+    obj.position.y = -0.1;
+    scene.add(obj);
+    render();
+  }, undefined, (error) => {
+    console.error('Errore caricamento modello:', error);
+  });
+
+  // Controlli interattivi
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.6;
+
+  // Resize dinamico
+  function resize() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  // Loop rendering
+  function render() {
+    resize();
+    controls.update();
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+</script>
+
 
 </body>
 </html>
