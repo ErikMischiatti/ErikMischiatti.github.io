@@ -635,3 +635,79 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   object-fit: cover;
 }
+
+
+/* Mostra il testo "Menu" nel bottone mobile */
+#header nav > a[href="#menu"] {
+  text-indent: 0;
+  font-size: 1em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#header nav > a[href="#menu"]:before {
+  content: '\f0c9'; /* icona fontawesome hamburger */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  display: inline-block;
+}
+
+@media screen and (max-width: 980px) {
+  #header nav > a[href="#menu"] {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5em 1em;
+    border-radius: 5px;
+  }
+}
+
+/* === MENU button — versione trasparente === */
+#header .menuToggle {
+  text-indent: 0 !important;
+  overflow: visible !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0.5em 1em !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1em;
+  background: transparent !important;
+  border: none !important;
+  color: var(--ink) !important;
+  box-shadow: none !important;
+  transition: color .2s ease, transform .2s ease;
+}
+
+#header .menuToggle:hover {
+  transform: translateY(-1px);
+  color: var(--accent-strong) !important;
+}
+
+/* icona hamburger */
+#header .menuToggle:before {
+  content: '\f0c9';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  display: inline-block;
+  color: currentColor;
+}
+
+#header .menuToggle span {
+  display: inline !important;
+  color: inherit !important;
+}
+
+/* sopra il banner (header.alt → testo bianco per contrasto) */
+#header.alt .menuToggle {
+  color: var(--white) !important;
+}
+
+#header.alt .menuToggle:hover {
+  color: var(--sand-200) !important;
+}
+
