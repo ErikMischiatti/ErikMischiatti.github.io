@@ -663,17 +663,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* === MENU button — versione trasparente === */
+/* === MENU button — versione trasparente e allineata === */
 #header .menuToggle {
   text-indent: 0 !important;
   overflow: visible !important;
   width: auto !important;
   height: auto !important;
-  padding: 0.5em 1em !important;
+  padding: 0.5em 1.25em !important; /* leggermente più spazio laterale */
+  margin-right: 10px !important;    /* distanzia dal bordo destro */
   display: flex !important;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;                        /* più spazio tra icona e testo */
   font-weight: 600;
   font-size: 1em;
   background: transparent !important;
@@ -697,17 +698,85 @@ h1, h2, h3, h4, h5, h6 {
   color: currentColor;
 }
 
+/* testo "MENU" leggermente più a destra */
 #header .menuToggle span {
   display: inline !important;
   color: inherit !important;
+  margin-left: 4px; /* micro spostamento fine del testo */
 }
 
-/* sopra il banner (header.alt → testo bianco per contrasto) */
+/* sopra la hero (header.alt): bianco per contrasto */
 #header.alt .menuToggle {
   color: var(--white) !important;
 }
 
 #header.alt .menuToggle:hover {
   color: var(--sand-200) !important;
+}
+
+/* Mobile: sposta un po' più al centro orizzontale */
+@media (max-width: 980px) {
+  #header .menuToggle {
+    margin-right: 16px !important; /* più spazio dal bordo */
+    font-size: 1.05em;
+  }
+}
+/* === MENU button — versione trasparente e allineata === */
+#header .menuToggle {
+  text-indent: 0 !important;
+  overflow: visible !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0.1em 0.1em !important; /* leggermente più spazio laterale */
+  margin-right: 1px !important;    /* distanzia dal bordo destro */
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;                        /* più spazio tra icona e testo */
+  font-weight: 600;
+  font-size: 1em;
+  background: transparent !important;
+  border: none !important;
+  color: var(--ink) !important;
+  box-shadow: none !important;
+  transition: color .2s ease, transform .2s ease;
+}
+
+#header .menuToggle:hover {
+  transform: translateY(-1px);
+  color: var(--accent-strong) !important;
+}
+
+/* icona hamburger */
+#header .menuToggle:before {
+  content: '\f0c9';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 700;
+  display: inline-block;
+  color: currentColor;
+}
+
+/* testo "MENU" leggermente più a destra */
+#header .menuToggle span {
+  display: inline !important;
+  color: inherit !important;
+  margin-left: 4px; /* micro spostamento fine del testo */
+}
+
+/* sopra la hero (header.alt): bianco per contrasto */
+#header.alt .menuToggle {
+  color: var(--white) !important;
+}
+
+#header.alt .menuToggle:hover {
+  color: var(--sand-200) !important;
+}
+
+/* Mobile: sposta un po' più al centro orizzontale */
+@media (max-width: 980px) {
+  #header .menuToggle {
+    margin-right: 1px !important; /* più spazio dal bordo */
+    font-size: 1.em;
+  }
 }
 
