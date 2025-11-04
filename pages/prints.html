@@ -123,63 +123,54 @@
 
   <!-- Three.js Viewer Debug Script -->
   <script type="module">
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js';
-    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js';
-    import { OBJLoader } from 'https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/loaders/OBJLoader.js';
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/controls/OrbitControls.js";
+import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/loaders/OBJLoader.js";
 
-    const canvas = document.getElementById('test-viewer');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
+const canvas = document.getElementById("test-viewer");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setClearColor(0xebe7df);
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xebe7df); // sabbia chiaro
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 16 / 9, 0.1, 100);
+camera.position.set(2, 2, 3);
+scene.add(camera);
 
-    // Camera
-    const camera = new THREE.PerspectiveCamera(45, 16/9, 0.1, 100);
-    camera.position.set(0.5, 0.5, 1.2);
+// luce
+scene.add(new THREE.AmbientLight(0xffffff, 1.3));
+const dir = new THREE.DirectionalLight(0xffffff, 1.0);
+dir.position.set(2, 2, 3);
+scene.add(dir);
 
-    // Luci
-    const ambient = new THREE.AmbientLight(0xffffff, 1.3);
-    const dir = new THREE.DirectionalLight(0xffffff, 1.1);
-    dir.position.set(2, 2, 3);
-    scene.add(ambient, dir);
+// oggetti di test
+const grid = new THREE.GridHelper(10, 10, 0x333333, 0xbbbbbb);
+scene.add(grid);
+const cube = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshStandardMaterial({ color: 0x3366ff })
+);
+scene.add(cube);
 
-    // Caricamento modello
-    const loader = new OBJLoader();
-    loader.load('/workspaces/ErikMischiatti.github.io/assets/models/scolabottiglia.obj', (obj) => {
-      obj.scale.set(0.01, 0.01, 0.01); // regola se troppo piccolo/grande
-      obj.rotation.y = Math.PI / 4;
-      obj.position.y = -0.1;
-      scene.add(obj);
-      animate();
-    }, undefined, (error) => {
-      console.error('❌ Errore caricamento modello:', error);
-    });
+// controlli orbitali
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.4;
 
-    // Controlli orbitali
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.6;
+function resize() {
+  const width = canvas.clientWidth || 700;
+  const height = canvas.clientHeight || 400;
+  renderer.setSize(width, height, false);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+}
 
-    // Resize dinamico
-    function resize() {
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    }
-
-    // Animazione loop
-    function animate() {
-      requestAnimationFrame(animate);
-      resize();
-      controls.update();
-      renderer.render(scene, camera);
-    }
-  </script>
-
-</body>
-</html>
+function animate() {
+  requestAnimationFrame(animate);
+  resize();
+  cube.rotation.y += 0.01;
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+</script>

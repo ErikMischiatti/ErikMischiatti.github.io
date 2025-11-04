@@ -663,120 +663,164 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* === MENU button — versione trasparente e allineata === */
+/* === MENU button — versione allineata e coerente col theme toggle === */
+
 #header .menuToggle {
-  text-indent: 0 !important;
-  overflow: visible !important;
-  width: auto !important;
-  height: auto !important;
-  padding: 0.5em 1.25em !important; /* leggermente più spazio laterale */
-  margin-right: 10px !important;    /* distanzia dal bordo destro */
+  position: relative;
   display: flex !important;
   align-items: center;
   justify-content: center;
-  gap: 12px;                        /* più spazio tra icona e testo */
-  font-weight: 600;
-  font-size: 1em;
-  background: transparent !important;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0;
+  margin-right: 1.2rem; /* stessa distanza del theme toggle dal bordo opposto */
+  padding: 0;
+  background: none !important;
   border: none !important;
-  color: var(--ink) !important;
+  outline: none !important;
   box-shadow: none !important;
-  transition: color .2s ease, transform .2s ease;
+  font-size: 1.4rem; /* uguale al theme toggle */
+  color: #fff !important;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 #header .menuToggle:hover {
-  transform: translateY(-1px);
-  color: var(--accent-strong) !important;
+  transform: scale(1.1);
+  color: #ffd86b !important; /* stesso effetto hover del theme toggle */
 }
 
 /* icona hamburger */
 #header .menuToggle:before {
-  content: '\f0c9';
-  font-family: 'Font Awesome 5 Free';
+  content: '\f0c9'; /* Font Awesome hamburger */
+  font-family: 'Font Awesome 6 Free';
   font-weight: 900;
-  display: inline-block;
   color: currentColor;
 }
 
-/* testo "MENU" leggermente più a destra */
+/* nasconde completamente la scritta “Menu” */
 #header .menuToggle span {
-  display: inline !important;
-  color: inherit !important;
-  margin-left: 4px; /* micro spostamento fine del testo */
+  display: none !important;
 }
 
-/* sopra la hero (header.alt): bianco per contrasto */
+/* Header alternato (bianco su hero) */
 #header.alt .menuToggle {
-  color: var(--white) !important;
+  color: #fff !important;
 }
 
 #header.alt .menuToggle:hover {
-  color: var(--sand-200) !important;
+  color: #ffd86b !important;
 }
 
-/* Mobile: sposta un po' più al centro orizzontale */
-@media (max-width: 980px) {
+/* Versione Light Mode */
+body.light-mode #header .menuToggle {
+  color: #222 !important;
+}
+body.light-mode #header .menuToggle:hover {
+  color: #0077cc !important;
+}
+
+/* Mobile: mantiene proporzioni e centratura verticale */
+@media screen and (max-width: 736px) {
   #header .menuToggle {
-    margin-right: 16px !important; /* più spazio dal bordo */
-    font-size: 1.05em;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
-/* === MENU button — versione trasparente e allineata === */
-#header .menuToggle {
-  text-indent: 0 !important;
-  overflow: visible !important;
-  width: auto !important;
-  height: auto !important;
-  padding: 0.1em 0.1em !important; /* leggermente più spazio laterale */
-  margin-right: 1px !important;    /* distanzia dal bordo destro */
-  display: flex !important;
+
+
+
+/* ====== THEME TOGGLE — VERSIONE DEFINITIVA (STABILE) ====== */
+
+/* Header layout: titolo + toggle a sinistra, menu a destra */
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;   /* titolo + toggle a sinistra */
+  gap: 0.6rem;                   /* spazio fra titolo e toggle */
+  padding: 0.6em 1.2em;
+  position: relative;
+  flex-wrap: nowrap;             /* evita che vadano a capo */
+  z-index: 1000;
+}
+
+/* Spinge il menu all'estrema destra */
+#nav {
+  margin-left: auto;
+}
+
+/* Titolo sempre inline con l'icona */
+#header h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+#header h1 a {
+  white-space: nowrap; /* evita che il titolo vada a capo */
+}
+
+/* Bottone del toggle */
+#theme-toggle {
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #fff;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1px;                        /* più spazio tra icona e testo */
-  font-weight: 600;
-  font-size: 1em;
-  background: transparent !important;
-  border: none !important;
-  color: var(--ink) !important;
+  margin-left: 0.4rem;
+  transition: transform 0.2s ease, color 0.3s ease;
+  position: static; /* resta sempre nel flusso, no absolute */
+}
+
+#theme-toggle:hover {
+  transform: scale(1.15);
+  color: #ffd86b;
+}
+
+/* Nessun bordo o effetto focus */
+#theme-toggle:focus {
+  outline: none !important;
   box-shadow: none !important;
-  transition: color .2s ease, transform .2s ease;
 }
 
-#header .menuToggle:hover {
-  transform: translateY(-1px);
-  color: var(--accent-strong) !important;
-}
+/* Ridimensiona proporzionalmente su schermi piccoli */
+@media screen and (max-width: 736px) {
+  #header {
+    padding: 0.5em 0.9em;
+  }
 
-/* icona hamburger */
-#header .menuToggle:before {
-  content: '\f0c9';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 700;
-  display: inline-block;
-  color: currentColor;
-}
+  #header h1 a {
+    font-size: 1.05rem;
+  }
 
-/* testo "MENU" leggermente più a destra */
-#header .menuToggle span {
-  display: inline !important;
-  color: inherit !important;
-  margin-left: 4px; /* micro spostamento fine del testo */
-}
-
-/* sopra la hero (header.alt): bianco per contrasto */
-#header.alt .menuToggle {
-  color: var(--white) !important;
-}
-
-#header.alt .menuToggle:hover {
-  color: var(--sand-200) !important;
-}
-
-/* Mobile: sposta un po' più al centro orizzontale */
-@media (max-width: 980px) {
-  #header .menuToggle {
-    margin-right: 1px !important; /* più spazio dal bordo */
-    font-size: 1.em;
+  #theme-toggle {
+    font-size: 1.15rem;
+    margin-left: 0.35rem;
   }
 }
 
+/* ====== LIGHT MODE ====== */
+body.light-mode {
+  background: #f8f9fa;
+  color: #222;
+}
+body.light-mode a { color: #0077cc; border-bottom-color: #0077cc; }
+body.light-mode header#header.alt { background: rgba(255, 255, 255, 0.95); }
+body.light-mode section.wrapper { background: #fff; color: #222; }
+body.light-mode footer { background: #f1f1f1; color: #333; }
+body.light-mode #theme-toggle { color: #222; }
+
+/* Icone dinamiche */
+body.light-mode #theme-toggle i.fa-sun { display: none; }
+body.light-mode #theme-toggle i.fa-moon { display: inline; }
+body.dark-mode #theme-toggle i.fa-moon { display: none; }
+body.dark-mode #theme-toggle i.fa-sun { display: inline; }
