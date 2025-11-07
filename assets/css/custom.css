@@ -731,27 +731,27 @@ body.light-mode #header .menuToggle:hover {
 }
 
 
+/*
+====== THEME TOGGLE — VERSIONE DEFINITIVA (STABILE) ====== 
 
-/* ====== THEME TOGGLE — VERSIONE DEFINITIVA (STABILE) ====== */
-
-/* Header layout: titolo + toggle a sinistra, menu a destra */
+Header layout: titolo + toggle a sinistra, menu a destra 
 #header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;   /* titolo + toggle a sinistra */
-  gap: 0.6rem;                   /* spazio fra titolo e toggle */
+  justify-content: flex-start;   titolo + toggle a sinistra 
+  gap: 0.6rem;                   spazio fra titolo e toggle 
   padding: 0.6em 1.2em;
   position: relative;
-  flex-wrap: nowrap;             /* evita che vadano a capo */
+  flex-wrap: nowrap;             evita che vadano a capo 
   z-index: 1000;
 }
 
-/* Spinge il menu all'estrema destra */
+ Spinge il menu all'estrema destra 
 #nav {
   margin-left: auto;
 }
 
-/* Titolo sempre inline con l'icona */
+ Titolo sempre inline con l'icona 
 #header h1 {
   display: flex;
   align-items: center;
@@ -760,10 +760,10 @@ body.light-mode #header .menuToggle:hover {
 }
 
 #header h1 a {
-  white-space: nowrap; /* evita che il titolo vada a capo */
+  white-space: nowrap; /* evita che il titolo vada a capo 
 }
 
-/* Bottone del toggle */
+ Bottone del toggle 
 #theme-toggle {
   background: none !important;
   border: none !important;
@@ -778,7 +778,7 @@ body.light-mode #header .menuToggle:hover {
   justify-content: center;
   margin-left: 0.4rem;
   transition: transform 0.2s ease, color 0.3s ease;
-  position: static; /* resta sempre nel flusso, no absolute */
+  position: static; /* resta sempre nel flusso, no absolute 
 }
 
 #theme-toggle:hover {
@@ -786,13 +786,13 @@ body.light-mode #header .menuToggle:hover {
   color: #ffd86b;
 }
 
-/* Nessun bordo o effetto focus */
+Nessun bordo o effetto focus 
 #theme-toggle:focus {
   outline: none !important;
   box-shadow: none !important;
 }
 
-/* Ridimensiona proporzionalmente su schermi piccoli */
+Ridimensiona proporzionalmente su schermi piccoli 
 @media screen and (max-width: 736px) {
   #header {
     padding: 0.5em 0.9em;
@@ -808,7 +808,7 @@ body.light-mode #header .menuToggle:hover {
   }
 }
 
-/* ====== LIGHT MODE ====== */
+ ====== LIGHT MODE ====== 
 body.light-mode {
   background: #f8f9fa;
   color: #222;
@@ -819,8 +819,10 @@ body.light-mode section.wrapper { background: #fff; color: #222; }
 body.light-mode footer { background: #f1f1f1; color: #333; }
 body.light-mode #theme-toggle { color: #222; }
 
-/* Icone dinamiche */
+ Icone dinamiche 
 body.light-mode #theme-toggle i.fa-sun { display: none; }
 body.light-mode #theme-toggle i.fa-moon { display: inline; }
 body.dark-mode #theme-toggle i.fa-moon { display: none; }
 body.dark-mode #theme-toggle i.fa-sun { display: inline; }
+
+* / 

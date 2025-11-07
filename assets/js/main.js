@@ -80,27 +80,27 @@
 
 		}
 
-	// Theme toggle
-	const themeToggle = document.getElementById('theme-toggle');
-	if (themeToggle) {
-	const body = document.body;
-	const savedTheme = localStorage.getItem('theme') || 'dark';
-	body.classList.add(savedTheme + '-mode');
+	// // Theme toggle
+	// const themeToggle = document.getElementById('theme-toggle');
+	// if (themeToggle) {
+	// const body = document.body;
+	// const savedTheme = localStorage.getItem('theme') || 'dark';
+	// body.classList.add(savedTheme + '-mode');
 
-	themeToggle.innerHTML = savedTheme === 'dark'
-		? '<i class="fa-solid fa-sun"></i>'
-		: '<i class="fa-solid fa-moon"></i>';
+	// themeToggle.innerHTML = savedTheme === 'dark'
+	// 	? '<i class="fa-solid fa-sun"></i>'
+	// 	: '<i class="fa-solid fa-moon"></i>';
 
-	themeToggle.addEventListener('click', () => {
-		const isDark = body.classList.contains('dark-mode');
-		body.classList.toggle('dark-mode', !isDark);
-		body.classList.toggle('light-mode', isDark);
-		localStorage.setItem('theme', isDark ? 'light' : 'dark');
-		themeToggle.innerHTML = isDark
-		? '<i class="fa-solid fa-moon"></i>'
-		: '<i class="fa-solid fa-sun"></i>';
-	});
-	}
+	// themeToggle.addEventListener('click', () => {
+	// 	const isDark = body.classList.contains('dark-mode');
+	// 	body.classList.toggle('dark-mode', !isDark);
+	// 	body.classList.toggle('light-mode', isDark);
+	// 	localStorage.setItem('theme', isDark ? 'light' : 'dark');
+	// 	themeToggle.innerHTML = isDark
+	// 	? '<i class="fa-solid fa-moon"></i>'
+	// 	: '<i class="fa-solid fa-sun"></i>';
+	// });
+	// }
 
 
 })(jQuery);
