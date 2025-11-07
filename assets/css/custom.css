@@ -826,3 +826,12 @@ body.dark-mode #theme-toggle i.fa-moon { display: none; }
 body.dark-mode #theme-toggle i.fa-sun { display: inline; }
 
 * / 
+
+/* ===== Fix visibility of <strong> text on light backgrounds ===== */
+.wrapper.style2 strong,
+.wrapper.style3 strong,
+.wrapper.style4 strong {
+  color: #111; /* testo ben visibile su sfondi chiari */
+  font-weight: 650; /* mantiene il grassetto */
+}
+
