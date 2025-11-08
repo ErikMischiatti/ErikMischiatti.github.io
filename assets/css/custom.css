@@ -835,3 +835,48 @@ body.dark-mode #theme-toggle i.fa-sun { display: inline; }
   font-weight: 650; /* mantiene il grassetto */
 }
 
+
+/* ===== Skills carousel ===== */
+.skills-carousel {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 2em;
+}
+
+.skills-track {
+  display: inline-flex;
+  animation: scroll 25s linear infinite;
+  gap: 40px;
+  align-items: center;
+}
+
+.skills-track img {
+  height: 60px;
+  width: auto;
+  filter: grayscale(30%);
+  opacity: 0.9;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.skills-track img:hover {
+  transform: scale(1.15);
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+.skills-carousel {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  cursor: grab;
+}
+
+.skills-carousel::-webkit-scrollbar {
+  display: none;
+}
