@@ -836,47 +836,44 @@ body.dark-mode #theme-toggle i.fa-sun { display: inline; }
 }
 
 
-/* ===== Skills carousel ===== */
-.skills-carousel {
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  margin-top: 2em;
-}
-
-.skills-track {
-  display: inline-flex;
-  animation: scroll 10s linear infinite;
-  gap: 40px;
+/* === Skills Grid Section (final fix) === */
+.skills-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 30px;
+  justify-items: center;
   align-items: center;
+
+  /* Centratura perfetta all’interno del contenitore Spectral */
+  max-width: 1100px;
+  margin: 3em auto;        /* centra la griglia orizzontalmente */
+  padding: 0 1.5rem;       /* spazio laterale coerente con il tema */
+  box-sizing: border-box;
+
+  opacity: 0.95;
+  transition: all 0.3s ease;
 }
 
-.skills-track img {
+.skills-logos-grid img {
   height: 60px;
   width: auto;
-  filter: grayscale(30%);
-  opacity: 0.9;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%) brightness(0.7);
+  opacity: 0.7;
+  transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
 }
 
-.skills-track img:hover {
-  transform: scale(1.15);
-  filter: grayscale(0%);
+.skills-logos-grid img:hover {
+  transform: scale(1.1);
+  filter: grayscale(0%) brightness(1.3) drop-shadow(0 0 12px rgba(255,255,255,0.3));
   opacity: 1;
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-
-.skills-carousel {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  cursor: grab;
-}
-
-.skills-carousel::-webkit-scrollbar {
-  display: none;
+@media (max-width: 768px) {
+  .skills-logos-grid {
+    gap: 25px;
+    padding: 0 1rem;
+  }
+  .skills-logos-grid img {
+    height: 50px;
+  }
 }
