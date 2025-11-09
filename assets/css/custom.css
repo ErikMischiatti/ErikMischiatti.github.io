@@ -846,7 +846,7 @@ body.dark-mode #theme-toggle i.fa-sun { display: inline; }
 
 .skills-track {
   display: inline-flex;
-  animation: scroll 25s linear infinite;
+  animation: scroll 10s linear infinite;
   gap: 40px;
   align-items: center;
 }
