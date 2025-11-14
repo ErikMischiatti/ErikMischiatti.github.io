@@ -877,3 +877,10 @@ body.dark-mode #theme-toggle i.fa-sun { display: inline; }
     height: 50px;
   }
 }
+
+/* Ridimensionamento specifico per il logo ROS */
+.skills-logos-grid img[alt="ROS"] {
+  height: 30px;  /* o 45px, da regolare a occhio */
+  transform-origin: center;
+}
+
