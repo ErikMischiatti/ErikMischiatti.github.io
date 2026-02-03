@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Behavior Tree Mission Manager</title>
+  <meta name="description" content="Mission-level orchestration for an autonomous counter-UAV interceptor using Behavior Trees in ROS. Hybrid autonomy/manual operation via mission services, simulation-based validation, and deterministic runtime supervision."/>
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="../assets/css/custom.css"/>
+  <!-- Font Awesome 6 -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <h1>Behavior Tree Mission Manager</h1>
+      <a href="../index.html" class="home-icon" aria-label="Go back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO / Overview -->
+  <section class="wrapper style3 special" id="overview">
+    <div class="inner">
+      <header class="major">
+        <h2>Project Overview</h2>
+        <p>Mission-level orchestration for an autonomous counter-UAV interceptor using Behavior Trees in ROS.</p>
+        <p><em>Status:</em> <strong>Active Development — validated in simulation</strong></p>
+      </header>
+
+      <p class="actions" style="margin-top:1rem;">
+        <a class="button primary" href="#glance" aria-label="Jump to At a Glance">At a Glance</a>
+        <a class="button primary" href="#features" aria-label="Jump to Main Features">Features</a>
+        <a class="button primary" href="#architecture" aria-label="Jump to Architecture">Architecture</a>
+        <a class="button primary" href="#services" aria-label="Jump to Services">Services</a>
+        <a class="button primary" href="#testing" aria-label="Jump to Testing">Testing</a>
+        <a class="button primary" href="#gallery" aria-label="Jump to Gallery">Gallery</a>
+        <a class="button primary" href="#status" aria-label="Jump to Status">Status</a>
+      </p>
+
+      <div class="icon-links" aria-label="External links">
+        <!--
+        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="Repository">
+          <i class="fa-brands fa-github"></i><span>Repo</span>
+        </a>
+        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="Documentation">
+          <i class="fa-regular fa-file-lines"></i><span>Docs</span>
+        </a>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- At a Glance -->
+  <section class="wrapper style2" id="glance">
+    <div class="inner">
+      <header class="major">
+        <h2>At a Glance</h2>
+      </header>
+
+      <p>
+        This project implements a <strong>mission manager</strong> for an autonomous UAV interceptor scenario,
+        where the mission is executed as a set of <strong>Behavior Trees (BTs)</strong> ticking at runtime in ROS.
+        The goal is to ensure a <strong>deterministic</strong>, <strong>testable</strong> and <strong>reactive</strong>
+        mission flow for safety-critical operations (takeoff, navigation, interception, recovery, landing).
+      </p>
+
+      <p>
+        A key design goal is <strong>hybrid operation</strong>: the same mission can run <strong>fully autonomous</strong>,
+        <strong>fully manual</strong>, or in a <strong>mixed mode</strong>, where an operator can trigger/override
+        specific phases through mission-level services without restarting the system.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Features -->
+  <section class="wrapper style2" id="features">
+    <div class="inner">
+      <header class="major"><h2>Main Features</h2></header>
+
+      <div class="grid-3">
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <h3>BT-based Orchestration</h3>
+          <p>Mission logic encoded as modular Behavior Trees for deterministic sequencing and clear runtime supervision.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+          <h3>Hybrid Control</h3>
+          <p>Autonomous, manual, or mixed execution via mission-level services (operator triggers/overrides at runtime).</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-bug-slash"></i></div>
+          <h3>Test & Debug Focus</h3>
+          <p>Designed for repeatable test campaigns with structured logging, clear phase transitions, and failure handling.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="wrapper style2" id="architecture">
+    <div class="inner">
+      <header class="major"><h2>Architecture</h2></header>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-sitemap"></i> Mission Phases</h3>
+          <p>
+            The mission is decomposed into dedicated sub-trees (e.g., takeoff, pre-intercept, interceptor supervision, ending),
+            coordinated by a top-level tree that gates and sequences the overall flow.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-gear"></i> ROS Integration</h3>
+          <p>
+            BT action/condition nodes interface with ROS topics/services and system state, enabling runtime checks
+            (readiness, mode, completion conditions) and safe transitions.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-shield-halved"></i> Failure Handling</h3>
+          <p>
+            Includes recovery behaviors and guard conditions to handle common failure modes
+            (lost target, invalid state, interrupted mission steps, landing completion criteria).
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- System Diagram / BT Diagram -->
+  <section class="wrapper style2" id="diagram">
+    <div class="inner">
+      <header class="major"><h2>System / BT Diagram</h2></header>
+      <figure style="text-align:center;">
+        <img src="../pics/bt_overview.svg"
+             alt="Behavior Tree Mission Manager overview diagram"
+             style="max-width:900px;width:100%;border-radius:8px;box-shadow:0 0 15px rgba(0,0,0,.25);">
+        <figcaption style="margin-top:.5rem;opacity:.8;">
+          High-level mission flow represented as modular Behavior Trees (example overview).
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="wrapper style2" id="services">
+    <div class="inner">
+      <header class="major"><h2>Operator Services (Hybrid Execution)</h2></header>
+
+      <p>
+        The mission manager exposes a set of mission-level services that allow an operator to trigger or override
+        key steps at runtime (useful for manual runs, debugging, and staged validation).
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-plane-departure"></i> Flight</h3>
+          <ul>
+            <li>Takeoff trigger</li>
+            <li>Landing trigger</li>
+            <li>Runtime GoTo goal injection</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-crosshairs"></i> Interceptor</h3>
+          <ul>
+            <li>Enable / disable interceptor</li>
+            <li>Recovery behaviors orchestration</li>
+            <li>Mission termination gating</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-network-wired"></i> Payload / Net</h3>
+          <ul>
+            <li>Net open / close control</li>
+            <li>Manual vs automatic gating</li>
+            <li>Safe sequencing with landing</li>
+          </ul>
+        </article>
+      </div>
+
+      <p style="margin-top:1rem;opacity:.9;">
+        <small>
+          *Service names and exact interfaces are project-specific and may differ between deployments.*
+        </small>
+      </p>
+    </div>
+  </section>
+
+  <!-- Testing -->
+  <section class="wrapper style2" id="testing">
+    <div class="inner">
+      <header class="major"><h2>Testing & Validation</h2></header>
+
+      <p>
+        The project has been validated through repeatable simulation campaigns with mission scenarios focusing on
+        correctness, safety, and robustness of the mission flow.
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-vial"></i> Test Scenarios</h3>
+          <ul>
+            <li>Deterministic takeoff → navigation → mission start</li>
+            <li>Interceptor supervision and state monitoring</li>
+            <li>Recovery after simulated loss / abort conditions</li>
+            <li>Landing completion & disarm supervision</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-chart-line"></i> Metrics</h3>
+          <ul>
+            <li>Phase completion conditions</li>
+            <li>Service responsiveness & timing</li>
+            <li>Failure mode reproducibility</li>
+            <li>Log-based post-run analysis</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-list-check"></i> Focus</h3>
+          <ul>
+            <li>System integration issues</li>
+            <li>Edge cases and race conditions</li>
+            <li>Operator interaction in hybrid mode</li>
+            <li>Deployment readiness support</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status -->
+  <section class="wrapper style2 special" id="status">
+    <div class="inner">
+      <header class="major"><h2>Status</h2></header>
+      <p><strong>Core mission flow:</strong> implemented and validated in simulation.</p>
+      <p><strong>Ongoing work:</strong> improved flexibility for manual triggering, expanded failure handling, and interface refinement.</p>
+      <div class="progress" title="Overall progress"><span style="width:75%;" aria-hidden="true"></span></div>
+      <p style="margin-top:.5rem;opacity:.85;"><small>~75% — stable baseline complete, ongoing robustness and usability improvements.</small></p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="wrapper style2 special" id="gallery">
+    <div class="inner">
+      <header class="major">
+        <h2>Gallery</h2>
+        <p>BT diagrams and runtime logs (example snapshots).</p>
+      </header>
+
+      <div class="grid-3" style="gap: 1.5rem;">
+        <figure class="image fit" style="margin:0;">
+          <img src="../pics/bt_main_tree.png" alt="Main behavior tree overview diagram" loading="lazy"
+               style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+          <figcaption style="margin-top:.5rem;opacity:.8;">Main tree overview — mission phase orchestration</figcaption>
+        </figure>
+
+        <figure class="image fit" style="margin:0;">
+          <img src="../pics/bt_interceptor_tree.png" alt="Interceptor supervision behavior tree diagram" loading="lazy"
+               style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+          <figcaption style="margin-top:.5rem;opacity:.8;">Interceptor supervision — runtime monitoring & recovery</figcaption>
+        </figure>
+
+        <figure class="image fit" style="margin:0;">
+          <img src="../pics/bt_logs.png" alt="Example mission manager logs and validation traces" loading="lazy"
+               style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
+          <figcaption style="margin-top:.5rem;opacity:.8;">Validation traces — phase transitions and service calls</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACKNOWLEDGMENT -->
+  <section class="wrapper style2 special" id="acknowledgment">
+    <div class="inner">
+      <header class="major"><h2>Acknowledgment</h2></header>
+      <p style="max-width:800px;margin:0 auto;opacity:.9;">
+        Developed as part of the EAGLE.ONE ecosystem, leveraging ROS and Behavior Tree design patterns
+        commonly used in robotics for reactive mission control and verifiable autonomy.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti</li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
