@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Behavior Tree Mission Manager</title>
-  <meta name="description" content="Mission-level orchestration for an autonomous counter-UAV interceptor using Behavior Trees in ROS. Hybrid autonomy/manual operation via mission services, simulation-based validation, and deterministic runtime supervision."/>
+  <meta name="description" content="Mission-level orchestration for the EAGLE.ONE autonomous counter-UAV interceptor using ROS 1, BehaviorTree.CPP, MRS UAV System integration, hybrid execution policies, external target localization, payload sequencing, and deterministic runtime supervision."/>
   <!-- Theme CSS -->
   <link rel="stylesheet" href="../assets/css/main.css"/>
   <link rel="stylesheet" href="../assets/css/custom.css"/>
@@ -29,14 +29,15 @@
     <div class="inner">
       <header class="major">
         <h2>Project Overview</h2>
-        <p>Mission-level orchestration for an autonomous counter-UAV interceptor using Behavior Trees in ROS.</p>
-        <p><em>Status:</em> <strong>Active Development — validated in simulation</strong></p>
+        <p>Mission-level orchestration for the EAGLE.ONE autonomous counter-UAV interceptor using ROS 1 and Behavior Trees.</p>
+        <p><em>Status:</em> <strong>Active development — simulation validated baseline, expanding autonomy and supervision logic</strong></p>
       </header>
 
       <p class="actions" style="margin-top:1rem;">
         <a class="button primary" href="#glance" aria-label="Jump to At a Glance">At a Glance</a>
         <a class="button primary" href="#features" aria-label="Jump to Main Features">Features</a>
         <a class="button primary" href="#architecture" aria-label="Jump to Architecture">Architecture</a>
+        <a class="button primary" href="#external" aria-label="Jump to External Localization">External Localization</a>
         <a class="button primary" href="#services" aria-label="Jump to Services">Services</a>
         <a class="button primary" href="#testing" aria-label="Jump to Testing">Testing</a>
         <a class="button primary" href="#gallery" aria-label="Jump to Gallery">Gallery</a>
@@ -64,16 +65,23 @@
       </header>
 
       <p>
-        This project implements a <strong>mission manager</strong> for an autonomous UAV interceptor scenario,
-        where the mission is executed as a set of <strong>Behavior Trees (BTs)</strong> ticking at runtime in ROS.
-        The goal is to ensure a <strong>deterministic</strong>, <strong>testable</strong> and <strong>reactive</strong>
-        mission flow for safety-critical operations (takeoff, navigation, interception, recovery, landing).
+        This project implements the <strong>mission manager</strong> for the EAGLE.ONE interceptor UAV scenario.
+        It acts as the high-level supervision layer between the operator, the payload subsystem, the interceptor
+        state machine, and the underlying MRS UAV flight stack. Mission logic is modeled as modular
+        <strong>Behavior Trees</strong> loaded at runtime and ticked inside a ROS 1 nodelet.
       </p>
 
       <p>
-        A key design goal is <strong>hybrid operation</strong>: the same mission can run <strong>fully autonomous</strong>,
-        <strong>fully manual</strong>, or in a <strong>mixed mode</strong>, where an operator can trigger/override
-        specific phases through mission-level services without restarting the system.
+        The system separates <strong>mission-level decision making</strong> from low-level flight control. Takeoff,
+        navigation, reference tracking, landing, and safety mechanisms are delegated to the UAV stack, while the
+        Mission Manager coordinates sequencing, operator permissions, payload handling, target-capture logic,
+        external target guidance, and mission-state reporting.
+      </p>
+
+      <p>
+        A key design objective is <strong>hybrid execution</strong>. The same mission can run in autonomous mode,
+        supervised mode, or manual mode. This allows repeatable autonomous validation while still supporting
+        operator-driven testing, staged commissioning, and runtime recovery actions.
       </p>
     </div>
   </section>
@@ -86,20 +94,38 @@
       <div class="grid-3">
         <article class="card feature-card" tabindex="0">
           <div class="feature-icon"><i class="fa-solid fa-diagram-project"></i></div>
-          <h3>BT-based Orchestration</h3>
-          <p>Mission logic encoded as modular Behavior Trees for deterministic sequencing and clear runtime supervision.</p>
+          <h3>Behavior Tree Runtime</h3>
+          <p>Mission logic is split into reusable BT subtrees for preflight, takeoff, pre-intercept, interception, post-intercept recovery, landing, and finalization.</p>
         </article>
 
         <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-hand-pointer"></i></div>
-          <h3>Hybrid Control</h3>
-          <p>Autonomous, manual, or mixed execution via mission-level services (operator triggers/overrides at runtime).</p>
+          <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+          <h3>Hybrid Execution Policy</h3>
+          <p>Autonomous, supervised, and manual modes are enforced through blackboard flags, service gates, and per-action auto parameters.</p>
         </article>
 
         <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-bug-slash"></i></div>
-          <h3>Test & Debug Focus</h3>
-          <p>Designed for repeatable test campaigns with structured logging, clear phase transitions, and failure handling.</p>
+          <div class="feature-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+          <h3>External Target Guidance</h3>
+          <p>Optional Dronetag / ground-station target localization can gate takeoff, guide pre-intercept motion, apply stand-off offsets, and support target reacquisition.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Safety & Recovery Gates</h3>
+          <p>Preflight checks, stale-reference handling, target-loss routing, pause/resume points, and post-intercept recovery paths are encoded directly in the BT flow.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-parachute-box"></i></div>
+          <h3>Payload Sequencing</h3>
+          <p>Mission-level net open, net detach, and payload state transitions are coordinated with flight phases and interceptor activation.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-chart-simple"></i></div>
+          <h3>State Visibility</h3>
+          <p>A structured MissionState publisher exposes phase, state, autonomy status, and payload context for operators, logs, and external monitoring tools.</p>
         </article>
       </div>
     </div>
@@ -112,27 +138,101 @@
 
       <div class="grid-3">
         <article class="card">
-          <h3><i class="fa-solid fa-sitemap"></i> Mission Phases</h3>
+          <h3><i class="fa-solid fa-sitemap"></i> Mission Decomposition</h3>
           <p>
-            The mission is decomposed into dedicated sub-trees (e.g., takeoff, pre-intercept, interceptor supervision, ending),
-            coordinated by a top-level tree that gates and sequences the overall flow.
+            The mission is decomposed into independent subtrees: PreflightPreparationTree, TakeoffTree,
+            PreInterceptTree, InterceptorTree, PostInterceptTree, LandTree, and FinalizeTree. ManualTree provides
+            an alternative operator-driven execution layer.
           </p>
         </article>
 
         <article class="card">
-          <h3><i class="fa-solid fa-gear"></i> ROS Integration</h3>
+          <h3><i class="fa-brands fa-hubspot"></i> ROS Nodelet Integration</h3>
           <p>
-            BT action/condition nodes interface with ROS topics/services and system state, enabling runtime checks
-            (readiness, mode, completion conditions) and safe transitions.
+            The Mission Manager runs as a ROS 1 nodelet. It owns the BT factory, global blackboard, tree loggers,
+            tick timer, ROS subscribers, service servers, service clients, and mission-state publisher.
           </p>
         </article>
 
         <article class="card">
-          <h3><i class="fa-solid fa-shield-halved"></i> Failure Handling</h3>
+          <h3><i class="fa-solid fa-gears"></i> MRS UAV Stack Delegation</h3>
           <p>
-            Includes recovery behaviors and guard conditions to handle common failure modes
-            (lost target, invalid state, interrupted mission steps, landing completion criteria).
+            Low-level UAV actions are delegated to the MRS UAV System, including takeoff, Control Manager references,
+            landing, diagnostics, tracker state monitoring, and dynamics constraint switching.
           </p>
+        </article>
+      </div>
+
+      <div class="grid-3" style="margin-top:1.5rem;">
+        <article class="card">
+          <h3><i class="fa-solid fa-clipboard-check"></i> Preflight Preparation</h3>
+          <p>
+            The preflight stage validates required data streams and configurable safety checks before takeoff. It can
+            verify system topics, speed, range-sensor height, gyro motion, control output, arming, and external target availability.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-crosshairs"></i> Interceptor Supervision</h3>
+          <p>
+            The interceptor phase monitors the interceptor state machine and only exits the autonomous/supervised flow
+            after a valid capture sequence reaches the confirmed disabled state.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-route"></i> Post-Intercept Flow</h3>
+          <p>
+            After interception, the system navigates through drop transit, mid-drop, release, and landing-position goals.
+            Constraint profiles are switched automatically for transit and safe release/landing phases.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Flow -->
+  <section class="wrapper style2" id="mission-flow">
+    <div class="inner">
+      <header class="major"><h2>Mission Flow</h2></header>
+
+      <p>
+        The autonomous/supervised pipeline follows a deterministic sequence, while still allowing global pause/resume,
+        manual-policy branching, and recovery routing when external guidance or target tracking becomes invalid.
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-list-ol"></i> Main Pipeline</h3>
+          <ul>
+            <li>PreflightPreparation</li>
+            <li>Takeoff</li>
+            <li>PreIntercept</li>
+            <li>Interceptor supervision</li>
+            <li>PostIntercept</li>
+            <li>Land</li>
+            <li>Finalize</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-user-check"></i> Supervised Mode</h3>
+          <ul>
+            <li>BT exposes the next required step</li>
+            <li>Operator confirms one action at a time</li>
+            <li>Each action blocks until completion</li>
+            <li>Useful for staged validation and safe commissioning</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-hand"></i> Manual Mode</h3>
+          <ul>
+            <li>ManualTree stays alive continuously</li>
+            <li>Operator services trigger individual actions</li>
+            <li>First active request branch is executed</li>
+            <li>MissionState remains synchronized with the system</li>
+          </ul>
         </article>
       </div>
     </div>
@@ -147,56 +247,156 @@
              alt="Behavior Tree Mission Manager overview diagram"
              style="max-width:900px;width:100%;border-radius:8px;box-shadow:0 0 15px rgba(0,0,0,.25);">
         <figcaption style="margin-top:.5rem;opacity:.8;">
-          High-level mission flow represented as modular Behavior Trees (example overview).
+          High-level mission flow represented as modular Behavior Trees.
         </figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- External Target Localization -->
+  <section class="wrapper style2" id="external">
+    <div class="inner">
+      <header class="major"><h2>External Target Localization</h2></header>
+
+      <p>
+        The Mission Manager supports an optional external target-localization mode. When enabled, an external source
+        such as a Dronetag / ground-station feed can provide the target reference before onboard LiDAR tracking takes over.
+        The reference is converted into the UAV local metric frame and consumed by the BT through the global blackboard.
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-tower-broadcast"></i> Input & Conversion</h3>
+          <ul>
+            <li>Subscribes to external target references</li>
+            <li>Converts global coordinates into local metric references</li>
+            <li>Stores fresh target data on the blackboard</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-location-arrow"></i> Guidance Behavior</h3>
+          <ul>
+            <li>Can block takeoff until a fresh external target is available</li>
+            <li>Publishes updated references during pre-intercept guidance</li>
+            <li>Hands over to the interceptor when onboard detection is acquired</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-circle-exclamation"></i> Safety Layer</h3>
+          <ul>
+            <li>Configurable XY stand-off distance</li>
+            <li>Configurable vertical offset</li>
+            <li>Distance-hold hover when too close to the target</li>
+            <li>Timeout routing when the reference becomes stale</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission State -->
+  <section class="wrapper style2" id="mission-state">
+    <div class="inner">
+      <header class="major"><h2>Mission State System</h2></header>
+
+      <p>
+        Mission progress is exposed through a structured MissionState message. The BTs update mission phase, detailed
+        state, autonomy flag, and payload-related context, allowing external tools and operators to observe what the
+        mission is doing without inspecting internal BT state directly.
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-layer-group"></i> Phase-Level Reporting</h3>
+          <p>States are grouped by mission phase, such as preflight, takeoff, pre-intercept, interceptor, post-intercept, landing, finalize, and manual execution.</p>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-eye"></i> Runtime Observability</h3>
+          <p>MissionState is published continuously and is suitable for operator dashboards, log analysis, debugging, and integration with external monitoring layers.</p>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-box-open"></i> Payload Context</h3>
+          <p>The Mission Manager reports payload-relevant mission context, while payload-specific hardware status remains owned by the payload manager subsystem.</p>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- Services -->
   <section class="wrapper style2" id="services">
     <div class="inner">
-      <header class="major"><h2>Operator Services (Hybrid Execution)</h2></header>
+      <header class="major"><h2>Operator Services & Runtime Control</h2></header>
 
       <p>
-        The mission manager exposes a set of mission-level services that allow an operator to trigger or override
-        key steps at runtime (useful for manual runs, debugging, and staged validation).
+        The Mission Manager exposes mission-level ROS services under the UAV namespace. These services allow an operator
+        to trigger actions in manual mode, confirm actions in supervised mode, pause or resume the mission, inject navigation
+        references, and release external guidance when required.
       </p>
 
       <div class="grid-3">
         <article class="card">
           <h3><i class="fa-solid fa-plane-departure"></i> Flight</h3>
           <ul>
-            <li>Takeoff trigger</li>
-            <li>Landing trigger</li>
+            <li>Takeoff request</li>
+            <li>Landing request</li>
             <li>Runtime GoTo goal injection</li>
+            <li>Runtime GoTo reference injection</li>
           </ul>
         </article>
 
         <article class="card">
           <h3><i class="fa-solid fa-crosshairs"></i> Interceptor</h3>
           <ul>
-            <li>Enable / disable interceptor</li>
-            <li>Recovery behaviors orchestration</li>
-            <li>Mission termination gating</li>
+            <li>Enable interception</li>
+            <li>Disable interception</li>
+            <li>Monitor capture confirmation</li>
+            <li>Handle target-loss recovery logic</li>
           </ul>
         </article>
 
         <article class="card">
           <h3><i class="fa-solid fa-network-wired"></i> Payload / Net</h3>
           <ul>
-            <li>Net open / close control</li>
-            <li>Manual vs automatic gating</li>
-            <li>Safe sequencing with landing</li>
+            <li>Open net</li>
+            <li>Detach net / release payload</li>
+            <li>Attach / close fallback services for manual handling</li>
+            <li>Safe sequencing with interception and landing</li>
           </ul>
         </article>
       </div>
 
-      <p style="margin-top:1rem;opacity:.9;">
-        <small>
-          *Service names and exact interfaces are project-specific and may differ between deployments.*
-        </small>
-      </p>
+      <div class="grid-3" style="margin-top:1.5rem;">
+        <article class="card">
+          <h3><i class="fa-solid fa-pause"></i> Mission Supervision</h3>
+          <ul>
+            <li>Pause mission</li>
+            <li>Resume mission</li>
+            <li>Confirm next supervised step</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-satellite"></i> External Guidance</h3>
+          <ul>
+            <li>Accept external target references</li>
+            <li>Release external guidance when needed</li>
+            <li>Fallback on timeout or lost reference</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3><i class="fa-solid fa-lock"></i> Service Gating</h3>
+          <ul>
+            <li>Blocks invalid actions before takeoff</li>
+            <li>Prevents duplicate pending requests</li>
+            <li>Disallows manual action services in full-auto mode</li>
+          </ul>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -206,38 +406,42 @@
       <header class="major"><h2>Testing & Validation</h2></header>
 
       <p>
-        The project has been validated through repeatable simulation campaigns with mission scenarios focusing on
-        correctness, safety, and robustness of the mission flow.
+        The project has been validated through repeatable simulation runs focused on mission sequencing, service gating,
+        target acquisition/loss behavior, external guidance, and post-intercept recovery. The architecture is designed to
+        make individual BT phases observable and independently debuggable.
       </p>
 
       <div class="grid-3">
         <article class="card">
           <h3><i class="fa-solid fa-vial"></i> Test Scenarios</h3>
           <ul>
-            <li>Deterministic takeoff → navigation → mission start</li>
-            <li>Interceptor supervision and state monitoring</li>
-            <li>Recovery after simulated loss / abort conditions</li>
-            <li>Landing completion & disarm supervision</li>
+            <li>Preflight readiness gating before takeoff</li>
+            <li>Autonomous and supervised takeoff sequencing</li>
+            <li>Static pre-intercept GoTo flow</li>
+            <li>External target-guided pre-intercept flow</li>
+            <li>Interceptor state monitoring and capture confirmation</li>
           </ul>
         </article>
 
         <article class="card">
-          <h3><i class="fa-solid fa-chart-line"></i> Metrics</h3>
+          <h3><i class="fa-solid fa-chart-line"></i> Metrics & Signals</h3>
           <ul>
-            <li>Phase completion conditions</li>
-            <li>Service responsiveness & timing</li>
-            <li>Failure mode reproducibility</li>
-            <li>Log-based post-run analysis</li>
+            <li>BT phase completion conditions</li>
+            <li>MissionState transitions</li>
+            <li>Control Manager active tracker state</li>
+            <li>Service responsiveness and pending-request flags</li>
+            <li>External-reference freshness and timeout behavior</li>
           </ul>
         </article>
 
         <article class="card">
-          <h3><i class="fa-solid fa-list-check"></i> Focus</h3>
+          <h3><i class="fa-solid fa-list-check"></i> Engineering Focus</h3>
           <ul>
-            <li>System integration issues</li>
-            <li>Edge cases and race conditions</li>
-            <li>Operator interaction in hybrid mode</li>
-            <li>Deployment readiness support</li>
+            <li>Race conditions between BT ticks and service callbacks</li>
+            <li>Manual/supervised/autonomous policy consistency</li>
+            <li>Safe payload sequencing</li>
+            <li>Recovery from target loss or stale external references</li>
+            <li>Simulation-to-flight readiness support</li>
           </ul>
         </article>
       </div>
@@ -248,10 +452,11 @@
   <section class="wrapper style2 special" id="status">
     <div class="inner">
       <header class="major"><h2>Status</h2></header>
-      <p><strong>Core mission flow:</strong> implemented and validated in simulation.</p>
-      <p><strong>Ongoing work:</strong> improved flexibility for manual triggering, expanded failure handling, and interface refinement.</p>
-      <div class="progress" title="Overall progress"><span style="width:75%;" aria-hidden="true"></span></div>
-      <p style="margin-top:.5rem;opacity:.85;"><small>~75% — stable baseline complete, ongoing robustness and usability improvements.</small></p>
+      <p><strong>Core mission flow:</strong> implemented with modular BT phases and validated in simulation.</p>
+      <p><strong>Recent progress:</strong> external target localization support, supervised confirmation flow, manual execution layer, structured MissionState reporting, post-intercept constraint switching, and interceptor capture-confirmation cleanup.</p>
+      <p><strong>Ongoing work:</strong> repository cleanup, removal of legacy parameters, robustness testing, real-flight integration support, and refinement of deployment-specific interfaces.</p>
+      <div class="progress" title="Overall progress"><span style="width:85%;" aria-hidden="true"></span></div>
+      <p style="margin-top:.5rem;opacity:.85;"><small>~85% — stable simulation baseline with active integration and robustness work.</small></p>
     </div>
   </section>
 
@@ -260,26 +465,26 @@
     <div class="inner">
       <header class="major">
         <h2>Gallery</h2>
-        <p>BT diagrams and runtime logs (example snapshots).</p>
+        <p>BT diagrams and runtime logs from simulation and validation sessions.</p>
       </header>
 
       <div class="grid-3" style="gap: 1.5rem;">
         <figure class="image fit" style="margin:0;">
           <img src="../pics/bt_main_tree.png" alt="Main behavior tree overview diagram" loading="lazy"
                style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
-          <figcaption style="margin-top:.5rem;opacity:.8;">Main tree overview — mission phase orchestration</figcaption>
+          <figcaption style="margin-top:.5rem;opacity:.8;">MainTree — mission policy, pause/resume, and phase orchestration</figcaption>
         </figure>
 
         <figure class="image fit" style="margin:0;">
           <img src="../pics/bt_interceptor_tree.png" alt="Interceptor supervision behavior tree diagram" loading="lazy"
                style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
-          <figcaption style="margin-top:.5rem;opacity:.8;">Interceptor supervision — runtime monitoring & recovery</figcaption>
+          <figcaption style="margin-top:.5rem;opacity:.8;">InterceptorTree — state monitoring, target loss, and capture confirmation</figcaption>
         </figure>
 
         <figure class="image fit" style="margin:0;">
           <img src="../pics/bt_logs.png" alt="Example mission manager logs and validation traces" loading="lazy"
                style="border-radius:10px;box-shadow:0 0 12px rgba(0,0,0,0.25);">
-          <figcaption style="margin-top:.5rem;opacity:.8;">Validation traces — phase transitions and service calls</figcaption>
+          <figcaption style="margin-top:.5rem;opacity:.8;">Validation traces — MissionState transitions, service calls, and BT logs</figcaption>
         </figure>
       </div>
     </div>
@@ -290,8 +495,8 @@
     <div class="inner">
       <header class="major"><h2>Acknowledgment</h2></header>
       <p style="max-width:800px;margin:0 auto;opacity:.9;">
-        Developed as part of the EAGLE.ONE ecosystem, leveraging ROS and Behavior Tree design patterns
-        commonly used in robotics for reactive mission control and verifiable autonomy.
+        Developed as part of the EAGLE.ONE ecosystem, leveraging ROS 1, the MRS UAV System, BehaviorTree.CPP,
+        and modular robotics supervision patterns for reactive mission control, simulation validation, and verifiable autonomy.
       </p>
     </div>
   </section>
