@@ -3,63 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>H.A.R.O. — Home Assistant & Robotic Operator</title>
-  <meta name="description" content="H.A.R.O. is an interactive desktop companion robot that rotates, senses the environment, and reacts with lights, sounds, and micro-animations. Modular architecture in C/C++ with optional voice, vision, and web UI."/>
-  <!-- CSS base del tema + custom -->
+  <title>M.I.R.A. — Modular Interactive Robotic Agent</title>
+  <meta name="description" content="M.I.R.A. is a modular embodied AI interface built in Python and PySide6. It combines an expressive animated face, event-driven interaction logic, intent recognition, session memory, local desktop actions, and a roadmap toward a future physical robotic assistant."/>
+
+  <!-- Theme CSS -->
   <link rel="stylesheet" href="../assets/css/main.css"/>
   <link rel="stylesheet" href="../assets/css/custom.css"/>
+
   <!-- Font Awesome 6 -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 
-  
-<!-- Header -->
-<header id="header">
-  <div class="inner">
-    <h1>H.A.R.O.</h1>
-    <a href="../index.html" class="home-icon" aria-label="Go back to Home">
-      <i class="fa-solid fa-house"></i>
-    </a>
-  </div>
-</header>
-
-
+  <!-- Header -->
+  <header id="header">
+    <div class="inner">
+      <h1>M.I.R.A.</h1>
+      <a href="../index.html" class="home-icon" aria-label="Go back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </header>
 
   <!-- HERO -->
   <section class="wrapper style3 special" id="overview">
     <div class="inner">
       <header class="major">
         <h2>Project Overview</h2>
-        <p>H.A.R.O. — Home Assistant &amp; Robotic Operator</p>
-        <p>Expressive desktop companion for interaction and environmental monitoring.</p>
-        <p><em>Status:</em> <strong>Ongoing</strong></p>
+        <p>M.I.R.A. — Modular Interactive Robotic Agent</p>
+        <p>Embodied desktop AI interface with expressive behavior, modular cognition, and local action execution.</p>
+        <p><em>Status:</em> <strong>Active software prototype</strong></p>
       </header>
 
+      <p>
+        M.I.R.A. is a software-first robotic assistant prototype designed around the idea that an intelligent interface should not only answer, but also appear attentive, reactive, and embodied. The current implementation focuses on a desktop companion interface: a PySide6 application with animated eyes, conversational input, session memory, intent recognition, local actions, and a debug panel for tuning expressive behavior in real time.
+      </p>
+
+      <p>
+        The long-term objective is to use this software core as the interaction layer for a future physical assistant. Instead of starting from motors and sensors, the project first develops the agent architecture: perception of user input, cognition, action selection, UI feedback, expressive state transitions, and a modular path toward voice, vision, and robotics integration.
+      </p>
+
       <p class="actions" style="margin-top:1rem;">
-        <a class="button primary" href="#diagram" aria-label="Skip to block diagram">Diagram</a>
+        <a class="button primary" href="#architecture" aria-label="Skip to architecture section">Architecture</a>
+        <a class="button primary" href="#features" aria-label="Skip to features section">Features</a>
         <a class="button primary" href="#roadmap" aria-label="Skip to roadmap section">Roadmap</a>
         <a class="button primary" href="#status" aria-label="Skip to status section">Status</a>
       </p>
-      <div class="icon-links">
-        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="GitHub repo">
-          <i class="fa-brands fa-github"></i><span>GitHub</span>
-        </a>
 
-        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="Notion page">
-          <!-- Notion mark (SVG) -->
-          <svg class="notion-mark" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M18 20c3-1 8-2 12-1l45 6c4 1 6 3 6 6v45c0 4-2 6-6 6l-45 6c-4 1-9 0-12-1-3-1-5-3-5-6V26c0-3 2-5 5-6Z" fill="none" stroke="currentColor" stroke-width="6" />
-            <path d="M35 72V34h9l21 27V34h9v38h-9L44 44v28h-9Z" fill="currentColor"/>
-          </svg>
-          <span>Notion</span>
-        </a>
-        </div>
     </div>
   </section>
 
-  <!-- MAIN FEATURES (cards) -->
+  <!-- NAME / POSITIONING -->
+  <section class="wrapper style2" id="positioning">
+    <div class="inner">
+      <header class="major">
+        <h2>Why M.I.R.A.</h2>
+      </header>
+
+      <p>
+        The previous naming separated the cognitive core and the physical robot into two identities. M.I.R.A. simplifies the concept into a single project name that can scale from the current desktop prototype to a future embodied robotic platform.
+      </p>
+
+      <div class="grid-3">
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Modular</h3>
+          <p>Independent components for cognition, actions, UI, state management, and expression.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Interactive</h3>
+          <p>Text-based interaction today, with a clear path toward voice, camera input, and multimodal arbitration.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Robotic Agent</h3>
+          <p>A software agent designed to become the behavioral layer of a future physical assistant.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN FEATURES -->
   <section class="wrapper style2" id="features">
     <div class="inner">
       <header class="major">
@@ -68,27 +96,39 @@
 
       <div class="grid-3">
         <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Motion</h3>
-          <p>360° rotation to explore and communicate with simple gestures.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-eye" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Perception</h3>
-          <p>Distance (ToF), IMU, temperature/ humidity/ pressure, microphone.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
           <div class="feature-icon"><i class="fa-regular fa-face-smile" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Expression</h3>
-          <p>Eyes on LED ring or circular display, ambient lights, and sounds.</p>
+          <h3 class="feature-title">Expressive Face</h3>
+          <p>Animated eyes with blinking, idle motion, emotional states, eyelid deformation, asymmetry, and smooth transitions.</p>
         </article>
 
         <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Modes</h3>
-          <p>Companion · Sentry · Showcase demos.</p>
+          <div class="feature-icon"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Cognitive Core</h3>
+          <p>Intent inference, response generation, session memory, action mapping, and event-driven state transitions.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Local Actions</h3>
+          <p>Action registry and executor for system-level tasks such as opening URLs, launching apps, showing notifications, and retrieving system information.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-plug-circle-bolt" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Rule / LLM Intent Engine</h3>
+          <p>Rule-based interpretation for deterministic behavior, plus an optional local LLM-backed parser through Ollama.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Live Debug Panel</h3>
+          <p>Runtime tuning of facial profiles, blink timing, idle animation, speaking pulse, thinking drift, and asymmetry controls.</p>
+        </article>
+
+        <article class="card feature-card" tabindex="0">
+          <div class="feature-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Event-Driven Interaction</h3>
+          <p>Centralized event bus connecting user input, processing states, inferred intents, action results, and visual feedback.</p>
         </article>
       </div>
     </div>
@@ -100,50 +140,174 @@
       <header class="major">
         <h2>At a Glance</h2>
       </header>
-      <p><strong>H.A.R.O.</strong> is an <strong>interactive desktop companion</strong> that blends interaction, monitoring, and micro-expressivity. It rotates to observe the environment, senses distance and room conditions, and responds with eyes/LEDs, sounds, and small gestures.</p>
-      <p>The architecture is <strong>modular</strong>: a C/C++ microcontroller handles motors, sensors, and lights; an optional “smart” layer adds <strong>voice, vision, and a web dashboard</strong>.</p>
+
+      <p>
+        M.I.R.A. is an embodied AI interface prototype that explores how a desktop assistant can feel more present through motion, expression, and stateful interaction. The system is built around a face widget, a chat panel, a debug panel, and a modular backend that coordinates cognition and behavior.
+      </p>
+
+      <p>
+        The assistant receives text input, stores the interaction in session memory, infers an intent, optionally builds and executes an action request, generates a response, and maps the result to a visible face state. This creates a tight loop between cognition and embodiment: listening, thinking, speaking, confusion, happiness, tiredness, and other expressive states are reflected visually instead of remaining hidden in the backend.
+      </p>
     </div>
   </section>
 
-  <!-- BLOCK DIAGRAM (SVG) -->
-  <section class="wrapper style2" id="diagram">
+  <!-- ARCHITECTURE DIAGRAM -->
+  <section class="wrapper style2" id="architecture">
     <div class="inner">
       <header class="major">
-        <h2>How It Works (Block Diagram)</h2>
+        <h2>System Architecture</h2>
       </header>
 
       <div class="block-diagram">
-        <svg viewBox="0 0 920 260" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="bd-title bd-desc">
-          <title id="bd-title">System block diagram</title>
-          <desc id="bd-desc">Perception feeds the MCU, which drives expression. An optional SBC layer provides voice, vision, and web UI.</desc>
+        <svg viewBox="0 0 1040 410" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="arch-title arch-desc">
+          <title id="arch-title">M.I.R.A. software architecture</title>
+          <desc id="arch-desc">User input is processed by the interaction layer, cognition layer, action system, and expressive face controller through an event-driven architecture.</desc>
 
-          <!-- Blocks -->
-          <rect x="30" y="60" width="240" height="140" rx="10" class="bd-rect"/>
-          <text x="150" y="110" class="bd-title">Perception</text>
-          <text x="150" y="135" class="bd-text"> Audio · Mic · Temper. · Humidity </text>
+          <!-- Row 1 -->
+          <rect x="40" y="55" width="210" height="105" rx="10" class="bd-rect"/>
+          <text x="145" y="95" class="bd-title">User Input</text>
+          <text x="145" y="122" class="bd-text">Chat · focus · text events</text>
 
-          <rect x="340" y="60" width="240" height="140" rx="10" class="bd-rect"/>
-          <text x="460" y="110" class="bd-title">MCU (C/C++)</text>
-          <text x="460" y="135" class="bd-text">Motors · LED/Display</text>
+          <rect x="315" y="55" width="210" height="105" rx="10" class="bd-rect"/>
+          <text x="420" y="95" class="bd-title">Event Bus</text>
+          <text x="420" y="122" class="bd-text">Signals · state changes</text>
 
-          <rect x="650" y="60" width="240" height="140" rx="10" class="bd-rect"/>
-          <text x="770" y="110" class="bd-title">Expression</text>
-          <text x="770" y="135" class="bd-text">Lights · Sounds · Rotation</text>
+          <rect x="590" y="55" width="210" height="105" rx="10" class="bd-rect"/>
+          <text x="695" y="95" class="bd-title">Brain</text>
+          <text x="695" y="122" class="bd-text">Intent · memory · response</text>
 
-          <!-- Arrows + labels -->
-          <line x1="270" y1="130" x2="340" y2="130" class="bd-arrow"/>
-          <polygon points="340,130 330,125 330,135" class="bd-arrow-head"/>
-          <text x="305" y="120" class="bd-arrow-label">sensor data</text>
+          <rect x="865" y="55" width="135" height="105" rx="10" class="bd-rect"/>
+          <text x="932" y="95" class="bd-title">Actions</text>
+          <text x="932" y="122" class="bd-text">Apps · URLs · OS</text>
 
-          <line x1="580" y1="130" x2="650" y2="130" class="bd-arrow"/>
-          <polygon points="650,130 640,125 640,135" class="bd-arrow-head"/>
-          <text x="615" y="120" class="bd-arrow-label">control</text>
+          <!-- Row 2 -->
+          <rect x="315" y="235" width="210" height="105" rx="10" class="bd-rect--secondary"/>
+          <text x="420" y="275" class="bd-title">State Manager</text>
+          <text x="420" y="302" class="bd-text">Idle · listening · thinking</text>
 
-          <!-- Optional layer -->
-          <rect x="340" y="210" width="240" height="40" rx="6" class="bd-rect--secondary"/>
-          <text x="460" y="235" class="bd-text">C++ · Python · Vision · ...</text>
-          <line x1="460" y1="210" x2="460" y2="200" class="bd-arrow--dashed"/>
+          <rect x="590" y="235" width="210" height="105" rx="10" class="bd-rect--secondary"/>
+          <text x="695" y="275" class="bd-title">Embodied Behavior</text>
+          <text x="695" y="302" class="bd-text">Decay · micro-reactions</text>
+
+          <rect x="865" y="235" width="135" height="105" rx="10" class="bd-rect--secondary"/>
+          <text x="932" y="275" class="bd-title">Face UI</text>
+          <text x="932" y="302" class="bd-text">Eyes · motion · tuning</text>
+
+          <!-- Arrows -->
+          <line x1="250" y1="108" x2="315" y2="108" class="bd-arrow"/>
+          <polygon points="315,108 305,103 305,113" class="bd-arrow-head"/>
+          <text x="282" y="96" class="bd-arrow-label">events</text>
+
+          <line x1="525" y1="108" x2="590" y2="108" class="bd-arrow"/>
+          <polygon points="590,108 580,103 580,113" class="bd-arrow-head"/>
+          <text x="558" y="96" class="bd-arrow-label">input</text>
+
+          <line x1="800" y1="108" x2="865" y2="108" class="bd-arrow"/>
+          <polygon points="865,108 855,103 855,113" class="bd-arrow-head"/>
+          <text x="832" y="96" class="bd-arrow-label">request</text>
+
+          <line x1="420" y1="160" x2="420" y2="235" class="bd-arrow--dashed"/>
+          <polygon points="420,235 415,225 425,225" class="bd-arrow-head"/>
+
+          <line x1="525" y1="288" x2="590" y2="288" class="bd-arrow"/>
+          <polygon points="590,288 580,283 580,293" class="bd-arrow-head"/>
+
+          <line x1="800" y1="288" x2="865" y2="288" class="bd-arrow"/>
+          <polygon points="865,288 855,283 855,293" class="bd-arrow-head"/>
+
+          <line x1="695" y1="160" x2="695" y2="235" class="bd-arrow--dashed"/>
+          <polygon points="695,235 690,225 700,225" class="bd-arrow-head"/>
         </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPLEMENTATION DETAILS -->
+  <section class="wrapper style4" id="implementation">
+    <div class="inner">
+      <header class="major">
+        <h2>Implementation Highlights</h2>
+      </header>
+
+      <div class="grid-3">
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-window-maximize" aria-hidden="true"></i> PySide6 Desktop App</h3>
+          <p>Main window layout with a large expressive face on the left and a chat/debug control panel on the right.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-route" aria-hidden="true"></i> Interaction Pipeline</h3>
+          <p>User input triggers listening, processing, intent inference, action execution, response generation, and visual state updates.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-memory" aria-hidden="true"></i> Session Memory</h3>
+          <p>Recent user and assistant messages are stored in memory, together with the latest inferred intent and contextual metadata.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-gears" aria-hidden="true"></i> Action System</h3>
+          <p>Actions are registered through a central registry and executed through a dedicated executor with success/failure events.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-eye" aria-hidden="true"></i> Expressive Controller</h3>
+          <p>Each face state maps to an expression profile with size, offsets, corner radius, eyelid deformation, blink timing, and animation flags.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-server" aria-hidden="true"></i> Local LLM Path</h3>
+          <p>Optional Ollama integration converts natural language into structured intents and action requests while preserving the same backend contract.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGIES -->
+  <section class="wrapper style4 special" id="tech">
+    <div class="inner">
+      <header class="major">
+        <h2>Technologies</h2>
+      </header>
+
+      <div class="tags" role="list" aria-label="Technologies used in the project">
+        <span class="tag" role="listitem">Python</span>
+        <span class="tag" role="listitem">PySide6 / Qt</span>
+        <span class="tag" role="listitem">Event-driven architecture</span>
+        <span class="tag" role="listitem">Rule-based intent engine</span>
+        <span class="tag" role="listitem">Local LLM / Ollama</span>
+        <span class="tag" role="listitem">Action registry</span>
+        <span class="tag" role="listitem">Desktop automation</span>
+        <span class="tag" role="listitem">Session memory</span>
+        <span class="tag" role="listitem">Procedural animation</span>
+        <span class="tag" role="listitem">Human-machine interaction</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="wrapper style2" id="use-cases">
+    <div class="inner">
+      <header class="major">
+        <h2>Use Cases & Demos</h2>
+        <p>Current and planned demonstrations for the embodied assistant prototype.</p>
+      </header>
+
+      <div class="grid-3">
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-regular fa-message" aria-hidden="true"></i> Conversational Companion</h3>
+          <p>Text interaction with visual feedback: listening while the user types, thinking during processing, and speaking when responding.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-computer" aria-hidden="true"></i> Local Desktop Assistant</h3>
+          <p>Open applications, navigate to websites, show notifications, and retrieve basic system information from natural language commands.</p>
+        </article>
+
+        <article class="card demo-card" tabindex="0">
+          <h3 class="demo-title"><i class="fa-solid fa-face-grin-stars" aria-hidden="true"></i> Expressive UI Sandbox</h3>
+          <p>Live tuning of expression profiles for designing eye behavior, emotional states, and micro-animations.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -159,97 +323,47 @@
         <div class="tl-item">
           <div class="tl-dot is-current" aria-hidden="true"></div>
           <div class="tl-content">
-            <h3>Concept / Definition</h3>
-            <p>Idea shaping, architecture analysis, component selection, and milestones.</p>
-            <div class="tl-meta">Target: Q3 2025</div>
+            <h3>Software Core Prototype</h3>
+            <p>PySide6 UI, animated face, chat panel, debug panel, event bus, state manager, brain, session memory, and rule-based intent engine.</p>
+            <div class="tl-meta">Current</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot is-current" aria-hidden="true"></div>
+          <div class="tl-content">
+            <h3>Action Layer</h3>
+            <p>Registry/executor pattern for local actions such as time/date, memory introspection, URL opening, app launching, notifications, and system info.</p>
+            <div class="tl-meta">Current</div>
           </div>
         </div>
 
         <div class="tl-item">
           <div class="tl-dot" aria-hidden="true"></div>
           <div class="tl-content">
-            <h3>MVP</h3>
-            <p>Base rotation + sensor readings + 3 LED emotions.</p>
-            <div class="tl-meta">Target: Q4 2025</div>
+            <h3>Local LLM Integration</h3>
+            <p>Use a local model through Ollama to parse natural language into structured intents and actions while keeping rule-based fallback behavior.</p>
+            <div class="tl-meta">In progress</div>
           </div>
         </div>
 
         <div class="tl-item">
           <div class="tl-dot" aria-hidden="true"></div>
           <div class="tl-content">
-            <h3>Interactive</h3>
-            <p>Presence/simple gestures + sounds/feedback.</p>
-            <div class="tl-meta">Target: Q1 2026</div>
+            <h3>Voice & Perception</h3>
+            <p>Add microphone input, speech-to-text, wake interaction, webcam-based presence detection, and multimodal arbitration.</p>
+            <div class="tl-meta">Next</div>
           </div>
         </div>
 
         <div class="tl-item">
           <div class="tl-dot" aria-hidden="true"></div>
           <div class="tl-content">
-            <h3>Advanced</h3>
-            <p>Voice recognition, optional camera, web dashboard, behavior trees.</p>
-            <div class="tl-meta">Target: Q2–Q3 2026</div>
+            <h3>Physical Embodiment</h3>
+            <p>Extend the software core into a physical robotic assistant with sensors, lights, audio, mechanical expression, and low-level hardware control.</p>
+            <div class="tl-meta">Future</div>
           </div>
         </div>
-
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-content">
-            <h3>Demo</h3>
-            <p>Choreographed scenes, photos/videos, and documentation.</p>
-            <div class="tl-meta">Target: Q4 2026</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECHNOLOGIES -->
-  <section class="wrapper style4 special" id="tech">
-    <div class="inner">
-      <header class="major">
-        <h2>Planned Technologies</h2>
-      </header>
-
-      <div class="tags" role="list" aria-label="Planned technologies">
-        <span class="tag" role="listitem">C/C++</span>
-        <span class="tag" role="listitem">Python</span>
-        <span class="tag" role="listitem">STM32</span>
-        <span class="tag" role="listitem">LED/Display</span>
-        <!-- <span class="tag" role="listitem">ToF · IMU · T/H</span> -->
-        <span class="tag" role="listitem">Audio</span>
-        <span class="tag" role="listitem">Camera</span>
-        <span class="tag" role="listitem">3D printing</span>
-        <span class="tag" role="listitem">Fusion360</span>
-        <!-- <span class="tag" role="listitem">ROS</span> -->
-        <!-- <span class="tag" role="listitem">Web UI</span> -->
-      </div>
-    </div>
-  </section>
-
-  <!-- USE CASES & DEMOS (cards) -->
-  <section class="wrapper style2" id="use-cases">
-    <div class="inner">
-      <header class="major">
-        <h2>Use Cases & Demos</h2>
-        <p>Short GIFs/images will be added for Companion, Sentry, and Choreographed Demos.</p>
-      </header>
-
-      <div class="grid-3">
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-regular fa-face-smile" aria-hidden="true"></i> Companion</h3>
-          <p>Reactions and emotions via eyes/LEDs. <em>(Preview coming soon)</em></p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Sentry</h3>
-          <p>Periodic scan and change detection. <em>(Preview coming soon)</em></p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-music" aria-hidden="true"></i> Demo</h3>
-          <p>Choreographies of lights/sounds/motion. <em>(Preview coming soon)</em></p>
-        </article>
       </div>
     </div>
   </section>
@@ -258,24 +372,19 @@
   <section class="wrapper style3 special" id="status">
     <div class="inner">
       <header class="major">
-        <h2>Status &amp; Scalability</h2>
+        <h2>Status &amp; Scope</h2>
       </header>
-      <div class="progress" title="MVP progress" aria-label="MVP progress">
-        <span style="width: 1%;" aria-hidden="true"></span>
-      </div>
-      <p style="margin-top:.5rem; opacity:.85;"><small>~1% complete (starting phase)</small></p>
 
+      <div class="progress" title="Software prototype progress" aria-label="Software prototype progress">
+        <span style="width: 35%;" aria-hidden="true"></span>
+      </div>
+      <p style="margin-top:.5rem; opacity:.85;"><small>~35% software prototype complete</small></p>
+
+      <p>
+        The current milestone is not a hardware MVP yet. The project is deliberately focused on the interaction and cognition layer first: a working desktop prototype that can express state, interpret basic requests, execute local actions, and provide a foundation for more advanced multimodal and robotic behavior.
+      </p>
     </div>
   </section>
-
-  <!-- (opzionale) Footer minimale del progetto
-  <footer id="footer">
-    <ul class="icons">
-      <li><a href="mailto:erik.mischiatti@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-      <li><a href="https://www.linkedin.com/in/erikmischiatti/" class="icon brands fa-linkedin" rel="noopener"><span class="label">LinkedIn</span></a></li>
-    </ul>
-  </footer>
-  -->
 
   <!-- Scripts base tema -->
   <script src="../assets/js/jquery.min.js"></script>
