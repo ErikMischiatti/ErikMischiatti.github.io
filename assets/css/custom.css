@@ -233,12 +233,14 @@ a:hover{ border-bottom-color: transparent; }
 #header.alt{ background: transparent; } /* resta trasparente sulla hero */
 #header.alt h1 a{ color: var(--ink); }
 
-/* Banner: rendo i testi dark e attenuo l’overlay scuro */
+/* Keep the Spectral hero readable on its dark image/overlay. */
 #banner h2,
 #banner p,
-#banner .more{ color: var(--ink); }
-#banner h2:before, #banner h2:after{ background: var(--ink); }
-body.is-preload #banner:after{ opacity: 0; } /* evita l'effetto "scurente" */
+#banner .more{
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 1px 3px rgba(0,0,0,.45);
+}
+#banner h2:before, #banner h2:after{ background: rgba(255,255,255,.65); }
 
 /* Wrapper: mappiamo gli sfondi del tema a superfici chiare */
 .wrapper.style1{
@@ -275,14 +277,12 @@ blockquote{ border-left-color: var(--line); }
 
 /* Form (bordi e focus neutri) */
 input[type="text"],
-input[type="password"],
 input[type="email"],
 select, textarea{
   background-color: var(--sand-100);
   color: var(--ink);
 }
 input[type="text"]:focus,
-input[type="password"]:focus,
 input[type="email"]:focus,
 select:focus, textarea:focus{
   box-shadow: 0 0 0 2px var(--accent);
@@ -884,3 +884,107 @@ body.dark-mode #theme-toggle i.fa-sun { display: inline; }
   transform-origin: center;
 }
 
+/* === Portfolio project polish === */
+.tech-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto;
+  max-width:980px;
+}
+.tech-tag{
+  display:inline-flex;
+  align-items:center;
+  min-height:2.15rem;
+  padding:.38rem .75rem;
+  border:1px solid var(--line, #dcd6cb);
+  border-radius:999px;
+  background:var(--sand-50, #f4f1ec);
+  color:var(--ink, #2e2e2e);
+  font-size:.9rem;
+  font-weight:600;
+  line-height:1.25;
+}
+.project-section-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:18px;
+}
+.metric-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+  gap:18px;
+  margin:0 0 1.5rem;
+}
+.metric-card{
+  padding:20px;
+  border:1px solid var(--line, #dcd6cb);
+  border-radius:8px;
+  background:var(--white, #fff);
+  text-align:left;
+  box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+.metric-card h3{
+  margin:0 0 .85rem;
+  font-size:1rem;
+  text-transform:none;
+}
+.metric-card p{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  margin:.45rem 0;
+  border-top:1px solid var(--line, #dcd6cb);
+  padding-top:.45rem;
+}
+.metric-card p:first-of-type{ border-top:0; padding-top:0; }
+.metric-card strong{ font-size:1.25rem; white-space:nowrap; }
+.metric-card span{ color:var(--ink-2, #505050); font-size:.9rem; text-align:right; }
+.project-note{
+  max-width:980px;
+  margin:1.25rem auto 0;
+  padding:1rem 1.1rem;
+  border-left:4px solid var(--accent, #8a8275);
+  border-radius:8px;
+  background:var(--sand-50, #f4f1ec);
+  color:var(--ink, #2e2e2e);
+}
+.project-hero-media{
+  max-width:980px;
+  margin:1.75rem auto 0;
+  text-align:center;
+}
+.project-hero-media img{
+  display:block;
+  width:100%;
+  max-height:620px;
+  object-fit:contain;
+  border-radius:8px;
+  border:1px solid var(--line, #dcd6cb);
+  background:var(--sand-50, #f4f1ec);
+}
+.media-caption{
+  margin-top:.55rem;
+  color:var(--ink-2, #505050);
+  font-size:.92rem;
+  line-height:1.45;
+}
+.media-card .media-caption{ padding:10px 14px; margin-top:0; }
+.bt-diagram-grid{
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+}
+.bt-diagram-grid .media-card img,
+#external-guidance .project-hero-media img,
+#interceptor .project-hero-media img,
+#finalization .project-hero-media img{
+  max-height:760px;
+}
+@media (max-width: 640px){
+  .tech-tags{ justify-content:flex-start; }
+  .metric-card p{ display:block; }
+  .metric-card span{ display:block; text-align:left; margin-top:.15rem; }
+  .project-note{ padding:.9rem; }
+}

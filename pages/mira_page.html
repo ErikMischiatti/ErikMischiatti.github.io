@@ -4,19 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>M.I.R.A. — Modular Interactive Robotic Agent</title>
-  <meta name="description" content="M.I.R.A. is a modular embodied AI interface built in Python and PySide6. It combines an expressive animated face, event-driven interaction logic, intent recognition, session memory, local desktop actions, and a roadmap toward a future physical robotic assistant."/>
+  <meta name="description" content="Software-first embodied AI assistant built with Python, PySide6, modular cognition, expressive state feedback, and safe local actions."/>
 
-  <!-- Theme CSS -->
   <link rel="stylesheet" href="../assets/css/main.css"/>
   <link rel="stylesheet" href="../assets/css/custom.css"/>
 
-  <!-- Font Awesome 6 -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 
-  <!-- Header -->
   <header id="header">
     <div class="inner">
       <h1>M.I.R.A.</h1>
@@ -26,365 +23,150 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="wrapper style3 special" id="overview">
     <div class="inner">
       <header class="major">
-        <h2>Project Overview</h2>
-        <p>M.I.R.A. — Modular Interactive Robotic Agent</p>
-        <p>Embodied desktop AI interface with expressive behavior, modular cognition, and local action execution.</p>
-        <p><em>Status:</em> <strong>Active software prototype</strong></p>
+        <h2>M.I.R.A. — Modular Interactive Robotic Agent</h2>
+        <p>Software-first embodied AI assistant built with Python, PySide6, modular cognition, expressive state feedback, and safe local actions.</p>
+        <p><em>Status:</em> <strong>Active desktop embodied assistant prototype</strong></p>
       </header>
 
       <p>
-        M.I.R.A. is a software-first robotic assistant prototype designed around the idea that an intelligent interface should not only answer, but also appear attentive, reactive, and embodied. The current implementation focuses on a desktop companion interface: a PySide6 application with animated eyes, conversational input, session memory, intent recognition, local actions, and a debug panel for tuning expressive behavior in real time.
+        M.I.R.A. is a desktop embodied assistant prototype. It is software-first, not a hardware robot yet, and is designed as the foundation for future robotic embodiment.
+      </p>
+      <p>
+        The current prototype combines a chat/interaction core, animated eyes, a state manager, cognition modules, session memory, and safe local action execution. The goal is to build the interaction and behavior layer before moving toward physical sensors, actuators, and a robotic body.
       </p>
 
-      <p>
-        The long-term objective is to use this software core as the interaction layer for a future physical assistant. Instead of starting from motors and sensors, the project first develops the agent architecture: perception of user input, cognition, action selection, UI feedback, expressive state transitions, and a modular path toward voice, vision, and robotics integration.
-      </p>
+      <figure class="project-hero-media">
+        <img src="../pics/mira_record.gif" alt="M.I.R.A. animated desktop assistant interface" loading="lazy" decoding="async">
+        <figcaption class="media-caption">M.I.R.A. desktop interface with expressive animated eyes and compact interaction controls.</figcaption>
+      </figure>
 
       <p class="actions" style="margin-top:1rem;">
         <a class="button primary" href="https://github.com/ErikMischiatti/M.I.R.A" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. GitHub repository">
           <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub Repository
         </a>
-        <a class="button primary" href="#architecture" aria-label="Skip to architecture section">Architecture</a>
-        <a class="button primary" href="#features" aria-label="Skip to features section">Features</a>
-        <a class="button primary" href="#roadmap" aria-label="Skip to roadmap section">Roadmap</a>
-        <a class="button primary" href="#status" aria-label="Skip to status section">Status</a>
       </p>
-
     </div>
   </section>
 
-  <!-- NAME / POSITIONING -->
-  <section class="wrapper style2" id="positioning">
+  <section class="wrapper style2 special" id="tech-stack">
     <div class="inner">
-      <header class="major">
-        <h2>Why M.I.R.A.</h2>
-      </header>
-
-      <p>
-        The previous naming separated the cognitive core and the physical robot into two identities. M.I.R.A. simplifies the concept into a single project name that can scale from the current desktop prototype to a future embodied robotic platform.
-      </p>
-
-      <div class="grid-3">
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Modular</h3>
-          <p>Independent components for cognition, actions, UI, state management, and expression.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-comments" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Interactive</h3>
-          <p>Text-based interaction today, with a clear path toward voice, camera input, and multimodal arbitration.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Robotic Agent</h3>
-          <p>A software agent designed to become the behavioral layer of a future physical assistant.</p>
-        </article>
+      <header class="major"><h2>Technical Stack</h2></header>
+      <div class="tech-tags" role="list" aria-label="Technologies used in M.I.R.A.">
+        <span class="tech-tag" role="listitem">Python 3.12+</span>
+        <span class="tech-tag" role="listitem">PySide6 / Qt</span>
+        <span class="tech-tag" role="listitem">requests</span>
+        <span class="tech-tag" role="listitem">pytest</span>
+        <span class="tech-tag" role="listitem">optional Ollama integration</span>
+        <span class="tech-tag" role="listitem">event-driven architecture</span>
       </div>
     </div>
   </section>
 
-  <!-- MAIN FEATURES -->
-  <section class="wrapper style2" id="features">
-    <div class="inner">
-      <header class="major">
-        <h2>Main Features</h2>
-      </header>
-
-      <div class="grid-3">
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-regular fa-face-smile" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Expressive Face</h3>
-          <p>Animated eyes with blinking, idle motion, emotional states, eyelid deformation, asymmetry, and smooth transitions.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Cognitive Core</h3>
-          <p>Intent inference, response generation, session memory, action mapping, and event-driven state transitions.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Local Actions</h3>
-          <p>Action registry and executor for system-level tasks such as opening URLs, launching apps, showing notifications, and retrieving system information.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-plug-circle-bolt" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Rule / LLM Intent Engine</h3>
-          <p>Rule-based interpretation for deterministic behavior, plus an optional local LLM-backed parser through Ollama.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Live Debug Panel</h3>
-          <p>Runtime tuning of facial profiles, blink timing, idle animation, speaking pulse, thinking drift, and asymmetry controls.</p>
-        </article>
-
-        <article class="card feature-card" tabindex="0">
-          <div class="feature-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
-          <h3 class="feature-title">Event-Driven Interaction</h3>
-          <p>Centralized event bus connecting user input, processing states, inferred intents, action results, and visual feedback.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- AT A GLANCE -->
-  <section class="wrapper style2" id="glance">
-    <div class="inner">
-      <header class="major">
-        <h2>At a Glance</h2>
-      </header>
-
-      <p>
-        M.I.R.A. is an embodied AI interface prototype that explores how a desktop assistant can feel more present through motion, expression, and stateful interaction. The system is built around a face widget, a chat panel, a debug panel, and a modular backend that coordinates cognition and behavior.
-      </p>
-
-      <p>
-        The assistant receives text input, stores the interaction in session memory, infers an intent, optionally builds and executes an action request, generates a response, and maps the result to a visible face state. This creates a tight loop between cognition and embodiment: listening, thinking, speaking, confusion, happiness, tiredness, and other expressive states are reflected visually instead of remaining hidden in the backend.
-      </p>
-    </div>
-  </section>
-
-  <!-- ARCHITECTURE DIAGRAM -->
   <section class="wrapper style2" id="architecture">
     <div class="inner">
-      <header class="major">
-        <h2>System Architecture</h2>
-      </header>
+      <header class="major"><h2>Architecture</h2></header>
+      <p>
+        M.I.R.A. is organized around an event-driven interaction loop: user input flows into the chat/interaction layer, through the event bus, into the brain and intent engine, then into memory, the action executor, and response builder. The resulting state is propagated through the state manager and rendered by the face UI.
+      </p>
+      <div class="project-note">
+        <strong>Pipeline:</strong> user input &rarr; chat/interaction layer &rarr; event bus &rarr; brain &rarr; intent engine &rarr; memory/action executor/response builder &rarr; state manager &rarr; face UI.
+      </div>
 
-      <div class="block-diagram">
+      <div class="block-diagram" style="margin-top:1.5rem;">
         <svg viewBox="0 0 1040 410" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="arch-title arch-desc">
           <title id="arch-title">M.I.R.A. software architecture</title>
-          <desc id="arch-desc">User input is processed by the interaction layer, cognition layer, action system, and expressive face controller through an event-driven architecture.</desc>
+          <desc id="arch-desc">User input is processed by the interaction layer, event bus, brain, intent engine, memory, action executor, response builder, state manager, and face UI.</desc>
 
-          <!-- Row 1 -->
-          <rect x="40" y="55" width="210" height="105" rx="10" class="bd-rect"/>
-          <text x="145" y="95" class="bd-title">User Input</text>
-          <text x="145" y="122" class="bd-text">Chat · focus · text events</text>
+          <rect x="35" y="60" width="150" height="92" rx="10" class="bd-rect"/>
+          <text x="110" y="98" class="bd-title">User Input</text>
+          <text x="110" y="124" class="bd-text">chat events</text>
 
-          <rect x="315" y="55" width="210" height="105" rx="10" class="bd-rect"/>
-          <text x="420" y="95" class="bd-title">Event Bus</text>
-          <text x="420" y="122" class="bd-text">Signals · state changes</text>
+          <rect x="225" y="60" width="150" height="92" rx="10" class="bd-rect"/>
+          <text x="300" y="98" class="bd-title">Interaction</text>
+          <text x="300" y="124" class="bd-text">chat layer</text>
 
-          <rect x="590" y="55" width="210" height="105" rx="10" class="bd-rect"/>
-          <text x="695" y="95" class="bd-title">Brain</text>
-          <text x="695" y="122" class="bd-text">Intent · memory · response</text>
+          <rect x="415" y="60" width="150" height="92" rx="10" class="bd-rect"/>
+          <text x="490" y="98" class="bd-title">Event Bus</text>
+          <text x="490" y="124" class="bd-text">signals</text>
 
-          <rect x="865" y="55" width="135" height="105" rx="10" class="bd-rect"/>
-          <text x="932" y="95" class="bd-title">Actions</text>
-          <text x="932" y="122" class="bd-text">Apps · URLs · OS</text>
+          <rect x="605" y="60" width="150" height="92" rx="10" class="bd-rect"/>
+          <text x="680" y="98" class="bd-title">Brain</text>
+          <text x="680" y="124" class="bd-text">cognition</text>
 
-          <!-- Row 2 -->
-          <rect x="315" y="235" width="210" height="105" rx="10" class="bd-rect--secondary"/>
-          <text x="420" y="275" class="bd-title">State Manager</text>
-          <text x="420" y="302" class="bd-text">Idle · listening · thinking</text>
+          <rect x="795" y="60" width="190" height="92" rx="10" class="bd-rect"/>
+          <text x="890" y="98" class="bd-title">Intent Engine</text>
+          <text x="890" y="124" class="bd-text">rules / local LLM</text>
 
-          <rect x="590" y="235" width="210" height="105" rx="10" class="bd-rect--secondary"/>
-          <text x="695" y="275" class="bd-title">Embodied Behavior</text>
-          <text x="695" y="302" class="bd-text">Decay · micro-reactions</text>
+          <rect x="225" y="245" width="180" height="92" rx="10" class="bd-rect--secondary"/>
+          <text x="315" y="283" class="bd-title">Memory</text>
+          <text x="315" y="309" class="bd-text">session context</text>
 
-          <rect x="865" y="235" width="135" height="105" rx="10" class="bd-rect--secondary"/>
-          <text x="932" y="275" class="bd-title">Face UI</text>
-          <text x="932" y="302" class="bd-text">Eyes · motion · tuning</text>
+          <rect x="445" y="245" width="180" height="92" rx="10" class="bd-rect--secondary"/>
+          <text x="535" y="283" class="bd-title">Actions</text>
+          <text x="535" y="309" class="bd-text">safe executor</text>
 
-          <!-- Arrows -->
-          <line x1="250" y1="108" x2="315" y2="108" class="bd-arrow"/>
-          <polygon points="315,108 305,103 305,113" class="bd-arrow-head"/>
-          <text x="282" y="96" class="bd-arrow-label">events</text>
+          <rect x="665" y="245" width="180" height="92" rx="10" class="bd-rect--secondary"/>
+          <text x="755" y="283" class="bd-title">State Manager</text>
+          <text x="755" y="309" class="bd-text">assistant state</text>
 
-          <line x1="525" y1="108" x2="590" y2="108" class="bd-arrow"/>
-          <polygon points="590,108 580,103 580,113" class="bd-arrow-head"/>
-          <text x="558" y="96" class="bd-arrow-label">input</text>
+          <rect x="885" y="245" width="120" height="92" rx="10" class="bd-rect--secondary"/>
+          <text x="945" y="283" class="bd-title">Face UI</text>
+          <text x="945" y="309" class="bd-text">eyes</text>
 
-          <line x1="800" y1="108" x2="865" y2="108" class="bd-arrow"/>
-          <polygon points="865,108 855,103 855,113" class="bd-arrow-head"/>
-          <text x="832" y="96" class="bd-arrow-label">request</text>
-
-          <line x1="420" y1="160" x2="420" y2="235" class="bd-arrow--dashed"/>
-          <polygon points="420,235 415,225 425,225" class="bd-arrow-head"/>
-
-          <line x1="525" y1="288" x2="590" y2="288" class="bd-arrow"/>
-          <polygon points="590,288 580,283 580,293" class="bd-arrow-head"/>
-
-          <line x1="800" y1="288" x2="865" y2="288" class="bd-arrow"/>
-          <polygon points="865,288 855,283 855,293" class="bd-arrow-head"/>
-
-          <line x1="695" y1="160" x2="695" y2="235" class="bd-arrow--dashed"/>
-          <polygon points="695,235 690,225 700,225" class="bd-arrow-head"/>
+          <line x1="185" y1="106" x2="225" y2="106" class="bd-arrow"/><polygon points="225,106 215,101 215,111" class="bd-arrow-head"/>
+          <line x1="375" y1="106" x2="415" y2="106" class="bd-arrow"/><polygon points="415,106 405,101 405,111" class="bd-arrow-head"/>
+          <line x1="565" y1="106" x2="605" y2="106" class="bd-arrow"/><polygon points="605,106 595,101 595,111" class="bd-arrow-head"/>
+          <line x1="755" y1="106" x2="795" y2="106" class="bd-arrow"/><polygon points="795,106 785,101 785,111" class="bd-arrow-head"/>
+          <line x1="890" y1="152" x2="535" y2="245" class="bd-arrow--dashed"/><polygon points="535,245 545,237 547,247" class="bd-arrow-head"/>
+          <line x1="680" y1="152" x2="315" y2="245" class="bd-arrow--dashed"/><polygon points="315,245 325,237 327,247" class="bd-arrow-head"/>
+          <line x1="625" y1="291" x2="665" y2="291" class="bd-arrow"/><polygon points="665,291 655,286 655,296" class="bd-arrow-head"/>
+          <line x1="845" y1="291" x2="885" y2="291" class="bd-arrow"/><polygon points="885,291 875,286 875,296" class="bd-arrow-head"/>
         </svg>
       </div>
     </div>
   </section>
 
-  <!-- IMPLEMENTATION DETAILS -->
-  <section class="wrapper style4" id="implementation">
+  <section class="wrapper style2" id="features">
     <div class="inner">
-      <header class="major">
-        <h2>Implementation Highlights</h2>
-      </header>
-
-      <div class="grid-3">
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-window-maximize" aria-hidden="true"></i> PySide6 Desktop App</h3>
-          <p>Main window layout with a large expressive face on the left and a chat/debug control panel on the right.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-route" aria-hidden="true"></i> Interaction Pipeline</h3>
-          <p>User input triggers listening, processing, intent inference, action execution, response generation, and visual state updates.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-memory" aria-hidden="true"></i> Session Memory</h3>
-          <p>Recent user and assistant messages are stored in memory, together with the latest inferred intent and contextual metadata.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-gears" aria-hidden="true"></i> Action System</h3>
-          <p>Actions are registered through a central registry and executed through a dedicated executor with success/failure events.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-eye" aria-hidden="true"></i> Expressive Controller</h3>
-          <p>Each face state maps to an expression profile with size, offsets, corner radius, eyelid deformation, blink timing, and animation flags.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-server" aria-hidden="true"></i> Local LLM Path</h3>
-          <p>Optional Ollama integration converts natural language into structured intents and action requests while preserving the same backend contract.</p>
-        </article>
+      <header class="major"><h2>Key Features</h2></header>
+      <div class="project-section-grid">
+        <article class="card"><h3>Expressive Animated Eyes</h3><p>Blink, idle motion, gaze, and emotion states provide visible feedback for assistant state.</p></article>
+        <article class="card"><h3>Intent Engine</h3><p>Rule-based parsing handles deterministic commands, with an optional local LLM path for richer intent extraction.</p></article>
+        <article class="card"><h3>Session Memory</h3><p>The assistant stores recent interaction context for continuity within a session.</p></article>
+        <article class="card"><h3>Safe Local Actions</h3><p>A registry/executor pattern constrains local desktop actions behind explicit action contracts.</p></article>
+        <article class="card"><h3>Compact GUI</h3><p>The interface keeps the assistant face and chat compact, with a hidden debug drawer for development controls.</p></article>
+        <article class="card"><h3>Async LLM Contract</h3><p>The LLM integration path is designed to avoid UI-thread side effects and keep cognition separated from rendering.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- TECHNOLOGIES -->
-  <section class="wrapper style4 special" id="tech">
+  <section class="wrapper style2" id="validation">
     <div class="inner">
-      <header class="major">
-        <h2>Technologies</h2>
-      </header>
-
-      <div class="tags" role="list" aria-label="Technologies used in the project">
-        <span class="tag" role="listitem">Python</span>
-        <span class="tag" role="listitem">PySide6 / Qt</span>
-        <span class="tag" role="listitem">Event-driven architecture</span>
-        <span class="tag" role="listitem">Rule-based intent engine</span>
-        <span class="tag" role="listitem">Local LLM / Ollama</span>
-        <span class="tag" role="listitem">Action registry</span>
-        <span class="tag" role="listitem">Desktop automation</span>
-        <span class="tag" role="listitem">Session memory</span>
-        <span class="tag" role="listitem">Procedural animation</span>
-        <span class="tag" role="listitem">Human-machine interaction</span>
-      </div>
+      <header class="major"><h2>Validation / Tests</h2></header>
+      <p>
+        The project includes tests covering action contracts, executor behavior, async brain contracts, desktop actions, LLM intent handling, response building, and rule-based intent parsing.
+      </p>
     </div>
   </section>
 
-  <!-- USE CASES -->
-  <section class="wrapper style2" id="use-cases">
+  <section class="wrapper style3 special" id="scope">
     <div class="inner">
-      <header class="major">
-        <h2>Use Cases & Demos</h2>
-        <p>Current and planned demonstrations for the embodied assistant prototype.</p>
-      </header>
-
-      <div class="grid-3">
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-regular fa-message" aria-hidden="true"></i> Conversational Companion</h3>
-          <p>Text interaction with visual feedback: listening while the user types, thinking during processing, and speaking when responding.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-computer" aria-hidden="true"></i> Local Desktop Assistant</h3>
-          <p>Open applications, navigate to websites, show notifications, and retrieve basic system information from natural language commands.</p>
-        </article>
-
-        <article class="card demo-card" tabindex="0">
-          <h3 class="demo-title"><i class="fa-solid fa-face-grin-stars" aria-hidden="true"></i> Expressive UI Sandbox</h3>
-          <p>Live tuning of expression profiles for designing eye behavior, emotional states, and micro-animations.</p>
-        </article>
-      </div>
+      <header class="major"><h2>Scope</h2></header>
+      <p class="project-note">
+        M.I.R.A. is not a hardware robot yet. The current milestone is a desktop embodied assistant prototype and a foundation for future robotic embodiment.
+      </p>
     </div>
   </section>
 
-  <!-- ROADMAP -->
-  <section class="wrapper style4" id="roadmap">
-    <div class="inner">
-      <header class="major">
-        <h2>Roadmap</h2>
-      </header>
-
-      <div class="timeline" aria-label="Project roadmap timeline">
-        <div class="tl-item">
-          <div class="tl-dot is-current" aria-hidden="true"></div>
-          <div class="tl-content">
-            <h3>Software Core Prototype</h3>
-            <p>PySide6 UI, animated face, chat panel, debug panel, event bus, state manager, brain, session memory, and rule-based intent engine.</p>
-            <div class="tl-meta">Current</div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot is-current" aria-hidden="true"></div>
-          <div class="tl-content">
-            <h3>Action Layer</h3>
-            <p>Registry/executor pattern for local actions such as time/date, memory introspection, URL opening, app launching, notifications, and system info.</p>
-            <div class="tl-meta">Current</div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-content">
-            <h3>Local LLM Integration</h3>
-            <p>Use a local model through Ollama to parse natural language into structured intents and actions while keeping rule-based fallback behavior.</p>
-            <div class="tl-meta">In progress</div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-content">
-            <h3>Voice & Perception</h3>
-            <p>Add microphone input, speech-to-text, wake interaction, webcam-based presence detection, and multimodal arbitration.</p>
-            <div class="tl-meta">Next</div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-content">
-            <h3>Physical Embodiment</h3>
-            <p>Extend the software core into a physical robotic assistant with sensors, lights, audio, mechanical expression, and low-level hardware control.</p>
-            <div class="tl-meta">Future</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOURCE CODE -->
   <section class="wrapper style2 special" id="source-code">
     <div class="inner">
       <header class="major">
         <h2>Source Code</h2>
-        <p>The M.I.R.A. software prototype is publicly available on GitHub under the MIT License.</p>
+        <p>The M.I.R.A. software prototype is publicly available on GitHub.</p>
       </header>
-
-      <p>
-        The repository contains the Python/PySide6 desktop application, the expressive face interface,
-        the modular cognition layer, the action registry/executor system, session memory, and the optional
-        local LLM integration through Ollama.
-      </p>
-
       <p class="actions" style="margin-top:1rem;">
         <a class="button primary" href="https://github.com/ErikMischiatti/M.I.R.A" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. GitHub repository">
           <i class="fa-brands fa-github" aria-hidden="true"></i> View Repository
@@ -393,25 +175,6 @@
     </div>
   </section>
 
-  <!-- STATUS -->
-  <section class="wrapper style3 special" id="status">
-    <div class="inner">
-      <header class="major">
-        <h2>Status &amp; Scope</h2>
-      </header>
-
-      <div class="progress" title="Software prototype progress" aria-label="Software prototype progress">
-        <span style="width: 35%;" aria-hidden="true"></span>
-      </div>
-      <p style="margin-top:.5rem; opacity:.85;"><small>~35% software prototype complete</small></p>
-
-      <p>
-        The current milestone is not a hardware MVP yet. The project is deliberately focused on the interaction and cognition layer first: a working desktop prototype that can express state, interpret basic requests, execute local actions, and provide a foundation for more advanced multimodal and robotic behavior.
-      </p>
-    </div>
-  </section>
-
-  <!-- Scripts base tema -->
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/jquery.scrollex.min.js"></script>
   <script src="../assets/js/jquery.scrolly.min.js"></script>

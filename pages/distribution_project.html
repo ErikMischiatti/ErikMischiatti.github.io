@@ -3,58 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Green Vigilance: Drone Innovation for Early Crop Disease Detection</title>
+  <title>Green Vigilance — UAV/UGV Precision Agriculture Simulation</title>
+  <meta name="description" content="Python-first UAV/UGV simulation baseline for early crop disease detection, scenario comparison, EKF/WLS estimation, and reproducible visual outputs."/>
 
-  <!-- CSS principali -->
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/custom.css" />
 
-  <!-- Font Awesome (CDN) per icone coerenti con le altre pagine -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer">
-
-  <!-- Favicon (opzionale) -->
-  <!-- <link rel="icon" type="image/png" href="../pics/EM_logo.png"> -->
 </head>
 <body>
 
-  <!-- Header -->
   <header id="header">
     <div class="inner">
-      <h1>Green Vigilance: Drone Innovation for Early Crop Disease Detection</h1>
+      <h1>Green Vigilance</h1>
       <a href="../index.html" class="home-icon" aria-label="Go back to Home">
         <i class="fa-solid fa-house"></i>
       </a>
     </div>
   </header>
 
-  <div class="icon-links">
-        <a class="icon-link" href="#" target="_blank" rel="noopener" aria-label="GitHub repo">
-          <i class="fa-brands fa-github"></i><span>GitHub</span>
-        </a>
-  </div>
-
-  <!-- Main Content -->
   <div id="main">
 
-    <!-- Project Overview -->
     <section id="overview" class="wrapper style3 special">
       <div class="inner">
         <header class="major">
-          <h2>Project Overview</h2>
-          <p>Integrating UAVs and UGVs for precision agriculture to detect plant diseases early and improve resource efficiency.</p>
-          <p>
-            This project develops a distributed UAV-UGV system aimed at enhancing early crop disease detection.
-            UAVs perform aerial surveys to collect spatial data, which is processed in a central station. The UGVs are then guided for
-            targeted ground-level inspections. By combining hybrid depth sensing and an asynchronous workflow, the system generates detailed
-            3D representations of crop fields, enabling high-accuracy disease localization.
-          </p>
-          <p><em>Status:</em> <strong>Maintained as portfolio case study</strong></p>
+          <h2>Green Vigilance — UAV/UGV Precision Agriculture Simulation</h2>
+          <p>Python-first UAV/UGV simulation baseline for early crop disease detection, scenario comparison, EKF/WLS estimation, and reproducible visual outputs.</p>
+          <p><em>Status:</em> <strong>Reproducible simulation baseline</strong></p>
         </header>
 
-        <!-- Icon links (stile HARO) -->
+        <p>
+          Green Vigilance is a Python migration and reconstruction of a UAV/UGV precision-agriculture system originally explored for early crop disease detection. The current work focuses on a reproducible simulation baseline rather than a production-ready field robot.
+        </p>
+        <p>
+          The simulation compares scenario configurations, estimates UAV and UGV localization error, assigns ground targets from a disease heatmap, and generates visual outputs and summary reports that can be regenerated from YAML inputs.
+        </p>
+
+        <figure class="project-hero-media">
+          <img src="../pics/green_vigilance_baseline_scene3d.png" alt="Green Vigilance 3D baseline simulation scene" loading="lazy" decoding="async">
+          <figcaption class="media-caption">3D simulation output for the baseline UAV/UGV scenario.</figcaption>
+        </figure>
+
         <div class="icon-links" style="margin-top:1rem;">
           <a class="icon-link"
              href="https://github.com/ErikMischiatti/Green-Vigilance-Project"
@@ -62,123 +54,186 @@
              aria-label="GitHub repo">
             <i class="fa-brands fa-github"></i><span>GitHub</span>
           </a>
+          <a class="icon-link"
+             href="../docs/Report_distribution_project.pdf"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Open local project report">
+            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i><span>Report</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Key Features -->
+    <section id="tech-stack" class="wrapper style2 special">
+      <div class="inner">
+        <header class="major">
+          <h2>Technical Stack</h2>
+        </header>
+        <div class="tech-tags" role="list" aria-label="Technologies used in Green Vigilance">
+          <span class="tech-tag" role="listitem">Python</span>
+          <span class="tech-tag" role="listitem">NumPy</span>
+          <span class="tech-tag" role="listitem">PyYAML</span>
+          <span class="tech-tag" role="listitem">Matplotlib</span>
+          <span class="tech-tag" role="listitem">pytest</span>
+          <span class="tech-tag" role="listitem">GitHub Actions CI</span>
+          <span class="tech-tag" role="listitem">YAML scenarios</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="wrapper style2">
+      <div class="inner">
+        <header class="major">
+          <h2>Architecture</h2>
+        </header>
+        <p>
+          The pipeline starts from a scenario YAML configuration, then runs UAV unicycle dynamics with EKF estimation, camera/frustum observation, disease heatmap generation, UGV target assignment, noisy UGV localization with a WLS estimate, and finally summary JSON, comparison CSV/Markdown, and figure outputs.
+        </p>
+        <div class="project-note">
+          <strong>Pipeline:</strong> scenario YAML config &rarr; UAV unicycle dynamics + EKF &rarr; camera/frustum observation &rarr; disease heatmap &rarr; UGV target assignment &rarr; noisy localization + WLS estimate &rarr; summary JSON + comparison CSV/Markdown + figures.
+        </div>
+      </div>
+    </section>
+
     <section id="key-features" class="wrapper style2">
       <div class="inner">
         <header class="major">
           <h2>Key Features</h2>
         </header>
-        <ul class="feature-list">
-          <li>
-            <strong>Hybrid Depth Sensing:</strong>
-            Combines LiDAR and stereo vision to accumulate detailed 3D spatial data over time.
-          </li>
-          <li>
-            <strong>UAV-UGV Coordination:</strong>
-            UAVs conduct initial surveys and generate heatmaps; UGVs are deployed based on this data for fine-grained field analysis.
-          </li>
-          <li>
-            <strong>Advanced Algorithms:</strong>
-            Uses Weighted Least Squares (WLS) to improve UGV path estimation and Extended Kalman Filter (EKF) to fuse GPS and IMU data for UAV stability.
-          </li>
-          <li>
-            <strong>Heatmap Generation:</strong>
-            Highlights disease-prone areas by mapping plant health variability across spatial dimensions.
-          </li>
-        </ul>
+        <div class="project-section-grid">
+          <article class="card">
+            <h3>Scenario Coverage</h3>
+            <p>Baseline, high-noise, and extreme-uncertainty scenarios are defined as reproducible YAML configurations.</p>
+          </article>
+          <article class="card">
+            <h3>Deterministic UAV Path</h3>
+            <p>The UAV follows a deterministic 30% coverage path, supporting repeatable comparisons between scenario settings.</p>
+          </article>
+          <article class="card">
+            <h3>Target Assignment</h3>
+            <p>Disease heatmaps drive UGV target assignment for ground-level inspection candidates.</p>
+          </article>
+          <article class="card">
+            <h3>Static Outputs</h3>
+            <p>The simulation generates static 2D and 3D outputs for trajectories, observations, and scenario interpretation.</p>
+          </article>
+          <article class="card">
+            <h3>Reports</h3>
+            <p>Scenario summaries and comparison reports are exported as structured files and Markdown tables.</p>
+          </article>
+          <article class="card">
+            <h3>Tests & CI</h3>
+            <p>pytest-based test coverage and GitHub Actions CI support regression checks for the Python baseline.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- System Architecture -->
-    <section id="architecture" class="wrapper style2">
+    <section id="results" class="wrapper style3 special">
       <div class="inner">
         <header class="major">
-          <h2>System Architecture</h2>
-          <p>
-            <strong>The system operates through an asynchronous workflow: UAVs equipped with hybrid depth sensors collect high-resolution 3D data and transmit it to a centralized base
-            station for processing. The station generates spatial maps and disease probability heatmaps, which are then used to guide UGVs for targeted ground-level operations with high accuracy. </strong>
-          </p>
+          <h2>Scenario Results</h2>
         </header>
+        <div class="metric-grid">
+          <article class="metric-card">
+            <h3>baseline</h3>
+            <p><strong>2711</strong><span>Observed leaves</span></p>
+            <p><strong>0.463 m</strong><span>UAV RMSE</span></p>
+            <p><strong>0.536 m</strong><span>UGV WLS RMSE</span></p>
+          </article>
+          <article class="metric-card">
+            <h3>high_noise</h3>
+            <p><strong>1866</strong><span>Observed leaves</span></p>
+            <p><strong>1.580 m</strong><span>UAV RMSE</span></p>
+            <p><strong>0.941 m</strong><span>UGV WLS RMSE</span></p>
+          </article>
+          <article class="metric-card">
+            <h3>extreme_uncertainty</h3>
+            <p><strong>1228</strong><span>Observed leaves</span></p>
+            <p><strong>1.825 m</strong><span>UAV RMSE</span></p>
+            <p><strong>1.568 m</strong><span>UGV WLS RMSE</span></p>
+          </article>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Observed leaves</th>
+                <th>UAV RMSE</th>
+                <th>UGV WLS RMSE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>baseline</td>
+                <td>2711</td>
+                <td>0.463 m</td>
+                <td>0.536 m</td>
+              </tr>
+              <tr>
+                <td>high_noise</td>
+                <td>1866</td>
+                <td>1.580 m</td>
+                <td>0.941 m</td>
+              </tr>
+              <tr>
+                <td>extreme_uncertainty</td>
+                <td>1228</td>
+                <td>1.825 m</td>
+                <td>1.568 m</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="project-note">
+          The validation is qualitative at this stage; exact numerical equivalence with the earlier MATLAB/report implementation has not been formally validated.
+        </p>
       </div>
     </section>
 
-    <!-- Photo Gallery (griglia responsive) -->
     <section id="gallery" class="wrapper style5 special">
       <div class="inner">
         <header class="major">
-          <h2>Photo Gallery</h2>
-          <p>Visual highlights from the project.</p>
+          <h2>Generated Outputs</h2>
         </header>
 
         <div class="media-grid">
           <figure class="media-card">
-            <img src="../pics/pic3d.jpg" alt="3D reconstruction of crop field" loading="lazy" decoding="async">
-            <figcaption>3D crop field reconstruction</figcaption>
+            <img src="../pics/green_vigilance_baseline_heatmap.png" alt="Disease heatmap generated by the Green Vigilance baseline" loading="lazy" decoding="async">
+            <figcaption class="media-caption">Disease heatmap used for UGV target assignment.</figcaption>
           </figure>
           <figure class="media-card">
-            <img src="../pics/Pic5.jpg" alt="UAV over field" loading="lazy" decoding="async">
-            <figcaption>UAV aerial inspection</figcaption>
+            <img src="../pics/green_vigilance_baseline_trajectories.png" alt="UAV and UGV trajectories for the Green Vigilance baseline" loading="lazy" decoding="async">
+            <figcaption class="media-caption">Baseline UAV and UGV trajectory output.</figcaption>
           </figure>
           <figure class="media-card">
-            <img src="../pics/campo3.jpg" alt="Heatmap visualization" loading="lazy" decoding="async">
-            <figcaption>Heatmap visualization</figcaption>
-          </figure>
-          <figure class="media-card">
-            <img src="../pics/pic1.jpg" alt="UGV ground operation" loading="lazy" decoding="async">
-            <figcaption>UGV targeted operation</figcaption>
+            <img src="../pics/green_vigilance_baseline_scene3d.png" alt="3D Green Vigilance simulation scene" loading="lazy" decoding="async">
+            <figcaption class="media-caption">Static 3D scene generated from the baseline scenario.</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- Video Section -->
-    <section id="video" class="wrapper style2 special">
-      <div class="inner">
-        <header class="major">
-          <h2>Video Demonstration</h2>
-          <p><strong>Short clips showcasing the UAV-UGV system in action.</strong></p>
-        </header>
-
-        <div class="video-grid">
-          <div class="video-card">
-            <video controls preload="metadata" playsinline>
-              <source src="../pics/Figure 1 2024-11-17 22-32-45.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <div class="video-card">
-            <video controls preload="metadata" playsinline>
-              <source src="../pics/Figure 7 2024-11-17 22-33-21.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Resources -->
     <section id="resources" class="wrapper style3 special">
       <div class="inner">
         <header class="major">
           <h2>Resources</h2>
-          <p>Download the full project report for an in-depth analysis of system architecture, methodologies, and results.</p>
-          <p>
-            <a href="../docs/Report_distribution_project.pdf" target="_blank" class="button primary" rel="noopener noreferrer">
-              <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download Project Report (PDF)
-            </a>
-          </p>
+          <p>Source code and the local report are available below.</p>
         </header>
+        <p class="actions" style="margin-top:1rem;">
+          <a class="button primary" href="https://github.com/ErikMischiatti/Green-Vigilance-Project" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github" aria-hidden="true"></i> View Repository
+          </a>
+          <a href="../docs/Report_distribution_project.pdf" target="_blank" class="button primary" rel="noopener noreferrer">
+            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Open Project Report
+          </a>
+        </p>
       </div>
     </section>
 
-  </div><!-- /#main -->
+  </div>
 
-  <!-- Footer -->
   <footer id="footer">
     <div class="inner">
       <ul class="copyright">

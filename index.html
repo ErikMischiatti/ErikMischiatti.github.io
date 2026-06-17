@@ -95,7 +95,7 @@
                   <li><a href="#education">Education</a></li>
                   <li><a href="#projects">Projects</a></li>
                   <li><a href="#three">Skills</a></li>
-                  <li><a href="#" aria-disabled="true" onclick="return false;">Prints — coming soon</a></li>
+                  <li><a href="pages/prints.html">Prints</a></li>
                   <li><a href="#contact">Contact</a></li>
                 </ul>
               </div>
@@ -253,74 +253,56 @@
 
           <div class="projects-grid">
 
-          <!-- Behavior Tree – Mission Manager -->
-          <article class="card project-card" tabindex="0" role="article" aria-label="Behavior Tree Mission Manager project">
-            <a class="project-thumb" href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer" aria-label="Open Behavior Tree Mission Manager project">
-              <img src="pics/preInterceptTree.svg" alt="Behavior Tree Mission Manager thumbnail" loading="lazy" decoding="async">
-            </a>
-            <div class="project-body">
-              <h3 class="project-title">
-                <a href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer">
-                  Behavior Tree Mission Manager
-                </a>
-              </h3>
-              <p class="project-desc">
-                Mission-level control system for an autonomous counter-UAV interceptor, based on Behavior Trees.
-                Supports autonomous, manual, and hybrid execution with deterministic mission sequencing and runtime supervision.
-              </p>
-              <div class="project-actions">
-                <a class="btn" href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer" aria-label="Open Behavior Tree Mission Manager project">
-                  Open
-                </a>
-              </div>
-            </div>
-          </article>
-
-            <!-- RTK -->
-            <article class="card project-card" tabindex="0" role="article" aria-label="RTK Base Station project">
-              <a class="project-thumb" href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer" aria-label="Open RTK Base Station project">
-                <img src="pics/CAD_RTK.png" alt="RTK Project thumbnail" loading="lazy" decoding="async">  
+            <!-- M.I.R.A. -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="M.I.R.A. Project">
+              <a class="project-thumb" href="pages/mira_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. Project">
+                <img src="pics/mira_record.gif" alt="M.I.R.A. animated interface preview" loading="lazy" decoding="async">
               </a>
               <div class="project-body">
                 <h3 class="project-title">
-                  <a href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer">RTK Base Station</a>
+                  <a href="pages/mira_page.html" target="_blank" rel="noopener noreferrer">M.I.R.A.</a>
                 </h3>
                 <p class="project-desc">
-                  Portable GNSS RTK base station for high-accuracy positioning, in a compact modular enclosure with built-in battery and quick tripod mount.
+                  Software-first embodied AI assistant prototype built with Python and PySide6, combining expressive animated eyes, modular cognition, session memory, optional local LLM intent handling, and safe local action execution.
                 </p>
                 <div class="project-actions">
-                  <a class="btn" href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer" aria-label="Open RTK Base Station project">Open</a>
+                  <a class="btn" href="pages/mira_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. Project">Open</a>
                 </div>
               </div>
             </article>
 
-
-            <!-- M.I.R.A. / WIP -->
-            <article class="card project-card" tabindex="0" role="article" aria-label="M.I.R.A. Project">
-              <a class="project-thumb" href="pages/mira_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. Project">
-                <img
-                  src="pics/mira_record.gif"
-                  alt="M.I.R.A. animated interface preview"
-                  loading="lazy"
-                  decoding="async"
-                >
+            <!-- Green Vigilance -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="Green Vigilance">
+              <a class="project-thumb" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Green Vigilance project">
+                <img src="pics/green_vigilance_baseline_scene3d.png" alt="Green Vigilance 3D simulation thumbnail" loading="lazy" decoding="async">
               </a>
-
               <div class="project-body">
                 <h3 class="project-title">
-                  <a href="pages/mira_page.html" target="_blank" rel="noopener noreferrer">
-                    M.I.R.A.
-                  </a>
+                  <a href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer">Green Vigilance</a>
                 </h3>
-
                 <p class="project-desc">
-                  Modular embodied AI interface built in Python and PySide6, featuring an expressive animated face, intent recognition, session memory, and local desktop actions.
+                  Python migration of a UAV/UGV precision-agriculture simulator with EKF-based UAV estimation, WLS-based UGV localization, reproducible YAML scenarios, generated heatmaps, 3D scene outputs, and scenario-comparison metrics.
                 </p>
-
                 <div class="project-actions">
-                  <a class="btn" href="pages/mira_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. Project">
-                    Open
-                  </a>
+                  <a class="btn" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Green Vigilance project">Open</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Behavior Tree – Mission Manager -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="Behavior Tree Mission Manager project">
+              <a class="project-thumb" href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer" aria-label="Open Behavior Tree Mission Manager project">
+                <img src="pics/eagle_bt_main_tree.svg" alt="Behavior Tree Mission Manager thumbnail" loading="lazy" decoding="async">
+              </a>
+              <div class="project-body">
+                <h3 class="project-title">
+                  <a href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer">Behavior Tree Mission Manager</a>
+                </h3>
+                <p class="project-desc">
+                  ROS 1 mission-level supervisor for an interceptor UAV, built around modular BehaviorTree.CPP pipelines, mission-state reporting, service-gated runtime control, external target guidance, and ground-station/MQTT integration.
+                </p>
+                <div class="project-actions">
+                  <a class="btn" href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer" aria-label="Open Behavior Tree Mission Manager project">Open</a>
                 </div>
               </div>
             </article>
@@ -357,18 +339,20 @@
               </div>
             </article>
 
-            <!-- Green Vigilance -->
-            <article class="card project-card" tabindex="0" role="article" aria-label="Green Vigilance">
-              <a class="project-thumb" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer">
-                <img src="pics/pic3d.jpg" alt="Green Vigilance thumbnail" loading="lazy" decoding="async">
+            <!-- RTK -->
+            <article class="card project-card" tabindex="0" role="article" aria-label="RTK Base Station project">
+              <a class="project-thumb" href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer" aria-label="Open RTK Base Station project">
+                <img src="pics/CAD_RTK.png" alt="RTK Project thumbnail" loading="lazy" decoding="async">
               </a>
               <div class="project-body">
                 <h3 class="project-title">
-                  <a href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer">Green Vigilance</a>
+                  <a href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer">RTK Base Station</a>
                 </h3>
-                <p class="project-desc"><span lang="it">UAV/UGV for monitoring and early disease detection with hybrid sensors and data fusion.</span></p>
+                <p class="project-desc">
+                  Portable GNSS RTK base station for high-accuracy positioning, in a compact modular enclosure with built-in battery and quick tripod mount.
+                </p>
                 <div class="project-actions">
-                  <a class="btn" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Green Vigilance project">Open</a>
+                  <a class="btn" href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer" aria-label="Open RTK Base Station project">Open</a>
                 </div>
               </div>
             </article>
