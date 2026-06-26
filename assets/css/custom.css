@@ -846,3 +846,124 @@ h1, h2, h3, h4, h5, h6 {
   .metric-card span{ display:block; text-align:left; margin-top:.15rem; }
   .project-note{ padding:.9rem; }
 }
+
+
+/* === Project grouping and status labels === */
+.project-group{
+  margin-top: 2.25rem;
+}
+.project-group:first-of-type{
+  margin-top: 0;
+}
+.project-group-header{
+  margin: 0 0 1rem;
+}
+.project-group-header h3{
+  margin-bottom: .25rem;
+}
+.project-group-header p{
+  max-width: 760px;
+  margin: 0;
+  color: var(--portfolio-muted);
+}
+.project-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:.45rem;
+}
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--portfolio-border);
+  border-radius:999px;
+  padding:.22rem .6rem;
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  line-height:1.3;
+}
+.status-pill--ongoing{
+  color:var(--portfolio-accent-strong);
+  background:var(--portfolio-accent-soft);
+}
+.status-pill--completed{
+  color:var(--portfolio-text);
+  background:rgba(238, 243, 246, .08);
+}
+.project-thumb--vista{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  text-align:center;
+  background:
+    linear-gradient(135deg, rgba(79,183,197,.18), rgba(238,243,246,.06)),
+    var(--portfolio-surface);
+  border:1px solid var(--portfolio-border);
+}
+.vista-thumb-title{
+  color:var(--portfolio-text);
+  font-size:clamp(1.7rem, 5vw, 3rem);
+  font-weight:800;
+  line-height:1;
+}
+.vista-thumb-flow{
+  color:var(--portfolio-muted);
+  font-size:.85rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+/* === VISTA project page === */
+.architecture-flow{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:12px;
+  align-items:stretch;
+  margin:1.5rem 0;
+}
+.flow-step{
+  min-height:112px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:.25rem;
+  padding:16px;
+  border:1px solid var(--portfolio-border);
+  border-radius:10px;
+  background:var(--portfolio-surface-soft);
+}
+.flow-step strong{
+  display:block;
+  line-height:1.2;
+}
+.flow-step span{
+  color:var(--portfolio-muted);
+  font-size:.9rem;
+  line-height:1.35;
+}
+.flow-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--portfolio-accent-strong);
+  font-weight:800;
+}
+.attribution-note{
+  border-left:3px solid var(--portfolio-accent);
+  padding:1rem 1.25rem;
+  background:rgba(79, 183, 197, .1);
+}
+@media (max-width: 900px){
+  .architecture-flow{
+    grid-template-columns:1fr;
+  }
+  .flow-arrow{
+    min-height:18px;
+    transform:rotate(90deg);
+  }
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>VISTA - Visual Intelligence State-Tree Architecture</title>
+  <meta name="description" content="VISTA is a ROS 2 framework ideated by Andrea Ricciardi for bridging local Vision-Language Model perception with reactive Behavior Tree control. Erik Mischiatti contributed to the Behavior Tree layer."/>
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="../assets/css/custom.css"/>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+  <header id="header">
+    <div class="inner">
+      <h1>VISTA</h1>
+      <a href="../index.html" class="home-icon" aria-label="Go back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </header>
+
+  <section class="wrapper style3 special" id="overview">
+    <div class="inner">
+      <header class="major">
+        <h2>VISTA - Visual Intelligence State-Tree Architecture</h2>
+        <p>ROS 2 VLM-to-Behavior-Tree robotics middleware for local perception and reactive control.</p>
+        <p><em>Status:</em> <strong>Work in progress</strong></p>
+      </header>
+
+      <p>
+        VISTA is a ROS 2 framework for connecting on-device Vision-Language Model perception with deterministic Behavior Tree control. The repository describes a decoupled two-loop architecture: a slower perception loop analyzes camera frames through a local Gemma VLM served by <code>llama.cpp</code>, while a faster Behavior Tree loop consumes structured state and selects robot behaviors without blocking on model inference.
+      </p>
+      <p class="attribution-note">
+        The project is ideated and maintained by Andrea Ricciardi. My contribution is limited to the Behavior Tree side of the system: the decision structure, custom BT nodes, blackboard integration, and the runtime link between VLM state and BT control logic.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style2 special" id="tech-stack">
+    <div class="inner">
+      <header class="major"><h2>Technical Stack</h2></header>
+      <div class="tech-tags" role="list" aria-label="Technologies used in VISTA">
+        <span class="tech-tag" role="listitem">ROS 2 Jazzy</span>
+        <span class="tech-tag" role="listitem">C++17</span>
+        <span class="tech-tag" role="listitem">BehaviorTree.CPP v4</span>
+        <span class="tech-tag" role="listitem">rclcpp components</span>
+        <span class="tech-tag" role="listitem">OpenCV</span>
+        <span class="tech-tag" role="listitem">cv_bridge</span>
+        <span class="tech-tag" role="listitem">Gemma VLM</span>
+        <span class="tech-tag" role="listitem">llama.cpp</span>
+        <span class="tech-tag" role="listitem">YAML</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="architecture">
+    <div class="inner">
+      <header class="major"><h2>System Architecture</h2></header>
+      <p>
+        VISTA runs two ROS 2 composable nodes in a multi-threaded component container. <code>GemmaPerceptionNode</code> subscribes to a camera image topic, encodes frames as JPEG, calls a local OpenAI-compatible <code>llama.cpp</code> chat-completions endpoint, parses JSON perception output, and publishes a custom <code>/vlm_data</code> message. <code>BehaviorTreeNode</code> subscribes to that topic, updates a BehaviorTree.CPP blackboard, and ticks the tree at the configured control rate.
+      </p>
+
+      <div class="architecture-flow" aria-label="VISTA runtime pipeline">
+        <div class="flow-step"><strong>Camera Image</strong><span>Configurable ROS 2 image topic.</span></div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step"><strong>GemmaPerceptionNode</strong><span>JPEG encoding, prompt request, JSON parsing.</span></div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step"><strong>/vlm_data</strong><span>Scene state, hazard level, target visibility, bbox, confidence.</span></div>
+        <div class="flow-step"><strong>BT Blackboard</strong><span>Latest VLM state copied into BehaviorTree.CPP memory.</span></div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step"><strong>BehaviorTreeNode</strong><span>Fast periodic ticks of the configured BT XML.</span></div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step"><strong>Robot Behaviors</strong><span>Recovery, target pursuit, or default behavior.</span></div>
+      </div>
+
+      <p>
+        Runtime parameters live in <code>config/vista_params.yaml</code>. The same file configures the VLM host and timeouts, camera and output topics, JPEG quality, the system prompt, the BT tick rate, and the BT XML used by the control node.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="behavior-tree">
+    <div class="inner">
+      <header class="major"><h2>Behavior Tree Contribution</h2></header>
+      <p>
+        The current Behavior Tree uses a root <code>Fallback</code> node to encode priority-based decision logic. The high-priority branch checks whether the VLM-reported <code>hazard_level</code> meets the configured threshold and then runs <code>RecoveryBehavior</code>. If no hazard branch succeeds, the target branch checks <code>target_visible</code> and runs <code>PursueTarget</code> with the VLM-provided bounding box. If neither branch applies, <code>DefaultBehavior</code> runs.
+      </p>
+      <div class="project-section-grid">
+        <article class="card">
+          <h3>Custom Conditions</h3>
+          <p><code>IsHazardous</code> and <code>IsTargetVisible</code> read structured VLM state from BT input ports and decide whether higher-priority branches should execute.</p>
+        </article>
+        <article class="card">
+          <h3>Custom Actions</h3>
+          <p><code>RecoveryBehavior</code>, <code>PursueTarget</code>, and <code>DefaultBehavior</code> define the current action leaves. The repository implementation logs behavior selection rather than claiming a full robot actuation stack.</p>
+        </article>
+        <article class="card">
+          <h3>Blackboard Bridge</h3>
+          <p>The ROS subscriber callback writes <code>scene_state</code>, <code>hazard_level</code>, <code>target_visible</code>, <code>target_bbox</code>, <code>confidence</code>, and <code>description</code> into the BT blackboard.</p>
+        </article>
+        <article class="card">
+          <h3>Configurable XML</h3>
+          <p>The BT structure is loaded from YAML as XML using BehaviorTree.CPP format 4, so the decision tree can be adjusted from configuration.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="runtime">
+    <div class="inner">
+      <header class="major"><h2>Runtime Pipeline</h2></header>
+      <p>
+        The repository includes a ROS 2 launch file that starts both composable nodes inside <code>component_container_mt</code> with intra-process communication enabled. The provided tmux setup can start the local <code>llama.cpp</code> server, launch VISTA, and optionally play a rosbag configured in <code>tmux/session.yaml</code>.
+      </p>
+      <p>
+        The VLM request uses the configured system prompt to request structured JSON with scene state, hazard level, target visibility, target bounding box, confidence, and natural-language description. That structured message is the contract between the slow perception loop and the fast BT loop.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="role">
+    <div class="inner">
+      <header class="major"><h2>My Role</h2></header>
+      <p>
+        My role is focused on the Behavior Tree part of VISTA. In portfolio terms, this means presenting my work as BT architecture and implementation support, not as authorship of the full VISTA project or the VLM perception framework. The project repository identifies Andrea Ricciardi as maintainer and copyright holder, and I do not present myself as the project author.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style3 special" id="credits">
+    <div class="inner">
+      <header class="major"><h2>Credits & Attribution</h2></header>
+      <p>
+        VISTA - Visual Intelligence State-Tree Architecture is ideated and maintained by Andrea Ricciardi. The repository package metadata lists Andrea Ricciardi as maintainer, and the license/notice files attribute copyright and software development to Andrea Ricciardi.
+      </p>
+      <p>
+        Third-party components referenced by the repository include Gemma, BehaviorTree.CPP, <code>llama.cpp</code>, <code>cpp-httplib</code>, and <code>nlohmann/json</code>, under their respective licenses.
+      </p>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti</li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
