@@ -71,6 +71,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TV97D87X"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <a class="skip-link" href="#banner">Skip to content</a>
 
     <!-- Page Wrapper -->
     <div id="page-wrapper">
@@ -130,11 +131,11 @@
           </div>
 
           <aside class="hero-panel" aria-label="Engineering focus summary">
-            <div class="hero-panel-header">
-              <span>Current focus</span>
-              <strong>robot autonomy stack</strong>
-            </div>
             <dl class="hero-system-list">
+              <div class="hero-system-list__lead">
+                <dt>Current focus</dt>
+                <dd>robot autonomy stack</dd>
+              </div>
               <div>
                 <dt>Decision layer</dt>
                 <dd>BehaviorTree.CPP, ROS mission logic</dd>
@@ -157,9 +158,6 @@
         <div class="inner">
           <header class="major">
             <h2>Welcome to My Portfolio</h2>
-            <p>
-              <a href="docs/CV.pdf" download="Erik_Mischiatti_CV.pdf" class="button primary">Download My CV</a>
-            </p>
           </header>
 
           <div class="about-container">
@@ -197,7 +195,7 @@
 
             <div class="edu-grid">
               <!-- CTU FEE — Researcher/Test Engineer -->
-              <article class="card project-card edu-card" tabindex="0" aria-label="CTU FEE — Researcher/Test Engineer">
+              <article class="card project-card edu-card" aria-label="CTU FEE — Researcher/Test Engineer">
                 <div class="edu-thumb">
                   <img src="pics/MRS_logo.png" alt="MRS logo" loading="lazy" decoding="async">
                   <img src="pics/eagle_one_anti_drone_logo.png" alt="EAGLE logo" loading="lazy" decoding="async">
@@ -223,11 +221,11 @@
           <header class="major">
             <h2>Education</h2>
           </header>
-          
+
 
           <div class="edu-grid">
             <!-- University of Trento -->
-            <article class="card project-card edu-card" tabindex="0" aria-label="University of Trento">
+            <article class="card project-card edu-card" aria-label="University of Trento">
               <div class="edu-thumb">
                 <img src="pics/Sigillo_Università_di_Trento.svg.png" alt="University of Trento logo" loading="lazy" decoding="async">
               </div>
@@ -239,7 +237,7 @@
             </article>
 
             <!-- TU Wien -->
-            <article class="card project-card edu-card" tabindex="0" aria-label="Technical University of Vienna">
+            <article class="card project-card edu-card" aria-label="Technical University of Vienna">
               <div class="edu-thumb">
                 <img src="pics/geo_blue_transparent.png" alt="TU Wien logo" loading="lazy" decoding="async">
               </div>
@@ -252,7 +250,7 @@
             </article>
 
             <!-- Linnaeus University -->
-            <article class="card project-card edu-card" tabindex="0" aria-label="Linnaeus University">
+            <article class="card project-card edu-card" aria-label="Linnaeus University">
               <div class="edu-thumb">
                 <img src="pics/Linneuniversitetet_logo.png" alt="Linnaeus University logo" loading="lazy" decoding="async">
               </div>
@@ -264,7 +262,7 @@
             </article>
 
             <!-- University of Padova -->
-            <article class="card project-card edu-card" tabindex="0" aria-label="University of Padova">
+            <article class="card project-card edu-card" aria-label="University of Padova">
               <div class="edu-thumb">
                 <img src="pics/Logo_Università_Padova.svg.png" alt="University of Padova logo" loading="lazy" decoding="async">
               </div>
@@ -293,16 +291,17 @@
 
             <div class="projects-grid">
               <!-- VISTA -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="VISTA project">
+              <article class="card project-card project-card--featured" aria-label="VISTA project">
                 <a class="project-thumb project-thumb--vista" href="pages/vista_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open VISTA project">
                   <span class="vista-thumb-title">VISTA</span>
                   <span class="vista-thumb-flow">VLM &rarr; /vlm_data &rarr; BT</span>
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Work in progress</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Work in progress</span><span>ROS 2</span><span>Behavior Trees</span><span>Role: BT layer</span></div>
                   <h3 class="project-title">
                     <a href="pages/vista_project.html" target="_blank" rel="noopener noreferrer">VISTA</a>
                   </h3>
+                  <p class="project-type">VLM-to-behavior-tree middleware</p>
                   <p class="project-desc">
                     ROS 2 framework ideated by Andrea Ricciardi, connecting local VLM scene understanding with reactive Behavior Tree control. My contribution is focused on the Behavior Tree layer.
                   </p>
@@ -313,15 +312,16 @@
               </article>
 
               <!-- M.I.R.A. -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="M.I.R.A. Project">
+              <article class="card project-card project-card--featured" aria-label="M.I.R.A. Project">
                 <a class="project-thumb" href="pages/mira_page.html" target="_blank" rel="noopener noreferrer" aria-label="Open M.I.R.A. Project">
                   <img src="pics/mira_record.gif" alt="M.I.R.A. animated interface preview" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Active prototype</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Active prototype</span><span>Python</span><span>PySide6</span><span>Embodied AI</span></div>
                   <h3 class="project-title">
                     <a href="pages/mira_page.html" target="_blank" rel="noopener noreferrer">M.I.R.A.</a>
                   </h3>
+                  <p class="project-type">Embodied assistant prototype</p>
                   <p class="project-desc">
                     Software-first embodied AI assistant prototype built with Python and PySide6, combining expressive animated eyes, modular cognition, session memory, optional local LLM intent handling, and safe local action execution.
                   </p>
@@ -332,15 +332,16 @@
               </article>
 
               <!-- Behavior Tree - Mission Manager -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="Behavior Tree Mission Manager project">
+              <article class="card project-card project-card--featured" aria-label="Behavior Tree Mission Manager project">
                 <a class="project-thumb" href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer" aria-label="Open Behavior Tree Mission Manager project">
                   <img src="pics/eagle_bt_main_tree.svg" alt="Behavior Tree Mission Manager thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Active integration</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Active integration</span><span>ROS 1</span><span>UAV</span><span>Mission supervisor</span></div>
                   <h3 class="project-title">
                     <a href="pages/bt_mission_manager.html" target="_blank" rel="noopener noreferrer">Behavior Tree Mission Manager</a>
                   </h3>
+                  <p class="project-type">UAV mission orchestration</p>
                   <p class="project-desc">
                     ROS 1 mission-level supervisor for an interceptor UAV, built around modular BehaviorTree.CPP pipelines, mission-state reporting, service-gated runtime control, external target guidance, and ground-station/MQTT integration.
                   </p>
@@ -351,15 +352,16 @@
               </article>
 
               <!-- RTK -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="RTK Base Station project">
+              <article class="card project-card project-card--featured" aria-label="RTK Base Station project">
                 <a class="project-thumb" href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer" aria-label="Open RTK Base Station project">
                   <img src="pics/CAD_RTK.png" alt="RTK Project thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Version II in progress</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--ongoing">Version II in progress</span><span>GNSS RTK</span><span>CAD</span><span>Embedded hardware</span></div>
                   <h3 class="project-title">
                     <a href="pages/rtk_base_station.html" target="_blank" rel="noopener noreferrer">RTK Base Station</a>
                   </h3>
+                  <p class="project-type">Portable positioning hardware</p>
                   <p class="project-desc">
                     Portable GNSS RTK base station for high-accuracy positioning, in a compact modular enclosure with built-in battery and quick tripod mount.
                   </p>
@@ -379,15 +381,16 @@
 
             <div class="projects-grid">
               <!-- Green Vigilance -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="Green Vigilance">
+              <article class="card project-card project-card--featured" aria-label="Green Vigilance">
                 <a class="project-thumb" href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Green Vigilance project">
                   <img src="pics/green_vigilance_baseline_scene3d.png" alt="Green Vigilance 3D simulation thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed baseline</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed baseline</span><span>Python</span><span>UAV/UGV</span><span>Simulation artifact</span></div>
                   <h3 class="project-title">
                     <a href="pages/distribution_project.html" target="_blank" rel="noopener noreferrer">Green Vigilance</a>
                   </h3>
+                  <p class="project-type">Precision-agriculture simulator</p>
                   <p class="project-desc">
                     Python migration of a UAV/UGV precision-agriculture simulator with EKF-based UAV estimation, WLS-based UGV localization, reproducible YAML scenarios, generated heatmaps, 3D scene outputs, and scenario-comparison metrics.
                   </p>
@@ -398,15 +401,16 @@
               </article>
 
               <!-- Master Thesis -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="Master Thesis Project">
+              <article class="card project-card project-card--featured" aria-label="Master Thesis Project">
                 <a class="project-thumb" href="pages/master_thesis_project.html" target="_blank" rel="noopener noreferrer">
                   <img src="pics/photo_2_2024-10-03_15-53-10.jpg" alt="Master Thesis Project thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span><span>LfD</span><span>Manipulation</span><span>Thesis artifact</span></div>
                   <h3 class="project-title">
                     <a href="pages/master_thesis_project.html" target="_blank" rel="noopener noreferrer">Master Thesis Project</a>
                   </h3>
+                  <p class="project-type">Robotic manipulation research</p>
                   <p class="project-desc">Invariant representations & learning from demonstration for wire manipulation, with behavior trees.</p>
                   <div class="project-actions">
                     <a class="btn" href="pages/master_thesis_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Master Thesis Project">Open</a>
@@ -415,15 +419,16 @@
               </article>
 
               <!-- UWB -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="UWB Communication System for UAVs">
+              <article class="card project-card project-card--featured" aria-label="UWB Communication System for UAVs">
                 <a class="project-thumb" href="pages/uwb_project.html" target="_blank" rel="noopener noreferrer">
                   <img src="pics/photo_1_2024-10-03_16-27-18-transformed.png" alt="UWB system thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span><span>UWB</span><span>UAV networking</span><span>Embedded system</span></div>
                   <h3 class="project-title">
                     <a href="pages/uwb_project.html" target="_blank" rel="noopener noreferrer">UWB Communication System for UAVs</a>
                   </h3>
+                  <p class="project-type">Drone communication hardware</p>
                   <p class="project-desc"><span lang="it">Modular communication system for drones, multi-agent coordination via UWB.</span></p>
                   <div class="project-actions">
                     <a class="btn" href="pages/uwb_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open UWB project">Open</a>
@@ -432,15 +437,16 @@
               </article>
 
               <!-- Hachi -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="Hachi Team - StartUp Lab">
+              <article class="card project-card project-card--featured" aria-label="Hachi Team - StartUp Lab">
                 <a class="project-thumb" href="pages/hachi_project.html" target="_blank" rel="noopener noreferrer">
                   <img src="pics/photo_5_2024-10-03_14-58-56.jpg" alt="Hachi project thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span><span>AR</span><span>Education</span><span>Startup lab</span></div>
                   <h3 class="project-title">
                     <a href="pages/hachi_project.html" target="_blank" rel="noopener noreferrer">Hachi Team – StartUp Lab</a>
                   </h3>
+                  <p class="project-type">AR education product</p>
                   <p class="project-desc"><span lang="it">AR solutions for learning, a CLab Trento project in collaboration with HIT.</span></p>
                   <div class="project-actions">
                     <a class="btn" href="pages/hachi_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Hachi project">Open</a>
@@ -449,15 +455,16 @@
               </article>
 
               <!-- Bachelor Thesis -->
-              <article class="card project-card" tabindex="0" role="article" aria-label="Bachelor Thesis Project">
+              <article class="card project-card project-card--featured" aria-label="Bachelor Thesis Project">
                 <a class="project-thumb" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener noreferrer">
                   <img src="pics/Setup.jpg" alt="Bachelor Thesis thumbnail" loading="lazy" decoding="async">
                 </a>
                 <div class="project-body">
-                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span></div>
+                  <div class="project-meta"><span class="status-pill status-pill--completed">Completed</span><span>EMG</span><span>Sensing</span><span>Bachelor thesis</span></div>
                   <h3 class="project-title">
                     <a href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener noreferrer">Bachelor Thesis Project</a>
                   </h3>
+                  <p class="project-type">Biomedical sensing study</p>
                   <p class="project-desc"><span lang="it">EMG analysis with Myoware sensors to correlate muscle activity and applied force.</span></p>
                   <div class="project-actions">
                     <a class="btn" href="pages/bachelor_thesis_project.html" target="_blank" rel="noopener noreferrer" aria-label="Open Bachelor project">Open</a>
@@ -482,7 +489,7 @@
 
               <li class="icon solid fa-cogs">
                 <h3>Mechatronic Engineering</h3>
-                <p>Background rooted in Mechatronics, combining mechanical design, electronics, and control. 
+                <p>Background rooted in Mechatronics, combining mechanical design, electronics, and control.
                 Graduated both at Bachelor’s and Master’s level in Mechatronic Engineering, with focus on robotics, embedded systems, and automation.</p>
               </li>
 
