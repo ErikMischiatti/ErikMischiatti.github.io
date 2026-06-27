@@ -1575,27 +1575,6 @@ body.is-mobile.landing .wrapper.style4{
   text-shadow:none;
 }
 
-.hero-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.65rem;
-  margin:1.55rem 0 0;
-  padding:0;
-  list-style:none;
-}
-
-.hero-tags li{
-  border:1px solid rgba(214, 227, 224, .16);
-  border-radius:var(--portfolio-radius-xs);
-  padding:.36rem .58rem;
-  background:rgba(17,24,33,.68);
-  color:var(--portfolio-muted);
-  font-family:var(--portfolio-font-mono);
-  font-size:.76rem;
-  line-height:1.25;
-  backdrop-filter:blur(10px);
-}
-
 #banner.portfolio-hero .hero-actions{
   display:flex;
   flex-wrap:wrap;
@@ -1701,14 +1680,6 @@ body.is-mobile.landing .wrapper.style4{
   #banner.portfolio-hero .hero-actions .button{
     width:100%;
     max-width:none;
-  }
-
-  .hero-tags{
-    gap:.5rem;
-  }
-
-  .hero-tags li{
-    font-size:.7rem;
   }
 
   .hero-panel{
@@ -2003,18 +1974,6 @@ body.is-mobile.landing .wrapper.style4{
     line-height:1.58;
   }
 
-  .hero-tags{
-    justify-content:center;
-    gap:.45rem;
-    margin-top:1.25rem;
-  }
-
-  .hero-tags li{
-    max-width:100%;
-    padding:.34rem .5rem;
-    text-align:center;
-  }
-
   #banner.portfolio-hero .hero-actions{
     width:min(100%, 22rem);
     margin:1.55rem auto 0;
@@ -2108,10 +2067,6 @@ body.is-mobile.landing .wrapper.style4{
   #banner.portfolio-hero .hero-kicker,
   #banner.portfolio-hero .hero-role{
     letter-spacing:.045em;
-  }
-
-  .hero-tags li{
-    font-size:.66rem;
   }
 
   #banner.portfolio-hero .hero-panel{
@@ -2277,5 +2232,55 @@ body:not(.landing) .home-icon:hover{
 
   body:not(.landing) iframe{
     max-width:100%;
+  }
+}
+
+
+/* === Remaining project detail page cleanup === */
+.project-actions-row{
+  margin-top:1rem;
+}
+
+.block-diagram--spaced{
+  margin-top:1.5rem;
+}
+
+.repo-badges{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.55rem;
+  margin:1rem 0 0;
+}
+
+.repo-badges img{
+  display:inline-block;
+  max-width:100%;
+  height:auto;
+}
+
+body:not(.landing) .cards-grid.project-section-grid{
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+}
+
+body:not(.landing) .media-card img{
+  display:block;
+  width:100%;
+  object-fit:cover;
+}
+
+body:not(.landing) #recognition p{
+  max-width:70ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media (max-width: 736px){
+  .project-actions-row{
+    margin-top:.85rem;
+  }
+
+  .repo-badges{
+    justify-content:flex-start;
   }
 }

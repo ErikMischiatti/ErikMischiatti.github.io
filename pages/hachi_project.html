@@ -38,7 +38,7 @@
   </header>
 
   <!-- Project Overview -->
-  <section class="wrapper style3 special">
+  <section class="wrapper style3 special" id="overview">
     <div class="inner">
       <header class="major">
         <h2>Project Overview</h2>
@@ -52,7 +52,7 @@
   </section>
 
 <!-- Award Section -->
-<section class="wrapper style2 special">
+<section class="wrapper style2 special" id="recognition">
   <div class="inner">
     <header class="major">
       <h2>International Recognition</h2>
@@ -91,7 +91,7 @@
       <p>A quick overview of challenge, solution and go-to-market, in one glance.</p>
     </header>
 
-    <div class="cards-grid">
+    <div class="cards-grid project-section-grid">
       <!-- The Problem -->
       <article class="card" id="problem">
         <h3>The Problem</h3>
@@ -169,17 +169,21 @@
 
       <!-- Usa figure/figcaption se vuoi aggiungere didascalie -->
       <div class="media-grid">
-        <figure class="media-item">
+        <figure class="media-card">
           <img src="../pics/photo_1_2024-11-12_14-12-55.jpg" alt="Demo AR: studenti provano la card #1" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">AR education demo with printable Hachi learning cards.</figcaption>
         </figure>
-        <figure class="media-item">
+        <figure class="media-card">
           <img src="../pics/photo_2_2024-11-12_14-12-55.jpg" alt="Setup di test: rendering del modello 3D su card" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">Test setup showing a rendered 3D model anchored to a card.</figcaption>
         </figure>
-        <figure class="media-item">
+        <figure class="media-card">
           <img src="../pics/photo_3_2024-11-12_14-12-55.jpg" alt="Schermate dell’app Hachi in esecuzione" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">Hachi app screens used for AR lesson interaction.</figcaption>
         </figure>
-        <figure class="media-item">
+        <figure class="media-card">
           <img src="../pics/photo_5_2024-11-12_14-12-55.jpg" alt="Team Hachi al CLab: sessione di lavoro" loading="lazy" decoding="async" />
+          <figcaption class="media-caption">Hachi team work session during the CLab project.</figcaption>
         </figure>
       </div>
     </div>
@@ -215,20 +219,20 @@
           <a
             href="https://github.com/Azzeccagarbugli/hachi"
             class="button primary icon brands fa-github"
-            target="_blank" rel="noopener"
+            target="_blank" rel="noopener noreferrer"
             aria-label="Open the Hachi repository on GitHub">
             View on GitHub
           </a>
         </li>
       </ul>
 
-      <p style="margin-top:1rem;">
+      <p class="repo-badges">
         <img
           src="https://img.shields.io/github/stars/Azzeccagarbugli/hachi?style=social"
           alt="GitHub stars" />
         <img
           src="https://img.shields.io/github/languages/top/Azzeccagarbugli/hachi"
-          alt="Top language" style="margin-left:.5rem;" />
+          alt="Top language" />
       </p>
     </div>
   </section>
@@ -241,25 +245,5 @@
       </ul>
     </div>
   </footer>
-
-  <!-- === Stili “nuovi” (spostali in ../assets/css/custom.css) === -->
-  <style>
-    /* Grid responsive per immagini */
-    .media-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:18px;
-    }
-    .media-item img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:10px;
-    }
-
-    /* Ritocchi header locali (opzionali) */
-    #header h1{ margin-bottom: 15px; }
-    #header p { margin-top: 30px; }
-  </style>
 </body>
 </html>

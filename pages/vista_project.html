@@ -64,14 +64,14 @@
 
       <div class="architecture-flow" aria-label="VISTA runtime pipeline">
         <div class="flow-step"><strong>Camera Image</strong><span>Configurable ROS 2 image topic.</span></div>
-        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
         <div class="flow-step"><strong>GemmaPerceptionNode</strong><span>JPEG encoding, prompt request, JSON parsing.</span></div>
-        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
         <div class="flow-step"><strong>/vlm_data</strong><span>Scene state, hazard level, target visibility, bbox, confidence.</span></div>
         <div class="flow-step"><strong>BT Blackboard</strong><span>Latest VLM state copied into BehaviorTree.CPP memory.</span></div>
-        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
         <div class="flow-step"><strong>BehaviorTreeNode</strong><span>Fast periodic ticks of the configured BT XML.</span></div>
-        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-arrow" aria-hidden="true">&rarr;</div>
         <div class="flow-step"><strong>Robot Behaviors</strong><span>Recovery, target pursuit, or default behavior.</span></div>
       </div>
 
