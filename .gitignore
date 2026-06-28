@@ -1,0 +1,21 @@
+# Local CV LaTeX source and generated intermediate PDF
+docs/Erik_Mischiatti_CV_Harvard_style.tex
+docs/Erik_Mischiatti_CV_Harvard_style.pdf
+
+# Optional local hidden CV workspace
+docs/.cv/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
