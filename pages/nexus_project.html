@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NEXUS — Modular Robotics Operations Platform</title>
+  <meta name="description" content="NEXUS is an early-stage open-source architecture foundation for a plugin-first, robot-agnostic robotics operations platform for heterogeneous autonomous systems."/>
+
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <link rel="stylesheet" href="../assets/css/custom.css"/>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+  <header id="header">
+    <div class="inner">
+      <h1>NEXUS</h1>
+      <a href="../index.html" class="home-icon" aria-label="Go back to Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </header>
+
+  <section class="wrapper style3 special" id="overview">
+    <div class="inner">
+      <header class="major">
+        <h2>NEXUS — Modular Robotics Operations Platform</h2>
+        <p>Plugin-first operations architecture for heterogeneous autonomous systems.</p>
+        <p><em>Status:</em> <strong>Early-stage architecture and open-source foundation</strong></p>
+      </header>
+
+      <p>
+        NEXUS is a public open-source foundation for a modular robotics operations platform. It is designed around heterogeneous autonomous systems, where different robots, simulators, middleware stacks, and external services can be connected through explicit adapters instead of being hard-coded into one runtime.
+      </p>
+      <p>
+        The project focuses on architecture, module boundaries, capability-driven control, plugin contracts, and operator-facing system design. It is intended to grow into a robot-agnostic operations layer while staying independent from any single robotics middleware.
+      </p>
+
+      <p class="actions project-actions-row">
+        <a class="button primary" href="https://github.com/ErikMischiatti/NEXUS" target="_blank" rel="noopener noreferrer" aria-label="Open NEXUS GitHub repository">
+          <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub Repository
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style2 special" id="technical-concepts">
+    <div class="inner">
+      <header class="major"><h2>Technical Concepts / Stack</h2></header>
+      <div class="tech-tags" role="list" aria-label="Technical concepts used in NEXUS">
+        <span class="tech-tag" role="listitem">Plugin-first architecture</span>
+        <span class="tech-tag" role="listitem">Robot-agnostic adapters</span>
+        <span class="tech-tag" role="listitem">Capability model</span>
+        <span class="tech-tag" role="listitem">ROS / ROS 2</span>
+        <span class="tech-tag" role="listitem">MQTT</span>
+        <span class="tech-tag" role="listitem">MAVLink</span>
+        <span class="tech-tag" role="listitem">Web/operator UI</span>
+        <span class="tech-tag" role="listitem">Middleware-independent design</span>
+        <span class="tech-tag" role="listitem">Open-source foundation</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style3 special" id="current-scope">
+    <div class="inner">
+      <header class="major"><h2>Current Scope</h2></header>
+      <p class="project-note">
+        NEXUS is currently an early-stage architecture and open-source project foundation. This page presents intended system design, module boundaries, and integration strategy rather than a complete production implementation.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="architecture">
+    <div class="inner">
+      <header class="major"><h2>Architecture</h2></header>
+      <p>
+        The platform is organized around a normalized operations model. Robots, simulators, and external systems connect through adapters; adapters expose state and capabilities; the mission/task layer works against those capabilities; plugins extend behavior and UI surfaces without tying the platform to one robot type or middleware stack.
+      </p>
+
+      <div class="nexus-flow" aria-label="NEXUS architecture flow">
+        <div class="nexus-flow-step"><strong>Robot / Simulator / External System</strong><span>Physical robots, simulated agents, services, or custom endpoints.</span></div>
+        <div class="nexus-flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="nexus-flow-step"><strong>Adapter Layer</strong><span>ROS, MQTT, MAVLink, simulator, or custom API adapters.</span></div>
+        <div class="nexus-flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="nexus-flow-step"><strong>Normalized Robot Model</strong><span>Shared state, identity, telemetry, health, and command contracts.</span></div>
+        <div class="nexus-flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="nexus-flow-step"><strong>Capability Registry</strong><span>Declared robot abilities exposed as stable platform capabilities.</span></div>
+        <div class="nexus-flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="nexus-flow-step"><strong>Mission / Task Layer</strong><span>Task orchestration that targets capabilities instead of robot-specific APIs.</span></div>
+        <div class="nexus-flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="nexus-flow-step"><strong>Plugin Runtime</strong><span>Extension point for integrations, tools, behaviors, and UI modules.</span></div>
+        <div class="nexus-flow-arrow" aria-hidden="true">&rarr;</div>
+        <div class="nexus-flow-step"><strong>Operator UI / API</strong><span>Human supervision, fleet state, commands, diagnostics, and external access.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="design-principles">
+    <div class="inner">
+      <header class="major"><h2>Core Design Principles</h2></header>
+      <div class="project-section-grid">
+        <article class="card"><h3>Plugin-first</h3><p>Platform behavior, integrations, and operator views should be extendable through explicit plugin contracts.</p></article>
+        <article class="card"><h3>Robot-agnostic</h3><p>The core platform should reason about normalized robots and capabilities, not one specific vehicle, arm, drone, or middleware package.</p></article>
+        <article class="card"><h3>Adapter-based</h3><p>Robot-specific details belong behind adapters that translate external systems into stable NEXUS contracts.</p></article>
+        <article class="card"><h3>Capability-driven</h3><p>Tasks should request abilities such as navigation, inspection, streaming, or manipulation instead of calling platform-specific commands directly.</p></article>
+        <article class="card"><h3>Middleware-independent</h3><p>ROS, MQTT, MAVLink, simulators, and custom APIs are integration choices, not assumptions baked into the platform core.</p></article>
+        <article class="card"><h3>UI Modularity</h3><p>The operator interface should support modular panels and tools that reflect available plugins, robot types, and mission contexts.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="system-components">
+    <div class="inner">
+      <header class="major"><h2>System Components</h2></header>
+      <div class="project-section-grid">
+        <article class="card"><h3>Adapter SDK</h3><p>Defines how new robots, simulators, middleware bridges, and external systems connect to NEXUS.</p></article>
+        <article class="card"><h3>Capability Registry</h3><p>Tracks declared robot capabilities and exposes them to task logic, UI modules, and plugins.</p></article>
+        <article class="card"><h3>Plugin Runtime</h3><p>Provides a controlled extension surface for platform features without modifying the core system.</p></article>
+        <article class="card"><h3>Mission/Task Layer</h3><p>Coordinates high-level work using normalized state and capabilities instead of robot-specific control paths.</p></article>
+        <article class="card"><h3>Robot State Model</h3><p>Represents identity, pose, health, telemetry, mode, and availability in a consistent platform model.</p></article>
+        <article class="card"><h3>Operator Console</h3><p>Provides the UI shell for supervision, commands, status, diagnostics, and plugin-provided panels.</p></article>
+        <article class="card"><h3>Integration Bridges</h3><p>Hosts bridge concepts for ROS, ROS 2, MQTT, MAVLink, simulators, and custom infrastructure.</p></article>
+        <article class="card"><h3>Observability/Logs</h3><p>Supports debugging and operations through events, logs, state history, and integration diagnostics.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="middleware-strategy">
+    <div class="inner">
+      <header class="major"><h2>Middleware Strategy</h2></header>
+      <p>
+        NEXUS treats robotics middleware as an integration boundary. ROS, ROS 2, MQTT, MAVLink, simulators, and custom APIs can all be valuable, but none of them should define the core platform identity. The platform core should depend on stable adapter contracts, normalized robot state, and declared capabilities.
+      </p>
+      <p>
+        This design keeps the operations layer portable across heterogeneous systems. A UAV using MAVLink, a ROS 2 ground robot, a simulator, and a custom external service should be able to appear inside the same operations model when their adapters expose compatible state and capability contracts.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style3 special" id="roadmap">
+    <div class="inner">
+      <header class="major"><h2>Roadmap</h2></header>
+      <div class="project-section-grid">
+        <article class="card"><h3>Core Data Model</h3><p>Define the first shared model for robot identity, state, telemetry, health, commands, and capabilities.</p></article>
+        <article class="card"><h3>Adapter Interface</h3><p>Build the adapter contract that external systems use to connect into the platform.</p></article>
+        <article class="card"><h3>Simulated Adapter</h3><p>Add the first simulated robot adapter to validate the model without depending on hardware.</p></article>
+        <article class="card"><h3>Bridge Prototypes</h3><p>Create initial ROS, MQTT, and MAVLink bridge prototypes around the same adapter boundary.</p></article>
+        <article class="card"><h3>Operator UI Shell</h3><p>Build a minimal web/operator console for robot state, capability inspection, and basic commands.</p></article>
+        <article class="card"><h3>Plugin Examples</h3><p>Publish small example plugins that demonstrate extension points and expected project structure.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrapper style2 special" id="source-code">
+    <div class="inner">
+      <header class="major">
+        <h2>Source Code</h2>
+        <p>The NEXUS open-source foundation is available on GitHub.</p>
+      </header>
+      <p class="actions project-actions-row">
+        <a class="button primary" href="https://github.com/ErikMischiatti/NEXUS" target="_blank" rel="noopener noreferrer" aria-label="Open NEXUS GitHub repository">
+          <i class="fa-brands fa-github" aria-hidden="true"></i> View Repository
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="inner">
+      <ul class="copyright">
+        <li>&copy; Erik Mischiatti</li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

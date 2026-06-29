@@ -1017,6 +1017,79 @@ h1, h2, h3, h4, h5, h6 {
   text-transform:uppercase;
 }
 
+.project-thumb--nexus{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:.45rem;
+  text-align:center;
+  background:
+    linear-gradient(135deg, rgba(101,184,170,.2), rgba(238,243,246,.05)),
+    var(--portfolio-surface);
+  border:1px solid var(--portfolio-border);
+}
+.nexus-thumb-title{
+  color:var(--portfolio-text);
+  font-size:clamp(1.75rem, 5vw, 3.15rem);
+  font-weight:800;
+  line-height:1;
+}
+.nexus-thumb-flow{
+  color:var(--portfolio-muted);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  line-height:1.35;
+  text-transform:uppercase;
+}
+
+/* === NEXUS project page === */
+.nexus-flow{
+  display:grid;
+  grid-template-columns:repeat(7, minmax(0, 1fr));
+  gap:10px;
+  align-items:stretch;
+  margin:1.5rem 0 0;
+}
+.nexus-flow-step{
+  min-height:132px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:.35rem;
+  padding:14px;
+  border:1px solid var(--portfolio-border);
+  border-radius:10px;
+  background:var(--portfolio-surface-soft);
+}
+.nexus-flow-step strong{
+  display:block;
+  line-height:1.2;
+}
+.nexus-flow-step span{
+  color:var(--portfolio-muted);
+  font-size:.86rem;
+  line-height:1.35;
+}
+.nexus-flow-arrow{
+  display:none;
+}
+@media (max-width: 1100px){
+  .nexus-flow{
+    grid-template-columns:1fr;
+  }
+  .nexus-flow-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:18px;
+    color:var(--portfolio-accent-strong);
+    font-weight:800;
+    transform:rotate(90deg);
+  }
+}
+
 /* === VISTA project page === */
 .architecture-flow{
   display:grid;
