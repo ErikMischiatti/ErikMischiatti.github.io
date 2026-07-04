@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Robotic Manipulation System — Master’s Thesis</title>
-  <meta name="description" content="Autonomous robotic manipulation with kinesthetic teaching, invariant trajectory representations (DHB), and vision-based perception on a modular environment." />
+  <meta name="description" content="Research prototype for cable manipulation with Learning from Demonstration, DHB invariant trajectories, RealSense/ArUco perception, and Behavior Tree execution on a Franka robot." />
   <link rel="canonical" href="https://erikmischiatti.github.io/pages/master_thesis_project.html" />
 
   <!-- CSS base + override -->
@@ -19,7 +19,7 @@
 
   <!-- OpenGraph (opzionale) -->
   <meta property="og:title" content="Robotic Manipulation System — Master’s Thesis" />
-  <meta property="og:description" content="Learning from Demonstration + DHB invariant representations for modular assembly and cable manipulation." />
+  <meta property="og:description" content="Documented research prototype for cable manipulation with Learning from Demonstration, DHB invariant trajectories, and Behavior Tree control on a Franka robot." />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="https://erikmischiatti.github.io/pics/Setup.jpg" />
 </head>
@@ -45,9 +45,10 @@
           <p>Leveraging Demonstration Learning and Invariant Representations for Modular Assembly and Cable Manipulation</p>
         </header>
         <p>
-          This master’s thesis develops an autonomous robotic system able to manipulate rigid and deformable objects.
+          This master’s thesis develops a documented robotic research prototype for manipulating rigid and deformable objects.
           The approach combines kinesthetic demonstration, invariant trajectory representations (DHB), and
           vision-based perception to insert Ethernet cables and interact with modular components under real-world constraints.
+          The public summary should be read as partially reproducible: it depends on local hardware, calibration, and recorded data.
         </p>
         <p><em>Status:</em> <strong>Completed</strong></p>
       </div>
@@ -119,7 +120,7 @@
         <li><strong>Full Modular Path:</strong> Partial success in executing complex sequences across multiple modules, limited by joint constraints and cable slack.</li>
         <li><strong>Board Reconfiguration:</strong> The system successfully adapted to new board layouts, confirming DHB invariance properties.</li>
       </ul>
-      <p>Results indicate the system performs well in structured environments and highlights the challenges of manipulating flexible elements such as cables in unstructured settings.</p>
+      <p>The public materials show representative scenarios for clip insertion, longer modular paths, and board reconfiguration. The repository itself remains a research prototype, so results, behavior, and replayability depend on local hardware, calibration, and recorded data.</p>
     </header>
 
     <div class="image-pair">
@@ -201,8 +202,8 @@
           <h2>Conclusions &amp; Future Work</h2>
         </header>
         <p>
-          The thesis shows that invariant representations can support complex tasks such as cable insertion and modular assembly.
-          DHB facilitates generalization across configurations; future work targets robustness with deformable objects and occlusions.
+          The thesis explores whether invariant representations can support tasks such as cable insertion and modular assembly.
+          DHB supports trajectory generalization across configurations; future work would need stronger robustness for deformable objects, occlusions, and calibration changes.
         </p>
         <ul style="list-style:disc; display:inline-block; text-align:left; padding-left:1.25rem;">
           <li>Bimanual coordination for advanced wire routing.</li>
@@ -210,9 +211,12 @@
           <li>Real-time pose refinement and learning for novel parts.</li>
         </ul>
 
-        <p style="margin-top:1rem;">
+        <p class="actions project-actions-row" style="margin-top:1rem;">
           <a class="button primary" href="../docs/Mischiatti___Master_Thesis(git).pdf" target="_blank" rel="noopener noreferrer">
             Download Thesis PDF
+          </a>
+          <a class="button primary" href="https://github.com/ErikMischiatti/Master-Thesis-Project" target="_blank" rel="noopener noreferrer" aria-label="Open the thesis repository on GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub Repository
           </a>
         </p>
       </div>
