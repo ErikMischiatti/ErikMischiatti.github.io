@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Behavior Tree Mission Manager — EAGLE Mission Orchestration</title>
-  <meta name="description" content="ROS 1 mission-level supervision for an interceptor UAV, using modular Behavior Trees, service gates, mission-state reporting, and external target guidance."/>
+  <meta name="description" content="ROS 1 / C++ mission orchestration and runtime safety supervision for an autonomous UAV: modular Behavior Trees, control-authority takeover, precondition gating, and layered test validation."/>
   <link rel="stylesheet" href="../assets/css/main.css"/>
   <link rel="stylesheet" href="../assets/css/custom.css"/>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -25,21 +25,58 @@
     <div class="inner">
       <header class="major">
         <h2>Behavior Tree Mission Manager — EAGLE Mission Orchestration</h2>
-        <p>ROS 1 mission-level supervision for an interceptor UAV, using modular Behavior Trees, service gates, mission-state reporting, and external target guidance.</p>
-        <p><em>Status:</em> <strong>Mission orchestration prototype with active integration work</strong></p>
+        <p>ROS 1 / C++ mission orchestration and runtime safety supervision for an autonomous UAV, built on modular Behavior Trees.</p>
+        <p><em>Status:</em> <strong>Mission orchestration system under active integration and validation</strong></p>
       </header>
 
       <p>
-        The Behavior Tree Mission Manager is the high-level orchestration layer for an interceptor UAV mission. It coordinates mission phases, operator policies, service gates, payload sequencing, target guidance, and mission-state reporting while keeping low-level flight control outside its scope.
+        The Mission Manager is the high-level orchestration layer of an autonomous UAV mission. It decides what the mission should do next: sequencing mission phases, enforcing runtime preconditions before safety-relevant actions, supervising control authority while the vehicle is flying, coordinating payload and guidance inputs, and reporting mission state to operator interfaces. Low-level flight control stays deliberately outside its scope.
       </p>
       <p>
-        Flight actions are delegated to the MRS UAV System, payload actions are delegated to a payload manager, and shared message/service contracts are owned by the EAGLE message package. This page intentionally describes the public architecture only, without deployment-specific configuration or operational parameters.
+        The guiding design goal is a mission layer that remains reactive and preemptible at all times. It can interrupt itself safely when the runtime conditions it depends on stop holding, hand control back to the operator, and never resume autonomous execution without an explicit human decision.
       </p>
 
-      <figure class="project-hero-media">
-        <img src="../pics/eagle_bt_main_tree.svg" alt="Main Behavior Tree mission orchestration diagram" loading="lazy" decoding="async">
-        <figcaption class="media-caption">MainTree global orchestration for mission policy and phase sequencing.</figcaption>
-      </figure>
+      <div class="block-diagram block-diagram--spaced">
+        <svg viewBox="0 0 1040 460" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ctx-title ctx-desc">
+          <title id="ctx-title">Mission Manager system context and subsystem ownership</title>
+          <desc id="ctx-desc">Operator and external guidance inputs feed the Mission Manager, which issues mission-level commands to the UAV autonomy stack and the payload subsystem and consumes reported state from both.</desc>
+
+          <rect x="40" y="30" width="230" height="76" rx="10" class="bd-rect"/>
+          <text x="155" y="62" class="bd-title">Operator / Ground</text>
+          <text x="155" y="86" class="bd-text">policy, configuration, commands</text>
+
+          <rect x="770" y="30" width="230" height="76" rx="10" class="bd-rect"/>
+          <text x="885" y="62" class="bd-title">External Guidance</text>
+          <text x="885" y="86" class="bd-text">mission-level guidance inputs</text>
+
+          <rect x="40" y="160" width="960" height="120" rx="12" class="bd-rect"/>
+          <text x="520" y="200" class="bd-title">Mission Manager — Behavior Tree Orchestration</text>
+          <text x="520" y="228" class="bd-text">execution policy · phase sequencing · runtime precondition gating</text>
+          <text x="520" y="252" class="bd-text">control-authority supervision · deterministic decision logic · mission-state reporting</text>
+
+          <rect x="100" y="340" width="290" height="96" rx="10" class="bd-rect--secondary"/>
+          <text x="245" y="376" class="bd-title">UAV Autonomy Stack</text>
+          <text x="245" y="402" class="bd-text">owns flight-control execution</text>
+
+          <rect x="650" y="340" width="290" height="96" rx="10" class="bd-rect--secondary"/>
+          <text x="795" y="376" class="bd-title">Payload Subsystem</text>
+          <text x="795" y="402" class="bd-text">owns payload runtime state</text>
+
+          <line x1="155" y1="106" x2="155" y2="160" class="bd-arrow"/><polygon points="155,160 150,150 160,150" class="bd-arrow-head"/>
+          <line x1="885" y1="106" x2="885" y2="160" class="bd-arrow"/><polygon points="885,160 880,150 890,150" class="bd-arrow-head"/>
+
+          <line x1="200" y1="280" x2="200" y2="340" class="bd-arrow"/><polygon points="200,340 195,330 205,330" class="bd-arrow-head"/>
+          <line x1="350" y1="340" x2="350" y2="280" class="bd-arrow--dashed"/><polygon points="350,280 345,290 355,290" class="bd-arrow-head"/>
+          <text x="192" y="316" class="bd-arrow-label" text-anchor="end">commands</text>
+          <text x="358" y="316" class="bd-arrow-label" text-anchor="start">state</text>
+
+          <line x1="750" y1="280" x2="750" y2="340" class="bd-arrow"/><polygon points="750,340 745,330 755,330" class="bd-arrow-head"/>
+          <line x1="900" y1="340" x2="900" y2="280" class="bd-arrow--dashed"/><polygon points="900,280 895,290 905,290" class="bd-arrow-head"/>
+          <text x="742" y="316" class="bd-arrow-label" text-anchor="end">commands</text>
+          <text x="908" y="316" class="bd-arrow-label" text-anchor="start">state</text>
+        </svg>
+      </div>
+      <p class="media-caption">System context. The Mission Manager coordinates subsystems it does not own, issuing mission-level commands and consuming reported state rather than maintaining a competing copy of it.</p>
     </div>
   </section>
 
@@ -53,39 +90,53 @@
         <span class="tech-tag" role="listitem">MRS UAV System</span>
         <span class="tech-tag" role="listitem">catkin</span>
         <span class="tech-tag" role="listitem">nodelets</span>
-        <span class="tech-tag" role="listitem">YAML</span>
-        <span class="tech-tag" role="listitem">ROS services/messages</span>
-        <span class="tech-tag" role="listitem">MQTT support</span>
+        <span class="tech-tag" role="listitem">ROS services &amp; actions</span>
+        <span class="tech-tag" role="listitem">Blackboard state model</span>
+        <span class="tech-tag" role="listitem">YAML configuration</span>
+        <span class="tech-tag" role="listitem">GoogleTest</span>
+        <span class="tech-tag" role="listitem">Gazebo simulation</span>
+        <span class="tech-tag" role="listitem">MQTT bridge</span>
       </div>
     </div>
   </section>
 
   <section class="wrapper style2" id="architecture">
     <div class="inner">
-      <header class="major"><h2>Architecture</h2></header>
+      <header class="major"><h2>Architecture &amp; Subsystem Ownership</h2></header>
       <p>
-        The mission is structured around a MainTree for global orchestration and phase trees for PreflightPreparation, Takeoff, PreIntercept, Interceptor, PostIntercept, Land, and Finalize. A ManualTree supports operator-driven execution when the mission policy requires direct control.
+        The mission is expressed as a top-level orchestration tree that selects the active execution policy and drives phase transitions, plus a set of modular mission-phase trees covering preflight preparation, takeoff, pre-intercept behavior, the interception phase, post-intercept handling, landing, and finalization. A dedicated operator-driven tree covers manual execution. Keeping each phase in its own tree means a phase can be reasoned about, tested, and changed without destabilizing the rest of the mission.
       </p>
       <p>
-        A global Behavior Tree blackboard carries shared mission state between tree nodes. ROS services provide runtime gates and manual actions, while a MissionState publisher exposes the current mission phase and status for dashboards, logs, and external monitoring.
+        A shared runtime state model carries mission context between tree nodes, so orchestration decisions read from one coherent view of the mission instead of from scattered node-local variables. Runtime services expose operator control and mission gates, and a mission-state publisher exposes phase and status to operator interfaces, logs, and monitoring.
+      </p>
+      <p>
+        The most important architectural property of the system is <strong>ownership</strong>. Each concern has exactly one authoritative owner, and the Mission Manager is deliberately not that owner for anything it does not decide.
       </p>
 
       <div class="project-section-grid">
         <article class="card">
-          <h3><i class="fa-solid fa-sitemap" aria-hidden="true"></i> Behavior Trees</h3>
-          <p>MainTree coordinates phase transitions; phase trees isolate preflight, takeoff, pre-intercept, interception, post-intercept, landing, and finalization behavior.</p>
+          <h3><i class="fa-solid fa-sitemap" aria-hidden="true"></i> Mission Manager</h3>
+          <p>Owns mission-level sequencing, phase transitions, execution policy, and precondition gating. It decides <em>when</em> something should happen and under what conditions.</p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-helicopter" aria-hidden="true"></i> UAV Autonomy Stack</h3>
+          <p>Owns flight-control execution, state estimation, and trajectory tracking. The mission layer requests outcomes and observes results; it never reimplements flight control.</p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-box-open" aria-hidden="true"></i> Payload Subsystem</h3>
+          <p>Owns payload hardware and runtime state. The Mission Manager coordinates mission-level timing and consumes reported state rather than keeping a parallel copy that could drift.</p>
         </article>
         <article class="card">
           <h3><i class="fa-solid fa-share-nodes" aria-hidden="true"></i> Shared Contracts</h3>
-          <p>eagle_msgs owns shared message and service definitions used across the mission, payload, and integration layers.</p>
-        </article>
-        <article class="card">
-          <h3><i class="fa-solid fa-box-open" aria-hidden="true"></i> Payload Boundary</h3>
-          <p>eagle_payload_manager owns payload hardware/runtime truth, while the Mission Manager coordinates mission-level payload service timing.</p>
+          <p>Cross-subsystem message and service contracts live in a shared definition layer, making integration boundaries explicit and versioned instead of implicit.</p>
         </article>
         <article class="card">
           <h3><i class="fa-solid fa-tower-broadcast" aria-hidden="true"></i> Ground Interface</h3>
-          <p>eagle_mqtt bridges ground-station/API configuration and status into the ROS mission layer without exposing operational topics here.</p>
+          <p>A bridge layer carries configuration and status between ground-side systems and the ROS mission layer, keeping operator tooling decoupled from mission internals.</p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Single Source of Truth</h3>
+          <p>Where a subsystem is authoritative, the mission layer treats its reported state as truth. This avoids the classic integration failure where two components disagree about reality.</p>
         </article>
       </div>
     </div>
@@ -93,16 +144,16 @@
 
   <section class="wrapper style2" id="features">
     <div class="inner">
-      <header class="major"><h2>Key Features</h2></header>
+      <header class="major"><h2>Key Capabilities</h2></header>
       <div class="project-section-grid">
-        <article class="card"><h3>Execution Policies</h3><p>Autonomous, supervised, and manual execution policies support repeatable automation and operator-driven validation.</p></article>
-        <article class="card"><h3>Mission Setup Gate</h3><p>MissionConfigure gates initial mission setup, with optional startup behavior that waits for ground-station configuration.</p></article>
-        <article class="card"><h3>Readiness Checks</h3><p>Preflight, offboard, and control-output readiness checks are encoded as mission-level gates before critical actions.</p></article>
-        <article class="card"><h3>Target Guidance</h3><p>External target localization can guide pre-intercept behavior before onboard tracking takes over.</p></article>
-        <article class="card"><h3>Interceptor States</h3><p>The mission layer supervises searching, following, intercepting, stopping, and disabled states at a high level.</p></article>
-        <article class="card"><h3>Runtime Control</h3><p>Pause/resume, manual services, and supervised confirmation provide operator control without rewriting mission logic.</p></article>
-        <article class="card"><h3>Payload Integration</h3><p>Payload/net service integration is coordinated by the mission phase rather than embedded in low-level flight control.</p></article>
-        <article class="card"><h3>MissionState Reporting</h3><p>MissionState reporting supports operator dashboards, logs, and integration diagnostics.</p></article>
+        <article class="card"><h3>Execution Policies</h3><p>Autonomous, supervised, and manual policies let the same mission logic serve repeatable automation, operator-confirmed validation, and fully hand-driven runs.</p></article>
+        <article class="card"><h3>Control-Authority Supervision</h3><p>Loss of autonomous control authority during an active mission is detected at runtime and preempts autonomous execution safely.</p></article>
+        <article class="card"><h3>Precondition Gating</h3><p>Safety-relevant actions validate their live runtime preconditions at the moment of execution rather than trusting state captured earlier in the mission.</p></article>
+        <article class="card"><h3>Reactive Preemption</h3><p>The tree stays reactive throughout: a running branch can be interrupted when its supporting conditions stop holding, instead of blocking until completion.</p></article>
+        <article class="card"><h3>Deterministic Decision Logic</h3><p>Safety-critical decisions are computed by small, side-effect-free modules that are independent of the ROS runtime and testable in isolation.</p></article>
+        <article class="card"><h3>External Guidance</h3><p>External localization feeds can be integrated as mission-level guidance and gating inputs before onboard sensing takes over.</p></article>
+        <article class="card"><h3>Payload Coordination</h3><p>Payload interaction is sequenced by mission phase and gated on live preconditions, while hardware truth remains owned by the payload subsystem.</p></article>
+        <article class="card"><h3>Mission-State Reporting</h3><p>Structured runtime reporting exposes mission phase and interruption status for operator dashboards, logs, and integration diagnostics.</p></article>
       </div>
     </div>
   </section>
@@ -111,57 +162,198 @@
     <div class="inner">
       <header class="major"><h2>Mission Flow</h2></header>
       <p>
-        The autonomous and supervised flows follow a modular sequence: PreflightPreparation, Takeoff, PreIntercept, Interceptor, PostIntercept, Land, and Finalize. The ManualTree remains available for operator-driven execution paths when the selected policy allows it.
+        Autonomous and supervised runs follow the same modular phase sequence, with each phase implemented as an independent tree. The active execution policy determines how much of each phase runs without operator input, and the operator-driven path remains available wherever the selected policy allows it.
       </p>
-      <div class="media-grid bt-diagram-grid" aria-label="Behavior Tree mission diagrams">
-        <figure class="media-card">
-          <img src="../pics/eagle_bt_main_tree.svg" alt="MainTree Behavior Tree diagram" loading="lazy" decoding="async">
-          <figcaption class="media-caption">MainTree — global policy, pause/resume, and phase orchestration.</figcaption>
-        </figure>
-        <figure class="media-card">
-          <img src="../pics/eagle_bt_takeoff_tree.svg" alt="Takeoff Behavior Tree diagram" loading="lazy" decoding="async">
-          <figcaption class="media-caption">TakeoffTree — mission-level takeoff gates and handoff.</figcaption>
-        </figure>
+
+      <div class="block-diagram block-diagram--spaced">
+        <svg viewBox="0 0 1040 330" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="flow-title flow-desc">
+          <title id="flow-title">Mission phase sequence</title>
+          <desc id="flow-desc">The mission progresses through preflight, takeoff, pre-intercept, interception, post-intercept, landing, and finalization phases, each implemented as an independent behavior tree.</desc>
+
+          <rect x="40" y="50" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="145" y="86" class="bd-title">Preflight</text>
+          <text x="145" y="110" class="bd-text">readiness gates</text>
+
+          <rect x="290" y="50" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="395" y="86" class="bd-title">Takeoff</text>
+          <text x="395" y="110" class="bd-text">handoff to flight stack</text>
+
+          <rect x="540" y="50" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="645" y="86" class="bd-title">Pre-Intercept</text>
+          <text x="645" y="110" class="bd-text">guided positioning</text>
+
+          <rect x="790" y="50" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="895" y="86" class="bd-title">Interception</text>
+          <text x="895" y="110" class="bd-text">supervised runtime states</text>
+
+          <rect x="40" y="210" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="145" y="246" class="bd-title">Post-Intercept</text>
+          <text x="145" y="270" class="bd-text">payload coordination</text>
+
+          <rect x="290" y="210" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="395" y="246" class="bd-title">Landing</text>
+          <text x="395" y="270" class="bd-text">policy-driven descent</text>
+
+          <rect x="540" y="210" width="210" height="84" rx="10" class="bd-rect"/>
+          <text x="645" y="246" class="bd-title">Finalization</text>
+          <text x="645" y="270" class="bd-text">cleanup and closure</text>
+
+          <line x1="250" y1="92" x2="290" y2="92" class="bd-arrow"/><polygon points="290,92 280,87 280,97" class="bd-arrow-head"/>
+          <line x1="500" y1="92" x2="540" y2="92" class="bd-arrow"/><polygon points="540,92 530,87 530,97" class="bd-arrow-head"/>
+          <line x1="750" y1="92" x2="790" y2="92" class="bd-arrow"/><polygon points="790,92 780,87 780,97" class="bd-arrow-head"/>
+
+          <path d="M 895 134 V 172 H 145 V 210" class="bd-arrow" fill="none"/><polygon points="145,210 140,200 150,200" class="bd-arrow-head"/>
+
+          <line x1="250" y1="252" x2="290" y2="252" class="bd-arrow"/><polygon points="290,252 280,247 280,257" class="bd-arrow-head"/>
+          <line x1="500" y1="252" x2="540" y2="252" class="bd-arrow"/><polygon points="540,252 530,247 530,257" class="bd-arrow-head"/>
+
+          <text x="895" y="252" class="bd-text">Every phase executes under the</text>
+          <text x="895" y="274" class="bd-text">active policy: autonomous,</text>
+          <text x="895" y="296" class="bd-text">supervised, or manual.</text>
+        </svg>
+      </div>
+      <p class="media-caption">Mission phase sequence. Each phase is an independent tree, so phases can be developed, gated, and validated without destabilizing the surrounding mission.</p>
+    </div>
+  </section>
+
+  <section class="wrapper style3" id="runtime-safety">
+    <div class="inner">
+      <header class="major"><h2>Runtime Safety &amp; Operator Takeover</h2></header>
+
+      <p>
+        A mission layer that only handles the nominal path is not a safe mission layer. A substantial part of this work went into making the system behave correctly when its assumptions stop holding mid-flight.
+      </p>
+      <p>
+        The Mission Manager supervises whether it still holds autonomous control authority over the vehicle. If that authority is lost during an active mission, autonomous execution is preempted rather than allowed to continue issuing commands into a vehicle it no longer effectively controls. The system transitions into its existing manual/paused control policy, so takeover lands in a control mode the operator already understands instead of an ad-hoc emergency state.
+      </p>
+      <p>
+        Critically, <strong>restoration of control authority does not automatically resume autonomous execution</strong>. The system holds, and resuming is an explicit operator decision. Automatic resumption would mean a vehicle silently reactivating an autonomous mission at a moment the operator did not choose, which is precisely the failure mode this mechanism exists to prevent.
+      </p>
+
+      <div class="block-diagram block-diagram--spaced">
+        <svg viewBox="0 0 1040 250" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="auth-title auth-desc">
+          <title id="auth-title">Control-authority takeover behavior</title>
+          <desc id="auth-desc">When autonomous control authority is lost, autonomous execution is preempted and the system moves into its manual or paused policy. Returning to autonomous execution requires an explicit operator decision and never happens automatically.</desc>
+
+          <rect x="30" y="50" width="270" height="92" rx="10" class="bd-rect"/>
+          <text x="165" y="88" class="bd-title">Autonomous</text>
+          <text x="165" y="114" class="bd-text">mission executing</text>
+
+          <rect x="385" y="50" width="270" height="92" rx="10" class="bd-rect--secondary"/>
+          <text x="520" y="88" class="bd-title">Preempted</text>
+          <text x="520" y="114" class="bd-text">autonomous execution stopped</text>
+
+          <rect x="740" y="50" width="270" height="92" rx="10" class="bd-rect"/>
+          <text x="875" y="88" class="bd-title">Manual / Paused</text>
+          <text x="875" y="114" class="bd-text">operator holds control</text>
+
+          <line x1="300" y1="96" x2="385" y2="96" class="bd-arrow"/><polygon points="385,96 375,91 375,101" class="bd-arrow-head"/>
+          <text x="342" y="82" class="bd-arrow-label" text-anchor="middle">authority lost</text>
+
+          <line x1="655" y1="96" x2="740" y2="96" class="bd-arrow"/><polygon points="740,96 730,91 730,101" class="bd-arrow-head"/>
+          <text x="697" y="82" class="bd-arrow-label" text-anchor="middle">policy switch</text>
+
+          <path d="M 875 142 V 200 H 165 V 142" class="bd-arrow--dashed" fill="none"/><polygon points="165,142 160,152 170,152" class="bd-arrow-head"/>
+          <text x="520" y="222" class="bd-arrow-label" text-anchor="middle">explicit operator decision only — restored authority never auto-resumes the mission</text>
+        </svg>
+      </div>
+      <p class="media-caption">Control-authority supervision. The return path is deliberately gated on a human decision rather than on the condition simply becoming healthy again.</p>
+
+      <div class="project-section-grid">
+        <article class="card">
+          <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Runtime Precondition Enforcement</h3>
+          <p>
+            Safety-relevant mission actions validate their preconditions against live runtime state at the moment they would act, not against state captured earlier in the mission. A critical action is held when its required conditions are no longer valid, the tree stays reactive and preemptible while it waits, and missing or invalid runtime inputs never implicitly authorize the action. Absence of evidence is treated as a reason to hold, not as permission to proceed.
+          </p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Design Under Uncertainty</h3>
+          <p>
+            Some external hardware actions do not return feedback sufficient to prove that physical actuation actually occurred. Rather than pretending otherwise, the software uses bounded best-effort command dispatch and conservative status semantics, and keeps an explicit distinction between <em>a command was acknowledged</em> and <em>a physical outcome was confirmed</em>. The mission layer never reports the second when it only observed the first.
+          </p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-cube" aria-hidden="true"></i> Deterministic Decision Modules</h3>
+          <p>
+            Safety-critical runtime decisions were extracted out of callback-heavy ROS code into small decision modules that are side-effect-free, independent of the ROS runtime, and independently unit-testable. This turns behavior that previously required a full running stack to observe into logic that can be verified deterministically as a pure function of its inputs.
+          </p>
+        </article>
       </div>
     </div>
   </section>
 
   <section class="wrapper style2" id="external-guidance">
     <div class="inner">
-      <header class="major"><h2>External Target Guidance</h2></header>
+      <header class="major"><h2>External Guidance &amp; Interceptor Supervision</h2></header>
       <p>
-        External target localization can be used before onboard tracking takes over. The Mission Manager treats that guidance as a mission-level input for pre-intercept behavior and stale-reference handling, while keeping sensor and flight-stack responsibilities in their owning subsystems.
+        External localization feeds can be integrated as mission-level guidance and gating inputs before onboard sensing takes over. The Mission Manager treats such feeds as mission inputs subject to validity checks — they influence phase progression and gating decisions, but sensing and flight responsibilities remain in their owning subsystems, and guidance that is unavailable or no longer valid does not silently keep driving mission decisions.
       </p>
-      <figure class="project-hero-media">
-        <img src="../pics/eagle_bt_pre_intercept_tree.svg" alt="PreIntercept Behavior Tree diagram" loading="lazy" decoding="async">
-        <figcaption class="media-caption">PreInterceptTree — external target guidance before onboard tracking takeover.</figcaption>
-      </figure>
+      <p>
+        The interception phase performs high-level runtime state supervision. It tracks the phase's progress under the operating policy in effect, decides when the phase should end, and handles operator-driven and autonomous variants of the same phase through configurable policies. It does not implement tracking or flight control, and the mission layer's role is confined to supervision and mission-level exits.
+      </p>
     </div>
   </section>
 
-  <section class="wrapper style2" id="interceptor">
+  <section class="wrapper style2" id="testing">
     <div class="inner">
-      <header class="major"><h2>Interceptor Supervision</h2></header>
+      <header class="major"><h2>Testing &amp; Validation</h2></header>
       <p>
-        The interceptor phase supervises high-level state transitions and mission exits. It does not implement low-level tracking or flight control; those responsibilities remain delegated to the relevant UAV and payload subsystems.
+        Verification is layered, and the layers exist because each one catches a class of defect the others cannot. The overall goal is to move as much safety-relevant behavior as possible into tests that are deterministic and cheap to run.
       </p>
-      <figure class="project-hero-media">
-        <img src="../pics/eagle_bt_interceptor_tree.svg" alt="Interceptor Behavior Tree diagram" loading="lazy" decoding="async">
-        <figcaption class="media-caption">InterceptorTree — searching, following, intercepting, stopping, and disabled-state supervision.</figcaption>
-      </figure>
+
+      <div class="project-section-grid">
+        <article class="card">
+          <h3><i class="fa-solid fa-vial" aria-hidden="true"></i> Pure-Logic Tests</h3>
+          <p>Because safety-related decisions live in ROS-independent modules, they are exercised directly as functions over their inputs — including edge cases that are difficult or unsafe to produce on a real vehicle.</p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> Component Tests</h3>
+          <p>A purpose-built fake surrounding stack makes runtime events deterministic, so integration behavior can be exercised without launching the complete vehicle stack and without waiting on real timing.</p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-satellite-dish" aria-hidden="true"></i> Full-Stack Simulation</h3>
+          <p>Integrated mission scenarios validate the interaction between Behavior Trees, runtime supervision, operator policy transitions, and mission actions in a complete simulated system.</p>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-ban" aria-hidden="true"></i> Instrumented Negative Assertions</h3>
+          <p>Selected safety tests instrument the service and action boundaries so a test can <strong>prove</strong> that an unsafe action was never issued, rather than inferring absence from log output.</p>
+        </article>
+      </div>
+
+      <p>
+        The negative-assertion layer is worth calling out. Most safety requirements in this system are statements about what must <em>not</em> happen — a critical action must not fire while its preconditions are invalid, an autonomous mission must not resume on its own. Asserting that something did not occur by reading logs is weak evidence. Instrumenting the boundary where the action would leave the process turns that into a direct, positive check.
+      </p>
+
+      <p class="project-note">
+        <strong>Validation limits.</strong> Simulation and software tests deliberately distinguish what is verified in software from what requires physical flight validation. Timing, actuation, and environmental behavior on real hardware are not claimed to be proven by simulation, and the test architecture is designed to make that boundary explicit rather than blur it.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrapper style2" id="mission-state">
+    <div class="inner">
+      <header class="major"><h2>Observability &amp; Mission State</h2></header>
+      <p>
+        Structured mission-state reporting is the system's primary observability surface, and it was extended to represent safety-related interruptions rather than only nominal progress.
+      </p>
+      <ul class="feature-list">
+        <li><strong>Phase is preserved across interruption.</strong> When execution is interrupted, the mission phase reached is retained instead of being discarded or overwritten.</li>
+        <li><strong>Interruption is reported separately.</strong> Interruption status is exposed as its own dimension of the mission state, not folded into the phase value.</li>
+        <li><strong>Operator context survives.</strong> Because the two are independent, operator interfaces retain a clear picture of <em>where</em> a mission was interrupted, which is what an operator needs in order to decide whether and how to resume.</li>
+        <li><strong>Only observable facts are reported.</strong> Reporting states what the system actually observed and deliberately avoids asserting unverified causes or unconfirmed hardware outcomes.</li>
+      </ul>
+      <p>
+        That last point ties back to the uncertainty handling in the runtime design: an observability layer that overstates confidence is worse than one that reports less, because operators calibrate their trust on it.
+      </p>
     </div>
   </section>
 
   <section class="wrapper style2" id="finalization">
     <div class="inner">
-      <header class="major"><h2>Landing & Finalization</h2></header>
+      <header class="major"><h2>Landing &amp; Finalization</h2></header>
       <p>
-        The final mission stages coordinate post-intercept handling, landing, cleanup, and mission-state closure at the orchestration level.
+        The closing mission stages coordinate post-intercept handling, landing, and mission closure at the orchestration level. Landing behavior follows the active execution policy in the same way earlier phases do, so an operator-driven run and an autonomous run share one code path rather than diverging into a separate shutdown flow. Finalization brings the mission to a defined terminal state and closes out mission-state reporting, so a completed mission and an interrupted one are both externally distinguishable rather than simply going quiet.
       </p>
-      <figure class="project-hero-media">
-        <img src="../pics/eagle_bt_ending_tree.svg" alt="Ending Behavior Tree diagram" loading="lazy" decoding="async">
-        <figcaption class="media-caption">Ending tree — landing and final mission cleanup flow.</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -169,7 +361,7 @@
     <div class="inner">
       <header class="major"><h2>Publication Note</h2></header>
       <p class="project-note">
-        This portfolio page intentionally focuses on public high-level architecture and omits deployment-specific parameters, operational topics, private URLs and mission configuration details.
+        This page describes public high-level architecture and engineering rationale only. It intentionally omits interface and topic names, internal state identifiers, configuration keys, operational and timing parameters, deployment and flight procedures, simulator-specific test hooks, hardware mechanism details, and any private infrastructure references. Diagrams on this page are abstract representations authored for publication and do not reproduce internal mission logic.
       </p>
     </div>
   </section>
