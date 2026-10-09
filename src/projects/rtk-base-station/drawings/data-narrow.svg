@@ -1,0 +1,21 @@
+<svg viewBox="0 0 360 440" role="img" aria-labelledby="dgd-title dgd-desc">
+  <title id="dgd-title">RTK base station, data path</title>
+  <desc id="dgd-desc">The GNSS antenna connects to the Here4 Base by coax. The Arduino Nano starts Survey-In on the Here4 Base over UART. The Here4 Base sends RTCM over UART to the LoRa radio, which broadcasts at 900 megahertz to drones and rovers.</desc>
+  <defs>
+    <marker id="ahn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker>
+  </defs>
+  <text class="dg-title" x="10" y="20">Data path</text>
+  <path class="dg-data" d="M95 96 V146" marker-end="url(#ahn)"/>
+  <path class="dg-data" d="M275 96 V178 H184" marker-end="url(#ahn)"/>
+  <path class="dg-data" d="M95 206 V256" marker-end="url(#ahn)"/>
+  <path class="dg-data" d="M95 316 V366" marker-end="url(#ahn)"/>
+  <text class="dg-note" x="104" y="126">coax</text>
+  <text class="dg-note" x="230" y="170" text-anchor="middle">UART</text>
+  <text class="dg-note" x="104" y="230">RTCM</text><text class="dg-note" x="104" y="246">UART</text>
+  <text class="dg-note" x="104" y="346">900 MHz</text>
+  <g class="dg-box"><rect x="10" y="40" width="170" height="56"/><text class="dg-label" x="95" y="64">GNSS antenna</text><text class="dg-sub" x="95" y="83">CS7624A</text></g>
+  <g class="dg-box"><rect x="200" y="40" width="150" height="56"/><text class="dg-label" x="275" y="64">Arduino Nano</text><text class="dg-sub" x="275" y="83">starts Survey-In</text></g>
+  <g class="dg-box"><rect x="10" y="150" width="170" height="56"/><text class="dg-label" x="95" y="174">Here4 Base</text><text class="dg-sub" x="95" y="193">u-blox F9P receiver</text></g>
+  <g class="dg-box"><rect x="10" y="260" width="170" height="56"/><text class="dg-label" x="95" y="284">LoRa radio</text><text class="dg-sub" x="95" y="303">Ebyte E220-900T22D</text></g>
+  <g class="dg-box dg-box--ext"><rect x="10" y="370" width="170" height="56"/><text class="dg-label" x="95" y="394">Drones, rovers</text><text class="dg-sub" x="95" y="413">receive corrections</text></g>
+</svg>

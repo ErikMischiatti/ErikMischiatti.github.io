@@ -1,0 +1,40 @@
+<svg class="dg--compact" viewBox="0 0 940 448" role="img" aria-labelledby="dg-title dg-desc">
+  <title id="dg-title">RTK base station, power and data paths</title>
+  <desc id="dg-desc">Four 18650 cells feed an IP5310 charger and boost board that outputs 5 volts. The 5 volt rail powers the Here4 Base, the Arduino Nano and an LM2596 step-down that gives 3.3 volts to the LoRa radio. A metal power button switches the 5 volt output. The antenna connects to the Here4 Base by coax. The Nano starts Survey-In over UART. The Here4 Base sends RTCM to the radio over UART, which broadcasts at 900 megahertz to drones and rovers.</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="dg-head"/></marker>
+  </defs>
+  <path class="dg-power" d="M204 376 H268" marker-end="url(#ah)"/>
+  <path class="dg-power" d="M362 344 V292"/>
+  <path class="dg-power" d="M114 292 H610"/>
+  <path class="dg-power" d="M114 292 V252" marker-end="url(#ah)"/>
+  <path class="dg-power" d="M390 292 V100" marker-end="url(#ah)"/>
+  <path class="dg-power" d="M610 292 V252" marker-end="url(#ah)"/>
+  <path class="dg-power" d="M610 184 V100" marker-end="url(#ah)"/>
+  <path class="dg-data" d="M204 64 H268" marker-end="url(#ah)"/>
+  <path class="dg-data" d="M452 64 H516" marker-end="url(#ah)"/>
+  <path class="dg-data" d="M700 64 H764" marker-end="url(#ah)"/>
+  <path class="dg-data" d="M204 216 H310 V100" marker-end="url(#ah)"/>
+  <path class="dg-data" d="M520 376 H456" marker-end="url(#ah)"/>
+  <text class="dg-note" x="236" y="54" text-anchor="middle">coax</text>
+  <text class="dg-note" x="486" y="54" text-anchor="middle">RTCM</text><text class="dg-note" x="486" y="82" text-anchor="middle">UART</text>
+  <text class="dg-note" x="734" y="54" text-anchor="middle">900 MHz</text>
+  <text class="dg-note" x="256" y="208" text-anchor="middle">UART</text>
+  <text class="dg-note" x="236" y="366" text-anchor="middle">cells</text>
+  <text class="dg-note" x="500" y="284" text-anchor="middle">5 V rail</text>
+  <text class="dg-note" x="620" y="146">3.3 V</text>
+  <text class="dg-note" x="488" y="366" text-anchor="middle">switch</text>
+  <g class="dg-box"><rect x="24" y="32" width="180" height="64"/><text class="dg-label" x="114" y="60">GNSS antenna</text><text class="dg-sub" x="114" y="80">CS7624A</text></g>
+  <g class="dg-box"><rect x="272" y="32" width="180" height="64"/><text class="dg-label" x="362" y="60">Here4 Base</text><text class="dg-sub" x="362" y="80">u-blox F9P receiver</text></g>
+  <g class="dg-box"><rect x="520" y="32" width="180" height="64"/><text class="dg-label" x="610" y="60">LoRa radio</text><text class="dg-sub" x="610" y="80">Ebyte E220-900T22D</text></g>
+  <g class="dg-box dg-box--ext"><rect x="768" y="32" width="148" height="64"/><text class="dg-label" x="842" y="60">Drones, rovers</text><text class="dg-sub" x="842" y="80">receive corrections</text></g>
+  <g class="dg-box"><rect x="24" y="184" width="180" height="64"/><text class="dg-label" x="114" y="212">Arduino Nano</text><text class="dg-sub" x="114" y="232">starts Survey-In</text></g>
+  <g class="dg-box"><rect x="520" y="184" width="180" height="64"/><text class="dg-label" x="610" y="212">Step-down</text><text class="dg-sub" x="610" y="232">LM2596, 5 → 3.3 V</text></g>
+  <g class="dg-box"><rect x="24" y="344" width="180" height="64"/><text class="dg-label" x="114" y="372">Battery</text><text class="dg-sub" x="114" y="392">4 × 18650 Li-ion</text></g>
+  <g class="dg-box"><rect x="272" y="344" width="180" height="64"/><text class="dg-label" x="362" y="372">Charger / boost</text><text class="dg-sub" x="362" y="392">IP5310, USB-C input</text></g>
+  <g class="dg-box"><rect x="520" y="344" width="180" height="64"/><text class="dg-label" x="610" y="372">Power button</text><text class="dg-sub" x="610" y="392">metal, LED ring</text></g>
+  <g class="dg-legend">
+    <path class="dg-power" d="M768 352 H808"/><text class="dg-note" x="818" y="356">Power</text>
+    <path class="dg-data" d="M768 384 H808"/><text class="dg-note" x="818" y="388">Data, RF</text>
+  </g>
+</svg>

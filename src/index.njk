@@ -1,0 +1,97 @@
+---
+layout: layouts/base.njk
+permalink: /index.html
+isHome: true
+opening:
+  lead:
+    src: src/media/home/franka-45.jpg
+    phone: src/media/home/franka-43.jpg
+    alt: "Franka Emika Panda gripper holding an Ethernet cable above the perforated test board, with printed clips and a blue cable sleeve."
+    caption: "**Cable manipulation from demonstration.** Franka gripper on the reconfigurable board, TU Wien."
+  supporting:
+    - src: src/media/rtk/open-43.jpg
+      widths: [360, 720]
+      alt: "Open bottom case of the RTK base station: Arduino Nano, receiver board and LoRa module wiring."
+      caption: "**RTK Base Station.** Bottom case: Nano, receiver, radio."
+    - src: src/media/uwb/detail-43.jpg
+      widths: [480, 960]
+      alt: "Rotor modules fixed to a box, flying outdoors without a frame, in front of a building."
+      caption: "**UWB modular UAV.** Rotor modules on a box, in flight."
+---
+{%- set leadSizes = "(max-width: 1100px) 56vw, 30vw" %}
+{%- set supSizes = "(max-width: 600px) 50vw, (max-width: 1100px) 40vw, 24vw" %}
+<section class="open wrap grid" aria-labelledby="open-title">
+  <div class="open__text">
+    <h1 id="open-title">{{ site.statement }}</h1>
+    <p class="open__lede">{{ site.lede }}</p>
+    <p class="open__role"><b>{{ site.role.title }}</b>{{ site.role.org }}</p>
+  </div>
+
+  <div class="open__media">
+    <figure class="lead">
+      <div class="frame">
+        {% picture { src: opening.lead.src, alt: opening.lead.alt, widths: [480, 960], sizes: leadSizes, priority: true, art: [{ media: "(max-width: 600px)", src: opening.lead.phone, widths: [480, 960], sizes: "100vw" }] } %}
+      </div>
+      <figcaption>{{ opening.lead.caption | mdi | safe }}</figcaption>
+    </figure>
+    {%- asyncEach s in opening.supporting %}
+    <figure class="sup">
+      <div class="frame">
+        {% picture { src: s.src, alt: s.alt, widths: s.widths, sizes: supSizes, loading: "eager" } %}
+      </div>
+      <figcaption>{{ s.caption | mdi | safe }}</figcaption>
+    </figure>
+    {%- endeach %}
+  </div>
+
+  <nav class="open__list" aria-labelledby="sel-title">
+    <div class="sec-head"><h2 id="sel-title">Selected work</h2></div>
+    <ol class="sel">
+      {%- for p in collections.featured %}
+      <li><a href="#p-{{ p.data.slug }}"><span class="n">{{ p.data.featured.order | pad2 }}</span><b>{{ p.data.featured.selectedName or p.data.title }}</b><span class="ev-sum">{{ p.data.featured.selectedSummary }}</span></a></li>
+      {%- endfor %}
+    </ol>
+  </nav>
+</section>
+
+{#- Old homepage anchors keep working: #projects → work, #experience/#education → record, #about → opening. #}
+<span id="about" aria-hidden="true"></span>
+<section id="work" class="work wrap" aria-labelledby="work-title">
+  <span id="projects" aria-hidden="true"></span>
+  <h2 id="work-title" class="vh">Featured projects</h2>
+  {%- asyncEach p in collections.featured %}
+  {% include "partials/unit.njk" %}
+  {%- endeach %}
+</section>
+
+{% include "partials/evidence-index.njk" %}
+
+<section class="closing wrap grid" aria-label="Record, publications and contact">
+  <div id="record" class="closing__col">
+    <span id="experience" aria-hidden="true"></span><span id="education" aria-hidden="true"></span>
+    <div class="sec-head"><h2>Record</h2></div>
+    <ol class="rec">
+      {%- for r in record.entries %}
+      <li><span>{{ r.when }}</span>{{ r.what }}</li>
+      {%- endfor %}
+    </ol>
+  </div>
+  <div class="closing__col">
+    <div class="sec-head"><h2>Publication and recognition</h2></div>
+    {%- for c in publications.papers %}
+    <p class="cite">{% for a in c.authors %}{% if a == c.self %}<strong>{{ a }}</strong>{% else %}{{ a }}{% endif %}{{ ", " if not loop.last else ". " }}{% endfor %}<cite>{{ c.title }}.</cite> {{ c.venue }}, pp. {{ c.pages }}. <a href="https://doi.org/{{ c.doi }}">doi:{{ c.doi }}</a></p>
+    {%- endfor %}
+    {%- for r in publications.recognition %}
+    <p class="cite">{{ r.text }} <a href="{{ r.href }}">{{ r.linkLabel }}</a></p>
+    {%- endfor %}
+  </div>
+  <div id="contact" class="closing__col">
+    <div class="sec-head"><h2>Contact</h2></div>
+    <ul class="links">
+      <li><a class="mail" href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></li>
+      {%- for l in site.contact.links %}
+      <li><a href="{{ l.href }}">{{ l.label }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
