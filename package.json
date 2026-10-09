@@ -1,0 +1,24 @@
+{
+  "name": "erikmischiatti-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Erik Mischiatti portfolio, Eleventy build (C3-v2 Material Engineering).",
+  "type": "module",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "preview": "SITE_MODE=preview eleventy --output=_preview",
+    "serve": "SITE_MODE=preview eleventy --serve --output=_preview",
+    "check": "node tools/check-output.mjs _site",
+    "check:preview": "node tools/check-output.mjs _preview --preview",
+    "verify": "python3 tools/verify.py _site",
+    "test": "npm run build && npm run check && npm run preview && npm run check:preview"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "@11ty/eleventy-img": "6.0.4",
+    "markdown-it": "14.3.2"
+  }
+}

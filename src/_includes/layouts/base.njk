@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set fullTitle = (title ~ ", " ~ site.name) if title and not isHome else (site.name ~ ", Mechatronics engineer") %}
+  <title>{{ fullTitle }}</title>
+  <meta name="description" content="{{ summary or site.description }}">
+  <link rel="canonical" href="{{ page.url | absUrl(site.url) }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ fullTitle }}">
+  <meta property="og:description" content="{{ summary or site.description }}">
+  <meta property="og:url" content="{{ page.url | absUrl(site.url) }}">
+  {%- if build.preview %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
+  <link rel="preload" href="/static/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  {%- if isHome %}
+  <link rel="preload" as="image" type="image/webp" media="(min-width: 601px)" imagesrcset="{% webpSrcset opening.lead.src, [480, 960] %}" imagesizes="(max-width: 1100px) 56vw, 30vw">
+  <link rel="preload" as="image" type="image/webp" media="(max-width: 600px)" imagesrcset="{% webpSrcset opening.lead.phone, [480, 960] %}" imagesizes="100vw">
+  {%- endif %}
+  <link rel="stylesheet" href="/static/css/site.css">
+</head>
+<body>
+  {%- if build.preview %}
+  <div class="preview-bar" role="note"><strong>Preview build.</strong> Includes pages that are not published. Not for deployment.</div>
+  {%- endif %}
+  <a class="skip" href="#main">Skip to content</a>
+  {% include "partials/header.njk" %}
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+</body>
+</html>

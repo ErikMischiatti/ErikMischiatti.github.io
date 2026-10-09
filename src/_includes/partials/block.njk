@@ -1,0 +1,98 @@
+{#- Renders one content block `b` of a case-study section. Block types: DESIGN.md §E.1.7–E.1.11, §E.2.3–E.2.5. -#}
+{%- if b.type == 'prose' %}
+<div class="prose">{{ b.md | md | safe }}</div>
+{%- elif b.type == 'note' %}
+<p class="note">{{ b.md | mdi | safe }}</p>
+{%- elif b.type == 'figure' or b.type == 'figures' %}
+{%- set imgs = b.images if b.images else [b] %}
+{%- if imgs.length > 1 %}
+<div class="fig-row fig-row--{{ b.columns or imgs.length }}{% if b.contain %} fig-row--contain plate fig--plate{% endif %}">
+  {%- asyncEach im in imgs %}
+  <figure>
+    {% picture { src: im.src, alt: im.alt, widths: im.widths, sizes: im.sizes } %}
+    {%- if im.caption %}<figcaption>{{ im.caption | mdi | safe }}</figcaption>{% endif %}
+  </figure>
+  {%- endeach %}
+</div>
+{%- else %}
+<figure class="fig{% if b.plate %} plate fig--plate{% endif %}{% if b.bleed %} fig--bleed{% endif %}"{% if b.maxWidth %} style="max-width: {{ b.maxWidth }}"{% endif %}>
+  {% picture { src: b.src, alt: b.alt, widths: b.widths, sizes: b.sizes } %}
+  {%- if b.caption %}<figcaption>{{ b.caption | mdi | safe }}</figcaption>{% endif %}
+</figure>
+{%- endif %}
+{%- elif b.type == 'video' %}
+<figure class="fig{% if not b.maxWidth %} fig--bleed{% endif %}"{% if b.maxWidth %} style="max-width: {{ b.maxWidth }}"{% endif %}>
+  {% video { src: b.src, poster: b.poster, width: b.width, height: b.height, describedby: b.id, ratio: b.ratio } %}
+  <figcaption id="{{ b.id }}">{{ b.caption | mdi | safe }}</figcaption>
+</figure>
+{%- elif b.type == 'videos' %}
+<div class="fig-row fig-row--{{ b.columns or 2 }} fig-row--videos">
+  {%- for v in b.items %}
+  <figure>
+    {% video { src: v.src, poster: v.poster, width: v.width, height: v.height, describedby: v.id, ratio: v.ratio } %}
+    <figcaption id="{{ v.id }}">{{ v.caption | mdi | safe }}</figcaption>
+  </figure>
+  {%- endfor %}
+</div>
+{%- if b.caption %}<p class="note">{{ b.caption | mdi | safe }}</p>{% endif %}
+{%- elif b.type == 'drawing' %}
+<figure class="dg plate fig">
+  <div class="dg__wide">{{ b.wide | svgFile(slug) | safe }}</div>
+  <div class="dg__narrow">{% for n in b.narrow %}{{ n | svgFile(slug) | safe }}{% endfor %}</div>
+  <figcaption>{{ b.caption | mdi | safe }}</figcaption>
+</figure>
+{%- elif b.type == 'sequence' %}
+<figure class="phases plate fig">
+  <ol class="seq{% if b.roles %} seq--roles{% endif %}" aria-label="{{ b.label }}" style="--steps: {{ b.items | length }}">
+    {%- for it in b.items %}<li>{{ it.name }}{% if it.role %}<span>{{ it.role }}</span>{% endif %}</li>{% endfor %}
+  </ol>
+  <figcaption>{{ b.caption | mdi | safe }}</figcaption>
+</figure>
+{%- elif b.type == 'paths' %}
+<div class="paths">
+  {%- for g in b.groups %}
+  <div>
+    <h3>{{ g.title }}</h3>
+    <ol class="steps">{% for st in g.steps %}<li>{{ st | mdi | safe }}</li>{% endfor %}</ol>
+  </div>
+  {%- endfor %}
+</div>
+{%- elif b.type == 'steps' %}
+{%- if b.title %}<h3>{{ b.title }}</h3>{% endif %}
+<ul class="steps">{% for st in b.items %}<li>{{ st | mdi | safe }}</li>{% endfor %}</ul>
+{%- elif b.type == 'table' or b.type == 'status' %}
+{%- set isStatus = b.type == 'status' %}
+{%- set classes = 'tbl tbl--stack' ~ (' tbl--labelled' if b.labelled else '') ~ (' tbl--wide' if b.wide else '') ~ (' tbl--plain' if b.plain or b.layout == 'outcomes' else '') ~ (' tbl--meta-last' if b.metaLast else '') %}
+{%- if isStatus %}<div class="rec-sheet">{% endif %}
+<table class="{{ classes }}">
+  <caption><b>{{ b.label }}</b> {{ b.caption | mdi | safe }}</caption>
+  <thead><tr>{% for h in b.head %}<th scope="col">{{ h }}</th>{% endfor %}</tr></thead>
+  <tbody>
+    {%- for r in b.rows %}
+    <tr>
+      <th scope="row">{{ r.item | mdi | safe }}</th>
+      {%- for c in r.cells %}
+      {%- set lab = b.head[loop.index] %}
+      <td{% if b.labelled %} data-label="{{ lab }}"{% endif %}>{% if c.gap %}<span class="gap">{{ c.gap }}</span>{% else %}{{ (c.text if c.text else c) | mdi | safe }}{% endif %}{% if c.quote %}<q>{{ c.quote }}</q>{% endif %}{% if c.src %}<span class="src">{{ c.src }}</span>{% endif %}</td>
+      {%- endfor %}
+      {%- if isStatus %}
+      {%- set m = r.status.mark %}
+      <td class="st{% if m == 'none' %} st--none{% endif %}{% if r.status.np %} st--np{% endif %}"{% if b.labelled %} data-label="{{ b.head[b.head.length - 1] }}"{% endif %}>{% include "partials/mark.njk" %}{{ r.status.text }}</td>
+      {%- endif %}
+    </tr>
+    {%- endfor %}
+  </tbody>
+</table>
+{%- if isStatus and b.key %}
+<p class="rec-key">{% for k in b.key %}<span>{% set m = k.mark %}{% include "partials/mark.njk" %}{{ k.text }}</span>{% endfor %}</p>
+{%- endif %}
+{%- if isStatus %}</div>{% endif %}
+{%- elif b.type == 'refs' %}
+<ol class="links refs">
+  {%- for r in b.items | refsResolve %}
+  {%- if r.gap %}<li class="gap">{{ r.gap }}</li>
+  {%- else %}<li id="ref-{{ r.n }}"><a href="{{ r.url }}">[{{ r.n }}] {{ r.label }}</a></li>{% endif %}
+  {%- endfor %}
+</ol>
+{%- if b.note %}<p class="note">{{ b.note | mdi | safe }}</p>{% endif %}
+{%- endif %}

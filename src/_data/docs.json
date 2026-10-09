@@ -1,0 +1,25 @@
+{
+  "_comment": "PDF allowlist. Production copies only approved files; preview copies every listed file. Nothing else under docs/ is ever copied.",
+  "files": [
+    {
+      "id": "cv",
+      "path": "docs/CV.pdf",
+      "approved": true
+    },
+    {
+      "id": "bsc-thesis",
+      "path": "docs/Tesi_Erik_Mischiatti.pdf",
+      "approved": false
+    },
+    {
+      "id": "msc-thesis",
+      "path": "docs/Mischiatti___Master_Thesis(git).pdf",
+      "approved": false
+    },
+    {
+      "id": "green-vigilance-report",
+      "path": "docs/Report_distribution_project.pdf",
+      "approved": false
+    }
+  ]
+}

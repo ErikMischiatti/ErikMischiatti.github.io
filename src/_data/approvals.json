@@ -1,0 +1,7 @@
+{
+  "_comment": "Pages that need an explicit publication decision. While approved is false, a production build keeps the existing public page at the URL and fails if the project is set to publish. Change approved only on a recorded decision by the site owner.",
+  "bt-mission-manager": {
+    "approved": false,
+    "pending": "Employer approval to publish the restyled Mission Manager page (EAGLE.ONE)."
+  }
+}

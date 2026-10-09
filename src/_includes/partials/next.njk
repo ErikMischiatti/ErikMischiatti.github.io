@@ -1,0 +1,8 @@
+{#- Next featured project, in homepage order (generated, K-20). -#}
+{%- set nx = (collections.featured | nextFeatured(slug)) if featured else null %}
+{%- if nx %}
+{%- set nlive = nx.data.publish or build.preview %}
+<nav class="cs-next" aria-label="Next project"><a href="{{ nx.data.urlPath if (nlive or nx.data.legacy) else ('/#p-' ~ nx.data.slug) }}"><span class="label">Next, {{ nx.data.featured.order | pad2 }}</span>{{ nx.data.featured.selectedName or nx.data.title }}</a></nav>
+{%- else %}
+<nav class="cs-next" aria-label="Back to the index"><a href="/#index"><span class="label">All projects</span>Index</a></nav>
+{%- endif %}

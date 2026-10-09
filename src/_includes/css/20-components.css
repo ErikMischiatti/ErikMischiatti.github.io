@@ -1,0 +1,197 @@
+/* Shared components (DESIGN.md §E.1). One place per component; variants as modifiers. */
+@layer components {
+
+  /* E.1.4 Evidence marks and the gap marker. A gap is always an inline span (K-22). */
+  .gap { color: var(--ink-3); }
+  .gap::before {
+    content: ""; display: inline-block; width: 0.55em; height: 0.55em; margin-right: 0.45em;
+    border: 1.5px solid currentColor; vertical-align: 0.05em;
+  }
+  .mk { display: inline-block; width: 0.7em; height: 0.7em; vertical-align: -0.02em; }
+  .mk--doc { background: var(--ink); }
+  .mk--rep { border: 1.5px solid var(--ink); }
+  .meta { font-size: var(--t-small); color: var(--ink-3); line-height: 1.45; }
+  .meta span + span::before { content: " · "; }
+
+  /* E.1.1 Header and primary navigation */
+  .top { border-bottom: 3px solid var(--ink); }
+  .top__inner { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); min-height: 60px; }
+  .wordmark { font-weight: 760; font-stretch: var(--w-display); font-size: 1.25rem; letter-spacing: -0.01em; text-decoration: none; }
+  .wordmark:hover { text-decoration: none; }
+  .nav { display: flex; gap: 2px; }
+  .nav a { display: flex; align-items: center; min-height: 44px; padding: 0 12px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
+  .nav a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+  .nav a[aria-current] { background: var(--signal); box-shadow: inset 0 -3px 0 var(--ink); }
+
+  /* E.1.3 Small section head (K-01: one component for every homepage section label) */
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); flex-wrap: wrap; border-top: 3px solid var(--ink); padding-top: var(--s2); margin-bottom: var(--s2); }
+  .sec-head h2 { font-size: var(--t-small); font-weight: 720; }
+  .sec-head p { font-size: var(--t-small); color: var(--ink-3); max-width: 60ch; }
+  .sec-head--spaced { margin-bottom: var(--s4); }
+
+  /* E.1.8 Figures and plates. Captions: 6 px under images, 12 px inside plates (K-13). */
+  figcaption { font-size: var(--t-small); color: var(--ink-3); line-height: 1.4; padding-top: var(--s1); }
+  figcaption b { font-weight: 650; color: var(--ink); }
+  .plate { background: var(--plate); }
+  .plate img { mix-blend-mode: multiply; }
+  .plate > figcaption, figure.plate figcaption { padding-top: var(--s2); }
+  .fig { margin-block: var(--s4); }
+  .fig img, .fig video { width: 100%; }
+  .fig--plate { padding: var(--s3) var(--s3) var(--s2); }
+  .fig--plate img { margin-inline: auto; }
+  .fig-row { display: grid; gap: var(--gap-media); margin-block: var(--s4); }
+  .fig-row--3 { grid-template-columns: 4fr 3fr 2.4fr; }
+  .fig-row--2 { grid-template-columns: 1fr 1fr; }
+  .fig-row img { width: 100%; height: clamp(200px, 20vw, 300px); object-fit: cover; }
+  .fig-row--contain { align-items: start; }
+  .fig-row--contain img { object-fit: contain; height: auto; aspect-ratio: auto; }
+  .fig-row--contain figure { min-width: 0; }
+  .video { background: var(--ink); }
+  .fig video, .fig-row--videos video { width: 100%; height: auto; aspect-ratio: var(--ratio, 16 / 9); background: var(--ink); object-fit: contain; }
+  .fig-row--videos { align-items: start; }
+
+  /* E.1.5 Main action and page link. The arrow is not announced (K-17). */
+  .go { align-self: flex-start; justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px 0 0; font-weight: 680; font-stretch: var(--w-item); font-size: var(--t-item); text-decoration: none; border-bottom: 3px solid var(--ink); }
+  .go::after { content: "→"; content: "→" / ""; font-stretch: 100%; } /* fallback first: older engines drop the alt-text form */
+  .go--case:hover, .go--case:focus-visible { background: var(--signal); padding-left: 10px; margin-left: -10px; text-decoration: none; }
+  .go--page { font-size: var(--t-body); border-bottom-width: 1px; }
+  .go--page:hover { border-bottom-width: 3px; }
+
+  /* E.1.6 Account list */
+  .acct { border-top: 1px solid var(--ink); font-size: var(--t-small); line-height: 1.5; }
+  .acct > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--s2); padding-block: var(--row); border-bottom: 1px solid var(--rule); }
+  .acct dt { font-weight: 650; }
+  .acct dd { color: var(--ink-2); }
+  .acct dd strong { color: var(--ink); }
+
+  /* E.1.7 Sequence strip */
+  .phases { padding: var(--s3) var(--s3) var(--s2); }
+  .seq { display: grid; grid-template-columns: repeat(var(--steps, 7), minmax(0, 1fr)); counter-reset: s; border-top: 3px solid var(--ink); }
+  .seq li { counter-increment: s; padding: 10px 8px 12px 0; font-weight: 680; font-stretch: var(--w-item); font-size: var(--t-item); line-height: 1.15; }
+  .seq li + li { border-left: 1px solid var(--rule); padding-left: 10px; }
+  .seq li::before { content: counter(s); display: block; font-size: var(--t-label); font-weight: 600; color: var(--ink-3); margin-bottom: 4px; font-stretch: 100%; }
+  .seq--roles li span { display: block; margin-top: 4px; font-size: var(--t-small); font-weight: 400; font-stretch: 100%; line-height: 1.3; color: var(--ink-2); }
+  .phases figcaption { max-width: 80ch; }
+
+  /* E.1.9 Technical drawings */
+  .dg { padding: var(--s4) var(--s4) var(--s3); }
+  .dg svg { width: 100%; height: auto; }
+  .dg__narrow { display: none; }
+  .dg-box rect { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; }
+  .dg-box--ext rect { stroke-dasharray: 5 3; fill: none; }
+  .dg-box--subject rect { stroke-width: 3; }
+  .dg-label { font: 700 15px var(--font); font-stretch: var(--w-item); fill: var(--ink); text-anchor: middle; }
+  .dg-sub { font: 400 12.5px var(--font); fill: var(--ink-2); text-anchor: middle; }
+  .dg-note { font: 500 12.5px var(--font); fill: var(--ink-2); }
+  .dg-title { font: 700 13px var(--font); fill: var(--ink); }
+  .dg-list { font: 400 13.5px var(--font); fill: var(--ink-2); text-anchor: middle; }
+  .dg--compact .dg-label { font-size: 16px; }
+  .dg--compact .dg-sub, .dg--compact .dg-note { font-size: 13.5px; }
+  .dg-power { stroke: var(--ink); stroke-width: 4; fill: none; }
+  .dg-flow { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+  .dg-data { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+  .dg-head { fill: var(--ink); }
+
+  /* E.1.10 Data tables */
+  .tbl { width: 100%; border-collapse: collapse; font-size: var(--t-small); line-height: 1.45; margin-block: var(--s3); }
+  .tbl caption { text-align: left; font-size: var(--t-small); padding-bottom: 8px; color: var(--ink-3); }
+  .tbl caption b { color: var(--ink); font-weight: 720; }
+  .tbl th, .tbl td { text-align: left; padding: var(--row) 14px var(--row) 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+  .tbl thead th { font-size: var(--t-label); font-weight: 600; color: var(--ink-3); border-bottom: 1px solid var(--ink); }
+  .tbl tbody th { font-weight: 650; }
+  .tbl td { color: var(--ink-2); }
+  .tbl--plain tbody th { font-weight: 500; color: var(--ink); }
+  .tbl--wide thead th:first-child { width: var(--col-head); }
+  .tbl--num td { font-variant-numeric: tabular-nums; }
+
+  /* E.1.11 Status tables */
+  .rec-sheet { background: var(--plate); padding: var(--s3) var(--s3) var(--s2); margin-block: var(--s3); }
+  .rec-sheet .tbl { margin: 0; }
+  .rec-sheet tbody th { width: var(--col-head); }
+  .rec-sheet .st { width: var(--col-head); white-space: nowrap; color: var(--ink); font-weight: 600; }
+  .rec-sheet .st .mk { margin-right: 6px; }
+  .rec-sheet .st--none { color: var(--ink-3); font-weight: 500; }
+  .rec-sheet q { font-weight: 600; color: var(--ink); }
+  .rec-sheet .src { display: block; font-size: var(--t-label); color: var(--ink-3); margin-top: 2px; }
+  .rec-key { display: flex; gap: 4px var(--s3); flex-wrap: wrap; font-size: var(--t-label); color: var(--ink-3); padding-top: var(--s2); }
+  .rec-key .mk { margin-right: 6px; }
+
+  /* Link lists and E.1.15 resources */
+  .links li { border-bottom: 1px solid var(--rule); }
+  .links a { display: flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; }
+  .links a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+  .refs a { padding-block: 8px; line-height: 1.35; }
+  .refs li.gap { padding-block: 10px; font-size: var(--t-small); }
+
+  /* E.1.16 Next-project navigation */
+  .cs-next { border-top: 3px solid var(--ink); padding-top: var(--s2); }
+  .cs-next a { display: inline-block; text-decoration: none; font-size: var(--t-h3); font-weight: 720; font-stretch: var(--w-display); line-height: 1.05; }
+  .cs-next a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+  .cs-next span { display: block; margin-bottom: 4px; }
+
+  /* E.1.17 Footer */
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--s1) var(--s3); padding-block: var(--s3); border-top: 1px solid var(--rule); font-size: var(--t-label); color: var(--ink-3); }
+  .foot a { color: var(--ink-3); }
+
+  /* Preview-only banner (never in production output) */
+  .preview-bar { background: var(--ink); color: var(--bg); font-size: var(--t-small); padding: 6px var(--margin); }
+  .preview-bar strong { color: var(--signal); }
+
+  @media (max-width: 1100px) {
+    .seq { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 10px; }
+    .seq li:nth-child(4n + 1) { border-left: 0; padding-left: 0; }
+  }
+
+  /* Wide drawings fall below 11 px text under ~860 px: the vertical versions start here
+     (DESIGN.md §I.3, permanent requirement). */
+  @media (max-width: 860px) {
+    .dg__wide { display: none; }
+    .dg__narrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--s4) var(--gutter); align-items: start; }
+    .dg__narrow svg { max-width: 420px; }
+  }
+
+  @media (max-width: 600px) {
+    .top__inner { flex-direction: column; align-items: stretch; gap: 0; min-height: 0; padding-top: 8px; }
+    .wordmark { line-height: 1.2; }
+    .nav { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; margin-inline: -8px; }
+    .nav a { padding: 0 8px; }
+
+    .acct > div { grid-template-columns: 1fr; gap: 2px; }
+    .acct dt { font-size: var(--t-label); color: var(--ink-3); font-weight: 600; }
+
+    .phases { margin-inline: calc(var(--margin) * -1); padding-inline: var(--margin); }
+    .seq { grid-template-columns: 1fr; }
+    .seq li, .seq li + li { display: grid; grid-template-columns: 1.75rem 1fr; padding: 9px 0; border-left: 0; border-bottom: 1px solid var(--rule); }
+    .seq li::before { margin: 0; font-size: var(--t-small); line-height: 1.3; }
+    .seq--roles li span { grid-column: 2; margin-top: 0; }
+
+    .fig-row--3, .fig-row--2 { grid-template-columns: 1fr 1fr; margin-inline: calc(var(--margin) * -1); }
+    .fig-row--3 figure:first-child { grid-column: 1 / -1; }
+    .fig-row--3 figure:first-child img { height: auto; aspect-ratio: 4 / 3; }
+    .fig-row--3 figure img, .fig-row--2 figure img { height: 200px; }
+    .fig-row--contain, .fig-row--videos { grid-template-columns: 1fr; }
+    .fig-row--contain figure img { height: auto; }
+    .fig-row--contain.fig--plate { padding-inline: var(--margin); }
+    .fig-row figcaption { padding-inline: var(--margin); }
+    .fig--bleed { margin-inline: calc(var(--margin) * -1); }
+    .fig--bleed figcaption { padding-inline: var(--margin); }
+
+    .dg { margin-inline: calc(var(--margin) * -1); padding: var(--s3) var(--margin); }
+    .dg__narrow svg { max-width: 380px; }
+
+    .tbl--stack thead { display: none; }
+    .tbl--stack caption { display: block; }
+    .tbl--stack, .tbl--stack tbody, .tbl--stack tr, .tbl--stack th, .tbl--stack td { display: block; width: auto; }
+    .tbl--stack tr { padding-block: 10px; border-bottom: 1px solid var(--rule); }
+    .tbl--stack th, .tbl--stack td { border: 0; padding: 0; }
+    .tbl--stack tbody th { font-size: var(--t-label); color: var(--ink-3); font-weight: 600; }
+    .tbl--stack td + td { margin-top: 3px; }
+    .tbl--meta-last td:last-child { font-size: var(--t-label); color: var(--ink-3); }
+    .tbl--labelled tbody th { font-size: var(--t-body); font-weight: 720; color: var(--ink); }
+    .tbl--labelled td[data-label]::before { content: attr(data-label); display: block; margin-top: 8px; font-size: var(--t-label); font-weight: 600; color: var(--ink-3); }
+    .tbl--labelled td + td { margin-top: 0; }
+    .tbl--labelled td.st--np { display: none; }
+    .rec-sheet { margin-inline: calc(var(--margin) * -1); padding-inline: var(--margin); }
+    .rec-sheet tbody th, .rec-sheet .st { width: auto; }
+  }
+}

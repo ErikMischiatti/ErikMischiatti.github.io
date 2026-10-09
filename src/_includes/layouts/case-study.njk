@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+---
+{#- Case study (DESIGN.md §D.6–D.8). Opening variants: photos | drawing (E.2.1, E.2.2). -#}
+{%- set num = featured.order | pad2 if featured else null %}
+{%- set opType = opening.type if opening else 'none' %}
+<header class="cs-head wrap grid{% if compact %} cs-head--project{% endif %}{% if opType == 'drawing' %} cs-head--drawing{% endif %}{% if opType == 'none' %} cs-head--no-fig{% endif %}">
+  <div class="cs-intro">
+    <p class="crumb">{% if num %}<a href="/#work">Work</a> / {{ num }}{% else %}<a href="/#index">Index</a>{% endif %}</p>
+    <h1>{{ title }}</h1>
+    <p class="cs-sum">{{ summary | mdi | safe }}</p>
+    {%- for w in lead %}
+    <p class="cs-why"><strong>{{ w.label }}:</strong> {{ w.text | mdi | safe }}</p>
+    {%- endfor %}
+  </div>
+  {%- if opType == 'photos' %}
+  <figure class="cs-figs{% if opening.figures.length == 1 %} cs-figs--single{% endif %}">
+    {%- asyncEach fig in opening.figures %}
+    {%- if fig.plate %}<div class="plate">{% endif %}
+    {% picture { src: fig.src, alt: fig.alt, widths: fig.widths, sizes: fig.sizes, loading: "eager", priority: loop.first } %}
+    {%- if fig.plate %}</div>{% endif %}
+    {%- endeach %}
+    <figcaption>{{ opening.caption | mdi | safe }}</figcaption>
+  </figure>
+  {%- elif opType == 'drawing' %}
+  <figure class="cs-figs cs-figs--drawing plate">
+    {{ opening.drawing | svgFile(slug) | safe }}
+    <figcaption>{{ opening.caption | mdi | safe }}</figcaption>
+  </figure>
+  {%- endif %}
+</header>
+
+<div class="cs-body wrap grid">
+  {% include "partials/aside.njk" %}
+  <div class="cs-main">
+    {%- asyncEach s in sections %}
+    <section id="{{ s.id }}" class="cs-sec" aria-labelledby="h-{{ s.id }}">
+      <h2 id="h-{{ s.id }}"><span class="n">{{ loop.index }}</span> {{ s.title }}</h2>
+      {%- asyncEach b in s.blocks %}
+      {% include "partials/block.njk" %}
+      {%- endeach %}
+    </section>
+    {%- endeach %}
+    {% include "partials/next.njk" %}
+  </div>
+</div>

@@ -1,0 +1,50 @@
+{#- Featured unit. Expects p (a project from collections.featured). DESIGN.md §D.4, §E.1.5–E.1.7. -#}
+{%- set d = p.data %}{% set f = d.featured %}
+{%- set live = d.publish or build.preview %}
+{%- set href = d.urlPath if (live or d.legacy) else null %}
+{%- set isCase = live and d.layout == 'layouts/case-study.njk' %}
+<article class="unit unit--{{ f.layout }}" aria-labelledby="p-{{ d.slug }}">
+  {%- set body %}
+  <div class="unit__body">
+    <div class="unit__head">
+      <p class="unit__no">{{ f.order | pad2 }}</p>
+      <h3 id="p-{{ d.slug }}">{% if href %}<a href="{{ href }}">{{ d.title }}</a>{% else %}{{ d.title }}{% endif %}</h3>
+      <p class="meta">{% for m in f.meta %}<span{% if m.gap %} class="gap"{% endif %}>{{ m.text }}</span>{% endfor %}</p>
+    </div>
+    <p class="unit__what">{{ f.what | mdi | safe }}</p>
+    {%- if f.layout != 'text-led' %}
+    {% include "partials/acct.njk" %}
+    {%- if href %}<a class="go {{ 'go--case' if isCase else 'go--page' }}" href="{{ href }}">{{ f.caseLabel if isCase else f.pageLabel }}</a>{% endif %}
+    {%- endif %}
+  </div>
+  {%- endset %}
+
+  {%- if f.layout == 'media-end' or f.layout == 'text-led' %}{{ body | safe }}{% endif %}
+
+  {%- if f.layout == 'text-led' %}
+  {% include "partials/acct.njk" %}
+  <figure class="phases plate">
+    <ol class="seq" aria-label="{{ f.sequence.label }}" style="--steps: {{ f.sequence.items | length }}">
+      {%- for it in f.sequence.items %}<li>{{ it }}</li>{% endfor %}
+    </ol>
+    <figcaption>{{ f.sequence.caption }}</figcaption>
+  </figure>
+  {%- if href %}<a class="go {{ 'go--case' if isCase else 'go--page' }}" href="{{ href }}">{{ f.caseLabel if isCase else f.pageLabel }}</a>{% endif %}
+  {%- elif f.mediaVideo %}
+  <figure class="unit__media">
+    {% video { src: f.mediaVideo.src, poster: f.mediaVideo.poster, width: f.mediaVideo.width, height: f.mediaVideo.height, describedby: 'cap-' ~ d.slug } %}
+    <figcaption id="cap-{{ d.slug }}">{{ f.mediaCaption | mdi | safe }}</figcaption>
+  </figure>
+  {%- elif f.media %}
+  <figure class="unit__media">
+    {%- asyncEach m in f.media %}
+    {%- if m.plate %}<div class="plate">{% endif %}
+    {% picture { src: m.src, alt: m.alt, widths: m.widths, sizes: m.sizes } %}
+    {%- if m.plate %}</div>{% endif %}
+    {%- endeach %}
+    <figcaption>{{ f.mediaCaption | mdi | safe }}</figcaption>
+  </figure>
+  {%- endif %}
+
+  {%- if f.layout == 'media-start' or f.layout == 'secondary' %}{{ body | safe }}{% endif %}
+</article>

@@ -19,3 +19,12 @@ docs/.cv/
 *.blg
 *.bcf
 *.run.xml
+
+# Eleventy build (portfolio v2)
+node_modules/
+_site/
+_preview/
+.cache/
+
+# Local drafts pending publication approval: never commit
+src/_private/

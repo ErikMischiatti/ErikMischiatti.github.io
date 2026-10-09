@@ -1,0 +1,16 @@
+{
+  "papers": [
+    {
+      "authors": ["L. Santoro", "A. Assirelli", "E. Mischiatti", "M. Perini", "M. Nardello", "D. Fontanelli", "D. Brunelli"],
+      "self": "E. Mischiatti",
+      "title": "Deconstructing for Superiority: Aristotelian Modularization in UAV Systems",
+      "venue": "2024 IEEE 20th International Conference on Automation Science and Engineering (CASE)",
+      "pages": "219–224",
+      "doi": "10.1109/CASE59546.2024.10711488",
+      "verified": "Crossref, 2026-10-08"
+    }
+  ],
+  "recognition": [
+    { "text": "DigiEduHack 2021 Global Award, Hachi team. 228 submissions, 12 finalists.", "href": "https://ircai.org/announcing-the-winners-of-digieduhack-2021/", "linkLabel": "Announcement" }
+  ]
+}

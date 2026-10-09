@@ -1,0 +1,103 @@
+/* Case-study and project-page layout (DESIGN.md §D.6–D.12, §E.1.12–E.1.14, §E.2). */
+@layer layouts {
+  .cs-head { padding-block: var(--s4); align-items: end; }
+  .cs-intro { grid-column: 1 / span 7; display: flex; flex-direction: column; gap: var(--s3); }
+  .cs-intro--wide { grid-column: 1 / span 9; }
+  .crumb { font-size: var(--t-small); font-weight: 600; }
+  .crumb a { display: inline-block; padding-block: 6px; margin-block: -6px; text-decoration: none; }
+  .crumb a:hover { text-decoration: underline; }
+  .cs-head h1 { font-size: var(--t-title); font-weight: 760; font-stretch: var(--w-display); line-height: 0.95; letter-spacing: -0.025em; text-wrap: balance; }
+  .cs-head--project h1 { font-size: clamp(2.5rem, 1.4rem + 3.2vw, 4.25rem); }
+  .cs-sum { font-size: var(--t-lede); line-height: 1.45; max-width: 50ch; }
+  .cs-why { font-size: var(--t-body); color: var(--ink-2); max-width: var(--measure); }
+  .cs-why strong { color: var(--ink); }
+
+  /* E.2.1 Opening figure: photo pair (default) | drawing plate */
+  .cs-figs { grid-column: 8 / span 5; display: grid; grid-template-columns: 3fr 2fr; gap: var(--gap-media); }
+  .cs-figs img { width: 100%; height: clamp(260px, 26vw, 400px); object-fit: cover; }
+  .cs-figs .plate img { object-fit: contain; padding: 14px; }
+  .cs-figs > figcaption { grid-column: 1 / -1; }
+  .cs-figs picture { min-width: 0; }
+  .cs-figs--single { grid-template-columns: 1fr; }
+  .cs-figs--drawing { display: block; padding: var(--s3) var(--s3) var(--s2); }
+  .cs-figs--drawing svg { width: 100%; height: auto; }
+
+  /* Body: metadata column and narrative */
+  .cs-body { padding-bottom: var(--s5); align-items: start; }
+  .cs-aside { grid-column: 1 / span 3; position: sticky; top: 16px; display: flex; flex-direction: column; gap: var(--s4); padding-top: var(--s2); border-top: 3px solid var(--ink); }
+  .facts > div { padding-block: var(--row-tight); border-bottom: 1px solid var(--rule); font-size: var(--t-small); line-height: 1.45; }
+  .facts dd { color: var(--ink); }
+  .toc h2 { padding-bottom: 4px; }
+  .toc ol { counter-reset: t; border-top: 1px solid var(--ink); }
+  .toc li { counter-increment: t; border-bottom: 1px solid var(--rule); }
+  .toc a { display: grid; grid-template-columns: 1.5rem 1fr; min-height: 40px; align-items: center; font-size: var(--t-small); font-weight: 600; line-height: 1.25; text-decoration: none; }
+  .toc a::before { content: counter(t); color: var(--ink-3); font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  .cs-main { grid-column: 5 / -1; min-width: 0; }
+  .cs-sec { padding-bottom: var(--s5); }
+  .cs-sec > h2, .doc h2 { display: grid; grid-template-columns: 2.25rem 1fr; align-items: baseline; font-size: var(--t-h2); font-weight: 720; font-stretch: var(--w-display); line-height: 1.1; border-top: 3px solid var(--ink); padding-top: var(--s2); margin-bottom: var(--s3); }
+  .doc h2 { display: block; margin-top: var(--s5); }
+  .doc > h2:first-child { margin-top: 0; }
+  .cs-sec > h2 .n { font-size: var(--t-small); font-weight: 600; color: var(--ink-3); font-stretch: 100%; }
+  .cs-sec h3, .doc h3 { font-size: var(--t-body); font-weight: 720; margin-block: var(--s4) var(--s2); }
+  .prose > * + *, .doc > * + * { margin-top: var(--s2); }
+  .prose, .doc > p, .doc > ul, .doc > ol, .doc > blockquote { max-width: var(--measure); }
+  .prose p, .prose li, .doc p, .doc li { color: var(--ink-2); }
+  .prose strong, .doc strong { color: var(--ink); }
+  .dash li, .doc ul li { position: relative; padding-left: 1.1rem; }
+  .dash li::before, .doc ul li::before { content: "–"; position: absolute; left: 0; color: var(--ink-3); }
+  .doc ol { counter-reset: d; }
+  .doc ol li { counter-increment: d; position: relative; padding-left: 1.5rem; }
+  .doc ol li::before { content: counter(d); position: absolute; left: 0; color: var(--ink-3); font-weight: 600; }
+  .note { font-size: var(--t-small); color: var(--ink-3); max-width: var(--measure); }
+
+  .page-links { padding-bottom: var(--s6); }
+  .page-links .links { max-width: 640px; }
+
+  .paths { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); margin-top: var(--s4); }
+  .paths h3 { margin: 0 0 6px; padding-bottom: 6px; border-bottom: 1px solid var(--ink); font-size: var(--t-small); }
+  .steps { counter-reset: s; font-size: var(--t-small); }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 1.5rem 1fr; padding-block: var(--row-tight); border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+  .steps li::before { content: counter(s); font-weight: 600; color: var(--ink-3); }
+
+  @media (max-width: 1100px) {
+    .cs-intro, .cs-intro--wide { grid-column: 1 / span 7; }
+    .cs-head--no-fig .cs-intro { grid-column: 1 / -1; }
+    .cs-figs--drawing { max-width: 560px; }
+    .cs-aside { grid-column: 1 / -1; position: static; display: grid; grid-template-columns: 2fr 1fr; gap: var(--gutter); margin-bottom: var(--s4); }
+    .cs-main { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 860px) {
+    .cs-intro, .cs-intro--wide, .cs-figs { grid-column: 1 / -1; }
+    .cs-head { row-gap: var(--s4); }
+    .cs-figs img { height: clamp(240px, 50vw, 380px); }
+    .cs-figs--drawing { justify-self: start; width: 100%; }
+    .cs-aside { grid-template-columns: 1fr; }
+    /* Two-column facts and contents for every case study (K-11) */
+    .facts { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--gutter); }
+    .facts > .wide { grid-column: 1 / -1; }
+    .toc ol { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--gutter); }
+    .toc a { min-height: 44px; }  /* touch widths (K-10) */
+  }
+
+  @media (max-width: 600px) {
+    .cs-head { padding-top: var(--s3); }
+    .cs-figs { margin-inline: calc(var(--margin) * -1); }
+    .cs-figs img { height: 260px; }
+    .cs-figs figcaption { padding-inline: var(--margin); }
+    .cs-figs--drawing { margin-inline: calc(var(--margin) * -1); padding: var(--s3) var(--margin) var(--s2); max-width: none; width: auto; justify-self: stretch; }
+    /* E.2.2 drawing-first phone order */
+    .cs-head--drawing .cs-intro { display: contents; }
+    .cs-head--drawing .cs-intro > *, .cs-head--drawing .cs-figs { grid-column: 1 / -1; }
+    .cs-head--drawing .crumb { order: 1; }
+    .cs-head--drawing h1 { order: 2; }
+    .cs-head--drawing .cs-sum { order: 3; }
+    .cs-head--drawing .cs-figs { order: 4; }
+    .cs-head--drawing .cs-why { order: 5; }
+    .cs-head--drawing { row-gap: var(--s3); }
+    .cs-sec > h2 { grid-template-columns: 1.75rem 1fr; }
+    .paths { grid-template-columns: 1fr; }
+  }
+}

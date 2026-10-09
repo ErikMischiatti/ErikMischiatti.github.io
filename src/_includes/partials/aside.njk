@@ -1,0 +1,22 @@
+{#- Metadata column: facts + contents (DESIGN.md §E.1.13). toc: list of { id, title }. -#}
+{%- set tocItems = toc if toc else sections %}
+<aside class="cs-aside" aria-label="Project facts">
+  <dl class="facts">
+    {%- for f in facts %}
+    <div{% if f.wide %} class="wide"{% endif %}><dt class="label">{{ f.term }}</dt><dd>{% if f.value %}{{ f.value | mdi | safe }}{% else %}<span class="gap">{{ f.gap }}</span>{% endif %}</dd></div>
+    {%- endfor %}
+    {%- set evItems = evidence | evidenceItems(evidenceLabels) %}
+    <div class="wide"><dt class="label">Evidence</dt><dd>
+      {%- for e in evItems %}{% set m = e.mark %}{% include "partials/mark.njk" %} {{ e.label }}<br>{% endfor %}
+      {%- if evidenceNote %}<span class="gap">{{ evidenceNote }}</span>{% elif not evItems.length %}<span class="gap">No outputs documented yet</span>{% endif %}
+    </dd></div>
+  </dl>
+  {%- if tocItems and tocItems.length > 1 %}
+  <nav class="toc" aria-labelledby="toc-title">
+    <h2 id="toc-title" class="label">On this page</h2>
+    <ol>
+      {%- for s in tocItems %}<li><a href="#{{ s.id }}">{{ s.short or s.title }}</a></li>{% endfor %}
+    </ol>
+  </nav>
+  {%- endif %}
+</aside>

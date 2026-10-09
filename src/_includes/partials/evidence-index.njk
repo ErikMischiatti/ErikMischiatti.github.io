@@ -1,0 +1,40 @@
+{#- Evidence index: every project, generated from front matter. DESIGN.md §D.5. -#}
+<section id="index" class="index wrap" aria-labelledby="index-title">
+  <div class="sec-head sec-head--spaced">
+    <h2 id="index-title">Index</h2>
+    <p>All projects and what each one actually produced, as documented on its project page.</p>
+  </div>
+  <table class="ix">
+    <caption class="vh">Projects and their engineering evidence</caption>
+    <thead>
+      <tr>
+        <th scope="col" rowspan="2">Project</th>
+        <th scope="col" rowspan="2" class="ctx">Context</th>
+        <th scope="col" rowspan="2">Period</th>
+        <th scope="colgroup" colspan="6" class="ev-group">Evidence</th>
+      </tr>
+      <tr>
+        {%- for k in evidenceLabels.order %}<th scope="col" class="ev">{{ evidenceLabels.column[k] }}</th>{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {%- for p in collections.allProjects %}
+      {%- set d = p.data %}
+      {%- set live = d.publish or build.preview %}
+      {%- set href = ('#p-' ~ d.slug) if d.featured else (d.urlPath if (live or d.legacy) else null) %}
+      <tr>
+        <th scope="row">{% if href %}<a href="{{ href }}">{{ d.index.name }}</a>{% else %}{{ d.index.name }}{% endif %}</th>
+        <td class="ctx">{{ d.index.context or "–" }}</td>
+        <td class="per">{{ d.index.period or "–" }}</td>
+        {%- for k in evidenceLabels.order %}
+        {%- set v = d.evidence[k] %}
+        {%- if v == 'doc' %}<td class="ev is-doc"><span class="mk mk--doc" aria-hidden="true"></span><span class="ev__w">{{ evidenceLabels.column[k] }}</span></td>
+        {%- elif v == 'rep' %}<td class="ev is-rep"><span class="mk mk--rep" aria-hidden="true"></span><span class="ev__w">{{ evidenceLabels.reported[k] or (evidenceLabels.column[k] ~ ', reported') }}</span></td>
+        {%- else %}<td class="ev"><span class="ev__w">No</span></td>{% endif %}
+        {%- endfor %}
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+  <p class="ix-key"><span><span class="mk mk--doc" aria-hidden="true"></span>{{ evidenceLabels.key.doc }}</span><span><span class="mk mk--rep" aria-hidden="true"></span>{{ evidenceLabels.key.rep }}</span></p>
+</section>

@@ -1,0 +1,14 @@
+<header class="top">
+  <div class="wrap top__inner">
+    <a class="wordmark" href="{{ '#main' if isHome else '/' }}">{{ site.name }}</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        {%- for item in site.nav %}
+        {%- set href = item.href %}
+        {%- if isHome and href.startsWith('/#') %}{% set href = href | replace('/#', '#') %}{% endif %}
+        <li><a href="{{ href }}"{% if navCurrent and item.label == navCurrent %} aria-current="true"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,6 @@
+{
+  "order": ["hardware", "field", "experimental", "simulation", "publication", "software"],
+  "column": { "hardware": "Hardware prototype", "field": "Field test", "experimental": "Experimental validation", "simulation": "Simulation", "publication": "Publication", "software": "Software" },
+  "reported": { "field": "Field test, reported" },
+  "key": { "doc": "Documented in the project material", "rep": "Reported, no data published" }
+}

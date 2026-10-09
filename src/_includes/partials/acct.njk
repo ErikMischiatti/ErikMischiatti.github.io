@@ -1,0 +1,5 @@
+<dl class="acct">
+  {%- if f.builtWith %}<div><dt>Built with</dt><dd>{{ f.builtWith | mdi | safe }}</dd></div>{% endif %}
+  <div><dt>My contribution</dt><dd>{{ f.contribution | mdi | safe }}</dd></div>
+  <div><dt>Evidence</dt><dd><strong>{{ f.evidenceWords }}</strong> {{ f.evidenceText | mdi | safe }}</dd></div>
+</dl>
