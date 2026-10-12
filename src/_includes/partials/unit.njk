@@ -2,7 +2,6 @@
 {%- set d = p.data %}{% set f = d.featured %}
 {%- set live = d.publish or build.preview %}
 {%- set href = d.urlPath if (live or d.legacy) else null %}
-{%- set isCase = live and d.layout == 'layouts/case-study.njk' %}
 <article class="unit unit--{{ f.layout }}" aria-labelledby="p-{{ d.slug }}">
   {%- set body %}
   <div class="unit__body">
@@ -14,7 +13,6 @@
     <p class="unit__what">{{ f.what | mdi | safe }}</p>
     {%- if f.layout != 'text-led' %}
     {% include "partials/acct.njk" %}
-    {%- if href %}<a class="go {{ 'go--case' if isCase else 'go--page' }}" href="{{ href }}">{{ f.caseLabel if isCase else f.pageLabel }}</a>{% endif %}
     {%- endif %}
   </div>
   {%- endset %}
@@ -29,12 +27,12 @@
     </ol>
     <figcaption>{{ f.sequence.caption }}</figcaption>
   </figure>
-  {%- if href %}<a class="go {{ 'go--case' if isCase else 'go--page' }}" href="{{ href }}">{{ f.caseLabel if isCase else f.pageLabel }}</a>{% endif %}
   {%- elif f.mediaVideo %}
   <figure class="unit__media">
-    {% video { src: f.mediaVideo.src, poster: f.mediaVideo.poster, width: f.mediaVideo.width, height: f.mediaVideo.height, describedby: 'cap-' ~ d.slug } %}
+    {% video { src: f.mediaVideo.src, poster: f.mediaVideo.poster, width: f.mediaVideo.width, height: f.mediaVideo.height, describedby: 'cap-' ~ d.slug, animate: f.mediaVideo.animate } %}
     <figcaption id="cap-{{ d.slug }}">{{ f.mediaCaption | mdi | safe }}</figcaption>
   </figure>
+  {%- if f.mediaVideo.animate %}{% include "partials/reduced-motion.njk" %}{% endif %}
   {%- elif f.media %}
   <figure class="unit__media">
     {%- asyncEach m in f.media %}

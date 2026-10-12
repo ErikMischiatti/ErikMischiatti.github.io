@@ -2,24 +2,7 @@
 layout: layouts/base.njk
 permalink: /index.html
 isHome: true
-opening:
-  lead:
-    src: src/media/home/franka-45.jpg
-    phone: src/media/home/franka-43.jpg
-    alt: "Franka Emika Panda gripper holding an Ethernet cable above the perforated test board, with printed clips and a blue cable sleeve."
-    caption: "**Cable manipulation from demonstration.** Franka gripper on the reconfigurable board, TU Wien."
-  supporting:
-    - src: src/media/rtk/open-43.jpg
-      widths: [360, 720]
-      alt: "Open bottom case of the RTK base station: Arduino Nano, receiver board and LoRa module wiring."
-      caption: "**RTK Base Station.** Bottom case: Nano, receiver, radio."
-    - src: src/media/uwb/detail-43.jpg
-      widths: [480, 960]
-      alt: "Rotor modules fixed to a box, flying outdoors without a frame, in front of a building."
-      caption: "**UWB modular UAV.** Rotor modules on a box, in flight."
 ---
-{%- set leadSizes = "(max-width: 1100px) 56vw, 30vw" %}
-{%- set supSizes = "(max-width: 600px) 50vw, (max-width: 1100px) 40vw, 24vw" %}
 <section class="open wrap grid" aria-labelledby="open-title">
   <div class="open__text">
     <h1 id="open-title">{{ site.statement }}</h1>
@@ -27,21 +10,11 @@ opening:
     <p class="open__role"><b>{{ site.role.title }}</b>{{ site.role.org }}</p>
   </div>
 
-  <div class="open__media">
-    <figure class="lead">
-      <div class="frame">
-        {% picture { src: opening.lead.src, alt: opening.lead.alt, widths: [480, 960], sizes: leadSizes, priority: true, art: [{ media: "(max-width: 600px)", src: opening.lead.phone, widths: [480, 960], sizes: "100vw" }] } %}
-      </div>
-      <figcaption>{{ opening.lead.caption | mdi | safe }}</figcaption>
-    </figure>
-    {%- asyncEach s in opening.supporting %}
-    <figure class="sup">
-      <div class="frame">
-        {% picture { src: s.src, alt: s.alt, widths: s.widths, sizes: supSizes, loading: "eager" } %}
-      </div>
-      <figcaption>{{ s.caption | mdi | safe }}</figcaption>
-    </figure>
-    {%- endeach %}
+  <div id="about" class="open__about">
+    <p class="open__hi">{{ about.greeting }}</p>
+    {%- for para in about.paragraphs %}
+    <p>{{ para }}</p>
+    {%- endfor %}
   </div>
 
   <nav class="open__list" aria-labelledby="sel-title">
@@ -54,8 +27,7 @@ opening:
   </nav>
 </section>
 
-{#- Old homepage anchors keep working: #projects → work, #experience/#education → record, #about → opening. #}
-<span id="about" aria-hidden="true"></span>
+{#- Old homepage anchors keep working: #projects → work, #experience/#education → record, #about → introduction. #}
 <section id="work" class="work wrap" aria-labelledby="work-title">
   <span id="projects" aria-hidden="true"></span>
   <h2 id="work-title" class="vh">Featured projects</h2>
@@ -66,16 +38,39 @@ opening:
 
 {% include "partials/evidence-index.njk" %}
 
-<section class="closing wrap grid" aria-label="Record, publications and contact">
-  <div id="record" class="closing__col">
-    <span id="experience" aria-hidden="true"></span><span id="education" aria-hidden="true"></span>
-    <div class="sec-head"><h2>Record</h2></div>
-    <ol class="rec">
-      {%- for r in record.entries %}
-      <li><span>{{ r.when }}</span>{{ r.what }}</li>
-      {%- endfor %}
+<section id="experience" class="cv wrap grid" aria-label="Experience and education">
+  <div class="cv__col">
+    <span id="record" aria-hidden="true"></span>
+    <div class="sec-head"><h2>Experience</h2></div>
+    <ol class="cv-list">
+      {%- asyncEach e in record.experience %}
+      {% include "partials/cv-entry.njk" %}
+      {%- endeach %}
     </ol>
   </div>
+  <div id="education" class="cv__col">
+    <div class="sec-head"><h2>Education</h2></div>
+    <ol class="cv-list">
+      {%- asyncEach e in record.education %}
+      {% include "partials/cv-entry.njk" %}
+      {%- endeach %}
+    </ol>
+  </div>
+</section>
+
+<section id="skills" class="skills wrap" aria-labelledby="skills-title">
+  <div class="sec-head"><h2 id="skills-title">Skills and expertise</h2></div>
+  <div class="skills__grid">
+    {%- for g in skills.groups %}
+    <div class="skills__group">
+      <h3>{{ g.title }}</h3>
+      <ul>{% for i in g.items %}<li>{{ i }}</li>{% endfor %}</ul>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="closing wrap grid" aria-label="Publication and contact">
   <div class="closing__col">
     <div class="sec-head"><h2>Publication and recognition</h2></div>
     {%- for c in publications.papers %}

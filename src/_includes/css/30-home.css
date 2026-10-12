@@ -3,10 +3,10 @@
 
   /* Opening: identity (text), work (photographs), navigation (selected list) */
   .open { padding-block: var(--s4) var(--s5); row-gap: var(--s4);
-    grid-template-areas: "text text text text text media media media media media media media"
-                         "list list list list list media media media media media media media"; }
+    grid-template-areas: "text text text text text about about about about about about about"
+                         "list list list list list about about about about about about about"; }
   .open__text { grid-area: text; align-self: start; }
-  .open__media { grid-area: media; }
+  .open__about { grid-area: about; }
   .open__list { grid-area: list; align-self: end; }
   .open h1 { font-size: var(--t-display); font-weight: 720; font-stretch: var(--w-display); line-height: 1.03; letter-spacing: -0.02em; text-wrap: balance; max-width: 21ch; }
   .open__lede { margin-top: var(--s3); font-size: var(--t-lede); color: var(--ink-2); max-width: 42ch; line-height: 1.5; }
@@ -21,13 +21,9 @@
   .sel b { font-weight: 680; font-stretch: var(--w-item); font-size: var(--t-item); }
   .sel .ev-sum { font-size: var(--t-small); color: var(--ink-3); text-align: right; }
 
-  /* One lead photograph and two supporting ones; every frame fills the shared height. */
-  .open__media { display: grid; grid-template-columns: 4fr 3fr; grid-template-rows: 1fr 1fr; gap: var(--gap-media); min-height: 480px; }
-  .open__media figure { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
-  .open__media .lead { grid-row: span 2; }
-  .frame { position: relative; flex: 1 1 auto; min-height: 120px; }
-  .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .lead .frame img { object-position: 50% 30%; }
+  /* Introduction text (src/_data/about.json), beside the title */
+  .open__about { align-self: start; display: flex; flex-direction: column; gap: var(--s2); max-width: 62ch; padding-top: var(--s1); font-size: var(--t-lede); line-height: 1.55; color: var(--ink-2); }
+  .open__hi { font-size: var(--t-h2); font-weight: 720; font-stretch: var(--w-display); line-height: 1.1; color: var(--ink); }
 
   /* Featured units. Layout modifiers are named by layout, not by project (K-19). */
   .work { padding-bottom: var(--s5); }
@@ -44,14 +40,16 @@
   .unit__media picture { min-width: 0; }
   .unit__media img, .unit__media video { width: 100%; }
 
-  .unit--media-start .unit__media { grid-column: 1 / span 7; grid-row: 1 / span 2; grid-template-columns: 3fr 2fr; }
+  .unit--media-start .unit__media { grid-column: 1 / span 7; grid-row: 1 / span 2; grid-template-columns: 1fr 1fr; }  /* equal columns: the portrait photo is not cropped */
   .unit--media-start .unit__media img { height: clamp(300px, 33vw, 500px); object-fit: cover; }
   .unit--media-start .plate img { object-fit: contain; padding: clamp(12px, 2vw, 28px); }
   .unit--media-start .unit__body { grid-column: 9 / span 4; }
 
-  .unit--media-end .unit__body { grid-column: 1 / span 4; grid-row: 1; }
-  .unit--media-end .unit__media { grid-column: 5 / span 8; grid-row: 1; }
-  .unit--media-end video { aspect-ratio: 16 / 9; background: var(--ink); object-fit: cover; }
+  .unit--media-end .unit__body { grid-column: 1 / span 6; grid-row: 1; }
+  .unit--media-end .unit__media { grid-column: 8 / span 5; grid-row: 1; }
+  .unit--media-end video { height: clamp(280px, 30vw, 440px); background: #0b0a0d; object-fit: contain; }
+  /* A single image on a plate (UWB 3D model), at the height of the other homepage images. */
+  .unit--media-end .plate img { height: clamp(280px, 30vw, 440px); object-fit: contain; padding: clamp(12px, 2vw, 24px); }
 
   .unit--text-led .unit__body { grid-column: 1 / span 5; }
   .unit--text-led .acct { grid-column: 7 / span 6; align-self: start; }
@@ -80,57 +78,69 @@
   .ix .ev__w { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .ix .ctx { color: var(--ink-2); }
   .ix .per { white-space: nowrap; }
+  .ix-hint { display: none; }  /* phone-only scroll hint */
+  .ix-scroll { --ix-col-project: 10.5rem; --ix-col-context: 13rem; --ix-col-evidence: 5.25rem; }  /* phone column widths (used at ≤ 600 px) */
   .ix-key { margin-top: var(--s2); font-size: var(--t-small); color: var(--ink-3); display: flex; gap: 4px var(--s3); flex-wrap: wrap; }
   .ix-key .mk { margin-right: 6px; }
 
-  /* Closing: record, publications, contact */
+  /* Experience and education. Logo size and spacing: --logo-size, --logo-gap. */
+  .cv { --logo-size: 52px; --logo-gap: 8px; padding-bottom: var(--s6); row-gap: var(--s5); }
+  .cv__col { grid-column: span 6; }
+  .cv-entry { display: grid; grid-template-columns: calc(var(--logo-size) * 2 + var(--logo-gap)) minmax(0, 1fr); gap: var(--s3); padding-block: var(--s3); border-bottom: 1px solid var(--rule); }
+  .cv-entry__logos { display: flex; gap: var(--logo-gap); align-items: flex-start; }
+  .cv-entry__logos img { width: var(--logo-size); height: var(--logo-size); object-fit: contain; }
+  .cv-entry__initials { display: grid; place-items: center; width: var(--logo-size); height: var(--logo-size); border: 1px solid var(--ink); font-size: var(--t-label); font-weight: 720; }
+  .cv-entry__when { font-size: var(--t-small); color: var(--ink-3); }
+  .cv-entry h3 { margin-top: 2px; font-size: var(--t-item); font-weight: 720; font-stretch: var(--w-item); line-height: 1.25; }
+  .cv-entry__org { font-size: var(--t-body); }
+  .cv-entry__detail { margin-top: 2px; font-size: var(--t-small); color: var(--ink-2); }
+
+  /* Skills: one column per group */
+  .skills { padding-bottom: var(--s6); }
+  .skills__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4) var(--gutter); }
+  .skills__group h3 { font-size: var(--t-body); font-weight: 720; font-stretch: var(--w-item); padding-bottom: var(--s1); border-bottom: 1px solid var(--ink); }
+  .skills__group li { padding-block: 6px; border-bottom: 1px solid var(--rule); font-size: var(--t-small); color: var(--ink-2); }
+
+  /* Closing: publication, contact */
   .closing { padding-bottom: var(--s5); row-gap: var(--s4); }
-  .closing__col { grid-column: span 4; }
-  .rec li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 8px; padding-block: var(--row-tight); border-bottom: 1px solid var(--rule); font-size: var(--t-small); }
-  .rec span { color: var(--ink-3); }
+  .closing__col { grid-column: span 6; }
   .cite { font-size: var(--t-small); padding-bottom: var(--s2); margin-bottom: var(--s2); border-bottom: 1px solid var(--rule); }
   .cite cite { font-style: normal; font-weight: 650; }
   .mail { font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.5rem); font-stretch: var(--w-item); }
 
   @media (max-width: 1100px) {
     .open { grid-template-areas: "text text text text text text text text list list list list"
-                                 "media media media media media media media media media media media media"; }
+                                 "about about about about about about about about about about about about"; }
     .open__list { align-self: start; }
     .open h1 { max-width: 20ch; }
-    .open__media { grid-template-columns: 7fr 5fr; height: clamp(420px, 62vw, 620px); }
 
     .unit--media-start .unit__body { grid-column: 8 / span 5; }
-    .unit--media-end .unit__body { grid-column: 1 / span 5; }
-    .unit--media-end .unit__media { grid-column: 6 / span 7; }
+    .unit--media-end .unit__body { grid-column: 1 / span 6; }
+    .unit--media-end .unit__media { grid-column: 8 / span 5; }
     .unit--text-led .unit__body { grid-column: 1 / span 6; }
     .unit--secondary .unit__media { grid-column: 1 / span 6; }
 
     .ix .ctx { display: none; }
-    .closing__col { grid-column: span 6; }
-    .closing__col:last-child { grid-column: 1 / -1; }
+    .skills__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
   @media (max-width: 860px) {
-    .open { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "media" "list"; }
+    .open { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "about" "list"; }
     .open__list { max-width: 640px; }
     .unit .unit__media, .unit .unit__body, .unit .acct, .unit .phases, .unit .go { grid-column: 1 / -1; grid-row: auto; }
     .unit--media-end .unit__media { order: -1; }
     .unit__what { max-width: none; }
     .unit--media-start .unit__media img { height: clamp(260px, 52vw, 420px); }
     .unit--secondary .unit__media img { height: clamp(160px, 30vw, 240px); }
-    .closing__col { grid-column: 1 / -1; }
+    .closing__col, .cv__col { grid-column: 1 / -1; }
   }
 
   @media (max-width: 600px) {
+    .cv { --logo-size: 42px; }
+    .skills__grid { grid-template-columns: 1fr 1fr; gap: var(--s3) var(--gutter); }
     .open { padding-block: var(--s3) var(--s4); row-gap: var(--s3); }
     .open__lede { font-size: var(--t-item); margin-top: var(--s2); }
-    .open__media { grid-template-columns: 1fr 1fr; grid-template-rows: auto; height: auto; min-height: 0; margin-inline: calc(var(--margin) * -1); }
-    .open__media .lead { grid-column: 1 / -1; grid-row: auto; }
-    .frame { position: static; min-height: 0; }
-    .frame img { position: static; height: auto; aspect-ratio: 4 / 3; }
-    .open__media figcaption { padding-inline: var(--margin); }
-    .open__media .sup figcaption { padding-inline: var(--margin) 4px; }
-    .open__media .sup:last-child figcaption { padding-inline: 4px var(--margin); }
+    .open__about { font-size: var(--t-body); line-height: 1.5; }  /* phones: the About text one step smaller than the lede */
     .sel a { grid-template-columns: 2rem 1fr; }
     .sel .ev-sum { grid-column: 2; text-align: left; margin-top: -4px; }
 
@@ -141,18 +151,20 @@
     .unit--media-start .unit__media img { height: 240px; }
     .unit--secondary .unit__media img { height: 180px; }
 
-    .ix thead { display: none; }
-    .ix, .ix tbody, .ix tr { display: block; }
-    .ix tr { display: flex; flex-wrap: wrap; column-gap: 8px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
-    .ix th, .ix td { border: 0; padding: 0; }
-    .ix tbody th { flex: 1 0 100%; }
-    .ix td.ctx { display: block; flex: 0 1 auto; order: 1; }
-    .ix td.ctx::after { content: " ·"; }
-    .ix .per { color: var(--ink-3); order: 2; }
-    .ix tr::after { content: ""; flex: 1 0 100%; order: 3; height: 4px; }
-    .ix td.ev { display: none; order: 4; width: auto; text-align: left; border: 0; }
-    .ix td.ev.is-doc, .ix td.ev.is-rep { display: inline-flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
-    .ix td.ev + td.ev { border: 0; }
-    .ix .ev__w { position: static; width: auto; height: auto; clip: auto; overflow: visible; }
+    /* Index on phones: still a table. It scrolls sideways inside .ix-scroll, the Project column stays
+       in place (sticky), and soft edge shadows show that more columns are off screen. */
+    .ix-hint { display: block; margin-bottom: var(--s1); font-size: var(--t-label); color: var(--ink-3); }
+    .ix-scroll { position: relative; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; margin-inline: calc(var(--margin) * -1);  /* relative: also clips the visually hidden evidence labels */
+      background: linear-gradient(to left, var(--bg) 30%, transparent) right / 40px 100% no-repeat local,
+                  radial-gradient(farthest-side at 100% 50%, rgb(19 19 19 / 0.18), transparent) right / 14px 100% no-repeat scroll; }
+    .ix-scroll:focus-visible { outline-offset: -3px; }
+    .ix { width: max-content; min-width: 100%; }
+    .ix .ctx { display: table-cell; }
+    .ix th, .ix td { padding-right: 14px; vertical-align: top; }
+    .ix tbody th { position: sticky; left: 0; z-index: 1; width: var(--ix-col-project); min-width: var(--ix-col-project); max-width: var(--ix-col-project); background: var(--bg); box-shadow: inset -1px 0 var(--rule); font-size: var(--t-small); }
+    .ix thead th:first-child { position: sticky; left: 0; z-index: 2; background: var(--bg); box-shadow: inset -1px 0 var(--rule); }
+    .ix tbody th, .ix thead th:first-child { padding-left: var(--margin); }  /* the sticky column sits at the screen edge */
+    .ix td.ctx { min-width: var(--ix-col-context); max-width: var(--ix-col-context); }
+    .ix .ev { width: var(--ix-col-evidence); min-width: var(--ix-col-evidence); padding-right: 0; }
   }
 }

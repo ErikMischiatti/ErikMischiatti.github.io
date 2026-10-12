@@ -136,5 +136,10 @@ widths for referenced images only. Videos never autoplay and use `preload="none"
 
 ## Deployment
 
-Not configured. GitHub Pages still publishes the old site from `main`. Moving to this build
-requires an explicit decision (GitHub Actions deployment of `_site/`, or a built branch).
+`.github/workflows/pages.yml` builds the site on every push to `main` (or by hand from the Actions
+tab), runs `npm test` and publishes only the production output `_site/` to GitHub Pages. It takes
+effect once the repository's Pages source is set to **GitHub Actions** (Settings → Pages); with the
+legacy "Deploy from a branch" source, Pages keeps serving the old static files from `main`.
+
+The custom domain is set in the Pages settings (`erikmischiatti.com`); `CNAME` is also copied into
+`_site/`. `_preview/` is never deployed.

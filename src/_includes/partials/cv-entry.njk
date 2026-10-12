@@ -1,0 +1,16 @@
+{#- One Experience or Education entry. Expects e (from src/_data/record.json). Without logos, shows the organisation's initials. -#}
+<li class="cv-entry">
+  <div class="cv-entry__logos" aria-hidden="true">
+    {%- if e.logos and e.logos.length %}
+    {%- asyncEach l in e.logos %}{% logo { src: l, alt: "" } %}{% endeach %}
+    {%- else %}
+    <span class="cv-entry__initials">{{ e.org | initials }}</span>
+    {%- endif %}
+  </div>
+  <div class="cv-entry__text">
+    <p class="cv-entry__when">{{ e.when }}</p>
+    <h3>{{ e.title }}</h3>
+    <p class="cv-entry__org">{{ e.org }}</p>
+    {%- if e.detail %}<p class="cv-entry__detail">{{ e.detail }}</p>{% endif %}
+  </div>
+</li>

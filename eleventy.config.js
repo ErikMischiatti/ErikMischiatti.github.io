@@ -103,6 +103,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("md", (s) => (s ? md.render(String(s)) : ""));
   eleventyConfig.addFilter("mdi", (s) => (s ? md.renderInline(String(s)) : ""));
   eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));
+  // "University of Padova" -> "UP": text fallback for an experience/education entry without a logo.
+  eleventyConfig.addFilter("initials", (s) => String(s).split(/[\s,]+/).filter((w) => /^\p{Lu}/u.test(w)).map((w) => w[0]).join("").slice(0, 3));
   // Documents are referenced by id; a link renders only when the file is copied in this mode.
   eleventyConfig.addFilter("docUrl", (id) => {
     const d = docs.files.find((f) => f.id === id);
@@ -150,7 +152,8 @@ export default function (eleventyConfig) {
   const opts = (widths) => ({
     widths, formats, outputDir: path.join(OUT(), "media/img"), urlPath: "/media/img/",
     sharpWebpOptions: { quality: 78, effort: 6 }, sharpJpegOptions: { quality: 80, progressive: true, mozjpeg: true },
-    filenameFormat: (id, src, width, format) => `${path.parse(src).name}-${id.slice(0, 6)}-${width}.${format}`,
+    // Accents are dropped from generated names ("Università" -> "Universita"); other names are unchanged.
+    filenameFormat: (id, src, width, format) => `${path.parse(src).name.normalize("NFD").replace(/[^\w.-]/g, "")}-${id.slice(0, 6)}-${width}.${format}`,
   });
   const srcset = (list) => list.map((m) => `${m.url} ${m.width}w`).join(", ");
 
@@ -173,16 +176,48 @@ export default function (eleventyConfig) {
     return `<picture>${sources}<img src="${big.url}" srcset="${srcset(meta.jpeg)}" sizes="${sizes}" width="${big.width}" height="${big.height}" alt="${alt}"${loading}${o.cls ? ` class="${o.cls}"` : ""}></picture>`;
   });
 
+  // ratio(src, widths): width / height of an image as a decimal, for CSS (--ar: aspect-ratio and flex-grow). Same processing
+  // and cache as picture, so it costs nothing extra. Used to lay out photo rows without cropping.
+  eleventyConfig.addAsyncShortcode("ratio", async (src, widths) => {
+    const meta = await Image(src, opts(widths || [480, 960]));
+    const big = meta.jpeg[meta.jpeg.length - 1];
+    return (big.width / big.height).toFixed(4);
+  });
+
   // WebP srcset of an image, for <link rel="preload" imagesrcset> (same processing, same URLs).
   eleventyConfig.addAsyncShortcode("webpSrcset", async (src, widths) => {
     const meta = await Image(src, opts(widths));
     return srcset(meta.webp);
   });
 
-  // video({ src, poster, width, height, describedby, ratio })
+  // video({ src, poster, width, height, describedby, ratio, animate })
+  // animate: true plays like a GIF (autoplay, muted, loop, no controls). Under reduced motion a
+  // small script in the block pauses it and shows the controls instead.
   eleventyConfig.addShortcode("video", (o) => {
     const ratio = o.ratio ? ` style="--ratio: ${o.ratio}"` : "";
-    return `<video controls preload="none" playsinline width="${o.width}" height="${o.height}" poster="${o.poster}"${o.describedby ? ` aria-describedby="${o.describedby}"` : ""}${ratio}><source src="${o.src}" type="video/mp4"></video>`;
+    const mode = o.animate ? `autoplay muted loop playsinline preload="metadata" data-gif` : `controls preload="none" playsinline`;
+    return `<video ${mode} width="${o.width}" height="${o.height}" poster="${o.poster}"${o.describedby ? ` aria-describedby="${o.describedby}"` : ""}${ratio}><source src="${o.src}" type="video/mp4"></video>`;
+  });
+
+  // logo({ src, alt }): small organisation logo, WebP with a PNG fallback (keeps transparency).
+  // Displayed size is set in CSS (--logo-size in 30-home.css), not here.
+  eleventyConfig.addAsyncShortcode("logo", async (o) => {
+    const meta = await Image(o.src, { ...opts([120]), formats: ["webp", "png"] });
+    const png = meta.png[0];
+    const alt = String(o.alt).replace(/"/g, "&quot;");
+    return `<picture><source type="image/webp" srcset="${meta.webp[0].url}"><img src="${png.url}" width="${png.width}" height="${png.height}" alt="${alt}" loading="lazy" decoding="async"></picture>`;
+  });
+
+  // gif({ src, alt, width, height }): the original animated GIF (copied unchanged to
+  // /media/gif/), with a still first frame for visitors who prefer reduced motion.
+  eleventyConfig.addAsyncShortcode("gif", async (o) => {
+    if (!o?.src || o.alt == null) throw new Error("gif: needs src and alt");
+    const name = path.basename(o.src);
+    fs.mkdirSync(path.join(OUT(), "media/gif"), { recursive: true });
+    fs.copyFileSync(o.src, path.join(OUT(), "media/gif", name));
+    const still = await Image(o.src, { ...opts([o.width]), formats: ["webp"] });
+    const alt = String(o.alt).replace(/"/g, "&quot;");
+    return `<picture><source media="(prefers-reduced-motion: reduce)" type="image/webp" srcset="${still.webp[0].url}"><img src="/media/gif/${name}" width="${o.width}" height="${o.height}" alt="${alt}" loading="lazy" decoding="async"></picture>`;
   });
 
   eleventyConfig.addWatchTarget("src/_includes/css/");

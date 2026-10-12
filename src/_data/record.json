@@ -1,9 +1,41 @@
 {
-  "entries": [
-    { "when": "2025–", "what": "Researcher / Test Engineer, MRS Group, FEE CTU in Prague. EAGLE.ONE, with Fly4Future s.r.o." },
-    { "when": "2024", "what": "Master's thesis, TU Wien" },
-    { "when": "2022–24", "what": "M.Sc. Mechatronics Engineering, University of Trento" },
-    { "when": "2023", "what": "Erasmus exchange, Linnaeus University" },
-    { "when": "2017–21", "what": "B.Sc. Mechatronics Engineering, University of Padova" }
+  "_comment": "Homepage Experience and Education. Newest first. Each entry: when, title, org, optional detail, optional logos (image paths, usually under pics/; size set by --logo-size in src/_includes/css/30-home.css). An entry without logos shows its initials instead. Only information already published on the previous homepage.",
+  "experience": [
+    {
+      "when": "Oct 2025 – present",
+      "title": "Test Engineer",
+      "org": "MRS Group, FEE CTU in Prague",
+      "detail": "EAGLE.ONE drone-hunting system, in collaboration with Fly4Future s.r.o.",
+      "logos": ["pics/MRS_logo.png", "pics/eagle_one_anti_drone_logo.png"]
+    }
+  ],
+  "education": [
+    {
+      "when": "2024",
+      "title": "Master's thesis",
+      "org": "TU Wien",
+      "detail": "Imitation learning and 6D pose estimation for task learning.",
+      "logos": ["pics/geo_blue_transparent.png"]
+    },
+    {
+      "when": "2022 – 2024",
+      "title": "M.Sc. Mechatronics Engineering",
+      "org": "University of Trento",
+      "detail": "Focus on autonomous systems and robotics.",
+      "logos": ["pics/Sigillo_Università_di_Trento.svg.png"]
+    },
+    {
+      "when": "2023",
+      "title": "Erasmus exchange",
+      "org": "Linnaeus University",
+      "detail": "Robotics, automation and mechanics.",
+      "logos": ["pics/Linneuniversitetet_logo.png"]
+    },
+    {
+      "when": "2018 – 2021",
+      "title": "B.Sc. Mechatronics Engineering",
+      "org": "University of Padova",
+      "logos": ["pics/Logo_Università_Padova.svg.png"]
+    }
   ]
 }

@@ -1,0 +1,2 @@
+{#- GIF-like videos (animate: true): for visitors who prefer reduced motion, stop playback and show the controls. -#}
+<script>if (matchMedia("(prefers-reduced-motion: reduce)").matches) for (const v of document.querySelectorAll("video[data-gif]")) { v.pause(); v.removeAttribute("autoplay"); v.controls = true; }</script>

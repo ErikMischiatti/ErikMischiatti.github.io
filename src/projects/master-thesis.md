@@ -26,32 +26,35 @@ facts:
   - { term: Status, value: Completed }
   - { term: Platform, value: "Franka Emika Panda, Intel RealSense D435i, ArUco markers, ROS", wide: true }
 
-featured:
-  order: 4
-  tier: secondary
-  layout: secondary
-  selectedName: Robotic cable manipulation
-  selectedSummary: Experiments, code
-  meta:
-    - { text: "Master's thesis, TU Wien" }
-    - { text: "Apr – Oct 2024" }
-  what: "One kinesthetic demonstration, encoded as DHB invariant trajectories, reused across board layouts by a Franka Emika Panda under Behavior Tree execution."
-  contribution: "Author of the thesis."
-  evidenceWords: "Experimental validation, software implementation."
-  evidenceText: "Three scenarios: clip insertion shown; full modular path partially successful, limited by joint constraints and cable slack; new board layouts handled."
-  pageLabel: Thesis project page
-  caseLabel: Thesis case study
-  media:
-    - { src: pics/photo_1_2024-10-03_15-53-10.jpg, widths: [800, 1100], sizes: "(max-width: 600px) 64vw, 28vw", alt: "Camera view of the board with ArUco markers and detected poses overlaid." }
-    - { src: src/media/thesis/clip-45.jpg, widths: [480, 960], sizes: "(max-width: 600px) 36vw, 16vw", alt: "Red cable routed through printed clips on the perforated board." }
-  mediaCaption: "Pose estimation on the board, and a cable routed through printed clips."
+# Removed from the homepage featured projects. To feature it again, remove the "# " in front of each line below.
+# featured:
+#   order: 4
+#   tier: secondary
+#   layout: secondary
+#   selectedName: Robotic cable manipulation
+#   selectedSummary: Experiments, code
+#   meta:
+#     - { text: "Master's thesis, TU Wien" }
+#     - { text: "Apr – Oct 2024" }
+#   what: "One kinesthetic demonstration, encoded as DHB invariant trajectories, reused across board layouts by a Franka Emika Panda under Behavior Tree execution."
+#   contribution: "Author of the thesis."
+#   evidenceWords: "Experimental validation, software implementation."
+#   evidenceText: "Three scenarios: clip insertion shown; full modular path partially successful, limited by joint constraints and cable slack; new board layouts handled."
+#   pageLabel: Thesis project page
+#   caseLabel: Thesis case study
+#   media:
+#     - { src: pics/photo_1_2024-10-03_15-53-10.jpg, widths: [800, 1100], sizes: "(max-width: 600px) 64vw, 28vw", alt: "Camera view of the board with ArUco markers and detected poses overlaid." }
+#     - { src: src/media/thesis/clip-45.jpg, widths: [480, 960], sizes: "(max-width: 600px) 36vw, 16vw", alt: "Red cable routed through printed clips on the perforated board." }
+#   mediaCaption: "Pose estimation on the board, and a cable routed through printed clips."
 
+# wide: true puts the two photos on a full-width row below the intro (larger; no cropping, each
+# photo at its own proportions). Remove it to place them beside the intro again.
 opening:
   type: photos
+  wide: true
   figures:
-    - { src: pics/photo_1_2024-10-03_15-53-10.jpg, widths: [800, 1100], sizes: "(max-width: 860px) 60vw, 25vw", alt: "Camera view of the board with ArUco markers and detected poses overlaid." }
-    - { src: src/media/thesis/clip-45.jpg, widths: [480, 960], sizes: "(max-width: 860px) 40vw, 17vw", alt: "Red cable routed through printed clips on the perforated board." }
-  caption: "**Fig. 1** Perception input: ArUco markers on the modular board, with the estimated poses overlaid on the camera view. **Fig. 2** The task setting: a cable routed through 3D-printed clips on the board."
+    - { src: pics/photo_1_2024-10-03_15-53-10.jpg, widths: [800, 1100, 1400], sizes: "(max-width: 600px) 100vw, 62vw", alt: "Camera view of the board with ArUco markers and detected poses overlaid.", caption: "**Fig. 1** Perception input: ArUco markers on the modular board, with the estimated poses overlaid on the camera view." }
+    - { src: pics/photo_4_2024-10-03_15-53-10.jpg, widths: [480, 960], sizes: "(max-width: 600px) 100vw, 27vw", alt: "Red cable routed through printed clips on the perforated board.", caption: "**Fig. 2** The task setting: a cable routed through 3D-printed clips on the board." }
 
 sections:
   - id: s-overview
@@ -79,6 +82,23 @@ sections:
           - { item: Learning from demonstration, cells: ["Kinesthetic teaching to program cable-manipulation skills"] }
       - type: prose
         md: "The robotic platform integrates a **Franka Emika Panda** arm, an **Intel RealSense D435i** camera and a ROS-based control system. A perception module estimates the 6D pose of target objects, while DHB encodes the trajectory in a space-invariant form. Execution is coordinated through Behavior Trees and ROS action nodes."
+      # Figures from the original page (pics/SystemDesign.png, pics/SetupConfiguration.png), flattened on white in src/media/thesis/.
+      - type: figure
+        src: src/media/thesis/system-design.png
+        widths: [768]
+        sizes: "(max-width: 860px) 100vw, 768px"
+        plate: true
+        maxWidth: 820px
+        alt: "System block architecture in three phases: teaching (operator guides the robot), encoding (demonstration trajectory, time and velocity, pre-processing, DHB) and reproducing (camera, detection, Behavior Trees, planner, Cartesian impedance controller, robot)."
+        caption: "**Fig. 3** System architecture: teaching, encoding and reproducing phases."
+      - type: figure
+        src: src/media/thesis/setup-configuration.png
+        widths: [750]
+        sizes: "(max-width: 860px) 100vw, 750px"
+        plate: true
+        maxWidth: 820px
+        alt: "Experimental setup: the robotic arm system with the RealSense camera, and the assembly board system with ArUco markers, the camera view and the shared base frame."
+        caption: "**Fig. 4** Experimental setup configuration: robotic arm system, camera view and assembly board system, linked through the base frame."
 
   - id: s-results
     title: Experimental scenarios and results
@@ -93,6 +113,23 @@ sections:
           - { item: Clip insertion, cells: ["High-precision cable insertion into modular clips using learned trajectories"] }
           - { item: Full modular path, cells: ["Partial success in executing complex sequences across several modules, limited by joint constraints and cable slack"] }
           - { item: Board reconfiguration, cells: ["The system adapted to new board layouts, confirming the DHB invariance properties"] }
+      # Figures from the original page (pics/clip_scenario.png, pics/fullpath_scenario.png), flattened on white in src/media/thesis/.
+      - type: figure
+        src: src/media/thesis/clip-scenario.png
+        widths: [750]
+        sizes: "(max-width: 860px) 100vw, 750px"
+        plate: true
+        maxWidth: 820px
+        alt: "Clip insertion scenario: forward sequence (Look, Get_cable, Create_pick_goal, Approach_cable, Insert_clip, Grab_clip, Close_clip, Lock_clip up and down) and inverse sequence (Alignment, Grab_clip, Unlock_clip, Look, Get_cable, Create_pick_goal, Approach_cable, Open_clip), beside the board with one clip."
+        caption: "**Fig. 5** Clip insertion scenario: forward and inverse action sequences, and the board layout."
+      - type: figure
+        src: src/media/thesis/fullpath-scenario.png
+        widths: [750]
+        sizes: "(max-width: 860px) 100vw, 750px"
+        plate: true
+        maxWidth: 820px
+        alt: "Full modular path scenario: a longer action sequence (Look, Get_cable, Create_pick_goal, Approach_cable, Approach_tube, Insert_tube, Step_back, Push, Step_back, Push, Approach_cable, continuing), beside the board with a cable routed through several modules."
+        caption: "**Fig. 6** Full modular path scenario: the action sequence across several modules, and the board layout."
       - type: note
         md: "The repository is a research prototype: results, behavior and replayability depend on local hardware, calibration and recorded data."
       - type: paths
@@ -107,15 +144,16 @@ sections:
             steps:
               - "A single demonstration can be reused in different spatial setups, thanks to the invariance properties of DHB."
       - type: note
-        md: "**What Figs. 3–7 show.** The generalization step of the process above, applied to five motion steps of the clip task. Each plot shows a demonstrated trajectory (blue) and the trajectory generated from it for a new start and goal (red); points 1–2 mark the original start and goal, points 3–4 the new ones. The plots illustrate how a demonstration is re-targeted; they are not measurements of task success. 640 × 480, no sound."
+        md: "**What Figs. 7–11 show.** The generalization step of the process above, applied to five motion steps of the clip task. Each plot shows a demonstrated trajectory (blue) and the trajectory generated from it for a new start and goal (red); points 1–2 mark the original start and goal, points 3–4 the new ones. The plots illustrate how a demonstration is re-targeted; they are not measurements of task success. 640 × 480, no sound."
       - type: videos
         columns: 2
+        animate: true   # GIF-like: autoplay, muted, loop, no controls. Remove for normal video players.
         items:
-          - { id: cap-look, src: /media/thesis/look.mp4, poster: /media/thesis/look-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 3** Looking for the clip." }
-          - { id: cap-grab, src: /media/thesis/grabclip.mp4, poster: /media/thesis/grabclip-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 4** Grabbing the clip." }
-          - { id: cap-insert, src: /media/thesis/insert.mp4, poster: /media/thesis/insert-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 5** Inserting the cable." }
-          - { id: cap-close, src: /media/thesis/closeclip.mp4, poster: /media/thesis/closeclip-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 6** Closing the clip." }
-          - { id: cap-unlock, src: /media/thesis/unlockclip.mp4, poster: /media/thesis/unlockclip-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 7** Unlocking the clip." }
+          - { id: cap-look, src: /media/thesis/look.mp4, poster: /media/thesis/look-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 7** Looking for the clip." }
+          - { id: cap-grab, src: /media/thesis/grabclip.mp4, poster: /media/thesis/grabclip-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 8** Grabbing the clip." }
+          - { id: cap-insert, src: /media/thesis/insert.mp4, poster: /media/thesis/insert-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 9** Inserting the cable." }
+          - { id: cap-close, src: /media/thesis/closeclip.mp4, poster: /media/thesis/closeclip-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 10** Closing the clip." }
+          - { id: cap-unlock, src: /media/thesis/unlockclip.mp4, poster: /media/thesis/unlockclip-poster.webp, width: 640, height: 480, ratio: "4 / 3", caption: "**Fig. 11** Unlocking the clip." }
 
   - id: s-tech
     title: Technologies

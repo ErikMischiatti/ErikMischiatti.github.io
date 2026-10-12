@@ -26,6 +26,16 @@ crop RTK_pic2.jpg 720x900+0+160 "$O/rtk/side-45.jpg"
 crop RTK_pic4.jpg 720x720+0+240 "$O/rtk/cells-11.jpg"
 convert "$P/CAD_RTK.png" -background '#ffffff' -flatten -strip -quality 92 "$O/rtk/cad.jpg"
 
+# Diagrams with transparent backgrounds, flattened on white (the JPEG fallback has no alpha)
+flat() { # src out
+  convert "$P/$1" -background '#ffffff' -flatten -strip "$2"
+}
+flat system_concept.drawio.png "$O/uwb/system-concept.png"
+flat SystemDesign.png          "$O/thesis/system-design.png"
+flat SetupConfiguration.png    "$O/thesis/setup-configuration.png"
+flat clip_scenario.png         "$O/thesis/clip-scenario.png"
+flat fullpath_scenario.png     "$O/thesis/fullpath-scenario.png"
+
 # UWB: airframe detail from the 4K flight video (frame at 21 s), poster, web copy
 V="$P/RECEIVER_FIRMWARE_OLD_3840x2160_60fps_edit.mp4"
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
@@ -47,6 +57,5 @@ gif2mp4 _ours_grabclip.gif      "$O/thesis/grabclip"
 gif2mp4 _ours_insert.gif        "$O/thesis/insert"
 gif2mp4 _ours_closeclip.gif     "$O/thesis/closeclip"
 gif2mp4 _ours_unlockclip_up.gif "$O/thesis/unlockclip"
-gif2mp4 mira_record.gif         "$O/mira/interface"
 
 echo "media sources written to $O"

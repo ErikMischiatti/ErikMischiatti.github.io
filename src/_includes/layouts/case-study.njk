@@ -14,13 +14,14 @@ layout: layouts/base.njk
     {%- endfor %}
   </div>
   {%- if opType == 'photos' %}
-  <figure class="cs-figs{% if opening.figures.length == 1 %} cs-figs--single{% endif %}">
+  <figure class="cs-figs{% if opening.figures.length == 1 %} cs-figs--single{% endif %}{% if opening.wide %} cs-figs--wide{% endif %}">
     {%- asyncEach fig in opening.figures %}
-    {%- if fig.plate %}<div class="plate">{% endif %}
+    <div class="cs-fig{% if fig.plate %} plate{% endif %}" style="--ar: {% ratio fig.src, fig.widths %}">
     {% picture { src: fig.src, alt: fig.alt, widths: fig.widths, sizes: fig.sizes, loading: "eager", priority: loop.first } %}
-    {%- if fig.plate %}</div>{% endif %}
+    {%- if fig.caption %}<p class="cs-fig__cap">{{ fig.caption | mdi | safe }}</p>{% endif %}
+    </div>
     {%- endeach %}
-    <figcaption>{{ opening.caption | mdi | safe }}</figcaption>
+    {% if opening.caption %}<figcaption>{{ opening.caption | mdi | safe }}</figcaption>{% endif %}
   </figure>
   {%- elif opType == 'drawing' %}
   <figure class="cs-figs cs-figs--drawing plate">

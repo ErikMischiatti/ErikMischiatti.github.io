@@ -22,6 +22,7 @@
   .nav a { display: flex; align-items: center; min-height: 44px; padding: 0 12px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
   .nav a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
   .nav a[aria-current] { background: var(--signal); box-shadow: inset 0 -3px 0 var(--ink); }
+  .menu-btn { display: none; }  /* phone menu toggle: shown only at ≤ 600 px, once the header script has run (.top--menu) */
 
   /* E.1.3 Small section head (K-01: one component for every homepage section label) */
   .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); flex-wrap: wrap; border-top: 3px solid var(--ink); padding-top: var(--s2); margin-bottom: var(--s2); }
@@ -43,12 +44,19 @@
   .fig-row--3 { grid-template-columns: 4fr 3fr 2.4fr; }
   .fig-row--2 { grid-template-columns: 1fr 1fr; }
   .fig-row img { width: 100%; height: clamp(200px, 20vw, 300px); object-fit: cover; }
+  /* Photo rows (fig-row--2/3, not contain or video): one shared height, each photo at its own
+     proportions (--ar on each figure, set by the build), so nothing is cropped. */
+  .fig-row:is(.fig-row--2, .fig-row--3):not(.fig-row--contain, .fig-row--videos) { display: flex; flex-wrap: wrap; align-items: flex-start; }
+  .fig-row:is(.fig-row--2, .fig-row--3):not(.fig-row--contain, .fig-row--videos) > figure { flex: var(--ar) 1 0; min-width: 0; }
+  .fig-row:is(.fig-row--2, .fig-row--3):not(.fig-row--contain, .fig-row--videos) img { height: auto; aspect-ratio: var(--ar); }
   .fig-row--contain { align-items: start; }
   .fig-row--contain img { object-fit: contain; height: auto; aspect-ratio: auto; }
   .fig-row--contain figure { min-width: 0; }
   .video { background: var(--ink); }
   .fig video, .fig-row--videos video { width: 100%; height: auto; aspect-ratio: var(--ratio, 16 / 9); background: var(--ink); object-fit: contain; }
   .fig-row--videos { align-items: start; }
+  .embed { aspect-ratio: 16 / 9; background: var(--ink); }  /* youtube block: responsive 16:9 frame */
+  .embed iframe { display: block; width: 100%; height: 100%; border: 0; }
 
   /* E.1.5 Main action and page link. The arrow is not announced (K-17). */
   .go { align-self: flex-start; justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px 0 0; font-weight: 680; font-stretch: var(--w-item); font-size: var(--t-item); text-decoration: none; border-bottom: 3px solid var(--ink); }
@@ -153,8 +161,26 @@
   @media (max-width: 600px) {
     .top__inner { flex-direction: column; align-items: stretch; gap: 0; min-height: 0; padding-top: 8px; }
     .wordmark { line-height: 1.2; }
-    .nav { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; margin-inline: -8px; }
+    .nav { display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between; margin-inline: -8px; }  /* 7 items: two rows on phones */
     .nav a { padding: 0 8px; }
+
+    /* Phone menu (header script adds .top--menu; .is-open while expanded). Without JavaScript the
+       two-row link grid above stays in place. */
+    .top--menu .top__inner { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0 var(--s2); min-height: 56px; padding-top: 0; }
+    .top--menu .menu-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 10px; margin-right: -10px; border: 0; background: none; color: var(--ink); font: inherit; font-weight: 600; font-size: 0.9375rem; cursor: pointer; }
+    .menu-btn__icon, .menu-btn__icon::before, .menu-btn__icon::after { display: block; width: 18px; height: 2px; background: currentColor; transition: transform 0.16s ease, background-color 0.16s ease; }
+    .menu-btn__icon { position: relative; }
+    .menu-btn__icon::before, .menu-btn__icon::after { content: ""; position: absolute; left: 0; }
+    .menu-btn__icon::before { top: -6px; }
+    .menu-btn__icon::after { top: 6px; }
+    .menu-btn[aria-expanded="true"] .menu-btn__icon { background-color: transparent; }
+    .menu-btn[aria-expanded="true"] .menu-btn__icon::before { transform: translateY(6px) rotate(45deg); }
+    .menu-btn[aria-expanded="true"] .menu-btn__icon::after { transform: translateY(-6px) rotate(-45deg); }
+    .top--menu nav { display: none; flex-basis: 100%; }
+    .top--menu.is-open nav { display: block; animation: menu-in 0.16s ease-out; }
+    .top--menu .nav { display: flex; flex-direction: column; margin-inline: 0; padding-bottom: var(--s1); border-top: 1px solid var(--rule); }
+    .top--menu .nav li + li { border-top: 1px solid var(--rule); }
+    .top--menu .nav a { min-height: 48px; padding: 0 8px; font-size: 1rem; }
 
     .acct > div { grid-template-columns: 1fr; gap: 2px; }
     .acct dt { font-size: var(--t-label); color: var(--ink-3); font-weight: 600; }
@@ -167,8 +193,7 @@
 
     .fig-row--3, .fig-row--2 { grid-template-columns: 1fr 1fr; margin-inline: calc(var(--margin) * -1); }
     .fig-row--3 figure:first-child { grid-column: 1 / -1; }
-    .fig-row--3 figure:first-child img { height: auto; aspect-ratio: 4 / 3; }
-    .fig-row--3 figure img, .fig-row--2 figure img { height: 200px; }
+    .fig-row:is(.fig-row--2, .fig-row--3):not(.fig-row--contain, .fig-row--videos) > figure:first-child:nth-last-child(n+3) { flex-basis: 100%; }  /* phones, rows of 3+: first photo full width, the others share the next row */
     .fig-row--contain, .fig-row--videos { grid-template-columns: 1fr; }
     .fig-row--contain figure img { height: auto; }
     .fig-row--contain.fig--plate { padding-inline: var(--margin); }
@@ -193,5 +218,11 @@
     .tbl--labelled td.st--np { display: none; }
     .rec-sheet { margin-inline: calc(var(--margin) * -1); padding-inline: var(--margin); }
     .rec-sheet tbody th, .rec-sheet .st { width: auto; }
+  }
+
+  @keyframes menu-in { from { opacity: 0; transform: translateY(-4px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .top--menu.is-open nav { animation: none; }
+    .menu-btn__icon, .menu-btn__icon::before, .menu-btn__icon::after { transition: none; }
   }
 }

@@ -4,6 +4,10 @@
     <h2 id="index-title">Index</h2>
     <p>All projects and what each one actually produced, as documented on its project page.</p>
   </div>
+  {#- Phones (≤ 600 px): the table keeps its columns and scrolls sideways inside .ix-scroll. The wrapper is
+      focusable so the table can also be scrolled with the keyboard. -#}
+  <p class="ix-hint" aria-hidden="true">Swipe sideways to see every column →</p>
+  <div class="ix-scroll" role="region" aria-labelledby="index-title" tabindex="0">
   <table class="ix">
     <caption class="vh">Projects and their engineering evidence</caption>
     <thead>
@@ -24,7 +28,7 @@
       {%- set href = ('#p-' ~ d.slug) if d.featured else (d.urlPath if (live or d.legacy) else null) %}
       <tr>
         <th scope="row">{% if href %}<a href="{{ href }}">{{ d.index.name }}</a>{% else %}{{ d.index.name }}{% endif %}</th>
-        <td class="ctx">{{ d.index.context or "–" }}</td>
+        <td class="ctx">{{ (d.index.context or "–") | mdi | safe }}</td>
         <td class="per">{{ d.index.period or "–" }}</td>
         {%- for k in evidenceLabels.order %}
         {%- set v = d.evidence[k] %}
@@ -36,5 +40,6 @@
       {%- endfor %}
     </tbody>
   </table>
+  </div>
   <p class="ix-key"><span><span class="mk mk--doc" aria-hidden="true"></span>{{ evidenceLabels.key.doc }}</span><span><span class="mk mk--rep" aria-hidden="true"></span>{{ evidenceLabels.key.rep }}</span></p>
 </section>

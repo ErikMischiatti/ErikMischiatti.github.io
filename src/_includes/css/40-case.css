@@ -13,12 +13,18 @@
   .cs-why strong { color: var(--ink); }
 
   /* E.2.1 Opening figure: photo pair (default) | drawing plate */
-  .cs-figs { grid-column: 8 / span 5; display: grid; grid-template-columns: 3fr 2fr; gap: var(--gap-media); }
-  .cs-figs img { width: 100%; height: clamp(260px, 26vw, 400px); object-fit: cover; }
+  /* Opening photos share one height; each keeps its own proportions (--ar, set by the build), so
+     nothing is cropped. A single photo is capped in height instead. */
+  .cs-figs { grid-column: 8 / span 5; display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--gap-media); align-self: start; }
+  .cs-fig { flex: var(--ar) 1 0; min-width: 0; }
+  .cs-figs img { width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; }
   .cs-figs .plate img { object-fit: contain; padding: 14px; }
-  .cs-figs > figcaption { grid-column: 1 / -1; }
-  .cs-figs picture { min-width: 0; }
-  .cs-figs--single { grid-template-columns: 1fr; }
+  .cs-figs > figcaption { flex: 1 0 100%; }
+  .cs-figs--single { --single-h: clamp(320px, 34vw, 520px); }  /* height of a single opening photo */
+  .cs-figs--single .cs-fig { flex: 0 1 auto; width: min(100%, calc(var(--single-h) * (var(--ar)))); }
+  /* opening.wide: the photos take a full-width row below the intro (larger photos, same layout rules) */
+  .cs-figs--wide { grid-column: 1 / -1; }
+  .cs-fig__cap { margin-top: var(--s1); font-size: var(--t-small); color: var(--ink-3); }  /* per-photo caption (fig.caption) */
   .cs-figs--drawing { display: block; padding: var(--s3) var(--s3) var(--s2); }
   .cs-figs--drawing svg { width: 100%; height: auto; }
 
@@ -60,6 +66,8 @@
   .steps { counter-reset: s; font-size: var(--t-small); }
   .steps li { counter-increment: s; display: grid; grid-template-columns: 1.5rem 1fr; padding-block: var(--row-tight); border-bottom: 1px solid var(--rule); color: var(--ink-2); }
   .steps li::before { content: counter(s); font-weight: 600; color: var(--ink-3); }
+  ul.steps { max-width: 35rem; margin-block: var(--s2) var(--s3); }  /* standalone list block: same width as the text (64ch at body size) */
+  .steps strong { color: var(--ink); }
 
   @media (max-width: 1100px) {
     .cs-intro, .cs-intro--wide { grid-column: 1 / span 7; }
@@ -72,7 +80,6 @@
   @media (max-width: 860px) {
     .cs-intro, .cs-intro--wide, .cs-figs { grid-column: 1 / -1; }
     .cs-head { row-gap: var(--s4); }
-    .cs-figs img { height: clamp(240px, 50vw, 380px); }
     .cs-figs--drawing { justify-self: start; width: 100%; }
     .cs-aside { grid-template-columns: 1fr; }
     /* Two-column facts and contents for every case study (K-11) */
@@ -85,7 +92,9 @@
   @media (max-width: 600px) {
     .cs-head { padding-top: var(--s3); }
     .cs-figs { margin-inline: calc(var(--margin) * -1); }
-    .cs-figs img { height: 260px; }
+    .cs-figs--single { --single-h: 420px; }
+    .cs-figs--wide .cs-fig { flex-basis: 100%; }  /* phones: wide opening photos stack */
+    .cs-figs .cs-fig__cap { padding-inline: var(--margin); }
     .cs-figs figcaption { padding-inline: var(--margin); }
     .cs-figs--drawing { margin-inline: calc(var(--margin) * -1); padding: var(--s3) var(--margin) var(--s2); max-width: none; width: auto; justify-self: stretch; }
     /* E.2.2 drawing-first phone order */

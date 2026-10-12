@@ -24,12 +24,12 @@ facts:
   - { term: Team, value: "Hachi team; individual roles not stated", wide: true }
   - { term: Status, value: Completed }
   - { term: Recognition, value: "DigiEduHack 2021 Global Award", wide: true }
+# Opening: the team photograph used as the project's cover on the original homepage.
 opening:
   type: photos
   figures:
-    - { src: pics/photo_3_2024-11-12_14-12-55.jpg, widths: [480, 720], sizes: "(max-width: 860px) 100vw, 40vw", alt: "Hachi stand with posters, printed cards and the app running on a tablet." }
-  caption: "**Fig. 1** Hachi stand: posters, printed learning cards and the app on a tablet."
-
+    - { src: pics/photo_5_2024-10-03_14-58-56.jpg, widths: [640, 960], sizes: "(max-width: 860px) 100vw, 40vw", alt: "The four members of the Hachi team standing beside their stand, with the Hachi poster, printed learning cards, a tablet and a laptop." }
+  caption: "**Fig. 1** The Hachi team at its stand."
 sections:
   - id: s-concept
     title: From problem to team
@@ -57,7 +57,8 @@ sections:
         images:
           - { src: pics/photo_1_2024-11-12_14-12-55.jpg, widths: [480, 720], sizes: "(max-width: 600px) 50vw, 33vw", alt: "Printable Hachi learning card with an AR marker, on a desk.", caption: "**Fig. 2** Printable learning card with an AR marker." }
           - { src: pics/photo_2_2024-11-12_14-12-55.jpg, widths: [480, 720], sizes: "(max-width: 600px) 50vw, 33vw", alt: "Hachi Action and Info learning cards on a desk.", caption: "**Fig. 3** Action and Info cards." }
-          - { src: pics/photo_5_2024-11-12_14-12-55.jpg, widths: [480, 720], sizes: "(max-width: 600px) 50vw, 33vw", alt: "Hachi cards with AR markers labelled Object and Action.", caption: "**Fig. 4** Object and Action cards with AR markers." }
+          - { src: pics/photo_3_2024-11-12_14-12-55.jpg, widths: [480, 720], sizes: "(max-width: 600px) 50vw, 33vw", alt: "Hachi stand with posters, printed cards and the app running on a tablet.", caption: "**Fig. 4** Hachi stand: posters, printed learning cards and the app on a tablet." }
+          - { src: pics/photo_5_2024-11-12_14-12-55.jpg, widths: [480, 720], sizes: "(max-width: 600px) 50vw, 33vw", alt: "Hachi cards with AR markers labelled Object and Action.", caption: "**Fig. 5** Object and Action cards with AR markers." }
 
   - id: s-tech
     title: Technical details

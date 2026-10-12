@@ -26,7 +26,7 @@ facts:
   - { term: Status, value: "Completed, published 2024" }
 
 featured:
-  order: 2
+  order: 4
   tier: primary
   layout: media-end
   selectedName: UWB Communication System
@@ -41,14 +41,15 @@ featured:
   evidenceText: "Outdoor flight; hardware-in-the-loop tests show stable control around a 5&nbsp;ms end-to-end delay."
   caseLabel: UWB case study
   pageLabel: UWB project page
-  mediaVideo: { src: /media/uwb/flight-720p.mp4, poster: /media/uwb/flight-poster.webp, width: 1280, height: 720 }
-  mediaCaption: "Outdoor flight: rotor modules on a box, no frame. 24&nbsp;s, no sound, 1.5&nbsp;MB."
+  # Homepage image: the 3D model shown on the original portfolio. The flight video stays on the project page.
+  media:
+    - { src: pics/photo_1_2024-10-03_16-27-18-transformed.png, plate: true, widths: [274], sizes: "274px", alt: "3D model of a rotor module, with the UWB board in its printed case." }
+  mediaCaption: "3D model of a rotor module, with the UWB board in its printed case."
 
+# The opening photo (src/media/uwb/detail-43.jpg, a frame of the flight video) was removed from the page;
+# the file is kept. To show it again, replace "type: none" with the photos opening from git history.
 opening:
-  type: photos
-  figures:
-    - { src: src/media/uwb/detail-43.jpg, widths: [480, 960], sizes: "(max-width: 860px) 100vw, 40vw", alt: "Rotor modules fixed to a box, flying outdoors without a frame, in front of a building." }
-  caption: "**Fig. 1** Rotor modules attached to a box, in flight, no frame. Frame from the project's flight video."
+  type: none
 
 sections:
   - id: s-overview
@@ -72,6 +73,14 @@ sections:
     blocks:
       - type: prose
         md: "A **master module** captures the PWM signals from the flight controller. Several **slave modules**, each with its own ESC, motor and UWB receiver, reproduce them. The slaves synchronize motor control using PWM triggered by a sync signal from the master."
+      # Diagram from the original page (pics/system_concept.drawio.png), flattened on white in src/media/uwb/.
+      - type: figure
+        src: src/media/uwb/system-concept.png
+        widths: [860, 1449]
+        sizes: "(max-width: 860px) 100vw, 60vw"
+        plate: true
+        alt: "System architecture: a master module (battery, flight controller with radio and sensors, PWM to a UWB transmitter) broadcasts a TX message of address and duty-cycle pairs to four slave modules, each with a battery, a UWB receiver with its own address, an ESC and a motor."
+        caption: "**Fig. 1** System architecture. The master module turns the flight controller's PWM outputs into one TX message of address and duty-cycle pairs; each slave module's receiver picks its own address and drives its ESC and motor."
 
   - id: s-results
     title: Results
@@ -102,6 +111,11 @@ sections:
           </ul>
 
           Developed within the EES Lab as part of the Embedded Systems course, based on the University of Trento patent “Wireless Control for Reconfigurable and/or Frameless Autonomous Vehicles”.
+      # Video from the original page (YouTube rQPsniFY9L8), privacy-enhanced embed.
+      - type: youtube
+        videoId: rQPsniFY9L8
+        title: "Anything is a Drone — Modular Wireless UAV Prototype"
+        caption: "**Fig. 3** “Anything is a drone”: the modular wireless UAV prototype (YouTube)."
 
   - id: s-refs
     title: Publication and resources

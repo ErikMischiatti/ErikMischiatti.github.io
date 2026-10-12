@@ -37,7 +37,7 @@ const ALLOWED = [
   /^index\.html$/, /^404\.html$/, /^pages\/[a-z0-9_]+\.html$/, /^sitemap\.xml$/, /^robots\.txt$/,
   /^CNAME$/, /^\.nojekyll$/,
   /^static\/css\/site\.css$/, /^static\/fonts\/(archivo-latin-var\.woff2|OFL\.txt|unicode-range\.txt)$/,
-  /^media\/img\/[A-Za-z0-9_.-]+-\d+\.(webp|jpeg)$/,
+  /^media\/img\/[A-Za-z0-9_.-]+-\d+\.(webp|jpeg|png)$/, /^media\/gif\/[A-Za-z0-9_.-]+\.gif$/,
   /^media\/[a-z]+\/[a-z0-9-]+\.mp4$/, /^media\/[a-z]+\/[a-z0-9-]*poster\.webp$/,
 ];
 const allowedDoc = (rel) => docs.some((d) => d.path === rel && (d.approved || PREVIEW));
@@ -74,6 +74,7 @@ for (const rel of files) {
   if (/^media\/img\/.*\.webp$/.test(rel) && size > 100 * 1024) err(`WebP over 100 kB: ${rel} (${Math.round(size / 1024)} kB)`);
   else if (/^media\/img\/.*\.webp$/.test(rel) && size > 80 * 1024) warn(`WebP over 80 kB: ${rel} (${Math.round(size / 1024)} kB)`);
   if (/\.mp4$/.test(rel) && size > BUDGET.video) err(`video over 2 MB: ${rel}`);
+  if (/\.gif$/.test(rel) && size > BUDGET.video) err(`GIF over 2 MB: ${rel}`);
   if (/\.woff2$/.test(rel) && size > BUDGET.font) err(`font over 100 kB: ${rel}`);
   if (rel === "static/css/site.css" && size > BUDGET.css) warn(`CSS is ${Math.round(size / 1024)} kB`);
   if (/\.html$/.test(rel) && !legacy && size > BUDGET.html) warn(`HTML ${rel} is ${Math.round(size / 1024)} kB`);
@@ -128,10 +129,13 @@ for (const p of pages) {
   for (const m of s.matchAll(/<table\b[\s\S]*?<\/table>/g)) if (!/<caption[\s>]/.test(m[0])) err(`${p}: table without caption`);
   for (const m of s.matchAll(/<video\b[^>]*>/g)) {
     if (!/\sposter="/.test(m[0])) err(`${p}: video without poster`);
-    if (/\sautoplay/.test(m[0])) err(`${p}: video with autoplay`);
-    if (!/preload="none"/.test(m[0])) warn(`${p}: video without preload="none"`);
+    // Autoplay only for GIF-like clips: muted, looping, inline, marked data-gif (reduced-motion script).
+    const gifLike = /\sautoplay/.test(m[0]);
+    if (gifLike && !(/\smuted/.test(m[0]) && /\sloop/.test(m[0]) && /\splaysinline/.test(m[0]) && /\sdata-gif/.test(m[0]))) err(`${p}: autoplay video that is not muted, looping, inline and data-gif`);
+    if (gifLike && !/prefers-reduced-motion: reduce/.test(s)) err(`${p}: autoplay video without the reduced-motion script`);
+    if (!gifLike && !/preload="none"/.test(m[0])) warn(`${p}: video without preload="none"`);
   }
-  for (const m of s.matchAll(/<figure\b[^>]*>([\s\S]*?)<\/figure>/g)) if (!/<(img|video|svg|ol)\b/.test(m[1])) err(`${p}: empty <figure> (missing media)`);
+  for (const m of s.matchAll(/<figure\b[^>]*>([\s\S]*?)<\/figure>/g)) if (!/<(img|video|svg|ol|iframe)\b/.test(m[1])) err(`${p}: empty <figure> (missing media)`);
   for (const m of s.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)) {
     const text = m[2].replace(/<[^>]+>/g, "").trim();
     if (!text && !/aria-label="/.test(m[1])) err(`${p}: link without accessible text`);

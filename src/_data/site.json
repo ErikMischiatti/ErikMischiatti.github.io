@@ -5,20 +5,55 @@
   "description": "Mechatronics engineer working across robotics, autonomous systems and system integration.",
   "statement": "Mechatronics engineer working across robotics, autonomous systems and system integration.",
   "lede": "I build and test robot systems that connect embedded hardware, perception, control and autonomous decision logic for real-world prototypes.",
-  "role": { "title": "Researcher / Test Engineer", "org": "MRS Group, FEE CTU in Prague" },
+  "role": {
+    "title": "Test Engineer",
+    "org": "MRS Group, FEE CTU in Prague"
+  },
   "nav": [
-    { "label": "Work", "href": "/#work" },
-    { "label": "Index", "href": "/#index" },
-    { "label": "Record", "href": "/#record" },
-    { "label": "Contact", "href": "/#contact" },
-    { "label": "CV", "href": "/docs/CV.pdf" }
+    {
+      "label": "Work",
+      "href": "/#work"
+    },
+    {
+      "label": "Index",
+      "href": "/#index"
+    },
+    {
+      "label": "Experience",
+      "href": "/#experience"
+    },
+    {
+      "label": "Education",
+      "href": "/#education"
+    },
+    {
+      "label": "Skills",
+      "href": "/#skills"
+    },
+    {
+      "label": "Contact",
+      "href": "/#contact"
+    },
+    {
+      "label": "CV",
+      "href": "/docs/CV.pdf"
+    }
   ],
   "contact": {
     "email": "erik.mischiatti@gmail.com",
     "links": [
-      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/erikmischiatti/" },
-      { "label": "GitHub", "href": "https://github.com/ErikMischiatti" },
-      { "label": "CV, PDF 142 kB", "href": "/docs/CV.pdf" }
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/erikmischiatti/"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/ErikMischiatti"
+      },
+      {
+        "label": "CV",
+        "href": "/docs/CV.pdf"
+      }
     ]
   }
 }

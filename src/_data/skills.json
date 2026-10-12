@@ -1,0 +1,11 @@
+{
+  "_comment": "Homepage Skills and expertise. Groups and items appear in this order. Source: the Skills section of the previous public homepage.",
+  "groups": [
+    { "title": "Robotics and autonomy", "items": ["ROS", "Behavior Trees (BehaviorTree.CPP)", "Gazebo simulation", "Control, perception and planning integration"] },
+    { "title": "Perception and learning", "items": ["Learning from Demonstration", "OpenCV", "Object detection", "Pose estimation"] },
+    { "title": "Embedded systems", "items": ["STM32", "Arduino", "UART, SPI, I²C", "UWB modules, sensors, motor drivers"] },
+    { "title": "CAD and PCB design", "items": ["SolidWorks", "Fusion 360", "Onshape", "EasyEDA"] },
+    { "title": "Software", "items": ["Python", "C++", "MATLAB", "Processing"] },
+    { "title": "Tools and deployment", "items": ["Linux", "Git (GitHub, GitLab)", "Docker, Apptainer", "ROS build systems"] }
+  ]
+}

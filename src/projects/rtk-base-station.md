@@ -1,5 +1,5 @@
 ---
-title: RTK Base Station
+title: RTK Base Station 
 slug: rtk-base-station
 order: 1
 urlPath: /pages/rtk_base_station.html
@@ -14,20 +14,22 @@ contribution:
   lead: "Hardware selection, enclosure design, field deployment."
 index:
   name: RTK Base Station
-  context: null
+  context: "EAGLE.ONE, FEE CTU in Prague"
   period: null
 evidence: { hardware: doc, field: rep, experimental: none, simulation: none, publication: none, software: none }
 facts:
   - { term: My role, value: "Hardware selection, enclosure design, field deployment", wide: true }
+  - { term: Context, value: "EAGLE.ONE, FEE CTU in Prague", wide: true }
   - { term: Design basis, value: "Enclosure adapted from the Burks Builds GNSS base station prototype [[2]](#ref-2)", wide: true }
   - { term: Status, value: "Version I complete. Version II in progress.", wide: true }
 
 featured:
-  order: 1
+  order: 5
   tier: primary
   layout: media-start
   selectedSummary: Hardware, field use
   meta:
+    - { text: "EAGLE.ONE, FEE CTU in Prague" }
     - { text: "Version I complete, Version II in progress" }
   what: "A portable GNSS reference station. It runs Survey-In at power-on and broadcasts RTCM corrections over LoRa, designed for centimetre-level RTK positioning of drones and rovers."
   builtWith: "Here4 Base (u-blox F9P), LoRa E220 at 900&nbsp;MHz, 4&nbsp;×&nbsp;18650 pack, three-part printed enclosure"

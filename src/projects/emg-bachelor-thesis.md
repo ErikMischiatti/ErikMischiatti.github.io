@@ -54,6 +54,15 @@ sections:
           - { name: Serial link to PC }
           - { name: Processing visualization }
         caption: "**Fig. 1** Signal chain: the MyoWare sensor feeds preprocessed analog signals to the Arduino Due, which sends the data over serial to a PC running Processing for real-time visualization and analysis."
+      # Image from the original page (pics/Setup.jpg), shown whole.
+      - type: figure
+        src: pics/Setup.jpg
+        widths: [700, 1100]
+        sizes: "(max-width: 860px) 100vw, 640px"
+        plate: true
+        maxWidth: 680px
+        alt: "EMG system setup: wiring of the Arduino Due, the MyoWare muscle sensor and its cable shield, and three surface electrodes connected through the sensor cable."
+        caption: "**Fig. 2** EMG system setup: Arduino Due, MyoWare muscle sensor with cable shield, and surface electrodes (labels in Italian)."
 
   - id: s-results
     title: Results

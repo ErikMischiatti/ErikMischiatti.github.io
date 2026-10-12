@@ -28,3 +28,6 @@ _preview/
 
 # Local drafts pending publication approval: never commit
 src/_private/
+
+# Python bytecode (tools/verify.py)
+__pycache__/

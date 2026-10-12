@@ -11,7 +11,7 @@ const MARKS = ["doc", "rep", "none"];
 const LAYOUTS = ["layouts/case-study.njk", "layouts/project.njk"];
 const TIERS = ["primary", "text-led", "secondary"];
 const UNIT_LAYOUTS = ["media-start", "media-end", "text-led", "secondary"];
-const BLOCKS = ["prose", "figure", "figures", "drawing", "sequence", "table", "status", "paths", "steps", "note", "video", "videos", "refs"];
+const BLOCKS = ["prose", "figure", "figures", "drawing", "sequence", "table", "status", "paths", "steps", "note", "video", "videos", "gif", "youtube", "refs"];
 // Review annotations must never reach a page; PDFs are linked only through the docs allowlist.
 const FORBIDDEN_TEXT = [/\bTODO\b/i, /\bFIXME\b/i, /lab note/i, /content[_ -]review/i, /\bCR-\d{2}\b/, /_design-lab/i, /\.pdf\b/i];
 
@@ -60,6 +60,8 @@ export function validateProjects(items, { production = false, approved = () => t
         }
         if (b.type === "figure" || b.type === "figures") for (const im of b.images || [b]) if (im.alt == null) e(`section ${s.id}: image ${im.src} needs alt`);
         if (b.type === "drawing" && (!b.wide || !b.title)) e(`section ${s.id}: drawing needs wide and title`);
+        if (b.type === "youtube" && (!/^[\w-]{11}$/.test(b.videoId || "") || !b.title)) e(`section ${s.id}: youtube needs an 11-character videoId and a title`);
+        if (b.type === "gif" && (!b.src || b.alt == null || !b.width || !b.height)) e(`section ${s.id}: gif needs src, alt, width and height`);
       }
     }
     const text = JSON.stringify(d, (k, v) => (["collections", "eleventy", "page", "pkg", "build", "site", "evidenceLabels", "record", "publications", "docs", "approvals"].includes(k) ? undefined : v));

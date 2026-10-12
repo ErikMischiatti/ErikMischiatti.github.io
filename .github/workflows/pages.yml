@@ -1,0 +1,45 @@
+# Builds the Eleventy site and publishes the production output (_site/) to GitHub Pages.
+# Takes effect only once the repository's Pages source is set to "GitHub Actions"; until then
+# Pages keeps serving the legacy branch build. Runs on pushes to main, or by hand.
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Production build plus every gate (output allowlist, BT approval gate, draft scan, links),
+      # and the preview build check. Only _site/ (production) is uploaded; _preview/ never is.
+      - run: npm test
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

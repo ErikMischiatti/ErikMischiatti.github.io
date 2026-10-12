@@ -1,7 +1,12 @@
 <header class="top">
   <div class="wrap top__inner">
     <a class="wordmark" href="{{ '#main' if isHome else '/' }}">{{ site.name }}</a>
-    <nav aria-label="Primary">
+    {#- Phone menu (≤ 600 px): the script below reveals the button and collapses the links behind it.
+        Without JavaScript the button stays hidden and the links stay visible, as before. -#}
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
+      <span class="menu-btn__icon" aria-hidden="true"></span><span class="menu-btn__label">Menu</span>
+    </button>
+    <nav id="site-nav" aria-label="Primary">
       <ul class="nav">
         {%- for item in site.nav %}
         {%- set href = item.href %}
@@ -12,3 +17,17 @@
     </nav>
   </div>
 </header>
+<script>
+(() => {
+  const btn = document.querySelector(".menu-btn"), nav = document.getElementById("site-nav"), top = btn.closest(".top");
+  const set = (open) => { btn.setAttribute("aria-expanded", String(open)); top.classList.toggle("is-open", open); };
+  btn.hidden = false;
+  top.classList.add("top--menu");
+  btn.addEventListener("click", () => set(btn.getAttribute("aria-expanded") !== "true"));
+  nav.addEventListener("click", (e) => { if (e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { set(false); btn.focus(); }
+  });
+  matchMedia("(max-width: 600px)").addEventListener("change", () => set(false));
+})();
+</script>

@@ -8,7 +8,7 @@
 {%- if imgs.length > 1 %}
 <div class="fig-row fig-row--{{ b.columns or imgs.length }}{% if b.contain %} fig-row--contain plate fig--plate{% endif %}">
   {%- asyncEach im in imgs %}
-  <figure>
+  <figure style="--ar: {% ratio im.src, im.widths %}">
     {% picture { src: im.src, alt: im.alt, widths: im.widths, sizes: im.sizes } %}
     {%- if im.caption %}<figcaption>{{ im.caption | mdi | safe }}</figcaption>{% endif %}
   </figure>
@@ -22,18 +22,31 @@
 {%- endif %}
 {%- elif b.type == 'video' %}
 <figure class="fig{% if not b.maxWidth %} fig--bleed{% endif %}"{% if b.maxWidth %} style="max-width: {{ b.maxWidth }}"{% endif %}>
-  {% video { src: b.src, poster: b.poster, width: b.width, height: b.height, describedby: b.id, ratio: b.ratio } %}
+  {% video { src: b.src, poster: b.poster, width: b.width, height: b.height, describedby: b.id, ratio: b.ratio, animate: b.animate } %}
   <figcaption id="{{ b.id }}">{{ b.caption | mdi | safe }}</figcaption>
+</figure>
+{%- if b.animate %}{% include "partials/reduced-motion.njk" %}{% endif %}
+{%- elif b.type == 'gif' %}
+<figure class="fig fig--gif"{% if b.maxWidth %} style="max-width: {{ b.maxWidth }}"{% endif %}>
+  {% gif { src: b.src, alt: b.alt, width: b.width, height: b.height } %}
+  <figcaption>{{ b.caption | mdi | safe }}</figcaption>
+</figure>
+{%- elif b.type == 'youtube' %}
+{#- Privacy-enhanced YouTube embed (youtube-nocookie.com), 16:9. The referrer policy is the one YouTube requires for embeds. -#}
+<figure class="fig fig--embed"{% if b.maxWidth %} style="max-width: {{ b.maxWidth }}"{% endif %}>
+  <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/{{ b.videoId }}" title="{{ b.title }}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  {%- if b.caption %}<figcaption>{{ b.caption | mdi | safe }}</figcaption>{% endif %}
 </figure>
 {%- elif b.type == 'videos' %}
 <div class="fig-row fig-row--{{ b.columns or 2 }} fig-row--videos">
   {%- for v in b.items %}
   <figure>
-    {% video { src: v.src, poster: v.poster, width: v.width, height: v.height, describedby: v.id, ratio: v.ratio } %}
+    {% video { src: v.src, poster: v.poster, width: v.width, height: v.height, describedby: v.id, ratio: v.ratio, animate: b.animate } %}
     <figcaption id="{{ v.id }}">{{ v.caption | mdi | safe }}</figcaption>
   </figure>
   {%- endfor %}
 </div>
+{%- if b.animate %}{% include "partials/reduced-motion.njk" %}{% endif %}
 {%- if b.caption %}<p class="note">{{ b.caption | mdi | safe }}</p>{% endif %}
 {%- elif b.type == 'drawing' %}
 <figure class="dg plate fig">
@@ -59,7 +72,7 @@
 </div>
 {%- elif b.type == 'steps' %}
 {%- if b.title %}<h3>{{ b.title }}</h3>{% endif %}
-<ul class="steps">{% for st in b.items %}<li>{{ st | mdi | safe }}</li>{% endfor %}</ul>
+<ul class="steps">{% for st in b.items %}<li><span>{{ st | mdi | safe }}</span></li>{% endfor %}</ul>
 {%- elif b.type == 'table' or b.type == 'status' %}
 {%- set isStatus = b.type == 'status' %}
 {%- set classes = 'tbl tbl--stack' ~ (' tbl--labelled' if b.labelled else '') ~ (' tbl--wide' if b.wide else '') ~ (' tbl--plain' if b.plain or b.layout == 'outcomes' else '') ~ (' tbl--meta-last' if b.metaLast else '') %}
